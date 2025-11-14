@@ -1,0 +1,51 @@
+/* @media (min-width: 1024px) { */
+
+#enteteProduit {
+  padding: 2rem;
+  height: 18rem;
+  justify-self: center;
+  background-color: var(--marronClair);
+  text-align: left;
+}
+
+.sectionTitleCookie,
+.sectionTitleBrookie {
+  color: var(--creme);
+  font-size: 2.3rem;
+  /* border: black 3px solid; */
+  display: flex;
+  width: 50%;
+  height: 4rem;
+  align-items: center;
+  justify-content: right;
+  padding-right: 2rem;
+  margin-bottom: 2rem;
+}
+
+.produitContainer2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+  padding-top: 2rem;
+}
+
+.produit2 {
+  border: var(--rouge) 3px solid;
+  background-color: var(--creme) !important;
+  margin-bottom: 4rem;
+  width: 15rem;
+  height: 22rem;
+}
+
+.btnDetail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--jaune);
+  border: #976658ff 2px solid;
+  width: 6rem;
+  height: 2rem;
+}

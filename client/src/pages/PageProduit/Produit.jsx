@@ -119,7 +119,7 @@ const Produit = () => {
         </div>
       </section>
 
-      {/************* SECTION BROOKIE****************/}
+      {/************* SECTION BROOKIE**************/}
 
       <div
         id="brookie"
