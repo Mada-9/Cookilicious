@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "var";
+  src: url(../src/assets/fonts/varsity_team/VarsityTeam-Bold.otf);
+}
+
+@font-face {
+  font-family: "kaftus";
+  src: url(../src/assets/fonts/kaftus/Kaftus.ttf);
+}
+
+:root {
+  --marronRouge: #880a0cff;
+  --marronFroid: #833f3fff;
+  --marronFonce: #5a1304ff;
+  --marronClair: #6c3619;
+  --rouge: #9f1619;
+  --jaune: rgb(222, 146, 23);
+  --creme: #fefaef;
+  --caramel: #bd5505ff;
+  height: 100vh;
+  width: 100%;
+}
+
+#root {
+  font-family: var;
+  font-size: 1.4rem;
+  background-color: var(--creme);
+  color: var(--marronRouge);
+  padding: 0 !important;
+  overflow-x: hidden;
+}
+
+a:hover {
+  color: var(--jaune) !important;
+}
+
+/* h3{
+  font-size: 1.3rem !important;
+  text-decoration: underline;
+} */
+/* FORMAT DESKTOP */
+
+/* @media (min-width: 1024px)  */
+/* MON HEADER  ET TITRE*/

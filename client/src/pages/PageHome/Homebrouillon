@@ -1,0 +1,274 @@
+/* Home.css - styles  PageHome */
+
+.home .ImageHome {
+  display: flex;
+}
+.home .ImageHome img {
+  flex: 1;
+  width: 50px;
+}
+
+@media (min-width: 1024px) {
+  .titleHome {
+    font-family: kaftus;
+    margin-top: 1rem;
+    font-size: 9em;
+    color: #9f1619;
+    margin-bottom: 0;
+  }
+
+  /* MES IMAGES ACCUEIL */
+
+  /* .home .ImageHome {
+    display: flex;
+  } */
+  /* .home .ImageHome img {
+    flex: 1;
+    width: 50px;
+  } */
+
+  /* .home .defilantContainer {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  } */
+  /* 
+  .home p.defilant {
+    font-size: 1.7rem;
+    margin-top: 1.2rem;
+    white-space: nowrap;
+    display: inline-block;
+    animation: scroll-left 28s linear infinite;
+  } */
+
+  /* @keyframes scroll-left {
+    from {
+      transform: translateX(0%);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  } */
+  /* .homeCategorie {
+    background-color: #9f1619;
+    margin-top: 2rem;
+    height: 33rem;
+    display: flex;
+    padding: 10px;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+  } */
+
+  /* .maCategorie {
+    color: rgb(245, 232, 216);
+    width: 40%;
+    font-size: 3rem !important;
+    padding-left: 2rem;
+  } */
+  /* .Categorie {
+    color: rgb(245, 232, 216);
+    border: rgb(242, 242, 242), 2px, solid;
+    border-radius: 2%;
+    width: 20rem;
+    height: 25rem;
+    font-size: 3rem; */
+  /* display: flex; */
+  /* padding-top: 3rem;
+    flex-direction: column;
+    position: relative;
+    background-image: url("https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg");
+    background-size: 25rem;
+    background-repeat: no-repeat;
+    background-position: 40%;
+  } */
+
+  /* button {
+    position: absolute;
+    font-size: 1.2rem !important;
+    bottom: 30px;
+    padding: 10px;
+    left: 5.5rem;
+    background-color: #973d24;
+    color: #fefaef;
+  } */
+
+  /* SECTION RECETTES HOME */
+
+  /* .homeRecipes {
+    display: flex;
+    height: 33rem;
+    justify-content: center;
+  } */
+  /* 
+  .recetteHome {
+    height: 20rem;
+    width: 30rem;
+    position: relative;
+    padding-top: 3rem;
+    border: 3px, #973d24, solid;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+  } */
+
+  /* button.btnRecette {
+    width: 20rem;
+    height: 3rem;
+    border: #9f1619;
+    border-radius: 2%;
+    align-self: center;
+    justify-self: center;
+  } */
+
+  /* img.halfcookietrois {
+    position: absolute;
+    width: 32rem;
+    left: -15rem;
+    overflow: hidden; */
+  /* cache le reste de l'image */
+  /* } */
+
+  /* .home .jaune {
+    height: 25rem;
+    background-color: rgb(222, 146, 23);
+    padding-top: 4rem;
+  } */
+  /* 
+  .home .jaune p {
+    color: #6f0002;
+    width: 60%;
+    text-align: center;
+    font-size: 1.8em !important;
+    padding-left: 2rem;
+    text-align: left;
+  } */
+  /* AFFRICHAGE PRODUITS HOME */
+
+  /* .home .homeProduit {
+    height: 33rem;
+    padding-top: 4rem;
+    font-size: 4rem;
+  } */
+
+  /* .home .produitsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+  } */
+
+  /* .home .produitCard {
+    background-color: #fff1e6;
+    padding: 1rem;
+    border-radius: 8px;
+    width: 20rem;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  } */
+
+  /* .home .produitCard h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  } */
+/* 
+  .home .produitCard p {
+    margin: 0.5rem 0;
+  } */
+
+  /* .home .produitCard button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #9f1619;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  } */
+
+  /* .home .homeProduit {
+    position: relative;
+  } */
+
+  .home .defilantContainerProduit {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .home .defilantProduit {
+    font-size: 1rem;
+    margin-top: 1.2rem;
+    display: flex;
+    /* animation: scroll-left-2 45s linear infinite; */
+  }
+
+  @keyframes scroll-left-2 {
+    from {
+      transform: translateX(1%);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .produitCard {
+    border: #9f1619 2px solid;
+    background-color: #fefaef !important;
+    margin: 2rem;
+    width: 5rem;
+    height: 15rem;
+  }
+
+  /* SECTION CONTACT HOME */
+
+  .contactHome {
+    height: 32rem;
+    background-color: #4b0607;
+    margin-top: 3rem;
+    margin-bottom: 6rem;
+    justify-items: center;
+    position: relative;
+  }
+
+  .homeContactTitle {
+    font-size: 4rem;
+    margin: 0;
+    color: #fefaef;
+  }
+  .homeFormContact {
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+  }
+
+  .email,
+  .message {
+    font-size: 1.5rem;
+    color: #fefaef;
+    margin: 1rem;
+  }
+
+  #message {
+    height: 6rem;
+  }
+  #email {
+    height: 3rem;
+  }
+
+  #homeBtnContact {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    top: 25rem;
+    height: 3rem;
+    width: 40rem;
+    border: #fefaef;
+  }
+
+  /* BAS DE PAGE */
+  .defilantTitle {
+    width: 200rem;
+    animation: scroll-left-2 35s linear infinite;
+  }
+}
