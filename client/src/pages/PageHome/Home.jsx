@@ -34,14 +34,12 @@ const PageHome = ({}) => {
 
   // POUR DETECTER LA TAILLE DE L'ECRAN
 
-  //useState
-
   //MON CSS
 
   const styles = {
     titleHome: {
       fontFamily: "kaftus",
-      marginTop: "1rem",
+      margin: "1rem 0 0 0",
       fontSize: isMobile
         ? "2.2rem"
         : isTablet
@@ -51,207 +49,15 @@ const PageHome = ({}) => {
         : isDesktop
         ? "9rem"
         : "3rem",
-      color: "#880a0cff",
-      marginBottom: "0",
-      flex: "1",
+      color: "var(--marronRouge)",
     },
 
-    imageHome: {
-      display: "flex",
-    },
-    imagesHome: {
-      flex: "1",
-      width: "50px",
-    },
-
-    defilantContainer: {
-      width: "100%",
-      overflow: "hidden",
-      whiteSpace: "nowrap",
-      animation: " scroll-left 28s linear infinite",
-    },
-    phraseDefilante: {
-      fontSize: isMobile ? "1rem" : "1.7rem",
-      marginTop: "1.2rem",
-      whiteSpace: "nowrap",
-      display: "inline-block",
-    },
-
-    // section categorie
-    homeCategorieProduit: {
-      backgroundColor: "#880a0cff",
-      marginTop: "2rem",
-      height: "33rem",
-      display: "flex",
-      padding: "10px",
-      paddingLeft: "1rem",
-      paddingRight: "1rem",
-      gap: "3rem",
-      justifyContent: "center",
-      alignItems: "center",
-    },
-
-    sectionCategorie: {
-      color: "rgb(245, 232, 216)",
-      border: "rgb(242, 242, 242), 2px, solid",
-      borderRadius: "2%",
-      width: "20rem",
-      height: "25rem",
-      fontSize: "3rem",
-      backgroundImage:
-        "url(" +
-        "https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg" +
-        ")",
-      paddingTop: "3rem",
-      flexDirection: "column",
-      position: "relative",
-      backgroundSize: "25rem",
-      backgroundRepeat: "noRepeat",
-      backgroundPosition: "40%",
-    },
-
-    btnCommander: {
-      position: "absolute",
-      fontSize: "1.2rem",
-      bottom: "30px",
-      padding: "10px",
-      left: "5.5rem",
-      backgroundColor: " #973d24",
-      color: " #fefaef",
-      border: "3px #67200dff solid",
-      borderRadius: "2%",
-    },
-
-    // section recette
-
-    homeRecipes: {
-      display: "flex",
-      height: "33rem",
-      justifyContent: "center",
-      position: "relative",
-      marginBottom: "3rem",
-    },
-
-    // moitieeCookie: {
-    //   position: "absolute",
-    //   width: " 470px",
-    //   right: "-15rem",
-    //   overflow: "hidden"
+    
+    // phraseDefilante: {
+    //   fontSize: isMobile ? "1rem" : "1.7rem",
     // },
 
-    moitieeBrookie: {
-      position: "absolute",
-      width: " 500px",
-      height: "40rem",
-      top: "0.5rem",
-      left: "-15rem",
-      overflow: "hidden",
-    },
-
-    recetteHome: {
-      height: "22rem",
-      width: "42rem",
-      position: "relative",
-      marginTop: "7rem",
-      border: "3px #bd5505ff solid",
-      display: "flex",
-      justifyContent: "center",
-      alignSelf: "center",
-    },
-
-    homeRecipesTitle: {
-      fontSize: "4.8rem",
-      // color: " #7a2223ff",
-      color: " #880a0cff",
-
-      display: "flex",
-      position: "absolute",
-      marginTop: "2rem",
-    },
-
-    btnRecette: {
-      width: "10rem",
-      height: "3rem",
-      color: " #fefaef",
-      border: "3px #976658ff solid",
-      backgroundColor: " #7a2223ff ",
-      borderRadius: "2%",
-      alignSelf: "center",
-      justifySelf: "center",
-      position: "absolute",
-    },
-
-    jauneP: {
-      fontSize: "2.5rem",
-      color: " #880a0cff",
-      width: "70%",
-      paddingLeft: "2rem",
-      textAlign: "left",
-    },
-
-    // CSS PRODUIT
-
-    homeProduit: {
-      height: "33rem",
-      paddingTop: "2rem",
-      marginBottom: "7rem",
-      fontSize: " 4rem",
-      position: "relative",
-      // justifyItems:"right"
-    },
-    homeProduitTitle: {
-      justifySelf: "center",
-      marginLeft: "1.5rem",
-      fontSize: "5.6rem",
-      wordSpacing: "0.5rem",
-      position: "absolute",
-      zIndex: "1",
-    },
-
-    ContainerProduit: {
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "2rem",
-      marginTop: "8rem",
-      justifyContent: "center",
-    },
-
-    produit: { display: "flex", gap: "3rem" },
-
-    produitCard: {
-      padding: "1rem",
-      borderRadius: "8px",
-      width: "14rem",
-      height: "20rem",
-      textAlign: "center",
-      boxShadow: " 0 0 5px rgba(104, 18, 18, 0.95)",
-      backgroundColor: " #fefaef",
-      fontSize: "1.5rem",
-      zIndex: "1",
-    },
-
-    moitieeCookieProduit: {
-      position: "absolute",
-      width: " 560px",
-      height: "600px",
-      right: "-22rem",
-      top: "1rem",
-      display: "flex",
-      overflow: "hidden",
-      zIndex: "0",
-    },
-
-    // contact
-
-    btnBackToTop: {
-      width: "5rem",
-      display: "flex",
-      justifySelf: "end",
-      margin: "2rem",
-      backgroundColor: "#833f3fff",
-      color: " #fefaef",
-      border: "2px solid #833f3fff",
-    },
+  
   };
 
   useEffect(() => {
@@ -294,68 +100,57 @@ const PageHome = ({}) => {
       <div className="home">
         <h1 style={styles.titleHome}>COOKILICIOUS</h1>
 
-        <div style={styles.imageHome} onClick={() => navigate("/produit")}>
-          <img style={styles.imagesHome} src={cookiefraise} alt="COOKIE" />
-          <img style={styles.imagesHome} src={cookie} alt="COOKIE" />
-          <img style={styles.imagesHome} src={cookiechoco} alt="COOKIE" />
+        <div className="imageHome" onClick={() => navigate("/produit")}>
+          <img className="imagesHome" src={cookiefraise} alt="COOKIE" />
+          <img className="imagesHome" src={cookie} alt="COOKIE" />
+          <img className="imagesHome" src={cookiechoco} alt="COOKIE" />
         </div>
 
-        <div style={styles.defilantContainer}>
-          <style>{` @keyframes scroll-left {0% {transform: translateX (0) ; } 100% { transform: translateX(-100%); } }`}</style>
-          <p style={styles.phraseDefilante}>
+        <div className="defilantContainer">
+          <p className="phraseDefilante">
             Des cookies & brookies uniques faits maison pour succomber à la
             tentation.
           </p>
         </div>
 
-        <div style={styles.homeCategorieProduit}>
-          <p
-            style={{
-              color: " rgb(245, 232, 216)",
-              width: "40%",
-              fontSize: "3rem",
-            }}
+        <div className="homeCategorieProduit">
+          <h2
+            className="phraseCategorie"
           >
             Parcourez nos différentes catégories, <br /> et <br /> laissez vous
             succomber...
-          </p>
+          </h2>
 
-          <section style={styles.sectionCategorie}>
+          <section className="sectionCategorie">
             COOKIE
             {/*  HASHLINK  NE FONCTIONNE PAS*/}
             <HashLink smooth to="/produit#">
-              <button style={styles.btnCommander}>Commander</button>
+              <button className="btnCommander">Commander</button>
             </HashLink>
           </section>
-          <section style={styles.sectionCategorie}>
+          <section className="sectionCategorie">
             BROOKIE
             <HashLink smooth to="/produit#brookie">
-              <button style={styles.btnCommander}>Commander</button>
+              <button className="btnCommander">Commander</button>
             </HashLink>
           </section>
         </div>
 
-        <div style={styles.homeRecipes}>
-          <h3 style={styles.homeRecipesTitle}>Testez nos recettes</h3>
+        <div className="homeRecipes">
+          <h2 className="homeRecipesTitle">Testez nos recettes</h2>
 
-          <div style={styles.recetteHome} className="recetteHome">
+          <div  className="recetteHome">
             (mettre slide recettes )
             <button
               onClick={() => navigate("/recette")}
-              style={styles.btnRecette}
+              className="btnRecette"
             >
               Je découvre !
             </button>
           </div>
-          {/* <img
-            style={styles.moitieeCookie}
-            src={
-              "https://cdn.shopify.com/s/files/1/1265/3499/products/Untitleddesign.png?v=1599464139"
-            }
-            alt="cookies pistache"
-          /> */}
+
           <img
-            style={styles.moitieeBrookie}
+            className="moitieeBrookie"
             src={
               "https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
             }
@@ -363,25 +158,19 @@ const PageHome = ({}) => {
           />
         </div>
 
-        <div
-          style={{
-            height: "28rem",
-            backgroundColor: " rgb(222, 146, 23)",
-            alignContent: "center",
-          }}
-        >
-          <p style={styles.jauneP}>
+        <div  className="containerJaune">
+          <h3 className="jauneP">
             Lorem ipsum dolor sit amet consectetur adipisicing Corporis.
             <br /> elit Corporis itaqueimpedit <br /> bralias mollitia,
             consequuntur quasi?
-          </p>
+          </h3>
         </div>
 
         {/* PRODUITS AFFICHES SUR HOME */}
 
-        <div style={styles.homeProduit}>
-          <p style={styles.homeProduitTitle}>One more sweetness...</p>
-          <div style={styles.ContainerProduit}>
+        <div className="homeProduit">
+          <h2 className="homeProduitTitle">One more sweetness...</h2>
+          <div className="containerProduit">
             <div
               id="carouselProduit"
               className="carousel slide"
@@ -404,7 +193,7 @@ const PageHome = ({}) => {
                           {produit
                             .slice(slideIndex * 4, slideIndex * 4 + 4)
                             .map((item) => (
-                              <div key={item._id} style={styles.produitCard}>
+                              <div key={item._id} className="produitCard">
                                 <p>{item.titre}</p>
                                 <img
                                   src={item.photo}
@@ -414,13 +203,7 @@ const PageHome = ({}) => {
                                 />
                                 <p>{item.prix} €</p>
                                 <button
-                                  style={{
-                                    fontSize: "1rem",
-                                    width: "4rem",
-                                    color: " rgb(222, 146, 23)",
-                                    border: "#976658ff 2px solid",
-                                    backgroundColor: " #fefaef",
-                                  }}
+                                 className="produitCardBtn"
                                   onClick={() =>
                                     navigate(`/detail/${item._id}`)
                                   }
@@ -435,7 +218,7 @@ const PageHome = ({}) => {
                   )}
               </div>
             </div>
-
+ {/* BOUTON CARROUSEL */}
             <div>
               <button
                 className="carousel-control-prev  "
@@ -443,6 +226,7 @@ const PageHome = ({}) => {
                   height: "2rem",
                   marginTop: "35rem",
                   marginLeft: "18rem",
+                  color: "var(--marronFonce)",
                 }}
                 type="button"
                 data-bs-target="#carouselProduit"
@@ -461,13 +245,14 @@ const PageHome = ({}) => {
                   height: "2rem",
                   marginTop: "35rem",
                   marginRight: "20rem",
+                  color: "var(--marronFonce)"
                 }}
                 type="button"
                 data-bs-target="#carouselProduit"
                 data-bs-slide="next"
               >
                 <span
-                  className="carousel-bi bi-caret-right-fill"
+                  className="carousel-bi bi-caret-right-fill "
                   aria-hidden="true"
                 ></span>
                 <span className="visually-hidden">Next</span>
@@ -475,19 +260,18 @@ const PageHome = ({}) => {
             </div>
 
             <img
-              style={styles.moitieeCookieProduit}
+              className="moitieeCookieProduit"
               src={cookie}
               alt="cookies pistache"
             />
           </div>
         </div>
 
-        {/* contact home */}
+        {/* SECTION CONTACT */}
 
         <div className="contactHome" style={{ marginBottom: "5rem" }}>
           <p className="homeContactTitle">Contactez nous</p>
           <form className="homeFormContact" onSubmit={handleSubmit}>
-            {/* FAIRE handlesubmit dans form et definir */}
             <label className="email" htmlFor="email">
               Email:
             </label>
@@ -498,7 +282,7 @@ const PageHome = ({}) => {
               placeholder="écrivez votre email"
               value={formData.email}
               onChange={handleChange}
-              style={{ color: "#833f3fff", fontSize: "1.5rem" }}
+              style={{ color: "var(--marronFroid)", fontSize: "1.5rem" }}
             />
             <label className="message" htmlFor="message">
               Message:
@@ -510,20 +294,20 @@ const PageHome = ({}) => {
               placeholder="Votre message"
               value={formData.message}
               onChange={handleChange}
-              style={{ color: "#833f3fff", fontSize: "1.5rem" }}
+              style={{ color: "var(--marronFroid)", fontSize: "1.5rem" }}
             />
             <button
               id="homeBtnContact"
               onSubmit={handleSubmit}
-              style={{ color: "#833f3fff", fontSize: "1.6rem" }}
+              style={{ color: "var(--marronFroid)", fontSize: "1.6rem" }}
             >
               Envoyer
             </button>
           </form>
         </div>
         {/* fin de page  */}
-        <button style={styles.btnBackToTop} onClick={scrollToTop}>
-          retour en haut
+        <button className="btnBackToTop" onClick={scrollToTop}>
+          Retour en haut
         </button>
         <p className="defilantTitle">
           COOKILIOUS <span> . </span> COOKILIOUS <span> . </span>COOKILIOUS
