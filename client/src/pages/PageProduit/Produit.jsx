@@ -30,7 +30,7 @@ const Produit = () => {
   };
   return (
     <div id="produit">
-      <section id="enteteProduit" style={{ color: " #fefaef" }}>
+      <section id="enteteProduit" style={{ color: "var(--creme)" }}>
         <h1
           id="titlePageProduit"
           style={{
@@ -43,7 +43,7 @@ const Produit = () => {
         </h1>
         <p
           id="introPageProduit"
-          style={{ color: " #fefaef", fontSize: "1.5rem" }}
+          style={{ color: "var(--creme)", fontSize: "1.5rem" }}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
           suscipit officia sapiente repellat qui ipsum.Lorem ipsum dolor sit
@@ -63,18 +63,13 @@ const Produit = () => {
           COOKIE
         </h3>
         <div
-          className="produitContainer "
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
+          className="produitContainer2 "
+          
         >
           {produit.map(
             (item, index) =>
               index > 4 && (
-                <div key={item._id} className="produitCard">
+                <div key={item._id} className="produit2">
                   <img
                     style={{ padding: "1px" }}
                     src={item.photo}
@@ -87,7 +82,7 @@ const Produit = () => {
                       fontSize: "1.8rem",
                       margin: "0",
                       padding: "1px",
-                      borderBottom: "#9f1619 3px solid",
+                      borderBottom:  "var(--marronRouge) 3px solid",
                     }}
                   >
                     {item.titre}
@@ -111,19 +106,9 @@ const Produit = () => {
                     >
                       {item.prix}€
                     </p>
-                    <button
+                    <button className="btnDetail"
                       onClick={() => navigate(`/detail/${item._id}`)}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.5rem",
-                        color: " rgb(222, 146, 23)",
-
-                        border: "#976658ff 2px solid",
-                        width: "6rem",
-                        height: "2rem",
-                      }}
+                     
                     >
                       VOIR
                     </button>
@@ -148,18 +133,13 @@ const Produit = () => {
           BROOKIE
         </h3>
         <div
-          className="produitContainer "
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-          }}
+          className="produitContainer2 "
+          
         >
           {produit.map(
             (item, index) =>
               index > 8 && (
-                <div key={item._id} className="produitCard">
+                <div key={item._id} className="produit2">
                   <img
                     style={{
                       padding: "1px",
@@ -174,7 +154,7 @@ const Produit = () => {
                     style={{
                       fontSize: "1.8rem",
                       margin: "0",
-                      borderBottom: "#9f1619 3px solid",
+                      borderBottom:  "var(--marronRouge) 3px solid",
                     }}
                   >
                     {item.titre}
@@ -200,16 +180,7 @@ const Produit = () => {
                     </p>
                     <button
                       onClick={() => navigate(`/detail/${item._id}`)}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        fontSize: "1.5rem",
-                        color: " rgb(222, 146, 23)",
-                        border: "#976658ff 2px solid",
-                        width: "6rem",
-                        height: "2rem",
-                      }}
+                     className="btnDetail"
                     >
                       VOIR
                     </button>
@@ -236,6 +207,9 @@ const Produit = () => {
           color: " #fefaef",
           border: "2px solid #833f3fff",
           width: "5rem",
+          height:"4rem",
+          fontSize:"1rem"
+        
         }}
         onClick={scrollToTop}
       >
