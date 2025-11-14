@@ -1,0 +1,278 @@
+.imageHome {
+  display: flex;
+}
+
+.imagesHome {
+  flex: 1;
+  width: 50px;
+}
+
+.defilantContainer {
+  width: 100%;
+  font-size: 1.7rem;
+  margin-bottom: 0.8rem;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: scroll-left 35s linear infinite;
+}
+
+.phraseDefilante {
+  /* fontSize: isMobile ? "1rem" : "1.7rem", */
+  margin: 1.5rem 2rem;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* SECTION CATEGORIE */
+
+.homeCategorieProduit {
+  background-color: var(--marronRouge);
+  height: 33rem;
+  display: flex;
+  padding: 2rem;
+  gap: 3rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.phraseCategorie {
+  color: var(--creme);
+  width: 40%;
+  font-size: 3.4rem;
+    text-shadow: 0 0 5px var(--marronRouge);
+
+}
+
+.sectionCategorie {
+  color: var(--creme);
+  text-shadow: 0 0 5px black;
+  border: var(--jaune), 3px, solid;
+  border-radius: 2%;
+  width: 20rem;
+  height: 29rem;
+  font-size: 4rem;
+  background-image: url(https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg);
+  padding-top: 3rem;
+  position: relative;
+  background-size: 29rem;
+  background-position: 40%;
+}
+
+.btnCommander {
+  position: absolute;
+  font-size: 1.2rem;
+  bottom: 30px;
+  padding: 10px;
+  left: 5.5rem;
+  background-color: var(--marronFroid);
+  color: var(--creme);
+  border: 3px var(--jaune) solid;
+  border-radius: 2%;
+}
+
+/* SECTION RECETTE */
+
+.homeRecipes {
+  display: flex;
+  height: 34rem;
+  justify-content: center;
+  position: relative;
+  margin: 2rem 0 2rem 0;
+}
+
+.homeRecipesTitle {
+  /* color: " #7a2223ff", */
+  font-size: 5.6rem;
+  color: var(--marronRouge);
+  display: flex;
+  position: absolute;
+  margin-top: 1rem;
+}
+
+.recetteHome {
+  height: 22rem;
+  width: 42rem;
+  position: relative;
+  margin-top: 7rem;
+  border: 5px var(--caramel) solid;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
+
+.moitieeBrookie {
+  position: absolute;
+  width: 500px;
+  height: 40rem;
+  top: 0.5rem;
+  left: -15rem;
+  overflow: "hidden";
+}
+
+.btnRecette {
+  width: 20em;
+  height: 2em;
+  margin-bottom: 1em;
+  font-size: 1em;
+  color: var(--creme);
+  border: 3px #976658ff solid;
+  background-color: #7a2223ff;
+  border-radius: 2%;
+  align-self: flex-end;
+  position: absolute;
+}
+
+/* SECTION JAUNE */
+.containerJaune {
+  height: 28rem;
+  background-color: var(--jaune);
+  align-content: center;
+}
+
+.jauneP {
+  font-size: 2.5rem;
+  color: var(--marronRouge);
+  width: 70%;
+  padding-left: 2rem;
+  text-align: left;
+}
+
+/* SECTION PRODUIT */
+
+.homeProduit {
+  height: 33rem;
+  padding-top: 2rem;
+  margin-bottom: 7rem;
+  position: relative;
+}
+
+.homeProduitTitle {
+  justify-self: center;
+  margin-left: 1.5rem;
+  font-size: 5.6rem;
+  word-spacing: 0.5rem;
+  position: absolute;
+  z-index: 1;
+}
+
+.moitieeCookieProduit {
+  position: absolute;
+  width: 530px;
+  height: 600px;
+  right: -14em;
+  top: 1em;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.containerProduit {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 8rem;
+  justify-content: center;
+}
+
+.produitCard {
+  padding: 1rem;
+  border-radius: 8px;
+  width: 14rem;
+  height: 20rem;
+  text-align: center;
+  box-shadow: 0 0 5px var(--marronRouge);
+  border: 3px solid var(--caramel) !important;
+  background-color: var(--creme);
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.produitCardBtn {
+  font-size: 1rem;
+  width: 4rem;
+  color: var(--jaune);
+  border: #bd5505ff 2px solid;
+  background-color: var(--creme);
+}
+
+/* SECTION CONTACT  */
+
+.contactHome {
+  height: 32rem;
+  background-color: #5b1b02;
+  margin-top: 3rem;
+  margin-bottom: 6rem;
+  justify-items: center;
+  position: relative;
+}
+
+.homeContactTitle {
+  font-size: 4.8rem;
+  margin: 0;
+  color: #fefaef;
+}
+.homeFormContact {
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+}
+
+.email,
+.message {
+  font-size: 1.5rem;
+  color: #fefaef;
+  margin: 1rem;
+}
+
+#message {
+  height: 6rem;
+}
+#email {
+  height: 3rem;
+}
+
+#homeBtnContact {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 25rem;
+  height: 3rem;
+  width: 40rem;
+  margin-top: 1rem;
+  border: #fefaef;
+}
+
+.btnBackToTop {
+  font-size: 1rem;
+  width: 5rem;
+  display: flex;
+  justify-self: end;
+  margin: 2rem;
+  background-color: var(--marronFroid);
+  color: var(--creme);
+  border: 2px solid var(--marronFroid);
+}
+
+/* BAS DE PAGE */
+.defilantTitle {
+  width: 200rem;
+  animation: scroll-left-2 35s linear infinite;
+}
+
+@keyframes scroll-left-2 {
+  from {
+    transform: translateX(1%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
