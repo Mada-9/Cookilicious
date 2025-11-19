@@ -10,8 +10,8 @@ import DetailProduit from "./pages/PageProduit/DetailProduit";
 import PageRecette from "./pages/PageRecette/PageRecette";
 import PageApropos from "./pages/PageApropos/PageApropos";
 import PageContact from "./pages/PageContact/PageContact";
-import PagePanier from "./pages/Pagepanier/Pagepanier";
-
+import PagePanier from "./pages/PagePanier/PagePanier";
+import PagePaiement from "./pages/PagePanier/PagePaiement";
 //pages admin
 import PageProduitDashboard from "../src/admin/PageProduit/PageProduitDashboard";
 import PageRecetteDashboard from "./admin/PageRecette/PageRecetteDashboard";
@@ -31,6 +31,7 @@ function App() {
         <Route path="produit" element={<Produit />} />
         <Route path="detail/:id" element={<DetailProduit />} />
         <Route path="panier" element={<PagePanier />} />
+        <Route path="paiement" element={<PagePaiement/>}/>
 
         <Route path="recette" element={<PageRecette />} />
         <Route path="contact" element={<PageContact />} />

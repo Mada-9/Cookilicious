@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   const styles = {
     footer: {
-      backgroundColor: "#ae662c",
+      backgroundColor: "var(--marronRouge)",
       color: "#fefaef",
       padding: "2rem",
     },
@@ -11,7 +11,7 @@ const Footer = () => {
     mentionsGenerales: {
       display: "flex",
       textAlign: "center",
-      color: "#5b1b02",
+      color: "#fefaef",
       justifyContent:"center"
 
     },
@@ -21,7 +21,7 @@ const Footer = () => {
       margin: "0 ",
       justifyContent: "center",
       width: "25rem",
-            color: "#5b1b02",
+      color: "#fefaef",
 
     },
 

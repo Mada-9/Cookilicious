@@ -48,21 +48,29 @@
   color: var(--creme);
   width: 40%;
   font-size: 3.4rem;
-    text-shadow: 0 0 5px var(--marronRouge);
-
+  text-shadow: 0 0 5px var(--marronRouge);
 }
 
 .sectionCategorie {
   color: var(--creme);
-  text-shadow: 0 0 5px black;
+  text-shadow: 0 0 5px rgb(60, 36, 36);
   border: var(--jaune), 3px, solid;
   border-radius: 2%;
   width: 20rem;
   height: 29rem;
   font-size: 4rem;
-  background-image: url(https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg);
   padding-top: 3rem;
   position: relative;
+}
+
+#categorieUne {
+  background-image: url(https://plus.unsplash.com/premium_photo-1725384940713-45cdbbb49d94?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  background-size: 54rem;
+  background-repeat: no-repeat;
+  background-position: 70%;
+}
+#categorieDeux {
+  background-image: url(https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg);
   background-size: 29rem;
   background-position: 40%;
 }
@@ -73,9 +81,11 @@
   bottom: 30px;
   padding: 10px;
   left: 5.5rem;
-  background-color: var(--marronFroid);
+  background-color: var(--marronRouge);
   color: var(--creme);
-  border: 3px var(--jaune) solid;
+  border: 3px var(--marronRouge) solid;
+  box-shadow: 0 0 10px black;
+
   border-radius: 2%;
 }
 
@@ -144,6 +154,7 @@
   width: 70%;
   padding-left: 2rem;
   text-align: left;
+  line-height: 70px;
 }
 
 /* SECTION PRODUIT */
@@ -157,7 +168,6 @@
 
 .homeProduitTitle {
   justify-self: center;
-  margin-left: 1.5rem;
   font-size: 5.6rem;
   word-spacing: 0.5rem;
   position: absolute;
@@ -174,16 +184,24 @@
   z-index: 0;
 }
 
-.containerProduit {
+/* .containerProduit {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
   margin-top: 8rem;
   justify-content: center;
-}
+  padding-left:7rem;
+} */
 
+.carousel-inner {
+  margin-left: 3rem;
+  width: 70rem;
+}
+.d-flex {
+  gap: 3rem;
+  margin-right: 9rem;
+  margin-top: 10rem;
+}
 .produitCard {
-  padding: 1rem;
   border-radius: 8px;
   width: 14rem;
   height: 20rem;
@@ -191,8 +209,8 @@
   box-shadow: 0 0 5px var(--marronRouge);
   border: 3px solid var(--caramel) !important;
   background-color: var(--creme);
-  font-size: 1.5rem;
-  z-index: 1;
+  font-size: 1.3rem;
+  z-index: 2;
 }
 
 .produitCardBtn {
@@ -207,7 +225,7 @@
 
 .contactHome {
   height: 32rem;
-  background-color: #5b1b02;
+  background-color: #783922;
   margin-top: 3rem;
   margin-bottom: 6rem;
   justify-items: center;
@@ -217,7 +235,7 @@
 .homeContactTitle {
   font-size: 4.8rem;
   margin: 0;
-  color: #fefaef;
+  color: var(--creme);
 }
 .homeFormContact {
   display: flex;
@@ -232,14 +250,18 @@
   margin: 1rem;
 }
 
-#message {
+.messageInput {
   height: 6rem;
+  color: var(--marronRouge);
+  font-size: 1.5rem;
 }
-#email {
+.emailInput {
   height: 3rem;
+  color: var(--marronRouge);
+  font-size: 1.5rem;
 }
 
-#homeBtnContact {
+.homeBtnContact {
   display: flex;
   position: absolute;
   align-items: center;
@@ -249,15 +271,19 @@
   width: 40rem;
   margin-top: 1rem;
   border: #fefaef;
+  color: var(--marronRouge);
+  font-size: 1.6rem;
 }
 
 .btnBackToTop {
+  position: fixed;
+  bottom: 0rem;
   font-size: 1rem;
   width: 5rem;
   display: flex;
   justify-self: end;
   margin: 2rem;
-  background-color: var(--marronFroid);
+  background-color: var(--marronRouge);
   color: var(--creme);
   border: 2px solid var(--marronFroid);
 }

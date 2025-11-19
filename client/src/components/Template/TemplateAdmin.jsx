@@ -13,7 +13,7 @@ const TemplateAdmin = () => {
         <section>
           <Outlet />
         </section>
-        <Footer />
+      
       </div>
     </div>
   );

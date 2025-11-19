@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Produit = mongoose.Schema(
   {
+
     titre: { 
       type: String, 
       required: true, 

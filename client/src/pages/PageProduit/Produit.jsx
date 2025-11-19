@@ -128,7 +128,7 @@ const Produit = () => {
       >
         <h3
           className="sectionTitleBrookie"
-          style={{ backgroundColor: "#911a1c" }}
+          style={{ backgroundColor: "var(--marronFroid" }}
         >
           BROOKIE
         </h3>
@@ -184,6 +184,7 @@ const Produit = () => {
                     >
                       VOIR
                     </button>
+                    
                   </div>
                 </div>
               )

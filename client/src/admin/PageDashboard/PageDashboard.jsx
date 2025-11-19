@@ -17,7 +17,7 @@ const PageDashboard = () => {
         <ul style={{display:"flex", flexDirection:"column", alignItems:"center", paddingBottom:"5rem", margin:"0"}}>
           
           <li>
-            <a href="#">compte</a>
+            <a style={styles.a} href="#">compte</a>
           </li>
           <li>
             <a style={styles.a} href="/admin/apropos">
