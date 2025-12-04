@@ -38,7 +38,7 @@ app.use(cookieParser());
  */
 app.use(
   cors({
-    origin: [ENV.WEB_APP_URL, ENV.DOMAINE_URL],
+    origin: [ENV.WEB_APP_URL, ENV.DOMAINE_URL, 'https://cookilicious-51jq.vercel.app'],
     credentials: true,
   })
 );
