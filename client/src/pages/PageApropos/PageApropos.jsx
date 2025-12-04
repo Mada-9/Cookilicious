@@ -7,7 +7,7 @@ const PageApropos = () => {
       <h1
         style={{
           borderTop: "2px solid var(--marronRouge)",
-          backgroundColor:"var(--marronRouge)",
+          // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
           fontSize: "5rem",

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link, isCookie } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import axios from "axios";
 import { useMediaQuery } from "react-responsive";
+import axiosinstance from "../../utils/axios/axiosinstance";
+
 
 // PAGES  ET URL
 import URL from "../../utils/constant/url";
@@ -69,7 +70,7 @@ const PageHome = ({}) => {
 
   const getAllProduits = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_PRODUITS);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
       if (status === 200) setProduit(data);
     } catch (error) {
       console.log(error.message);
@@ -82,7 +83,7 @@ const PageHome = ({}) => {
 
   const getAllRecettes = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_RECETTES);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
       if (status === 200) setRecette(data);
     } catch (error) {
       console.log(error.message);

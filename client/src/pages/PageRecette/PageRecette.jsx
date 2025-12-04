@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
-import axios from "axios";
-import axiosInstance from "../../utils/axios/axiosinstance";
+import axiosinstance from "../../utils/axios/axiosinstance";
 
 //CSS
 
@@ -26,7 +25,7 @@ const PageRecette = () => {
 
   const getAllRecettes = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_RECETTES);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
       if (status === 200) setRecette(data);
     } catch (error) {
       console.log(error.message);
@@ -44,7 +43,7 @@ const PageRecette = () => {
     e.preventDefault();
 
     try {
-      const { data } = await axios.post(URL.POST_AVIS, formData);
+      const { data } = await axiosinstance.post(URL.POST_AVIS, formData);
       console.log(data);
     } catch (error) {}
   };
@@ -52,7 +51,7 @@ const PageRecette = () => {
    const getAvis = async() => {
 
     try {
-      const { formData} = await axiosInstance.post(URL.POST_AVIS);
+      const { formData} = await axiosinstance.post(URL.POST_AVIS);
       console.log(formData);
     } catch (error) {}
   };

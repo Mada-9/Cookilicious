@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import URL from "../../utils/constant/url";
 import { useNavigate, Link } from "react-router-dom";
+import axiosinstance from "../../utils/axios/axiosinstance";
 
 import DetailProduit from "./DetailProduit";
 
@@ -17,7 +17,7 @@ const Brookies = () => {
 
   const getAllProduits = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_PRODUITS);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
       if (status === 200) setProduit(data);
     } catch (error) {
       console.log(error.message);
@@ -27,6 +27,7 @@ const Brookies = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+  
   return (
     <div className="produit">
       <section
@@ -45,26 +46,26 @@ const Brookies = () => {
           className="introPageProduit"
           style={{ color: "var(--creme)", fontSize: "1.5rem" }}
         >
-          Laissez-vous tenter par nos brookies fondants et croquants, préparés chaque jour avec des ingrédients de qualité. Un mariage gourmand qui réunit le meilleur du brownie et du cookie. 
+          Laissez-vous tenter par nos brookies fondants et croquants, préparés
+          chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
+          réunit le meilleur du brownie et du cookie.
         </p>
       </section>
 
-       <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
             <a href="/" style={{ width: "3rem" }}>
               Home
             </a>
           </li>
-         
-          <li className="breadcrumb-item" 
-            aria-current="page">Brookies
 
+          <li className="breadcrumb-item" aria-current="page">
+            Brookies
           </li>
         </ol>
       </nav>
 
-      {/************* SECTION BROOKIE**************/}
 
       <div className="sectionBrookie" style={{ marginBottom: "8rem" }}>
         <h3

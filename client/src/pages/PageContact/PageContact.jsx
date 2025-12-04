@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
 
 const PageContact = () => {
@@ -29,7 +29,7 @@ const PageContact = () => {
     e.preventDefault();
 
     try {
-      const { status } = await axios.post(URL.POST_CONTACT, formData);
+      const { status } = await axiosinstance.post(URL.POST_CONTACT, formData);
       console.log(formData);
       if (
         formData.message.length >= 5 &&

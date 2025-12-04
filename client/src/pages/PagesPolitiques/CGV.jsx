@@ -11,7 +11,7 @@ const CGV = () => {
     <>
       <div className="row p-5">
         <h1 style={{ fontSize: "4.5rem" }}>Conditions Générales de Vente </h1>
-        <div style={{ textAlign: "left", textAlign: "justify" }}>
+        <div style={{  textAlign: "justify" }}>
           <h2 style={styles.textSection}> 1.Préambule</h2>
           <p>
             Les présentes Conditions Générales de Vente (CGV) s’appliquent à

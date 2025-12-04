@@ -12,7 +12,7 @@ const RGPD = () => {
       <div className="row p-5">
         <h1>Politique De Confidentialité & RGPD</h1>
 
-        <div style={{ textAlign: "left", textAlign: "justify" }}>
+        <div style={{  textAlign: "justify" }}>
           <h2 style={styles.textSection}>1. Introduction</h2>
           <p>
             La présente Politique de Confidentialité explique comment

@@ -10,7 +10,7 @@ const Mentionslegales = () => {
   return (
     <div className="row p-5">
       <h1>Mentions légales</h1>
-      <div style={{ textAlign: "left", textAlign: "justify" }}>
+      <div style={{  textAlign: "justify" }}>
         <h2 style={styles.textSection}>1. Propriété intellectuelle</h2>
         <p>
           Tout le contenu de ce site – textes, images, photos de cookies, logos,

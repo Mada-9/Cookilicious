@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
+import axiosinstance from "../../utils/axios/axiosinstance";
+
 
 const DetailProduit = () => {
   const {
@@ -26,7 +28,7 @@ const DetailProduit = () => {
 
   const getProduit = async (id) => {
     try {
-      const { data, status } = await axios.get(
+      const { data, status } = await axiosinstance.get(
         `${URL.GET_DETAIL_PRODUIT}/${id}`
       );
       console.log(id);
