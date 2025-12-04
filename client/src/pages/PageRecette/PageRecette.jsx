@@ -10,7 +10,7 @@ import "./Recette.css";
 //images
 
 import cookiegemini from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
-import cookiechoco from "../../assets/images/cookiechoco.png";
+import cookiechoco from "../../assets/images/Cookiechoco.png";
 
 // regarder doc https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 
