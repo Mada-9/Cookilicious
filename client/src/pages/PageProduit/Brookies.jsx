@@ -54,9 +54,9 @@ const Brookies = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
-            <a href="/" style={{ width: "3rem" }}>
+            <Link to href="/" style={{ width: "3rem" }}>
               Home
-            </a>
+            </Link>
           </li>
 
           <li className="breadcrumb-item" aria-current="page">

@@ -1,49 +1,9 @@
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const styles = {
-    footer: {
-      backgroundColor: "var(--marronRouge)",
-      color: "#fefaef",
-      paddingTop: "2rem",
-      paddingLeft:"7rem"
-    },
-
-    mentionsGenerales: {
-      display: "flex",
-      textAlign: "center",
-      color: "#fefaef",
-      // justifyContent:"center"
-      gap:"2rem"
-    },
-
-    footerLink: {
-      // padding: "0.1rem",
-      // margin: "0 ",
-      justifyContent: "center",
-      width: "25rem",
-      color: "#fefaef",
-    },
-
-    // mentionsP: {
-    //   fontSize: "1rem",
-    // },
-
-    mentionsH3: {
-      fontSize: "1.3rem !important",
-      textDecoration: "underline",
-      // justifySelf: "center",
-    },
-
-    footerSection: {
-      // justifySelf: "center",
-    },
-  };
-
+ 
   return (
     <div className="row" style={styles.footer}>
-      {/* <h1>MON FOOTER</h1> */}
-
       <div className="col-10 mx-xl-4 justify-content-center " style={styles.mentionsGenerales}>
         <section className=" col-2 col-xs-4  col-md-4 col-lg-4 col-xl-4 col-xxl-2" style={styles.footerSection}>
           <div className="row ">
@@ -92,7 +52,48 @@ const Footer = () => {
         </section>
       </div>
     </div>
+    
   );
+  
 };
+ const styles = {
+    footer: {
+      backgroundColor: "var(--marronRouge)",
+      color: "#fefaef",
+      paddingTop: "2rem",
+      paddingLeft:"7rem"
+    },
+
+    mentionsGenerales: {
+      display: "flex",
+      textAlign: "center",
+      color: "#fefaef",
+      // justifyContent:"center"
+      gap:"2rem"
+    },
+
+    footerLink: {
+      // padding: "0.1rem",
+      // margin: "0 ",
+      justifyContent: "center",
+      width: "25rem",
+      color: "#fefaef",
+    },
+
+    // mentionsP: {
+    //   fontSize: "1rem",
+    // },
+
+    mentionsH3: {
+      fontSize: "1.3rem !important",
+      textDecoration: "underline",
+      // justifySelf: "center",
+    },
+
+    footerSection: {
+      // justifySelf: "center",
+    },
+  };
+
 
 export default Footer;

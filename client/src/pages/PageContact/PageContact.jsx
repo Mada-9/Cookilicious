@@ -1,7 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate, Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
 

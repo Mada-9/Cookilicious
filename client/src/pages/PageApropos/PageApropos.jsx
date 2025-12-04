@@ -1,4 +1,5 @@
-import React from "react";
+import { Link } from "react-router-dom";
+
 
 import "./PageApropos.css"
 const PageApropos = () => {
@@ -106,20 +107,20 @@ const PageApropos = () => {
             et suivez nous sur nos réseaux sociaux!
           </p>
           <div style={{ display: "flex", width: "15rem" }}>
-            <a href="https://www.instagram.com/">
+            <Link to="https://www.instagram.com/">
               <i className="bi bi-instagram"></i>
-            </a>
+            </Link>
 
-            <a href="https://www.facebook.com/">
+            <Link to="https://www.facebook.com/">
               <i className="bi bi-facebook"></i>
-            </a>
+            </Link>
 
-            <a href="https://www.tiktok.com/">
+            <Link to="https://www.tiktok.com/">
               <i className="bi bi-tiktok"></i>
-            </a>
-            <a href="https://fr.pinterest.com/">
+            </Link>
+            <Link to="https://fr.pinterest.com/">
               <i className="bi bi-pinterest"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

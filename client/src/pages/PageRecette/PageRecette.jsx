@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import URL from "../../utils/constant/url";
+import { Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
 //CSS
@@ -64,9 +64,9 @@ const PageRecette = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
-            <a href="/" style={{ width: "3rem" }}>
+            <Link to="/" style={{ width: "3rem" }}>
               Home
-            </a>
+            </Link>
           </li>
 
           <li className="breadcrumb-item" aria-current="page">

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -26,16 +25,10 @@ const Header = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
-                {/* <li class="nav-item">
-                <a class="nav-link " href="#">
-                  home
-                </a>
-              </li> */}
-
                 <li className="nav-item dropdown">
-                  <a
+                  <Link
+                    to="#"
                     className="nav-link dropdown-toggle"
-                    href="#"
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -43,7 +36,7 @@ const Header = () => {
                     style={{ color: "#fefaef" }}
                   >
                     home
-                  </a>
+                  </Link>
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
@@ -54,15 +47,15 @@ const Header = () => {
                     }}
                   >
                     <li>
-                      <a className="dropdown-item" href="/admin">
+                      <Link to="/admin" className="dropdown-item">
                         dashboard home
-                      </a>
+                      </Link>
                     </li>
 
                     <li>
-                      <a className="dropdown-item" href="/">
+                      <Link to="/" className="dropdown-item">
                         home
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>

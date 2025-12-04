@@ -4,8 +4,8 @@ import { Routes, Route } from "react-router-dom";
 //PAGES CLIENT
 
 import Home from "./pages/PageHome/Home";
-import Cookies from "./pages/PageProduit/Cookies"; //transformer en cookies
-import Brookies from "./pages/PageProduit/Brookies"
+import Cookies from "./pages/PageProduit/Cookies";
+import Brookies from "./pages/PageProduit/Brookies";
 import DetailProduit from "./pages/PageProduit/DetailProduit";
 import PageRecette from "./pages/PageRecette/PageRecette";
 import PageApropos from "./pages/PageApropos/PageApropos";
@@ -15,8 +15,8 @@ import PagePaiement from "./pages/Pagepanier/PagePaiement";
 import PageConnexion from "./pages/PageConnexion/PageConnexion";
 import Nothing from "./pages/PageNothing/Nothing";
 import Mentionslegales from "./pages/PagesPolitiques/MentionsLegales";
-import CGV from "./pages/PagesPolitiques/CGV"
-import RGPD from "./pages/PagesPolitiques/RGPD"
+import CGV from "./pages/PagesPolitiques/CGV";
+import RGPD from "./pages/PagesPolitiques/RGPD";
 
 //PAGES ADMIN
 import PageProduitDashboard from "../src/admin/PageProduit/PageProduitDashboard";
@@ -39,8 +39,7 @@ function App() {
       <Route path="/" element={<Template />}>
         <Route index element={<Home />} />
         <Route path="Cookies" element={<Cookies />} />
-                <Route path="brookies" element={<Brookies />} />
-
+        <Route path="brookies" element={<Brookies />} />
         <Route path="detail/:id" element={<DetailProduit />} />
         <Route path="panier" element={<PagePanier />} />
         <Route path="paiement" element={<PagePaiement />} />
@@ -49,10 +48,8 @@ function App() {
         <Route path="apropos" element={<PageApropos />} />
         <Route path="connexion" element={<PageConnexion />} />
         <Route path="mentionslegales" element={<Mentionslegales />} />
-        <Route path="cgv"element={<CGV />}/>
-        <Route path="rgpd"element={<RGPD />}/>
-
-        
+        <Route path="cgv" element={<CGV />} />
+        <Route path="rgpd" element={<RGPD />} />
       </Route>
 
       <Route path="/admin" element={<TemplateAdmin />}>

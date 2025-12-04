@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useContext } from "react";
+import  { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
 import axiosinstance from "../../utils/axios/axiosinstance";

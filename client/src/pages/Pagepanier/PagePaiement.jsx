@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const PagePaiement = () => {
   return (
     <div>
@@ -5,9 +7,9 @@ const PagePaiement = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
-            <a href="/panier" style={{ width: "4rem" }}>
+            <Link to="/panier" style={{ width: "4rem" }}>
               Panier
-            </a>
+            </Link>
           </li>
 
           <li className="breadcrumb-item" aria-current="page">

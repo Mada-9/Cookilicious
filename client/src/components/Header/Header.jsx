@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { PanierContext } from "../../utils/context/PanierContext";
@@ -25,21 +25,21 @@ const Header = () => {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item  px-2">
-                  <a className="nav-link " href="/">
+                  <Link to="/" className="nav-link " >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item dropdown-menu-right px-2">
-                  <a
+                  <Link to="/produit"
                     className="nav-link dropdown-toggle"
-                    href="/produit"
+                   
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Produit
-                  </a>
+                  </Link>
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
@@ -74,31 +74,31 @@ const Header = () => {
                 </li>
 
                 <li className="nav-item px-2">
-                  <a className="nav-link" href="/recette">
+                  <Link to="/recette" className="nav-link" >
                     Recettes
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link" href="/apropos">
+                  <Link to="/apropos" className="nav-link" >
                     A propos
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <a className="nav-link" href="/contact">
+                  <Link to="/contact" className="nav-link" >
                     Contact
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item dropdown px-2 ">
-                  <a
+                  <Link to="#"
                     className="nav-link dropdown-toggle"
-                    href="#"
+                    
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     Dashboard
-                  </a>
+                  </Link>
                   <ul
                     className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
@@ -109,25 +109,25 @@ const Header = () => {
                     }}
                   >
                     <li>
-                      <a className="dropdown-item" href="/admin">
+                      <Link to="/admin" className="dropdown-item" >
                         Home Dashboard
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <Link to="#" className="dropdown-item" >
                         Gestion du compte
-                      </a>
+                      </Link>
                     </li>
                     <li>
-                      <a className="dropdown-item" href="/connexion">
+                      <Link to="/connexion" className="dropdown-item" >
                         Connexion
-                      </a>
+                      </Link>
                     </li>
                     {/* Another action */}
                     <li>
-                      <a className="dropdown-item" href="#">
+                      <Link to="#" className="dropdown-item" >
                         Aide
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>

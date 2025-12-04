@@ -1,4 +1,5 @@
-import React from "react";
+import { Link } from "react-router-dom";
+
 
 const CGV = () => {
   const styles = {
@@ -109,12 +110,11 @@ const CGV = () => {
             judiciaire.
           </p>
         </div>
-        <a
-          href="/produit"
+        <Link to="/produit"
           style={{ width: "30rem", marginBottom: "1rem", paddingLeft: "2rem" }}
         >
           <i className="bi bi-arrow-left"> Home</i>
-        </a>
+        </Link>
       </div>
     </>
   );
