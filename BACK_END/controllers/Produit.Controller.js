@@ -34,7 +34,7 @@ const post = async (req, res, next) => {
  */
 const get = async (req, res, next) => {
   try {
-    const produit = await ProduitModel.find()
+    const produit = await ProduitModel.find(req.body)
     res.status(200).json(produit)
   } catch (error) {
      next(createError(error.status || 500, error.message, error.details));
