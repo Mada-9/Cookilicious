@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link, isCookie } from "react-router-dom";
-import { HashLink } from "react-router-hash-link";
+import { useNavigate, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
@@ -10,11 +9,11 @@ import URL from "../../utils/constant/url";
 // import DetailProduit from "../PageProduit/DetailProduit";
 
 //IMAGES
-import cookie2 from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
-import cookie from "../../assets/images/cookiepistache.png";
-import cookiefraise from "../../assets/images/cookiefraise.png";
-import cookiechoco from "../../assets/images/cookiechoco.png";
-import cookie4 from "../../assets/images/CaptureE299e81cran20a80_11.53.01-removebg-preview.png";
+// import cookie2 from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
+// import cookie from "../../assets/images/cookiepistache.png";
+// import cookiefraise from "../../assets/images/cookiefraise.png";
+// import cookiechoco from "../../assets/images/cookiechoco.png";
+// import cookie4 from "../../assets/images/CaptureE299e81cran20a80_11.53.01-removebg-preview.png";
 
 //CSS
 import "./Home.css"; // CSS spécifique

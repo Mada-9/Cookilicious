@@ -3,9 +3,6 @@ import URL from "../../utils/constant/url";
 import { useNavigate, Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
-
-import DetailProduit from "./DetailProduit";
-
 import "./Produit.css"; // CSS spécifique
 
 const Produit = () => {
