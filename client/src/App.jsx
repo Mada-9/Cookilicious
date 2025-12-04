@@ -11,7 +11,7 @@ import PageRecette from "./pages/PageRecette/PageRecette";
 import PageApropos from "./pages/PageApropos/PageApropos";
 import PageContact from "./pages/PageContact/PageContact";
 import PagePanier from "./pages/Pagepanier/Pagepanier";
-import PagePaiement from "./pages/PagePanier/PagePaiement";
+import PagePaiement from "./pages/Pagepanier/PagePaiement";
 import PageConnexion from "./pages/PageConnexion/PageConnexion";
 import Nothing from "./pages/PageNothing/Nothing";
 import Mentionslegales from "./pages/PagesPolitiques/MentionsLegales";
