@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -96,3 +97,14 @@ const Footer = () => {
 };
 
 export default Footer;
+=======
+import React from 'react'
+
+const Footer = () => {
+  return (
+    <div>MON FOOTER</div>
+  )
+}
+
+export default Footer
+>>>>>>> 1b20691f17c33f2ba5dd0f904bf7942c6deb498e

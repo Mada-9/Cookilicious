@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import axios from "axios";
+import axiosInstance from "../../utils/axios/axiosinstance";
 
 //CSS
 
@@ -51,7 +52,7 @@ const PageRecette = () => {
    const getAvis = async() => {
 
     try {
-      const { formData} = await axios.post(URL.POST_AVIS);
+      const { formData} = await axiosInstance.post(URL.POST_AVIS);
       console.log(formData);
     } catch (error) {}
   };

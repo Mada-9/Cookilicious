@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 
 const URL = {
@@ -30,3 +31,16 @@ const URL = {
 
   // rajouter l'id ou pas?
 export default URL;
+=======
+import React from 'react'
+
+const URL= {
+  POST_PRODUIT: "http://localhost:8000/api/produit/post",
+  GET_ALL_PRODUIT: "http://localhost:8000/api/produit/get",
+  DELETE_PRODUIT: "http://localhost:8000/api/produit/delete",
+  UPDATE_PRODUIT: "http://localhost:8000/api/vehicule/update",
+ 
+}
+
+export default URL
+>>>>>>> 1b20691f17c33f2ba5dd0f904bf7942c6deb498e
