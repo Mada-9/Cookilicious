@@ -8,6 +8,18 @@
   src: url(../src/assets/fonts/kaftus/Kaftus.ttf);
 }
 
+html,
+body {
+  max-width: 100%;
+}
+
+@media (min-width: 992px) {
+  html,
+  body {
+    padding-top: 1.5rem;
+  }
+}
+
 :root {
   --marronRouge: #880a0cff;
   --marronFroid: #833f3fff;
@@ -18,23 +30,33 @@
   --jaune: rgb(222, 146, 23);
   --creme: #fefaef;
   --caramel: #bd5505ff;
-  height: 100vh;
-  width: 100%;
 }
 
 #root {
+  width: 100% !important;
+  max-width: 100% !important;
   font-family: var;
   font-size: 1.4rem;
   background-color: var(--creme);
   color: var(--marronRouge);
   padding: 0 !important;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 
+:root a {
+  color: var(--marronRouge) ;
+}
 a:hover {
   color: var(--jaune) !important;
 }
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show , .dropdown-item{
+    color: var(--jaune);
+}
 
+.dropdown-item.active, .dropdown-item:active {
+  color: var(--jaune)!important;
+  background-color: var(--creme)!important;
+}
 /* h3{
   font-size: 1.3rem !important;
   text-decoration: underline;

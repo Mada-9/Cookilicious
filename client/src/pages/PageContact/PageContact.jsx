@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "react-responsive";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import URL from "../../utils/constant/url";
@@ -7,7 +8,15 @@ import URL from "../../utils/constant/url";
 const PageContact = () => {
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const isMobile = useMediaQuery({ query: "(max-width: 525px)" });
 
+  const styles = {
+    titleContact: {
+      fontSize: isMobile
+        ? "3rem"
+        :"4.5rem"
+        
+    },}
 
   // ENVOIE FORMULAIRE
 
@@ -16,14 +25,17 @@ const PageContact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const { status } = await axios.post(URL.POST_CONTACT, formData);
       console.log(formData);
-      if (formData.message.length >= 5 && status === 201 && formData.email.match(isValidEmail)) {
+      if (
+        formData.message.length >= 5 &&
+        status === 201 &&
+        formData.email.match(isValidEmail)
+      ) {
         alert("message envoyé !");
       } else {
         alert("veuillez ecrire un message valide");
@@ -33,66 +45,48 @@ const PageContact = () => {
     }
   };
 
-
-
-
   return (
     <>
-       <h1
-          className="contactTitle"
-          style={{
-            fontSize: "5rem",
-            color: "var(--marronRouge)",
-          }}
-        >
-          Contactez nous
-        </h1>
-      <div
-        className="contact"
+      <h1 className="pt-3 mb-5 " style={styles.titleContact}>Contactez nous</h1>
+      <form
+      onSubmit={handleSubmit}
+        className="row g-3 d-flex justify-content-center  pt-3 mb-5 "
         style={{
-          height: "30rem",
-          width:"50rem",
-          margin:"3rem",
-          justifyItems: "center",
-          position: "relative",
-          border:"4px solid var(--marronRouge)",
-          justifySelf:"center"
+          border: "4px var(--marronRouge) solid",
+          justifySelf: "center",
         }}
       >
-       
-        <form className="homeFormContact" onSubmit={handleSubmit} style={{padding:"1rem"  }}>
-          {/* FAIRE handlesubmit dans form et definir */}
-          <label className="email" htmlFor="email">
-            Email:
+        <div className="col-9">
+          <label htmlFor="inputEmail4" className="form-label col-9 ">
+            Email
           </label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="écrivez votre email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          <label className="message" htmlFor="message">
-            Message:
+          <input type="email" className="form-control" id="inputEmail4" name="email"  autoComplete="email"  value={formData.email}
+              onChange={handleChange} style={{ border: "4px solid var(--marronRouge)",
+                  color: "var(--marronRouge)",}}/>
+        </div>
+        <div className="col-9">
+          <label htmlFor="message" className="form-label col-9">
+            Votre message
           </label>
-          <input
-            type="texte"
+          <textarea
+            type="text"
+            className="form-control mb-1"
             name="message"
             id="message"
-            placeholder="Votre message"
-            value={formData.message}
-            onChange={handleChange}
-          />
-          <button
-            id="homeBtnContact"
-            style={{ color: "#783922" }}
-            onSubmit={handleSubmit}
+            autoComplete="message"
+             value={formData.message}
+              onChange={handleChange}
+               style={{ border: "4px solid var(--marronRouge)",
+                  color: "var(--marronRouge)",}}
           >
+          </textarea>
+        </div>
+        <div className="col-12 mb-5">
+          <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
             Envoyer
           </button>
-        </form>
-      </div>
+        </div>
+      </form>
     </>
   );
 };

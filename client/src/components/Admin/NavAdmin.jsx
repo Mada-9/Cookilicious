@@ -5,18 +5,28 @@ const NavAdmin = () => {
   return (
     <div>
       <nav>
+        A supprimeer
         <ul>
           <li>
             <Link to="dashboard"> Dashboard</Link>
           </li>
           <li>
-            <Link to="agence"> Produit</Link>
+            <Link to="produit"> Produit</Link>
           </li>
           <li>
             <Link to="recette"> Recette</Link>
           </li>
           <li>
             <Link to="apropos"> A propos</Link>
+          </li>
+          <li>
+            <Link to="contact">contact kijuhygtfrdeszqedrftghjk</Link>
+          </li>
+          <li>
+            <Link to="commandes"> Commandes</Link>
+          </li>
+          <li>
+            <Link to="compte"> Comptes</Link>
           </li>
           <li>
             <Link to=""> Home</Link>

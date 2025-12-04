@@ -1,4 +1,20 @@
-.textApropos{
-    display: flex;
-    text-align: left;
+
+
+@media (max-width: 700px) {
+    .textApropos{
+        display: flex;
+        flex-wrap:wrap ;
+    }
+    .titreApropos{
+        font-size: 3rem !important;
+    }
+    
+}
+
+@media (max-width: 331px) {
+  
+    .titreApropos{
+        font-size: 2rem !important;
+    }
+    
 }

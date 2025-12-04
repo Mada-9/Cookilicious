@@ -9,12 +9,12 @@ const Header = () => {
           <h1 style={{ fontSize: "6rem", color: "#fefaef" }}>DASHBOARD</h1>
         </div>
         <nav
-          class="navbar navbar-expand-lg navbar-light "
+          className="navbar navbar-expand-lg navbar-light "
           style={{ left: "10rem" }}
         >
-          <div class="container-fluid">
+          <div className="container-fluid">
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavDropdown"
@@ -22,19 +22,19 @@ const Header = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav">
                 {/* <li class="nav-item">
                 <a class="nav-link " href="#">
                   home
                 </a>
               </li> */}
 
-                <li class="nav-item dropdown">
+                <li className="nav-item dropdown">
                   <a
-                    class="nav-link dropdown-toggle"
+                    className="nav-link dropdown-toggle"
                     href="#"
                     id="navbarDropdownMenuLink"
                     role="button"
@@ -45,7 +45,7 @@ const Header = () => {
                     home
                   </a>
                   <ul
-                    class="dropdown-menu"
+                    className="dropdown-menu"
                     aria-labelledby="navbarDropdownMenuLink"
                     style={{
                       backgroundColor: "#fefaef",
@@ -54,44 +54,14 @@ const Header = () => {
                     }}
                   >
                     <li>
-                      <a class="dropdown-item" href="/admin">
+                      <a className="dropdown-item" href="/admin">
                         dashboard home
                       </a>
                     </li>
-                    
+
                     <li>
-                      <a class="dropdown-item" href="#">
-                        compte
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/admin/apropos">
-                        A propos
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/admin/contact">
-                        Contact
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/admin/recette">
-                        Recettes
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/admin/produit">
-                        Produits
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/admin/commande">
-                        Commandes
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/">
-                         home
+                      <a className="dropdown-item" href="/">
+                        home
                       </a>
                     </li>
                   </ul>

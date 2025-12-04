@@ -5,24 +5,24 @@ const Footer = () => {
     footer: {
       backgroundColor: "var(--marronRouge)",
       color: "#fefaef",
-      padding: "2rem",
+      paddingTop: "2rem",
+      paddingLeft:"7rem"
     },
 
     mentionsGenerales: {
       display: "flex",
       textAlign: "center",
       color: "#fefaef",
-      justifyContent:"center"
-
+      // justifyContent:"center"
+      gap:"2rem"
     },
 
     footerLink: {
-      padding: "0.1rem",
-      margin: "0 ",
+      // padding: "0.1rem",
+      // margin: "0 ",
       justifyContent: "center",
       width: "25rem",
       color: "#fefaef",
-
     },
 
     // mentionsP: {
@@ -32,40 +32,63 @@ const Footer = () => {
     mentionsH3: {
       fontSize: "1.3rem !important",
       textDecoration: "underline",
-      justifySelf: "center",
+      // justifySelf: "center",
     },
 
     footerSection: {
-      justifySelf: "center",
+      // justifySelf: "center",
     },
   };
 
   return (
-    <div style={styles.footer}>
+    <div className="row" style={styles.footer}>
       {/* <h1>MON FOOTER</h1> */}
 
-      <div style={styles.mentionsGenerales}>
-        <section style={styles.footerSection}>
-          <h3 style={styles.mentionsH3}>Politique</h3>
-          <Link to="/mentionslegales" style={styles.footerLink}>
-            conditions générales de vente
-          </Link>
-          <p style={styles.footerLink}>Politique de livraison</p>
-          <p style={styles.footerLink}> Politique de confidentialité</p>
+      <div className="col-10 mx-xl-4 justify-content-center " style={styles.mentionsGenerales}>
+        <section className=" col-2 col-xs-4  col-md-4 col-lg-4 col-xl-4 col-xxl-2" style={styles.footerSection}>
+          <div className="row ">
+            <h3 style={styles.mentionsH3}>Politique</h3>
+            <Link to="/cgv" style={styles.footerLink}>
+              CGV
+            </Link>
+            <Link to="/mentionslegales" style={styles.footerLink}>
+              Mentions légales
+            </Link>
+            <Link to="/rgpd" style={styles.footerLink}>
+              {" "}
+              RGPD
+            </Link>
+          </div>
         </section>
 
-        <section style={styles.footerSection}>
+        <section className="col-2 col-xs-4  col-md-4 col-lg-4 col-xl-4 col-xxl-2 " style={styles.footerSection}>
           <h3 style={styles.mentionsH3}>Entreprise</h3>
-          <Link to="/apropos" style={styles.footerLink}>  A propos</Link>
-          <Link to="/" style={styles.footerLink}> home</Link>
-          <p style={styles.footerLink}>suivez nous </p>
-          <p style={styles.footerLink}>compte </p>
+          <div className="row ">
+            <Link to="/apropos" style={styles.footerLink} >
+              {" "}
+              A propos
+            </Link>
+            <Link to="/" style={styles.footerLink}>
+              {" "}
+              home
+            </Link>
+            <Link to="/apropos" style={styles.footerLink}>
+              suivez nous{" "}
+            </Link>
+            <Link to="/connexion" style={styles.footerLink}>
+              compte{" "}
+            </Link>
+          </div>
         </section>
 
-        <section style={styles.footerSection}>
+        <section className="col-2 col-xs-4 col-md-4  col-lg-5 col-xl-3  col-xxl-2 " style={styles.footerSection}>
           <h3 style={styles.mentionsH3}>aide</h3>
-          <Link to="/contact" style={styles.footerLink}>Contact</Link>
-          <p style={styles.footerLink}>FAQ</p>
+          <div className="row ">
+            <Link to="/contact" style={styles.footerLink}>
+              Contact
+            </Link>
+            <p style={styles.footerLink}>FAQ</p>
+          </div>
         </section>
       </div>
     </div>

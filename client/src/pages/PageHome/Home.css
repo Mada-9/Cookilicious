@@ -1,10 +1,12 @@
 .imageHome {
   display: flex;
+  position: static;
+  padding-top: 2rem;
 }
 
 .imagesHome {
   flex: 1;
-  width: 50px;
+  width: 20% !important;
 }
 
 .defilantContainer {
@@ -36,17 +38,18 @@
 
 .homeCategorieProduit {
   background-color: var(--marronRouge);
-  height: 33rem;
-  display: flex;
-  padding: 2rem;
-  gap: 3rem;
+  /*  height: 33rem; */
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   justify-content: center;
   align-items: center;
 }
 
 .phraseCategorie {
   color: var(--creme);
-  width: 40%;
+  /* width: 40%; */
   font-size: 3.4rem;
   text-shadow: 0 0 5px var(--marronRouge);
 }
@@ -56,47 +59,105 @@
   text-shadow: 0 0 5px rgb(60, 36, 36);
   border: var(--jaune), 3px, solid;
   border-radius: 2%;
-  width: 20rem;
   height: 29rem;
   font-size: 4rem;
   padding-top: 3rem;
-  position: relative;
 }
 
-#categorieUne {
+@media (max-width: 448px) {
+  .titleHome {
+    height: 2rem !important;
+    margin-top: 0rem !important;
+  }
+  .phraseDefilante {
+    font-size: 1rem;
+  }
+  .phraseCategorie {
+    font-size: 1.5rem;
+  }
+  .btnCommander {
+    height: auto;
+    font-size: 1rem !important;
+    margin-top: 2rem !important;
+    padding: 7px !important;
+  }
+
+  .categorieUne {
+    height: 15rem;
+    font-size: 2rem;
+  }
+  .categorieDeux {
+    height: 15rem;
+    font-size: 2rem;
+  }
+
+  .homeRecipes{
+    margin-bottom: 1rem;
+  }
+  .homeRecipesTitle{
+    font-size: 2rem !important;
+  }
+  .recetteHome{
+    height: 15rem !important;
+    margin-top: 2rem;
+
+  }
+  .moitieeBrookie{
+    height: 20rem !important;
+    left: -15rem !important;
+  }
+  .homeProduitTitle{
+    padding-top: 5rem;
+    font-size: 2rem !important;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1211px) {
+  .categorieUne {
+    font-size: 3rem;
+  }
+  .categorieDeux {
+    font-size: 3rem;
+  }
+}
+
+.categorieUne {
   background-image: url(https://plus.unsplash.com/premium_photo-1725384940713-45cdbbb49d94?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
   background-size: 54rem;
   background-repeat: no-repeat;
   background-position: 70%;
+  display: flex;
+  flex-direction: column;
 }
-#categorieDeux {
+.categorieDeux {
   background-image: url(https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg);
   background-size: 29rem;
   background-position: 40%;
+  display: flex;
+  flex-direction: column;
 }
 
 .btnCommander {
-  position: absolute;
+  margin-top: 12rem;
   font-size: 1.2rem;
   bottom: 30px;
   padding: 10px;
-  left: 5.5rem;
   background-color: var(--marronRouge);
   color: var(--creme);
   border: 3px var(--marronRouge) solid;
   box-shadow: 0 0 10px black;
-
   border-radius: 2%;
 }
 
 /* SECTION RECETTE */
 
 .homeRecipes {
-  display: flex;
+  flex-direction: column;
   height: 34rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
   justify-content: center;
   position: relative;
-  margin: 2rem 0 2rem 0;
 }
 
 .homeRecipesTitle {
@@ -104,19 +165,18 @@
   font-size: 5.6rem;
   color: var(--marronRouge);
   display: flex;
-  position: absolute;
   margin-top: 1rem;
+  
 }
 
 .recetteHome {
   height: 22rem;
-  width: 42rem;
-  position: relative;
+  /* width: 42rem; */
   margin-top: 7rem;
   border: 5px var(--caramel) solid;
   display: flex;
   justify-content: center;
-  align-self: center;
+  align-self: center; 
 }
 
 .moitieeBrookie {
@@ -129,7 +189,6 @@
 }
 
 .btnRecette {
-  width: 20em;
   height: 2em;
   margin-bottom: 1em;
   font-size: 1em;
@@ -149,19 +208,41 @@
 }
 
 .jauneP {
-  font-size: 2.5rem;
+  font-size: 4.5rem;
   color: var(--marronRouge);
   width: 70%;
+  padding-left: 3rem;
+  text-align: left;
+  line-height: 79px;
+}
+
+.accordion-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 2rem !important;
+  color: #880a0c !important;
+  text-align: left;
+  background-color: #de9217 !important;
+  overflow-anchor: none;
+  transition: 1s;
+}
+
+.accordion-item {
   padding-left: 2rem;
   text-align: left;
-  line-height: 70px;
+
+  color: var(--marronFonce) !important;
+  background-color: var(--jaune) !important;
+  border: var(--bs-accordion-border-width) solid
+    var(--bs-accordion-border-color);
 }
 
 /* SECTION PRODUIT */
 
 .homeProduit {
   height: 33rem;
-  padding-top: 2rem;
+  padding: 2rem;
   margin-bottom: 7rem;
   position: relative;
 }
@@ -171,26 +252,8 @@
   font-size: 5.6rem;
   word-spacing: 0.5rem;
   position: absolute;
-  z-index: 1;
 }
 
-.moitieeCookieProduit {
-  position: absolute;
-  width: 530px;
-  height: 600px;
-  right: -14em;
-  top: 1em;
-  overflow: hidden;
-  z-index: 0;
-}
-
-/* .containerProduit {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 8rem;
-  justify-content: center;
-  padding-left:7rem;
-} */
 
 .carousel-inner {
   margin-left: 3rem;
@@ -210,7 +273,6 @@
   border: 3px solid var(--caramel) !important;
   background-color: var(--creme);
   font-size: 1.3rem;
-  z-index: 2;
 }
 
 .produitCardBtn {
@@ -224,55 +286,65 @@
 /* SECTION CONTACT  */
 
 .contactHome {
-  height: 32rem;
-  background-color: #783922;
-  margin-top: 3rem;
-  margin-bottom: 6rem;
-  justify-items: center;
+  /* height: 32rem; */
+  background-color: #5f0406;
+  /* margin-top: 3rem;
+  margin-bottom: 6rem; */
+  /* justify-items: center; */
   position: relative;
 }
 
 .homeContactTitle {
-  font-size: 4.8rem;
-  margin: 0;
+  font-size: 4.9rem;
   color: var(--creme);
+  margin-top: 4rem;
+}
+
+@media (max-width: 425px) {
+  .homeContactTitle {
+    font-size: 3rem;
+  }
 }
 .homeFormContact {
   display: flex;
-  flex-direction: column;
-  width: 40rem;
+  flex-direction: row-reverse;
 }
+
+@media (max-width: 800px) {
+  .homeFormContact {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* alert */
 
 .email,
 .message {
-  font-size: 1.5rem;
-  color: #fefaef;
-  margin: 1rem;
+  font-size: 2.3rem !important;
+  color: var(--creme) !important;
 }
 
 .messageInput {
-  height: 6rem;
-  color: var(--marronRouge);
-  font-size: 1.5rem;
+  height: 6rem !important;
+  color: var(--marronRouge) !important;
+  background-color: var(--creme) !important;
+
+  font-size: 1.5rem !important;
 }
 .emailInput {
-  height: 3rem;
-  color: var(--marronRouge);
-  font-size: 1.5rem;
+  height: 3rem !important;
+  color: var(--marronRouge) !important;
+  background-color: var(--creme) !important;
+
+  font-size: 1.5rem !important;
 }
 
 .homeBtnContact {
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  top: 25rem;
   height: 3rem;
-  width: 40rem;
-  margin-top: 1rem;
-  border: #fefaef;
-  color: var(--marronRouge);
-  font-size: 1.6rem;
+  border: 2px #fefaef solid !important;
+  color: var(--marronRouge) !important;
+  background-color: var(--creme) !important;
+  font-size: 1.6rem !important;
 }
 
 .btnBackToTop {

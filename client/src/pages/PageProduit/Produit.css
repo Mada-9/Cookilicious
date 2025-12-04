@@ -1,6 +1,38 @@
-/* @media (min-width: 1024px) { */
+@media (min-width: 768px) {
+  .titlePageProduit {
+    font-size: 8rem !important;
+  }
+}
 
-#enteteProduit {
+@media (min-width: 580px) and (max-width: 768px)  {
+  .titlePageProduit {
+    font-size: 4rem !important;
+  }
+  
+}
+
+@media (min-width: 390px)  {
+  .titlePageProduit {
+    font-size: 4rem ;
+    padding-bottom: 0.7rem;
+  }
+  
+  .introPageProduit {
+    font-size: 0.7rem ;
+  }
+}
+
+@media (max-width: 390px) {
+  .titlePageProduit {
+    font-size: 3.5rem !important;
+    padding-bottom: 0rem;
+  }
+  .introPageProduit {
+    font-size: 0.8rem !important;
+  }
+}
+
+.enteteProduit {
   padding: 2rem;
   height: 18rem;
   justify-self: center;

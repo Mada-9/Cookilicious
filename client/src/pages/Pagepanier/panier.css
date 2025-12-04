@@ -1,0 +1,98 @@
+.pagePanier {
+  padding: 3rem;
+}
+.panierTitle {
+  font-size: 4rem;
+}
+.produitsPanier {
+  border-top: 3px solid var(--marronRouge);
+  display: flex;
+  justify-self: center;
+}
+
+.mapProduit {
+  display: flex;
+  border-bottom: 2px solid var(--marronRouge);
+  /* justifySelf: center; */
+
+  padding-top: 1rem !important;
+  gap: 7rem;
+}
+
+.actionPanier {
+  display: flex;
+  flex-direction: row;
+  gap: 10rem;
+}
+
+.imgTitrePanier {
+  flex-direction: column;
+  width: 10rem;
+}
+
+.imgPanier {
+  width: 150px;
+  height: 150px;
+}
+.btnQuantity {
+  display: flex;
+  height: 2rem;
+  gap: 1rem;
+}
+
+.bi {
+  
+  font-size: 1rem;
+}
+
+.btnSupprimer{
+      color: var(--creme);
+    background-color: var(--marronRouge);
+}
+@media (max-width: 649px) {
+  .mapProduit {
+    gap: 2rem;
+  }
+  .actionPanier {
+    display: flex;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center;
+  }
+  .produitsPanier {
+    width: auto;
+  }
+  .btnSupprimer {
+    font-size: 1rem;
+    width: 10rem;
+  }
+  .btnPasserCommande {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 375px) {
+  .pagePanier {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+  .mapProduit {
+    gap: 2rem;
+  }
+  .actionPanier {
+    display: flex;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center;
+  }
+  .produitsPanier {
+    width: auto;
+  }
+  .btnSupprimer {
+    font-size: 0.7rem;
+    width: 8rem;
+  }
+
+  .bi {
+    font-size: 0.7rem;
+  }
+}

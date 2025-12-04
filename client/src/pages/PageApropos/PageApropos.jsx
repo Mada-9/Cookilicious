@@ -1,5 +1,6 @@
 import React from "react";
 
+import "./PageApropos.css"
 const PageApropos = () => {
   return (
     <>
@@ -11,6 +12,7 @@ const PageApropos = () => {
           color: "var(--jaune)",
           fontSize: "5rem",
         }}
+        className="titreApropos"
       >
         À propos de Cookilicious
       </h1>
@@ -37,11 +39,11 @@ const PageApropos = () => {
 
         {/* {/* ************************************************************************************** */}
 
-        <h1 style={{ fontSize: "3rem", margin: "6rem 0 2rem  0" }}>
+        <h1 style={{ fontSize: "3rem", margin: "6rem 0 2rem  0" }} >
           Notre Mission
         </h1>
-        <div style={{ display: "flex", gap: "3rem", marginBottom: "6rem" }}>
-          <p style={{ textAlign: "justify", width: "50%" }}>
+        <div style={{ display: "flex", gap: "3rem", marginBottom: "6rem", }}className="textApropos">
+          <p style={{ textAlign: "justify",  }}>
             Chez Cookilicious, notre mission est simple : générer du plaisir à
             chaque cookie. Nous croyons que la gourmandise n’est pas seulement
             un goût, mais une expérience qui éveille les sens et réunit les
@@ -51,7 +53,7 @@ const PageApropos = () => {
             de l’ordinaire.
           </p>
 
-          <p style={{ width: "50%", textAlign: "justify" }}>
+          <p style={{  textAlign: "justify" }}>
             {/* <p style={{  width:"50%", textAlign: "justify",justifySelf:"right"}}> */}
             Cookilicious est avanttout un lieu de partage et de plaisir. Notre
             but ? Faire découvrir des créations simples, faites avec amour, qui
@@ -70,6 +72,7 @@ const PageApropos = () => {
             display: "flex",
             gap: "8rem",
           }}
+          className="textApropos"
         >
           <h1
             style={{
@@ -92,7 +95,7 @@ const PageApropos = () => {
         </div>
 
         {/* ************************************************************************************** */}
-        <div style={{ textAlign: "justify", width: "30rem" }}>
+        <div style={{ textAlign: "justify", maxWidth: "30rem" }}>
           <h1 style={{ alignSelf: "center", marginBottom: "2rem" }}>
             Restons connectés
           </h1>

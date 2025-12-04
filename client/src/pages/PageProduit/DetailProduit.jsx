@@ -5,7 +5,14 @@ import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
 
 const DetailProduit = () => {
-  const { panier, addPanier } = useContext(PanierContext);
+  const {
+    panier,
+    addPanier,
+    incremente,
+    decremente,
+    priceProduitByQuantity,
+    totalPrice,
+  } = useContext(PanierContext);
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
@@ -36,19 +43,29 @@ const DetailProduit = () => {
 
   return (
     <>
-      <a
-        href="/produit"
-        style={{ width: "30rem", marginBottom: "1rem", paddingLeft: "2rem" }}
-      >
-        {" "}
-        <i className="bi bi-arrow-left"> retour à la page produit</i>
-      </a>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb my-3">
+          <li className="breadcrumb-item  px-3">
+            <a href="/" style={{ width: "3rem" }}>
+              Home
+            </a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href="/produit" style={{ width: "6rem" }}>
+              Produits
+            </a>
+          </li>
+          <li className="breadcrumb-item">
+            <a href="">Produit</a>
+          </li>
+        </ol>
+      </nav>
 
       {!produit ? (
         <p>Chargement</p>
       ) : (
         <div>
-          <div key={produit._id} style={{}}>
+          <div key={produit._id}>
             <p
               style={{
                 color: "var(--creme)",

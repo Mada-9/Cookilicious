@@ -12,7 +12,7 @@ import { PanierProvider } from "./utils/context/PanierContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <PanierProvider>
-      <BrowserRouter>
+      <BrowserRouter scrollRestoration="manual">
         <App />
       </BrowserRouter>
     </PanierProvider>

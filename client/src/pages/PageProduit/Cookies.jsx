@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -13,12 +12,12 @@ const Produit = () => {
   const [produit, setProduit] = useState([]);
 
   useEffect(() => {
-    getAllProduit();
+    getAllProduits();
   }, []);
 
-  const getAllProduit = async () => {
+  const getAllProduits = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_PRODUIT);
+      const { data, status } = await axios.get(URL.GET_ALL_PRODUITS);
       if (status === 200) setProduit(data);
     } catch (error) {
       console.log(error.message);
@@ -29,30 +28,43 @@ const Produit = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
-    <div id="produit">
-      <section id="enteteProduit" style={{ color: "var(--creme)" }}>
+    <div className="produit">
+      <section
+        className="enteteProduit"
+        style={{ color: "var(--creme)", width: "100%" }}
+      >
         <h1
-          id="titlePageProduit"
+          className="titlePageProduit"
           style={{
             textAlign: "center",
-            paddingBottom: "3rem",
-            fontSize: "5rem",
           }}
         >
-          Nos Produits
+          Nos Cookies
         </h1>
         <p
-          id="introPageProduit"
+          className="introPageProduit"
           style={{ color: "var(--creme)", fontSize: "1.5rem" }}
         >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-          suscipit officia sapiente repellat qui ipsum.Lorem ipsum dolor sit
-          amet consectetur adipisicing.
+          Découvrez nos cookies fraîchement sortis du four : moelleux, généreux
+          et préparés chaque jour avec des ingrédients de qualité.
         </p>
       </section>
 
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb my-3">
+          <li className="breadcrumb-item  px-3">
+            <a href="/" style={{ width: "3rem" }}>
+              Home
+            </a>
+          </li>
+
+          <li className="breadcrumb-item" aria-current="page">
+            Cookies
+          </li>
+        </ol>
+      </nav>
+
       <section
-        id="cookie"
         className="sectionCookie"
         style={{ marginBottom: "5rem", marginTop: "3.5rem" }}
       >
@@ -62,10 +74,7 @@ const Produit = () => {
         >
           COOKIE
         </h3>
-        <div
-          className="produitContainer2 "
-          
-        >
+        <div className="produitContainer2 ">
           {produit.map(
             (item, index) =>
               index > 4 && (
@@ -82,79 +91,7 @@ const Produit = () => {
                       fontSize: "1.8rem",
                       margin: "0",
                       padding: "1px",
-                      borderBottom:  "var(--marronRouge) 3px solid",
-                    }}
-                  >
-                    {item.titre}
-                  </p>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: " 5rem",
-                      paddingLeft: "1rem",
-                      paddingRight: "1rem",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "2rem",
-                        margin: "0",
-                        display: "flex",
-                      }}
-                    >
-                      {item.prix}€
-                    </p>
-                    <button className="btnDetail"
-                      onClick={() => navigate(`/detail/${item._id}`)}
-                     
-                    >
-                      VOIR
-                    </button>
-                  </div>
-                </div>
-              )
-          )}
-        </div>
-      </section>
-
-      {/************* SECTION BROOKIE**************/}
-
-      <div
-        id="brookie"
-        className="sectionBrookie"
-        style={{ marginBottom: "8rem" }}
-      >
-        <h3
-          className="sectionTitleBrookie"
-          style={{ backgroundColor: "var(--marronFroid" }}
-        >
-          BROOKIE
-        </h3>
-        <div
-          className="produitContainer2 "
-          
-        >
-          {produit.map(
-            (item, index) =>
-              index > 8 && (
-                <div key={item._id} className="produit2">
-                  <img
-                    style={{
-                      padding: "1px",
-                    }}
-                    src={item.photo}
-                    alt="cookie"
-                    width={235}
-                    height={235}
-                  />
-
-                  <p
-                    style={{
-                      fontSize: "1.8rem",
-                      margin: "0",
-                      borderBottom:  "var(--marronRouge) 3px solid",
+                      borderBottom: "var(--marronRouge) 3px solid",
                     }}
                   >
                     {item.titre}
@@ -179,18 +116,18 @@ const Produit = () => {
                       {item.prix}€
                     </p>
                     <button
+                      className="btnDetail"
                       onClick={() => navigate(`/detail/${item._id}`)}
-                     className="btnDetail"
                     >
                       VOIR
                     </button>
-                    
                   </div>
                 </div>
               )
           )}
         </div>
-      </div>
+      </section>
+
       <Link
         to="/recette"
         className="btnNavRecette"
@@ -208,9 +145,8 @@ const Produit = () => {
           color: " #fefaef",
           border: "2px solid #833f3fff",
           width: "5rem",
-          height:"4rem",
-          fontSize:"1rem"
-        
+          height: "4rem",
+          fontSize: "1rem",
         }}
         onClick={scrollToTop}
       >
