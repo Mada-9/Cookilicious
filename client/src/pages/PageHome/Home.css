@@ -48,77 +48,21 @@
 }
 
 .phraseCategorie {
-  color: var(--creme);
+  color: #f5edd7;
   /* width: 40%; */
-  font-size: 3.4rem;
+  font-size: 3rem;
   text-shadow: 0 0 5px var(--marronRouge);
+  line-height: 150%;
 }
 
 .sectionCategorie {
-  color: var(--creme);
+  color: #f5edd7;
   text-shadow: 0 0 5px rgb(60, 36, 36);
   border: var(--jaune), 3px, solid;
   border-radius: 2%;
   height: 29rem;
-  font-size: 4rem;
+  font-size: 3rem;
   padding-top: 3rem;
-}
-
-@media (max-width: 448px) {
-  .titleHome {
-    height: 2rem !important;
-    margin-top: 0rem !important;
-  }
-  .phraseDefilante {
-    font-size: 1rem;
-  }
-  .phraseCategorie {
-    font-size: 1.5rem;
-  }
-  .btnCommander {
-    height: auto;
-    font-size: 1rem !important;
-    margin-top: 2rem !important;
-    padding: 7px !important;
-  }
-
-  .categorieUne {
-    height: 15rem;
-    font-size: 2rem;
-  }
-  .categorieDeux {
-    height: 15rem;
-    font-size: 2rem;
-  }
-
-  .homeRecipes{
-    margin-bottom: 1rem;
-  }
-  .homeRecipesTitle{
-    font-size: 2rem !important;
-  }
-  .recetteHome{
-    height: 15rem !important;
-    margin-top: 2rem;
-
-  }
-  .moitieeBrookie{
-    height: 20rem !important;
-    left: -15rem !important;
-  }
-  .homeProduitTitle{
-    padding-top: 5rem;
-    font-size: 2rem !important;
-  }
-}
-
-@media (min-width: 991px) and (max-width: 1211px) {
-  .categorieUne {
-    font-size: 3rem;
-  }
-  .categorieDeux {
-    font-size: 3rem;
-  }
 }
 
 .categorieUne {
@@ -139,7 +83,7 @@
 
 .btnCommander {
   margin-top: 12rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   bottom: 30px;
   padding: 10px;
   background-color: var(--marronRouge);
@@ -152,39 +96,34 @@
 /* SECTION RECETTE */
 
 .homeRecipes {
-  flex-direction: column;
   height: 34rem;
-  margin-top: 2rem;
-  margin-bottom: 3rem;
+  padding-top: 2rem;
+  margin-bottom: 4rem;
   justify-content: center;
   position: relative;
 }
 
 .homeRecipesTitle {
   /* color: " #7a2223ff", */
-  font-size: 5.6rem;
+  font-size: 5rem;
   color: var(--marronRouge);
-  display: flex;
-  margin-top: 1rem;
-  
 }
 
 .recetteHome {
   height: 22rem;
   /* width: 42rem; */
-  margin-top: 7rem;
   border: 5px var(--caramel) solid;
   display: flex;
   justify-content: center;
-  align-self: center; 
+  align-self: center;
 }
 
 .moitieeBrookie {
   position: absolute;
-  width: 500px;
-  height: 40rem;
-  top: 0.5rem;
-  left: -15rem;
+  width: 600px !important;
+  height:650px;
+  top: 2rem;
+  left: -19rem;
   overflow: "hidden";
 }
 
@@ -214,6 +153,7 @@
   padding-left: 3rem;
   text-align: left;
   line-height: 79px;
+  position: relative;
 }
 
 .accordion-button {
@@ -238,6 +178,13 @@
     var(--bs-accordion-border-color);
 }
 
+.test{
+  position: absolute;
+  width: 14rem;
+  height: 13rem;
+  overflow: hidden;
+  margin-left: 25.5rem;
+}
 /* SECTION PRODUIT */
 
 .homeProduit {
@@ -249,11 +196,10 @@
 
 .homeProduitTitle {
   justify-self: center;
-  font-size: 5.6rem;
+  font-size: 5rem;
   word-spacing: 0.5rem;
   position: absolute;
 }
-
 
 .carousel-inner {
   margin-left: 3rem;
@@ -295,10 +241,15 @@
 }
 
 .homeContactTitle {
-  font-size: 4.9rem;
+  font-size: 4.5rem;
   color: var(--creme);
   margin-top: 4rem;
 }
+/* .form-control:focus{
+  color: var(--jaune) !important;
+  border-color: var(--jaune) !important;
+  box-shadow: #de9217 !important;
+} */
 
 @media (max-width: 425px) {
   .homeContactTitle {
@@ -320,23 +271,26 @@
 
 .email,
 .message {
-  font-size: 2.3rem !important;
+  font-size: 2rem !important;
   color: var(--creme) !important;
+    margin-bottom: 1rem;
+
 }
 
 .messageInput {
   height: 6rem !important;
   color: var(--marronRouge) !important;
   background-color: var(--creme) !important;
-
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 2rem;
 }
 .emailInput {
   height: 3rem !important;
   color: var(--marronRouge) !important;
   background-color: var(--creme) !important;
 
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
+  margin-bottom: 2rem;
 }
 
 .homeBtnContact {
@@ -372,5 +326,61 @@
   }
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 448px) {
+  .titleHome {
+    height: 2rem !important;
+    margin-top: 0rem !important;
+  }
+  .phraseDefilante {
+    font-size: 1rem;
+  }
+  .phraseCategorie {
+    font-size: 1.5rem;
+  }
+  .btnCommander {
+    height: auto;
+    font-size: 1rem !important;
+    margin-top: 2rem !important;
+    padding: 7px !important;
+  }
+
+  .categorieUne {
+    height: 15rem;
+    font-size: 2rem;
+  }
+  .categorieDeux {
+    height: 15rem;
+    font-size: 2rem;
+  }
+
+  .homeRecipes {
+    margin-bottom: 1rem;
+  }
+  .homeRecipesTitle {
+    font-size: 2rem !important;
+  }
+  .recetteHome {
+    height: 15rem !important;
+    margin-top: 2rem;
+  }
+  .moitieeBrookie {
+    height: 20rem !important;
+    left: -15rem !important;
+  }
+  .homeProduitTitle {
+    padding-top: 5rem;
+    font-size: 2rem !important;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 1211px) {
+  .categorieUne {
+    font-size: 3rem;
+  }
+  .categorieDeux {
+    font-size: 3rem;
   }
 }

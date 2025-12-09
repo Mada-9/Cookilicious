@@ -5,11 +5,11 @@ const Header = () => {
     <div style={{ backgroundColor: "#880a0cff", display: "flex" }}>
       <header style={{ paddingLeft: "23rem", paddingTop: "3rem" }}>
         <div>
-          <h1 style={{ fontSize: "6rem", color: "#fefaef" }}>DASHBOARD</h1>
+          <h1 style={{ fontSize: "5rem", color: "#fefaef" }}>DASHBOARD</h1>
         </div>
         <nav
           className="navbar navbar-expand-lg navbar-light "
-          style={{ left: "10rem" }}
+          style={{ left: "10rem" ,fontSize:"1rem" }}
         >
           <div className="container-fluid">
             <button
@@ -23,9 +23,9 @@ const Header = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+            <div className="collapse navbar-collapse" id="navbarNavDropdown" >
               <ul className="navbar-nav">
-                <li className="nav-item dropdown">
+                <li className="nav-item dropdown" >
                   <Link
                     to="#"
                     className="nav-link dropdown-toggle"
@@ -43,7 +43,7 @@ const Header = () => {
                     style={{
                       backgroundColor: "#fefaef",
                       border: "rgb(222, 146, 23) 4px solid",
-                      width: "13.3rem",
+                      width: "13.3rem", fontSize:"0.7rem"
                     }}
                   >
                     <li>

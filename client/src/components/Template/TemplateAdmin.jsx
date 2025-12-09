@@ -3,7 +3,7 @@ import Header from "../Admin/HeaderAdmin";
 
 const TemplateAdmin = () => {
   return (
-     <div>
+     <div >
       <div>
         <div id="monHeaderAdmin">
         <Header />

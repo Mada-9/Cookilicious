@@ -1,9 +1,8 @@
-import  { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
 import axiosinstance from "../../utils/axios/axiosinstance";
-
 
 const DetailProduit = () => {
   const {
@@ -12,13 +11,15 @@ const DetailProduit = () => {
     incremente,
     decremente,
     priceProduitByQuantity,
+    totalProduit,
+
     totalPrice,
   } = useContext(PanierContext);
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
-  const [produit, setProduit] = useState(null);
-
+  const [detailProduit, setDetailProduit] = useState(null);
+  const [produit, setProduit] = useState([]);
   useEffect(() => {
     if (id) {
       getProduit(id);
@@ -33,8 +34,21 @@ const DetailProduit = () => {
       console.log(id);
 
       if (status === 200) {
-        setProduit(data);
+        setDetailProduit(data);
       }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getAllProduits();
+  }, []);
+
+  const getAllProduits = async () => {
+    try {
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
+      if (status === 200) setProduit(data);
     } catch (error) {
       console.log(error.message);
     }
@@ -62,22 +76,23 @@ const DetailProduit = () => {
         </ol>
       </nav>
 
-      {!produit ? (
+      {!detailProduit ? (
         <p>Chargement</p>
       ) : (
         <div>
-          <div key={produit._id}>
+          <div key={detailProduit._id}>
             <p
               style={{
                 color: "var(--creme)",
                 // backgroundColor: " #67200dff",
                 backgroundColor: "var(--marronRouge)",
                 height: "6rem",
+                alignContent: "center",
                 fontSize: "3.5rem",
                 width: "90%",
               }}
             >
-              {produit.titre}
+              {detailProduit.titre}
             </p>
             <div
               style={{
@@ -88,31 +103,35 @@ const DetailProduit = () => {
             >
               <img
                 style={{ border: "5px var(--marronRouge) solid " }}
-                src={produit.photo}
-                alt={produit.titre}
+                src={detailProduit.photo}
+                alt={detailProduit.titre}
                 width={460}
                 height={460}
               />
               <div style={{ padding: "3rem" }}>
-                <p style={{ fontSize: "3.5rem" }}>{produit.prix} €</p>
-                <div>
+                <div style={{ fontSize: "1rem",display: "flex", gap: "1rem" }}>
+                  <p style={{ fontSize: "2rem" }}> {detailProduit.prix} €</p>
                   <button onClick={() => decremente(index)}>-</button>
-                  <p>{produit.index}</p>
+                  <p
+                    style={{ backgroundColor: "var(--creme)", border: "none" }}
+                  >
+                    quantité
+                  </p>
+                  <p>{detailProduit.index}</p>
                   <button onClick={() => incremente(index)}>+</button>
-                </div>{" "}
-                <p>{produit.description}</p>
+                </div>
+                <p>{detailProduit.description}</p>
                 <button
                   style={{
                     width: "30rem",
                     height: "3rem",
                     fontSize: "1.5rem",
                     color: "var(--creme)",
-                    // backgroundColor: " #976658ff",
                     border: "var(--marronRouge) 3px solid",
                     backgroundColor: "var(--jaune)",
                     type: "submit",
                   }}
-                  onClick={() => addPanier(produit)}
+                  onClick={() => addPanier(detailProduit)}
                 >
                   Ajouter au panier
                 </button>
@@ -121,6 +140,52 @@ const DetailProduit = () => {
           </div>
         </div>
       )}
+
+      <div style={{ padding: "3rem" }}>
+        <h2
+          style={{
+            textAlign: "left",
+            borderBottom: "3px solid var(--marronRouge)",
+            width: "50rem",
+          }}
+        >
+          Vous aimeriez aussi
+        </h2>
+        <div
+          style={{
+            justifySelf: "left",
+            display: "flex",
+            gap: "3rem",
+            marginTop: "2rem",
+          }}
+        >
+          <div
+            style={{ border: "5px var(--marronRouge) solid ", width: "13rem" }}
+          >
+            <img
+              src={produit[7]?.photo}
+              alt={produit.titre}
+              width={160}
+              height={160}
+            />
+            <p>{produit[7]?.titre}</p>
+            <p>{produit[7]?.prix}</p>
+            <button onClick={() => navigate(`/#/${produit._id}`)}>voir</button>
+          </div>
+          <div
+            style={{ border: "5px var(--marronRouge) solid ", width: "13rem" }}
+          >
+            <img
+              src={produit[6]?.photo}
+              alt={produit.titre}
+              width={160}
+              height={160}
+            />
+            <p>{produit[6]?.titre}</p>
+            <p>{produit[6]?.prix}</p>
+          </div>
+        </div>
+      </div>
     </>
   );
 };

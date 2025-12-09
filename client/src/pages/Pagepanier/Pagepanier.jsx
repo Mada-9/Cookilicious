@@ -54,7 +54,7 @@ const PagePanier = () => {
                   <div className="actionPanier">
                     <div className="prixQuantity">
                       <p>
-                        Prix:
+                        Prix: 
                         {priceProduitByQuantity(produit.prix, produit.quantite)}
                         €
                       </p>

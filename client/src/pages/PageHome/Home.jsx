@@ -91,7 +91,7 @@ const PageHome = ({}) => {
     e.preventDefault();
 
     try {
-      const { status } = await axios.post(URL.POST_CONTACT, formData);
+      const { status } = await axiosinstance.post(URL.POST_CONTACT, formData);
       console.log(formData);
       if (
         formData.message.length >= 5 &&
@@ -182,7 +182,7 @@ const PageHome = ({}) => {
             </div>
 
             <img
-              className="moitieeBrookie mx-auto  col-sm-12 col-md-2"
+              className="moitieeBrookie  "
               src={
                 "https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
               }

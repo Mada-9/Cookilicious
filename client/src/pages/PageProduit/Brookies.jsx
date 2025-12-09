@@ -3,7 +3,6 @@ import URL from "../../utils/constant/url";
 import { useNavigate, Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
-
 import "./Produit.css"; // CSS spécifique
 
 const Brookies = () => {
@@ -26,7 +25,7 @@ const Brookies = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
-  
+
   return (
     <div className="produit">
       <section
@@ -41,17 +40,10 @@ const Brookies = () => {
         >
           Nos Brookies
         </h1>
-        <p
-          className="introPageProduit"
-          style={{ color: "var(--creme)", fontSize: "1.5rem" }}
-        >
-          Laissez-vous tenter par nos brookies fondants et croquants, préparés
-          chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
-          réunit le meilleur du brownie et du cookie.
-        </p>
+       
       </section>
 
-      <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb" style={{marginTop:"3rem"}}>
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
             <Link to href="/" style={{ width: "3rem" }}>
@@ -64,15 +56,16 @@ const Brookies = () => {
           </li>
         </ol>
       </nav>
-
+      <p
+        className="introPageProduit"
+        style={{ color: "var(--marronRouge)", fontSize: "1rem",  margin:"3rem", textAlign:"center" }}
+      >
+        Laissez-vous tenter par nos brookies fondants et croquants, préparés
+        chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
+        réunit le meilleur du brownie et du cookie.
+      </p>
 
       <div className="sectionBrookie" style={{ marginBottom: "8rem" }}>
-        <h3
-          className="sectionTitleBrookie"
-          style={{ backgroundColor: "var(--marronFroid" }}
-        >
-          BROOKIE
-        </h3>
         <div className="produitContainer2 ">
           {produit.map(
             (item, index) =>
@@ -90,7 +83,7 @@ const Brookies = () => {
 
                   <p
                     style={{
-                      fontSize: "1.8rem",
+                      fontSize: "1rem",
                       margin: "0",
                       borderBottom: "var(--marronRouge) 3px solid",
                     }}
@@ -109,8 +102,8 @@ const Brookies = () => {
                   >
                     <p
                       style={{
-                        fontSize: "2rem",
-                        margin: "0",
+                        fontSize: "1.5rem",
+                        marginTop: "1.5rem",
                         display: "flex",
                       }}
                     >
@@ -131,7 +124,7 @@ const Brookies = () => {
       <Link
         to="/cookies"
         className="btnNavCookies"
-        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem" }}
+        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem", }}
       >
         Voir nos cookies
       </Link>
@@ -146,7 +139,7 @@ const Brookies = () => {
           border: "2px solid #833f3fff",
           width: "5rem",
           height: "4rem",
-          fontSize: "1rem",
+          fontSize: "0.7rem",
         }}
         onClick={scrollToTop}
       >

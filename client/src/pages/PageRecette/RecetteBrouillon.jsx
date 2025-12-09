@@ -1,132 +1,186 @@
 import { useState, useEffect } from "react";
 import URL from "../../utils/constant/url";
-import axios from "axios"
+import { Link } from "react-router-dom";
+import axiosinstance from "../../utils/axios/axiosinstance";
+
+//CSS
+
+import "./Recette.css";
+
+//images
+
+import cookiegemini from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
+import cookiechoco from "../../assets/images/Cookiechoco.png";
+
+// regarder doc https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Operators/Optional_chaining
 
 const PageRecette = () => {
   const [recette, setRecette] = useState([]);
+  const [formData, setFormData] = useState([]);
+  const [avis, setAvis] = useState([]);
 
   useEffect(() => {
-    getRecette();
+    getAllRecettes();
   }, []);
 
-  const getRecette = async () => {
+  const getAllRecettes = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_ALL_RECETTES);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
+      if (status === 200) setRecette(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // FORMULAIRE AVIS  faire back avis
+
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await axiosinstance.post(URL.POST_AVIS, formData);
       console.log(data);
     } catch (error) {}
   };
 
+  const getAvis = async () => {
+    try {
+      const { formData } = await axiosinstance.post(URL.POST_AVIS);
+      console.log(formData);
+    } catch (error) {}
+  };
+
   return (
-    <div>
-      <div
-        style={{
-          height: "20rem",
-          backgroundColor: "var(--marronRouge)",
-                      color: "var(--marronFonce) #742e1f",
+    <div
+      className="raw"
+      style={{ borderTop: "var(--marronRouge) 4px solid", padding: "1.5rem" }}
+    >
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb my-3">
+          <li className="breadcrumb-item  px-3">
+            <Link to="/" style={{ width: "3rem" }}>
+              Home
+            </Link>
+          </li>
 
-          marginBottom: "3rem",
-        }}
-      >
-        <h1 style={{ fontSize: "5rem", color: "#fff3e4" }}>Ma Page Recette</h1>
-        <p
-          style={{
-            color: "#fff3e4",
-            fontSize: "1.5rem",
-            textAlign: "left",
-            marginTop: "2rem",
-          }}
-        >
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maxime,
-          distinctio, Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Corrupti, fuga.
+          <li className="breadcrumb-item" aria-current="page">
+            Recettes
+          </li>
+        </ol>
+      </nav>
+
+      <div className="introRecette raw d-flex">
+        <h1 className=" titrePageRecette col-sm-6  col-md-6 col-lg-7">
+          Nos Recettes
+        </h1>
+        <p className=" phraseIntro col-sm-6  col-md-8 col-lg-6">
+          Découvrez toutes nos recettes de créations gourmandes des généreuses.{" "}
+          <br />
+          Des idées simples et rapides à reproduire chez vous, avec le goût
+          authentique de nos pâtisseries.
         </p>
       </div>
+      {/* ************************************************************************************** */}
 
-      <div
-        style={{
-          display: "flex",
-          height: "23rem",
-          backgroundColor: "var(--jaune)",
-          borderTop: "var(--marronRouge) 4px solid",
-          borderBottom: "var(--marronRouge) 4px solid",
-          padding: "2rem",
-          marginBottom: "3rem",
-          zIndex: "1", //superpositionner l'image
-        }}
-      >
-        <p
-          style={{
-            color: "var(--marronRouge)",
-            fontSize: "2rem",
-            width: "70%",
-            textAlign: "left",
-            lineHeight: "70px",
-            margin: "0",
-          }}
-        >
-          Recette: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Assumenda praesentium molestiae harum unde et nihil.
-          {/* <!-- Button trigger modal --> */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-            style={{
-              width: "15rem",
-              height: "5rem",
-              backgroundColor: "var(--caramel)",
-              color: "var(--creme)",
-              width: "9rem",
-              alignSelf: "end",
-              marginLeft: "4rem",
-            }}
-          >
-            cliquer ici
-          </button>
+      <div className="row" style={{ marginBottom: "3rem" }}>
+        <p className=" phraseIntroDeux col-xs-1 col-md-12 col-lg-12 ">
+          Laissez-vous inspirer par nos variantes créatives et nos astuces pour
+          réussir vos patisseries maison!
         </p>
-        {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
+      </div>
+      <section>
+        <div style={{ padding: "0rem", marginBottom: "3rem", }}>
+          <div className="row d-flex">
+             <img
+                      className="img-fluid col-sm-10 col-md-4 col-lg-4"
+                      src={cookiegemini}
+                      alt="cookiePepiteChocolat"
+                      width={190}
+                      height={190}
+                    />
+            <div className="pSection col-sm-10 col-md-4 col-lg-7 ">
+              {" "}
+              <h2 className=" titreSection ">
+                {recette[7]?.titre}
+              </h2>
+              {recette[7]?.description}
+              {/* <!-- Button trigger modal --> */}
+              <button
+                type="button"
+                className=" btn btn-primary col-sm-1  "
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                style={{
+                  height: "2rem",
+                  marginLeft: "1rem",
+                  backgroundColor: "var(--caramel)",
+                  color: "var(--creme)",
+                  width: "9rem",
+                  alignContent: "center",
+                }}
+              >
+                Voir recette
+              </button>{" "}
+              <p>Avis:</p>
+            </div>
+           
+          </div>
+
+          {/* <!-- Modal --> */}
+          <div
+            className="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
             <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)", fontSize: "2rem" }}
+              className="modal-dialog  modal-dialog-centered modal-dialog row "
+              style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
             >
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                  Recette Cookie{" "}
-                </h1>
+              <div
+                className="modal-content"
+                style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
+              >
+                <div className="modal-header ">
+                  <h1 className="modal-title " id="staticBackdropLabel">
+                    {recette[7]?.titre}
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body" style={{ textAlign: "justify" }}>
+                  <h2 style={styles.titrePreparation}>
+                    {recette[7]?.nbPersonne}
+                  </h2>
+                  <h2 style={styles.titrePreparation}>Ingrédients:</h2>
+                  <p>{recette[7]?.ingredients}</p>
+                  <h2 style={styles.titrePreparation}>Préparation: </h2>
+                  <p>{recette[7]?.preparation}</p>
+                  <h2 style={styles.titrePreparation}>Astuce: </h2>
+                  <p>{recette[7]?.astuce}</p>
+                 
+                </div>
                 <button
                   type="button"
-                  className="btn-close"
+                  className="btn btn-primary col-xs-5 col-md-3 "
                   data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  ... Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore eligendi optio laborum voluptatibus atque, ipsam
-                  rerum maxime voluptas commodi repudiandae nihil nesciunt iure,
-                  quisquam architecto fugit eos, deserunt at distinctio. Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. In natus
-                  non earum, quas aspernatur, vel magni iste maiores labore
-                  molestiae iure. Mollitia, ullam dolorem. Quam aspernatur nihil
-                  quidem totam eos?
-                </p>
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ backgroundColor: "var(--jaune)" }}
-                  data-bs-dismiss="modal"
+                  style={{
+                    backgroundColor: "var(--jaune)",
+                    alignSelf: "end",
+                    margin: "1rem",
+                  }}
                 >
                   Close
                 </button>
@@ -135,100 +189,99 @@ const PageRecette = () => {
             </div>
           </div>
         </div>
+      </section>
 
-        <img
-          src="https://static.wixstatic.com/media/82955a_c48b31b6d3c143829ed3cb6ff83f7d69~mv2.png/v1/crop/x_69,y_0,w_2588,h_2629/fill/w_402,h_344,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PUFFY%20AVRIL%20(46).png"
-          alt="cookiePepiteChocolat"
-          width={340}
-          height={300}
-        />
-      </div>
-
-      {/* *************************************************** */}
-
-      <div
-        style={{
-          height: "23rem",
-          backgroundColor: "var(--marronRouge)",
-          color: "var(--creme)",
-          padding: "2rem",
-          marginBottom: "3rem",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "2rem",
-            width: "70%",
-            textAlign: "left",
-            lineHeight: "70px",
-          }}
-        >
-          Recette: Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Assumenda praesentium molestiae harum unde et nihil.
-          {/* <!-- Button trigger modal --> */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-            style={{
-              width: "15rem",
-              height: "5rem",
-              backgroundColor: "var(--jaune)",
-              color: "var(--creme)",
-              width: "9rem",
-              alignSelf: "end",
-              marginLeft: "4rem",
-            }}
-          >
-            cliquer ici
-          </button>
-        </p>
-
-        {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
-            <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)", fontSize: "2rem" }}
+      {/* 2e recette  */}
+      <section>
+        <div style={{ padding: "0rem", marginBottom: "3rem" }}>
+          <div className="row d-flex">
+            <h2
+              className=" titreSection col-sm-10 col-md-4 col-lg-5"
+              style={{ color: "var(--marronFroid)" }}
             >
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                  Recette Cookie{" "}
-                </h1>
+              {recette[8]?.titre}
+            </h2>
+            <p className="pSection col-sm-12  col-md-6 col-lg-6 ">
+              {recette[8]?.description}
+              {/* <!-- Button trigger modal --> */}
+              <button
+                type="button"
+                className=" btn btn-primary col-sm-1  "
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                style={{
+                  height: "2rem",
+                  marginLeft: "1rem",
+                  backgroundColor: "var(--caramel)",
+                  color: "var(--creme)",
+                  width: "9rem",
+                  alignContent: "center",
+                }}
+              >
+                Voir recette
+              </button>{" "}
+            </p>
+          </div>
+
+          {/* <!-- Modal --> */}
+          <div
+            className="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div
+              className="modal-dialog  modal-dialog-centered modal-dialog row "
+              style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+            >
+              <div
+                className="modal-content"
+                style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
+              >
+                <div className="modal-header ">
+                  <h1 className="modal-title " id="staticBackdropLabel">
+                    {recette[8]?.titre}
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body" style={{ textAlign: "justify" }}>
+                  <h2 style={styles.titrePreparation}>
+                    {recette[8]?.nbPersonne}
+                  </h2>
+                  <h2 style={styles.titrePreparation}>Ingrédients:</h2>
+                  <p>{recette[8]?.ingredients}</p>
+                  <h2 style={styles.titrePreparation}>Préparation: </h2>
+                  <p>{recette[8]?.preparation}</p>
+                  <h2 style={styles.titrePreparation}>Astuce: </h2>
+                  <p>{recette[8]?.astuce}</p>
+                  <div className=" w-50 w-sm-100 d-flex mt-2">
+                    <img
+                      className="img-fluid"
+                      src={cookiechoco}
+                      alt="cookiePepiteChocolat"
+                      width={300}
+                      height={300}
+                    />
+                    <p className="align-self-center">AVIS:</p>
+                  </div>
+                </div>
                 <button
                   type="button"
-                  className="btn-close"
+                  className="btn btn-primary col-xs-5 col-md-3 "
                   data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  ... Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore eligendi optio laborum voluptatibus atque, ipsam
-                  rerum maxime voluptas commodi repudiandae nihil nesciunt iure,
-                  quisquam architecto fugit eos, deserunt at distinctio. Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. In natus
-                  non earum, quas aspernatur, vel magni iste maiores labore
-                  molestiae iure. Mollitia, ullam dolorem. Quam aspernatur nihil
-                  quidem totam eos?
-                </p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ backgroundColor: "var(--jaune)" }}
-                  data-bs-dismiss="modal"
+                  style={{
+                    backgroundColor: "var(--jaune)",
+                    alignSelf: "end",
+                    margin: "1rem",
+                  }}
                 >
                   Close
                 </button>
@@ -237,96 +290,99 @@ const PageRecette = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* ***************************************************** */}
-
-      <div
-        style={{
-          height: "23rem",
-          display: "flex",
-          backgroundColor: "var(--jaune)",
-          borderTop: "var(--marronRouge) 5px solid",
-          borderBottom: "var(--marronRouge) 5px solid",
-          padding: "2rem",
-          marginBottom: "3rem",
-        }}
-      >
-        <p
-          style={{
-            fontSize: "2rem",
-            width: "70%",
-            textAlign: "left",
-            lineHeight: "70px",
-            margin: "0",
-          }}
-        >
-          Recette cookie aux noix: Lorem ipsum dolor sit amet consectetur
-          adipisicing elit. Assumenda praesentium molestiae harum unde et nihil.
-          {/* <!-- Button trigger modal --> */}
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
-            style={{
-              width: "15rem",
-              height: "5rem",
-              backgroundColor: "var(--marronClair)",
-              color: "var(--creme)",
-              width: "9rem",
-              alignSelf: "end",
-              marginBottom: "0rem",
-            }}
-          >
-            cliquer ici
-          </button>
-        </p>
-
-        {/* <!-- Modal --> */}
-        <div
-          className="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabIndex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog  modal-dialog-centered modal-dialog-scrollable">
-            <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)", fontSize: "2rem" }}
+      {/* 3e recette */}
+      <section>
+        <div style={{ padding: "0rem", marginBottom: "3rem" }}>
+          <div className="row d-flex">
+            <h2
+              className=" titreSection col-sm-10 col-md-4 col-lg-5"
+              style={{ color: "var(--marronFroid)" }}
             >
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="staticBackdropLabel">
-                  Recette Cookie{" "}
-                </h1>
+              {recette[8]?.titre}
+            </h2>
+            <p className="pSection col-sm-12  col-md-6 col-lg-6 ">
+              {recette[8]?.description}
+              {/* <!-- Button trigger modal --> */}
+              <button
+                type="button"
+                className=" btn btn-primary col-sm-1  "
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                style={{
+                  height: "2rem",
+                  marginLeft: "1rem",
+                  backgroundColor: "var(--caramel)",
+                  color: "var(--creme)",
+                  width: "9rem",
+                  alignContent: "center",
+                }}
+              >
+                Voir recette
+              </button>{" "}
+            </p>
+          </div>
+
+          {/* <!-- Modal --> */}
+          <div
+            className="modal fade"
+            id="staticBackdrop"
+            data-bs-backdrop="static"
+            data-bs-keyboard="false"
+            tabIndex="-1"
+            aria-labelledby="staticBackdropLabel"
+            aria-hidden="true"
+          >
+            <div
+              className="modal-dialog  modal-dialog-centered modal-dialog row "
+              style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+            >
+              <div
+                className="modal-content"
+                style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
+              >
+                <div className="modal-header ">
+                  <h1 className="modal-title " id="staticBackdropLabel">
+                    {recette[8]?.titre}
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body" style={{ textAlign: "justify" }}>
+                  <h2 style={styles.titrePreparation}>
+                    {recette[8]?.nbPersonne}
+                  </h2>
+                  <h2 style={styles.titrePreparation}>Ingrédients:</h2>
+                  <p>{recette[8]?.ingredients}</p>
+                  <h2 style={styles.titrePreparation}>Préparation: </h2>
+                  <p>{recette[6]?.preparation}</p>
+                  <h2 style={styles.titrePreparation}>Astuce: </h2>
+                  <p>{recette[6]?.astuce}</p>
+                  <div className=" w-50 w-sm-100 d-flex mt-2">
+                    <img
+                      className="img-fluid"
+                      src={cookiechoco}
+                      alt="cookiePepiteChocolat"
+                      width={300}
+                      height={300}
+                    />
+                    <p className="align-self-center">AVIS:</p>
+                  </div>
+                </div>
                 <button
                   type="button"
-                  className="btn-close"
+                  className="btn btn-primary col-xs-5 col-md-3 "
                   data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  ... Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                  Inventore eligendi optio laborum voluptatibus atque, ipsam
-                  rerum maxime voluptas commodi repudiandae nihil nesciunt iure,
-                  quisquam architecto fugit eos, deserunt at distinctio. Lorem
-                  ipsum dolor sit amet consectetur adipisicing elit. In natus
-                  non earum, quas aspernatur, vel magni iste maiores labore
-                  molestiae iure. Mollitia, ullam dolorem. Quam aspernatur nihil
-                  quidem totam eos?
-                </p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  style={{ backgroundColor: "var(--jaune)" }}
-                  data-bs-dismiss="modal"
+                  style={{
+                    backgroundColor: "var(--jaune)",
+                    alignSelf: "end",
+                    margin: "1rem",
+                  }}
                 >
                   Close
                 </button>
@@ -335,47 +391,101 @@ const PageRecette = () => {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* SECTION AVIS */}
+
+      <div
+        className="sectionAvis"
+        style={{ borderTop: "6px var(--marronRouge) solid" }}
+      >
+        <h2>Avis</h2>
+        <p style={{ textAlign: "left" }}>
+          <br />
+          exemple avis :
+          <br />
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione sit
+          nulla aliquam perferendis! Labore placeat perspiciatis velit dicta
+          aliquid blanditiis cum, iste maxime odio iure libero quam, suscipit
+          dolor laborum.
+        </p>
       </div>
+
+      {/* ******************************************* */}
 
       {/* formulaire uniquement sous connexion */}
 
-      <form
-        action="submit"
-        style={{ margin: "3rem", display: "flex", gap: "2rem" }}
-      >
-        Rédiger votre avis
-        <input
-          type="text"
-          placeholder="recette testée"
+      <div className="row justify-content-center">
+        <div
+          className=" col-12 col-md-12 py-4"
           style={{
-            color: "var(--marronFroid)",
-            border: " 4px solid var(--marronFroid)",
-          }}
-        />
-        <input
-          type="text"
-          placeholder="commentaire"
-          style={{
-            color: "var(--marronFroid)",
-            border: " 4px solid var(--marronFroid)",
-          }}
-        />
-        <button
-          style={{
-            width: "15rem",
-            height: "3rem",
-            backgroundColor: "var(--marronFroid)",
-            color: "var(--creme)",
-            width: "8rem",
+            fontSize: "1.8rem",
+            borderTop: "6px var(--marronRouge) solid",
+            alignItems: "center",
           }}
         >
-          {" "}
-          envoyer
-        </button>
-      </form>
-      {recette}
+          {/* Champs du formulaire */}
+          <h1>Laisser un avis!</h1>
+          <form
+            onSubmit={handleSubmit}
+            className="row d-flex justify-content-center m-4"
+          >
+            <div className="form-group col-md-6 mb-3">
+              <label htmlFor="inputRecette" onChange={handleChange}>
+                Recette testée
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="inputRecette"
+                placeholder="Recette testée"
+                style={{
+                  border: "4px solid var(--marronRouge)",
+                  color: "var(--marronRouge)",
+                }}
+              />
+            </div>
+            <div className="form-group col-md-6">
+              <label htmlFor="commentaire" onChange={handleChange}>
+                Commentaire
+              </label>
+
+              <textarea
+                type="text"
+                name="comentaire"
+                id="commentaire"
+                className="form-control"
+                placeholder="Votre Commentaire"
+                style={{
+                  height: "10rem",
+                  border: "4px solid var(--marronRouge)",
+                  color: "var(--marronRouge)",
+                  marginBottom: "2rem",
+                }}
+              ></textarea>
+            </div>{" "}
+            {/* Bouton */}
+            <div className="">
+              <button
+                onSubmit={handleSubmit}
+                type="submit"
+                className="btn btn-primary px-5"
+              >
+                Publier
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
+};
+const styles = {
+  titrePreparation: {
+    justifySelf: "center",
+    margin: "3rem",
+    color: "var(--jaune)",
+  },
 };
 
 export default PageRecette;

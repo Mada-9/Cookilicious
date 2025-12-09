@@ -1,5 +1,5 @@
 import { useState, useEffect, use } from "react";
-import axios from "axios";
+import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
 
 const PageProduitDashboard = () => {
@@ -10,7 +10,7 @@ const PageProduitDashboard = () => {
   }, []);
 
   const getAllProduit = async () => {
-    const { data, status } = await axios.get(URL.GET_ALL_PRODUIT);
+    const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUIT);
     console.log(data);
     try {
       if (status === 200) setProduit(data);

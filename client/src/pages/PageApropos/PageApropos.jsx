@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-
 import "./PageApropos.css"
+
 const PageApropos = () => {
   return (
     <>
@@ -11,11 +11,11 @@ const PageApropos = () => {
           // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
-          fontSize: "5rem",
+          fontSize: "4.5rem",
         }}
         className="titreApropos"
       >
-        À propos de Cookilicious
+        À propos  de  Cookilicious
       </h1>
 
       {/* ************************************************************************************** */}
@@ -43,20 +43,20 @@ const PageApropos = () => {
         <h1 style={{ fontSize: "3rem", margin: "6rem 0 2rem  0" }} >
           Notre Mission
         </h1>
-        <div style={{ display: "flex", gap: "3rem", marginBottom: "6rem", }}className="textApropos">
+        <div style={{ display: "flex", gap: "5rem", marginBottom: "6rem", }}className="textApropos">
           <p style={{ textAlign: "justify",  }}>
             Chez Cookilicious, notre mission est simple : générer du plaisir à
             chaque cookie. Nous croyons que la gourmandise n’est pas seulement
             un goût, mais une expérience qui éveille les sens et réunit les
             gens. Chaque création est pensée pour surprendre, réconforter et
-            enchanter nos clients, avec des textures fondantes, <br />
+            enchanter nos clients,<br /> avec des textures fondantes, 
             croustillantes ou moelleuses et des saveurs originales qui sortent
             de l’ordinaire.
           </p>
 
           <p style={{  textAlign: "justify" }}>
             {/* <p style={{  width:"50%", textAlign: "justify",justifySelf:"right"}}> */}
-            Cookilicious est avanttout un lieu de partage et de plaisir. Notre
+            Cookilicious est avant tout un lieu de partage et de plaisir. Notre
             but ? Faire découvrir des créations simples, faites avec amour, qui
             éveillent les papilles et réchauffent les cœurs. Que tu sois fan de
             biscuits, de gâteaux, ou simplement curieux de goûter à de nouvelles
@@ -80,8 +80,7 @@ const PageApropos = () => {
               color: "var(--jaune)",
               textAlign: "left",
               alignSelf: "center",
-              fontSize: "3rem",
-            }}
+fontSize: "3rem",            }}
           >
             Nos Cookies
           </h1>
@@ -91,13 +90,13 @@ const PageApropos = () => {
             spéciaux, allant des classiques revisités aux associations
             audacieuses, pour offrir une expérience sucrée inoubliable. Nos
             recettes mettent un point d’honneur à allier qualité, originalité et
-            gourmandise : un vrai festival de saveurs dans chaque bouchée !
+            gourmandise: un vrai festival de saveurs dans chaque bouchée !
           </p>
         </div>
 
         {/* ************************************************************************************** */}
         <div style={{ textAlign: "justify", maxWidth: "30rem" }}>
-          <h1 style={{ alignSelf: "center", marginBottom: "2rem" }}>
+          <h1 style={{ alignSelf: "center", marginBottom: "2rem",fontSize: "3rem", }}>
             Restons connectés
           </h1>
           <p>
@@ -106,7 +105,7 @@ const PageApropos = () => {
             mail: contact@cookilicious.fr <br />
             et suivez nous sur nos réseaux sociaux!
           </p>
-          <div style={{ display: "flex", width: "15rem" }}>
+          <div style={{ display: "flex", width: "15rem", gap:"2rem" }}>
             <Link to="https://www.instagram.com/">
               <i className="bi bi-instagram"></i>
             </Link>

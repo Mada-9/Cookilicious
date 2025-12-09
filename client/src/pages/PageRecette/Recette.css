@@ -1,15 +1,13 @@
 .titrePageRecette {
-  color: var(--jaune);
+  color: var(--creme);
+      background-color: var(--jaune);
+
   font-size: 9rem;
   text-align: left;
-  margin-bottom: 0;
+  height: 18.4rem;
+  padding-left: 1rem;
 }
 
-.introRecette {
-  margin-bottom: 8rem;
-  margin-top: 1rem;
-  align-items: end;
-}
 .phraseIntro {
   text-align: justify;
   margin-top: 7.8rem;
@@ -103,6 +101,8 @@
   height: "auto";
   padding: "3rem" s;
 }
+
+
 
 @media (max-width: 576px) {
   .modal-dialog {

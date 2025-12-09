@@ -1,6 +1,5 @@
-import React from "react";
-import { useState, useEffect, useParams } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import axiosinstance from "../../utils/axios/axiosinstance";
 
 import URL from "../../utils/constant/url";
 
@@ -13,7 +12,7 @@ const PageContactDashboard = () => {
 
   const getMessage = async () => {
     try {
-      const { data, status } = await axios.get(URL.GET_CONTACT);
+      const { data, status } = await axiosinstance.get(URL.GET_CONTACT);
       if (status === 200) {
         setFormData(data);
       }
@@ -24,7 +23,7 @@ const PageContactDashboard = () => {
 
   const deleteMessage = async (id) => {
     try {
-      const { status } = await axios.delete(URL.DELETE_CONTACT + "/" + id);
+      const { status } = await axiosinstance.delete(URL.DELETE_CONTACT + "/" + id);
       if (status === 200) {
         console.log("Message deleted!");
         getMessage();
@@ -36,10 +35,10 @@ const PageContactDashboard = () => {
 
   return (
     <>
-      <div style={{ fontSize: "4rem", padding:"3rem"  }}>Page Contact</div>
+      <div style={{ fontSize: "3rem", padding:"3rem"  }}>Page Contact</div>
 
-      <h1 style={{ fontSize: "1.5rem" }}>Messages récupérés</h1>
-      <div style={{ margin: "3rem 5px" }}>
+      <h1 style={{ fontSize: "1rem" }}>Messages récupérés</h1>
+      <div style={{ margin: "2rem 5px" }}>
         <table className="table">
           <thead className="table-red">
             <tr>
@@ -48,7 +47,7 @@ const PageContactDashboard = () => {
                   backgroundColor: "#9f1619",
                   border: "2px solid  #6f0002",
                   color: "#fefaef",
-                  fontSize: "2rem",
+                  fontSize: "1.2rem",
                 }}
               >
                 ID
@@ -58,7 +57,7 @@ const PageContactDashboard = () => {
                   backgroundColor: "#9f1619",
                   border: "2px solid  #6f0002",
                   color: "#fefaef",
-                  fontSize: "2rem",
+                  fontSize: "1.2rem",
                 }}
               >
                 email
@@ -68,7 +67,7 @@ const PageContactDashboard = () => {
                   backgroundColor: "#9f1619",
                   border: "2px solid #6f0002",
                   color: "#fefaef",
-                  fontSize: "2rem",
+                  fontSize: "1.2rem",
                 }}
               >
                 message
@@ -83,8 +82,8 @@ const PageContactDashboard = () => {
                     color: " #9f1619",
                     border: "2px solid  #6f0002",
                     backgroundColor: "#fefaef",
-                    fontSize: "1.2rem",
-                    letterSpacing: "0.04rem",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.07rem",
                   }}
                 >
                   {item._id}
@@ -94,8 +93,7 @@ const PageContactDashboard = () => {
                     color: " #9f1619",
                     border: "2px solid  #6f0002",
                     backgroundColor: "#fefaef",
-                    fontSize: "1.2rem",
-                    letterSpacing: "0.04rem",
+                    fontSize: "1rem",
                   }}
                 >
                   {item.email}
@@ -106,7 +104,6 @@ const PageContactDashboard = () => {
                     border: "2px solid #6f0002",
                     backgroundColor: "#fefaef",
                     wordSpacing: "0.1rem",
-                    letterSpacing: "0.04rem",
                   }}
                 >
                   {item.message}

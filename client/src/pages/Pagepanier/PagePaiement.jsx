@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const PagePaiement = () => {
   return (
-    <div>
+    <div style={{marginTop:"4rem",height:"20rem"}}>
       <h1>Paiement</h1>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">

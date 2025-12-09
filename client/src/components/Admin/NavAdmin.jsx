@@ -19,7 +19,7 @@ const NavAdmin = () => {
             <Link to="apropos"> A propos</Link>
           </li>
           <li>
-            <Link to="contact">contact kijuhygtfrdeszqedrftghjk</Link>
+            <Link to="contact">contact</Link>
           </li>
           <li>
             <Link to="commandes"> Commandes</Link>

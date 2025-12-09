@@ -8,9 +8,17 @@ const Header = () => {
 
   return (
     <header>
-      <div className="row mx-auto">
-        <nav className="navbar navbar-expand-lg  navbar-light ">
-          <div className="dropdown  dropright">
+      <div className="row mx-auto" style={{justifySelf:"center"}}        
+>
+        <nav
+          className="navbar navbar-expand-lg navbar-light"
+          style={{
+            // backgroundColor: "#73090b",
+            // borderBottom: "2px solid var(--jaune)",
+            color:"var(--marronRouge)",
+          }}
+        >
+          <div className="dropdown dropright">
             <button
               className="navbar-toggler m-3 "
               type="button"
@@ -25,14 +33,14 @@ const Header = () => {
             <div className="collapse navbar-collapse" id="navbarNavDropdown">
               <ul className="navbar-nav">
                 <li className="nav-item  px-2">
-                  <Link to="/" className="nav-link " >
+                  <Link to="/" className="nav-link ">
                     Home
                   </Link>
                 </li>
                 <li className="nav-item dropdown-menu-right px-2">
-                  <Link to="/produit"
+                  <Link
+                    to="/produit"
                     className="nav-link dropdown-toggle"
-                   
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -46,7 +54,7 @@ const Header = () => {
                     style={{
                       backgroundColor: "#fefaef",
                       border: "rgb(222, 146, 23) 4px solid",
-                      fontSize: "1.5rem",
+                      fontSize: "0.8rem",
                     }}
                   >
                     <li>
@@ -69,29 +77,32 @@ const Header = () => {
                         </p>
                       </Link>
                     </li>
-                    {/* Another action */}
                   </ul>
                 </li>
 
                 <li className="nav-item px-2">
-                  <Link to="/recette" className="nav-link" >
+                  <Link to="/recette" className="nav-link">
                     Recettes
                   </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <Link to="/apropos" className="nav-link" >
+                  <Link to="/apropos" className="nav-link">
                     A propos
                   </Link>
                 </li>
                 <li className="nav-item px-2">
-                  <Link to="/contact" className="nav-link" >
+                  <Link to="/contact" className="nav-link">
                     Contact
                   </Link>
-                </li>
+                </li><li className="nav-item px-2">
+                    <Link to="/connexion" className="nav-link">
+                      Connexion
+                    </Link>
+                  </li>
                 <li className="nav-item dropdown px-2 ">
-                  <Link to="#"
+                  <Link
+                    to="#"
                     className="nav-link dropdown-toggle"
-                    
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -106,30 +117,32 @@ const Header = () => {
                       backgroundColor: "#fefaef",
                       border: "rgb(222, 146, 23) 4px solid",
                       width: "17rem",
+                      fontSize:"0.8rem"
                     }}
                   >
                     <li>
-                      <Link to="/admin" className="dropdown-item" >
+                      <Link to="/admin" className="dropdown-item">
                         Home Dashboard
                       </Link>
                     </li>
                     <li>
-                      <Link to="#" className="dropdown-item" >
+                      <Link to="#" className="dropdown-item">
                         Gestion du compte
                       </Link>
                     </li>
                     <li>
-                      <Link to="/connexion" className="dropdown-item" >
+                      <Link to="/connexion" className="dropdown-item">
                         Connexion
                       </Link>
                     </li>
                     {/* Another action */}
                     <li>
-                      <Link to="#" className="dropdown-item" >
+                      <Link to="#" className="dropdown-item">
                         Aide
                       </Link>
                     </li>
                   </ul>
+                  
                 </li>
               </ul>
 
@@ -138,8 +151,8 @@ const Header = () => {
               <Link to="/panier" className="panier ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="46"
-                  height="46"
+                  width="40"
+                  height="40"
                   fill="currentColor"
                   className="bi bi-basket3 "
                   viewBox="0 0 16 16"

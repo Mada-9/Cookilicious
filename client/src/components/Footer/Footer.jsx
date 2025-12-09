@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+
 const Footer = () => {
  
   return (
@@ -35,7 +36,7 @@ const Footer = () => {
             <Link to="/apropos" style={styles.footerLink}>
               suivez nous{" "}
             </Link>
-            <Link to="/connexion" style={styles.footerLink}>
+            <Link to="/connexion" style={styles.footerLink} >
               compte{" "}
             </Link>
           </div>
@@ -47,7 +48,7 @@ const Footer = () => {
             <Link to="/contact" style={styles.footerLink}>
               Contact
             </Link>
-            <p style={styles.footerLink}>FAQ</p>
+            
           </div>
         </section>
       </div>
@@ -59,15 +60,16 @@ const Footer = () => {
  const styles = {
     footer: {
       backgroundColor: "var(--marronRouge)",
-      color: "#fefaef",
+      color: "#fefaef ",
       paddingTop: "2rem",
-      paddingLeft:"7rem"
+      paddingLeft:"7rem",
+      fontSize:"1rem"
     },
 
     mentionsGenerales: {
       display: "flex",
       textAlign: "center",
-      color: "#fefaef",
+      color: "#fefaef " ,
       // justifyContent:"center"
       gap:"2rem"
     },
@@ -77,7 +79,7 @@ const Footer = () => {
       // margin: "0 ",
       justifyContent: "center",
       width: "25rem",
-      color: "#fefaef",
+      color: "#fefaef " ,
     },
 
     // mentionsP: {
@@ -85,8 +87,9 @@ const Footer = () => {
     // },
 
     mentionsH3: {
-      fontSize: "1.3rem !important",
+      fontSize: "1rem ",
       textDecoration: "underline",
+      
       // justifySelf: "center",
     },
 

@@ -39,16 +39,10 @@ const Produit = () => {
         >
           Nos Cookies
         </h1>
-        <p
-          className="introPageProduit"
-          style={{ color: "var(--creme)", fontSize: "1.5rem" }}
-        >
-          Découvrez nos cookies fraîchement sortis du four : moelleux, généreux
-          et préparés chaque jour avec des ingrédients de qualité.
-        </p>
+        
       </section>
 
-      <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb"  style={{marginTop:"3rem"}}>
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
             <Link to ="/" style={{ width: "3rem" }}>
@@ -61,17 +55,19 @@ const Produit = () => {
           </li>
         </ol>
       </nav>
+      <p
+          className="introPageProduit"
+        style={{ color: "var(--marronRouge)", fontSize: "1rem",  margin:"3rem", textAlign:"center" }}
+        >
+          Découvrez nos cookies fraîchement sortis du four : moelleux, généreux
+          et préparés chaque jour avec des ingrédients de qualité.
+        </p>
 
       <section
         className="sectionCookie"
         style={{ marginBottom: "5rem", marginTop: "3.5rem" }}
       >
-        <h3
-          className="sectionTitleCookie"
-          style={{ backgroundColor: " #ae662c" }}
-        >
-          COOKIE
-        </h3>
+       
         <div className="produitContainer2 ">
           {produit.map(
             (item, index) =>
@@ -86,7 +82,7 @@ const Produit = () => {
                   />
                   <p
                     style={{
-                      fontSize: "1.8rem",
+                      fontSize: "1rem",
                       margin: "0",
                       padding: "1px",
                       borderBottom: "var(--marronRouge) 3px solid",
@@ -104,10 +100,10 @@ const Produit = () => {
                       paddingRight: "1rem",
                     }}
                   >
-                    <p
+                     <p
                       style={{
-                        fontSize: "2rem",
-                        margin: "0",
+                        fontSize: "1.5rem",
+                        marginTop: "1.5rem",
                         display: "flex",
                       }}
                     >
@@ -129,7 +125,7 @@ const Produit = () => {
       <Link
         to="/recette"
         className="btnNavRecette"
-        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem" }}
+        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem",textAlign:"left" }}
       >
         Voir nos recettes
       </Link>
@@ -144,7 +140,7 @@ const Produit = () => {
           border: "2px solid #833f3fff",
           width: "5rem",
           height: "4rem",
-          fontSize: "1rem",
+          fontSize: "0.7rem",
         }}
         onClick={scrollToTop}
       >

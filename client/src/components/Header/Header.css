@@ -1,14 +1,5 @@
-@media (min-width: 992px) {
-  .navbar-expand-lg {
-    justify-content: center !important;
-    position: fixed !important;
-    top: 0 !important;
-    z-index: 100 !important;
-    background-color: var(--creme);
-    /* border-bottom: 1px var(--jaune) solid !important; */
-  }
-}
 
+/* 
 :link {
   text-decoration: none;
 
@@ -20,12 +11,4 @@
 .monheader,
 li {
   padding: 0 0;
-}
-/* 
-  .monheader,
-  ul {
-    display: flex;
-    justify-content: center;
-    gap: 0.1rem;
-    padding-top: 2rem;
-  } */
+} */

@@ -12,6 +12,7 @@ const PageDashboard = () => {
     },
 
     card: {
+    
       maxWidth: "23rem",
       height: "14rem",
       padding: "0",
@@ -26,33 +27,35 @@ const PageDashboard = () => {
       color: "var(--creme)",
     },
     cardContent: { fontSize: "1.3rem", justifySelf: "center" },
+    cardDescription:{
+            fontSize:"1rem",
+
+    }
   };
   return (
     <div style={styles.dashboardContent}>
-      {/* ********************************************************************* */}
       <section className="card  mb-3" style={styles.card}>
-        <a
-          href="/admin/compte"
+        <Link
+          to="/admin/compte"
           className="card-header"
           style={styles.cardLink}
         >
           Gestion des comptes
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             voir details et suppression des comptes
           </p>
         </div>
       </section>
-      {/* ************************************************************** */}
       <section className="card  mb-3" style={styles.card}>
-        <a
-          href="/admin/contact"
+        <Link
+          to="/admin/contact"
           className="card-header"
           style={styles.cardLink}
         >
           Gestion des messages (page des form contact)
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             Ajouter, supprimer, update, voir les messages et avis?
@@ -61,13 +64,13 @@ const PageDashboard = () => {
       </section>
       {/* ************************************************************** */}
       <section className="card mb-3" style={styles.card}>
-        <a
-          href="/admin/recette"
+        <Link
+          to="/admin/recette"
           className="card-header"
           style={styles.cardLink}
         >
           Gestion des recettes
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             Ajouter, supprimer, update, voir les recttes
@@ -77,13 +80,13 @@ const PageDashboard = () => {
       {/* *********************************************************** */}
 
       <section className="card  mb-3" style={styles.card}>
-        <a
-          href="/admin/produit"
+        <Link
+          to="/admin/produit"
           className="card-header"
           style={styles.cardLink}
         >
           Gestion des produits
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             Ajouter, supprimer, update, voir les produits
@@ -93,13 +96,13 @@ const PageDashboard = () => {
       {/* ****************************************************************** */}
 
       <section className="card  mb-3" style={styles.card}>
-        <a
-          href="/admin/commandes"
+        <Link
+          to="/admin/commandes"
           className="card-header"
           style={styles.cardLink}
         >
           Gestion des commandes
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             stock, articles envoyés, suivi des commandes
@@ -109,13 +112,12 @@ const PageDashboard = () => {
 
       {/* ********************************************************************* */}
       {/* <section className="card  mb-3" style={styles.card}>
-        <a
-          href="/admin/apropos"
+        <Link to="/admin/apropos"
           className="card-header"
           style={styles.cardLink}
         >
           A propos
-        </a>
+        </Link>
         <div className="card-body text-primary" style={styles.cardContent}>
           <p className="card-text" style={styles.cardDescription}>
             Gestion de la pages à propos

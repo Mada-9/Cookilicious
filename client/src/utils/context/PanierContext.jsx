@@ -101,7 +101,6 @@ export const PanierProvider = ({ children }) => {
 
   const addPanier = async (product) => {
     try {
-      // Recupérer le panier depuis le storage
       const panier = await localStorage.getItem("panier");
       let nouveauPanier = [];
 
