@@ -1,69 +1,69 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./HeaderAdmin.css";
 
 const Header = () => {
   return (
-    <div style={{ backgroundColor: "#880a0cff", display: "flex" }}>
-      <header style={{ paddingLeft: "23rem", paddingTop: "3rem" }}>
-        <div>
-          <h1 style={{ fontSize: "5rem", color: "#fefaef" }}>DASHBOARD</h1>
-        </div>
-        <nav
-          className="navbar navbar-expand-lg navbar-light "
-          style={{ left: "10rem" ,fontSize:"1rem" }}
+    <div>
+      <nav className="navbar">
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#navbarOffcanvasLg"
+          aria-controls="navbarOffcanvasLg"
+          aria-label="Toggle navigation"
+          style={{ border: "none", justifyItem: "left" }}
         >
-          <div className="container-fluid">
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNavDropdown"
-              aria-controls="navbarNavDropdown"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span className="navbar-toggler-icon"></span>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNavDropdown" >
-              <ul className="navbar-nav">
-                <li className="nav-item dropdown" >
-                  <Link
-                    to="#"
-                    className="nav-link dropdown-toggle"
-                    id="navbarDropdownMenuLink"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                    style={{ color: "#fefaef" }}
-                  >
-                    home
-                  </Link>
-                  <ul
-                    className="dropdown-menu"
-                    aria-labelledby="navbarDropdownMenuLink"
-                    style={{
-                      backgroundColor: "#fefaef",
-                      border: "rgb(222, 146, 23) 4px solid",
-                      width: "13.3rem", fontSize:"0.7rem"
-                    }}
-                  >
-                    <li>
-                      <Link to="/admin" className="dropdown-item">
-                        dashboard home
-                      </Link>
-                    </li>
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-                    <li>
-                      <Link to="/" className="dropdown-item">
-                        home
-                      </Link>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
+        <div
+          className="offcanvas offcanvas-start"
+          tabIndex="-1"
+          id="navbarOffcanvasLg"
+          aria-labelledby="navbarOffcanvasLgLabel"
+        >
+          <div className="offcanvas-header">
+            <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
+              <Link to="/admin/home">Dashboard</Link>{" "}
+            </h5>
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
           </div>
-        </nav>
-      </header>
+          <ul className="navbar-nav">
+              <li className="nav-item px-2">
+              <Link to="/admin/produit" className="nav-link">
+                Gestion des produits
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/admin/recette" className="nav-link">
+                Gestion des recettes
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/admin/comptes " className="nav-link">
+                Gestion des comptes{" "}
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/contact" className="nav-link">
+                Gestion des messages
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/commandes" className="nav-link">
+                Gestion des commandes{" "}
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </div>
   );
 };

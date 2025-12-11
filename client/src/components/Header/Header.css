@@ -1,9 +1,27 @@
+@media (min-width: 769px) {
+  .navbar.navbar-expand-lg {
+    justify-self: center;
+  }
+  .dropdown-menu {
+    margin-left: 3rem;
+  }
 
-/* 
-:link {
-  text-decoration: none;
-
+  .ul.dropdown-menu-show {
+    background-color: #fefaef;
+    border: rgb(222, 146, 23) 4px solid !important;
+    width: 13.3rem;
+  }
 }
+
+.offcanvas.offcanvas-start {
+  background-color: var(--creme);
+}
+
+a.nav-link{
+  justify-self: left;
+  padding-left: 2rem;
+}
+
 .panier {
   margin-left: 2rem;
 }
@@ -11,4 +29,4 @@
 .monheader,
 li {
   padding: 0 0;
-} */
+}

@@ -191,7 +191,7 @@ const PageHome = ({}) => {
           </div>
         </div>
         <div className="containerJaune ">
-          <h3 className="jauneP">FAQ</h3>{" "}
+          <h3 className="jauneP">F.A.Q</h3>{" "}
           <div>
             <div
               className=" accordion accordion-flush"

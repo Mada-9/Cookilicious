@@ -1,7 +1,10 @@
+import { useState } from "react";
 import {Outlet} from "react-router-dom";
 import Header from "../Admin/HeaderAdmin";
 
 const TemplateAdmin = () => {
+      const [showNav, setShowNav] = useState(false);
+
   return (
      <div >
       <div>

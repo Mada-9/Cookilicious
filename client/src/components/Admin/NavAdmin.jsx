@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 const NavAdmin = () => {
+  
   return (
     <div>
       <nav>
