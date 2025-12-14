@@ -1,3 +1,8 @@
+
+@font-face {
+  font-family: "test";
+  src: url(../src/assets/fonts/Delight/OpenType-PS/Delight-ExtraBold.otf);
+}
 @font-face {
   font-family: "varsity";
   src: url(../src/assets/fonts/varsity_team/VarsityTeam-Bold.otf);
@@ -13,9 +18,20 @@
   src: url(../src/assets/fonts/Horizon_Regular.otf);
 }
 
+@media screen and (min-width: 1140px) {
+    :root {
+        --fluid-screen: calc(var(--fluid-max-width) * 1px);
+    }
+}
+
+
 html,
 body {
   max-width: 100%;
+  
+
+  font-family: 'test'!important;
+
 
 }
 
@@ -31,12 +47,13 @@ body {
   --jaune: rgb(222, 146, 23);
   --creme: #fefaef;
   --caramel: #bd5505ff;
+  
 }
 
 #root {
   width: 100% !important;
   max-width: 100% !important;
-  font-family: varsity;
+
   font-size: 1rem;
   word-spacing: 5px;
   background-color: var(--creme);
@@ -45,6 +62,7 @@ body {
   overflow-x: hidden !important;
   /* line-height: 200%; */
 }
+
 
 :root a {
   color: var(--marronRouge);

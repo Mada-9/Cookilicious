@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
-
 // PAGES  ET URL
 import URL from "../../utils/constant/url";
 
@@ -35,8 +34,8 @@ const PageHome = ({}) => {
   const styles = {
     titleHome: {
       fontFamily: "kaftus",
-      marginTop: "3rem ",
-      
+      marginTop: "2rem ",
+
       position: "relative",
       height: "7rem",
       fontSize: isMobile
@@ -115,34 +114,33 @@ const PageHome = ({}) => {
   return (
     <>
       <div className="home">
-        <h1 style={styles.titleHome} className="titleHome">
-          COOKILICIOUS
-        </h1>
-
-        <div className="imageHome" onClick={() => navigate("/cookies")}>
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-        </div>
-
-        <div className="defilantContainer">
-          <p className="phraseDefilante">
-            Des cookies & brookies uniques faits maison pour succomber à la
-            tentation.
-          </p>
-        </div>
+      
+            <h1 style={styles.titleHome} className="titleHome">
+              COOKILICIOUS
+            </h1>
+            <div className="imageHome" onClick={() => navigate("/cookies")}>
+              <img
+                className="imagesHome"
+                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+                alt="COOKIE"
+              />
+              <img
+                className="imagesHome"
+                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+                alt="COOKIE"
+              />
+              <img
+                className="imagesHome"
+                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+                alt="COOKIE"
+              />
+            </div>
+            <div className="defilantContainer">
+              <p className="phraseDefilante">
+                Des cookies & brookies uniques faits maison pour succomber à la
+                tentation.
+              </p>
+            </div>
 
         <div className="homeCategorieProduit row ">
           <h2 className="phraseCategorie  col-lg-4 col-lg-2 ">
@@ -207,7 +205,7 @@ const PageHome = ({}) => {
                     aria-expanded="false"
                     aria-controls="flush-collapseOne"
                   >
-                    Quels sont les délais de livraison ?
+                    Quels sont les délais de livraison ? 
                   </button>
                 </h2>
                 <div
@@ -239,7 +237,7 @@ const PageHome = ({}) => {
                   data-bs-parent="#accordionFlushExample"
                 >
                   <div className="accordion-body">
-                    Nos cookies se conservent jusqu’à <strong>7 jours</strong>{" "}
+                    Nos cookies se conservent jusqu’à <strong>7 jours</strong>
                     dans une boîte hermétique.
                   </div>
                 </div>
@@ -324,13 +322,13 @@ const PageHome = ({}) => {
               </div>
             </div>
             {/* BOUTON CARROUSEL */}
-            <div className="row" style={{color:"black"}}>
+            <div className="row" style={{ color: "black" }}>
               <button
                 className="carousel-control-prev col-sm-4 "
                 style={{
                   height: "2rem",
                   marginTop: "35rem",
-                  marginLeft:"5rem",
+                  marginLeft: "5rem",
                   color: "var(--marronFonce)",
                 }}
                 type="button"
@@ -348,7 +346,7 @@ const PageHome = ({}) => {
                 style={{
                   height: "2rem",
                   marginTop: "35rem",
-                                    marginRight:"5rem",
+                  marginRight: "5rem",
 
                   color: "var(--marronFonce)",
                 }}

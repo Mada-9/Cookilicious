@@ -4,6 +4,7 @@ const ENV = require("../config/Env.js");
 const bcrypt = require("bcrypt"); // pour hasher le mot de passe , sécuriser
 const jwt = require("jsonwebtoken");
 
+
 // Methode pour s'inscrire
 const register = async (req, res, next) => {
   try {

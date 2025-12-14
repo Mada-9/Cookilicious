@@ -24,7 +24,7 @@ const URL = {
   UPDATE_AVIS: "/api/avis/update",
 
   AUTH_REGISTER: "http://localhost:8000/api/auth/register",
-  AUTH_LOGIN: "http://localhost:8000/api/auth/login",
+  AUTH_SIGN: "http://localhost:8000/api/auth/login",
 };
 
 

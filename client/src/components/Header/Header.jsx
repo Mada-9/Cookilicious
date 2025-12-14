@@ -2,15 +2,27 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { PanierContext } from "../../utils/context/PanierContext";
+import { AuthContext } from "../../utils/context/AuthContext";
+import HEADER_LINKS from "../../utils/config/LinkHeader";
 
 const Header = () => {
   const { totalProduit } = useContext(PanierContext);
+  const { user, logout } = useContext(AuthContext);
+  const isAuthenticated = user;
+  const role = user?.role;
+
+  const visibleLinks = HEADER_LINKS.filter((link) => {
+    if (!link.auth) return true; // liens publics
+    if (!isAuthenticated) return false; // pas connecté → pas d'accès
+    if (link.auth === role) return true; // rôle correspondant
+    return false; // sinon, on cache
+  });
 
   return (
-    <header>
-      <nav class="navbar navbar-expand-lg ">
+    <header className="header">
+      <nav className="navbar navbar-expand-lg ">
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="offcanvas"
           data-bs-target="#navbarOffcanvasLg"
@@ -18,124 +30,112 @@ const Header = () => {
           aria-label="Toggle navigation"
           style={{ border: "none", justifyItem: "left" }}
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div
-          class="offcanvas offcanvas-start"
+          className="offcanvas offcanvas-start"
           tabIndex="-1"
           id="navbarOffcanvasLg"
           aria-labelledby="navbarOffcanvasLgLabel"
         >
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <Link to="/">Home</Link>{" "}
-            </h5>
+          <div className="offcanvas-header">
             <button
               type="button"
-              class="btn-close"
+              className="btn-close"
               data-bs-dismiss="offcanvas"
               aria-label="Close"
             ></button>
           </div>
-          <ul className="navbar-nav">
-            <li className="nav-item dropdown-menu-right px-2">
-              <Link
-                to="/produit"
-                className="nav-link dropdown-toggle"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Produit
-              </Link>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <Link to="/cookies">
-                    <p className="dropdown-item" style={{ color: "#880a0cff" }}>
-                      Cookies
-                    </p>
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/brookies">
-                    <p className="dropdown-item" style={{ color: "#880a0cff" }}>
-                      Brookies
-                    </p>
-                  </Link>
-                </li>
-              </ul>
-            </li>
 
-            <li className="nav-item px-2">
+          <ul className="navbar-nav">
+            <ul className="navbar-nav mx-auto">
+              <li>
+                {" "}
+                <Link to="/" className="nav-link ">
+                  Home
+                </Link>
+              </li>
+              <li className="nav-item dropdown-menu-right px-2">
+                <Link
+                  to="/produit"
+                  className="nav-link dropdown-toggle"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Produit
+                </Link>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <Link to="/cookies">
+                      <p
+                        className="dropdown-item"
+                        style={{ color: "#880a0cff" }}
+                      >
+                        Cookies
+                      </p>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/brookies">
+                      <p
+                        className="dropdown-item"
+                        style={{ color: "#880a0cff" }}
+                      >
+                        Brookies
+                      </p>
+                    </Link>
+                  </li>
+                </ul>
+              </li>
               <Link to="/recette" className="nav-link">
                 Recettes
               </Link>
-            </li>
-            <li className="nav-item px-2">
               <Link to="/apropos" className="nav-link">
                 A propos
               </Link>
-            </li>
-            <li className="nav-item px-2">
               <Link to="/contact" className="nav-link">
                 Contact
               </Link>
-            </li>
-            <li className="nav-item px-2">
-              <Link to="/connexion" className="nav-link">
-                Connexion
-              </Link>
-            </li>
-            <li className="nav-item dropdown px-2 ">
-              <Link
-                to="#"
-                className="nav-link dropdown-toggle"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dashboard
-              </Link>
-              <ul
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <Link to="/admin" className="dropdown-item">
-                    Home Dashboard
+              {visibleLinks.map((link, index) => (
+                <li className="nav-item" key={index}>
+                  <Link to={link.path} className="nav-link">
+                    {link.label}
                   </Link>
                 </li>
-                <li>
-                  <Link to="#" className="dropdown-item">
-                    Gestion du compte
+              ))}
+            </ul>
+
+            <ul className="navbar-nav ms-auto">
+              {isAuthenticated ? (
+                <li className="nav-item">
+            
+                   <Link to="/sign"  onClick={logout} className="nav-link">
+                    Déconnexion
                   </Link>
                 </li>
-                <li>
-                  <Link to="/connexion" className="dropdown-item">
+              ) : (
+                <li className="nav-item">
+                  {" "}
+                  <Link to="/sign" className="nav-link">
                     Connexion
                   </Link>
                 </li>
-                {/* Another action */}
-                <li>
-                  <Link to="#" className="dropdown-item">
-                    Aide
-                  </Link>
-                </li>
-              </ul>
-            </li>
+              )}
+            </ul>
+
             {/* PANIER */}
 
             <Link to="/panier" className="panier ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="40"
-                height="40"
+                width="37"
+                height="37"
                 fill="currentColor"
                 className="bi bi-basket3 "
                 viewBox="0 0 16 16"

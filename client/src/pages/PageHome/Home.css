@@ -1,7 +1,11 @@
+.titleHome{
+  margin: 3rem;
+}
+
 .imageHome {
   display: flex;
   position: static;
-  padding-top: 2rem;
+  padding-top: 0rem;
 }
 
 .imagesHome {
@@ -11,7 +15,7 @@
 
 .defilantContainer {
   width: 100%;
-  font-size: 1.7rem;
+  font-size: 1.2rem;
   margin-bottom: 0.8rem;
   overflow: hidden;
   white-space: nowrap;
@@ -20,9 +24,10 @@
 
 .phraseDefilante {
   /* fontSize: isMobile ? "1rem" : "1.7rem", */
-  margin: 1.5rem 2rem;
+  margin: 5rem ;
   white-space: nowrap;
   display: inline-block;
+  
 }
 
 @keyframes scroll-left {
@@ -53,6 +58,7 @@
   font-size: 3rem;
   text-shadow: 0 0 5px var(--marronRouge);
   line-height: 150%;
+  
 }
 
 .sectionCategorie {
@@ -336,6 +342,8 @@
   }
   .phraseDefilante {
     font-size: 1rem;
+      margin: 1rem ;
+
   }
   .phraseCategorie {
     font-size: 1.5rem;

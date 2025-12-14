@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
 import axiosinstance from "../../utils/axios/axiosinstance";
@@ -12,14 +12,15 @@ const DetailProduit = () => {
     decremente,
     priceProduitByQuantity,
     totalProduit,
-
     totalPrice,
   } = useContext(PanierContext);
+
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
   const [detailProduit, setDetailProduit] = useState(null);
   const [produit, setProduit] = useState([]);
+
   useEffect(() => {
     if (id) {
       getProduit(id);
@@ -61,17 +62,17 @@ const DetailProduit = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
-            <a href="/" style={{ width: "3rem" }}>
+            <Link to="/" style={{ width: "3rem" }}>
               Home
-            </a>
+            </Link>
           </li>
           <li className="breadcrumb-item">
-            <a href="/produit" style={{ width: "6rem" }}>
+            <Link to="/produit" style={{ width: "6rem" }}>
               Produits
-            </a>
+            </Link>
           </li>
           <li className="breadcrumb-item">
-            <a href="">Produit</a>
+            <Link to="">Produit</Link>
           </li>
         </ol>
       </nav>
@@ -102,6 +103,7 @@ const DetailProduit = () => {
               }}
             >
               <img
+                className="detailProduitImg"
                 style={{ border: "5px var(--marronRouge) solid " }}
                 src={detailProduit.photo}
                 alt={detailProduit.titre}
@@ -109,7 +111,7 @@ const DetailProduit = () => {
                 height={460}
               />
               <div style={{ padding: "3rem" }}>
-                <div style={{ fontSize: "1rem",display: "flex", gap: "1rem" }}>
+                <div style={{ fontSize: "1rem", display: "flex", gap: "1rem" }}>
                   <p style={{ fontSize: "2rem" }}> {detailProduit.prix} €</p>
                   <button onClick={() => decremente(index)}>-</button>
                   <p

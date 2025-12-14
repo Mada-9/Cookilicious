@@ -6,7 +6,11 @@ const PageDashboard = () => {
   
   return (
 
-<div style={{height:"30rem", backgroundColor:"brown"}}>
+<div style={{height:"30rem", 
+
+}}>
+  <h1 style={{fontSize:"5rem"}}>Dashboard Home </h1>
+
 
 </div>
   );

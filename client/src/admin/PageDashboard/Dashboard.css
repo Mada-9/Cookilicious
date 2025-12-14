@@ -1,0 +1,30 @@
+.table {
+  border:  8px  solid var(--marronRouge) !important;
+  
+}
+
+.thTable {
+  color: var(--marronRouge) !important;
+  background-color: var(--creme) !important;
+  border-right: 3px solid var(--marronRouge) !important;
+    border-bottom: 8px solid var(--marronRouge) !important;
+
+  font-size: 1.3rem;
+}
+.tdTable {
+  border-top: 3px solid var(--marronRouge) !important;
+    background-color: var(--creme) !important;
+
+  border-right: 3px solid var(--marronRouge) !important;
+    color: var(--marronRouge) !important;
+
+}
+.tdActions {
+  border-top: 3px solid var(--marronRouge) !important;
+
+  border-bottom: 3px solid var(--marronRouge) !important;
+    background-color: var(--creme) !important;
+
+}
+.btnCrud{margin-bottom: 4rem;   color: var(--marronRouge) !important;
+}

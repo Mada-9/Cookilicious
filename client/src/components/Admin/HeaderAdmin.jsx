@@ -47,18 +47,26 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link to="/admin/comptes " className="nav-link">
-                Gestion des comptes{" "}
+              <Link to="/admin/membres " className="nav-link">
+                Gestion des membres{" "} 
+                {/* CHANGER EN MEMBRES */}
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link to="/contact" className="nav-link">
+              <Link to="/admin/contact" className="nav-link">
                 Gestion des messages
               </Link>
             </li>
             <li className="nav-item px-2">
-              <Link to="/commandes" className="nav-link">
-                Gestion des commandes{" "}
+              <Link to="/admin/commandes" className="nav-link">
+                Gestion des commandes
+              </Link>
+            </li>
+             <li className="nav-item px-2">
+              <Link to="/" className="nav-link">
+                Home
+              
+
               </Link>
             </li>
           </ul>

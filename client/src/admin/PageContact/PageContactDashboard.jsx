@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
+import { toast } from "react-toastify";
 
 import URL from "../../utils/constant/url";
+import "../PageDashboard/Dashboard.css";
 
 const PageContactDashboard = () => {
   const [formData, setFormData] = useState([]);
@@ -22,10 +24,15 @@ const PageContactDashboard = () => {
   };
 
   const deleteMessage = async (id) => {
+    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ?")) return;
+
     try {
-      const { status } = await axiosinstance.delete(URL.DELETE_CONTACT + "/" + id);
+      const { status } = await axiosinstance.delete(
+        URL.DELETE_CONTACT + "/" + id
+      );
+
       if (status === 200) {
-        console.log("Message deleted!");
+        toast.success("Message supprimé avec succès");
         getMessage();
       }
     } catch (error) {
@@ -35,95 +42,45 @@ const PageContactDashboard = () => {
 
   return (
     <>
-      <div style={{ fontSize: "3rem", padding:"3rem"  }}>Page Contact</div>
+      <h1 >Page Contact</h1>
 
-      <h1 style={{ fontSize: "1rem" }}>Messages récupérés</h1>
-      <div style={{ margin: "2rem 5px" }}>
-        <table className="table">
-          <thead className="table-red">
+      <h2>Messages récupérés</h2>
+      <div
+       
+        style={{
+          justifySelf: "center",
+          alignSelf: "center",
+          margin: "2rem",
+          padding: "1rem",
+        }}
+      >
+        <table className="table wx-auto">
+          <thead className="thead">
             <tr>
-               <th
-                style={{
-                  backgroundColor: "#9f1619",
-                  border: "2px solid  #6f0002",
-                  color: "#fefaef",
-                  fontSize: "1.2rem",
-                }}
-              >
-                ID
-              </th>
-              <th
-                style={{
-                  backgroundColor: "#9f1619",
-                  border: "2px solid  #6f0002",
-                  color: "#fefaef",
-                  fontSize: "1.2rem",
-                }}
-              >
-                email
-              </th>
-              <th
-                style={{
-                  backgroundColor: "#9f1619",
-                  border: "2px solid #6f0002",
-                  color: "#fefaef",
-                  fontSize: "1.2rem",
-                }}
-              >
-                message
-              </th>
+              <th className="thTable">ID</th>
+              <th className="thTable">Email</th>
+              <th className="thTable">Message</th>
+              <th className="thTable">actions</th>
             </tr>
           </thead>
           <tbody>
             {formData.map((item) => (
               <tr key={item._id}>
-                <td
-                  style={{
-                    color: " #9f1619",
-                    border: "2px solid  #6f0002",
-                    backgroundColor: "#fefaef",
-                    fontSize: "0.6rem",
-                    letterSpacing: "0.07rem",
-                  }}
-                >
-                  {item._id}
-                </td>
-                <td
-                  style={{
-                    color: " #9f1619",
-                    border: "2px solid  #6f0002",
-                    backgroundColor: "#fefaef",
-                    fontSize: "1rem",
-                  }}
-                >
-                  {item.email}
-                </td>
-                <td
-                  style={{
-                    color: "#9f1619",
-                    border: "2px solid #6f0002",
-                    backgroundColor: "#fefaef",
-                    wordSpacing: "0.1rem",
-                  }}
-                >
-                  {item.message}
-                </td>
-                <td
-                  style={{
-                    border: "2px solid #6f0002",
-                    backgroundColor: "#fefaef",
-                  }}
-                >
+                <td className="tdTable">{item._id}</td>
+                <td className="tdTable">{item.email}</td>
+                <td className="tdTable">{item.message}</td>
+                <td className="tdTable" >
                   <button
                     onClick={() => deleteMessage(item._id)}
                     className="btn btn-danger"
-                    style={{
-                      color: "#9f1619",
-                      border: "2px solid #6f0002",
-                      backgroundColor: "#fefaef",
-                    }}
                   >
                     <i className="bi bi-trash"></i>
+                  </button>
+                   <button
+                    onClick={() => deleteMessage(item._id)}
+                    className="btn btn-warning"
+                  >
+                    voir message
                   </button>
                   <input
                     type="checkbox"
@@ -132,7 +89,6 @@ const PageContactDashboard = () => {
                     value="check"
                     style={{ backgroundColor: "black" }}
                   />
-                 
                 </td>
               </tr>
             ))}
