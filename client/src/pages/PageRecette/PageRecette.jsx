@@ -1,7 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import URL from "../../utils/constant/url";
 import { Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
+import { AuthContext } from "../../utils/context/AuthContext";
+import HEADER_LINKS from "../../utils/config/LinkHeader";
+import { SIGN_FIELDS } from "../../utils/config/FormFields";
 
 //CSS
 
@@ -18,6 +21,17 @@ const PageRecette = () => {
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState([]);
   const [avis, setAvis] = useState([]);
+  // connexion
+  const { user } = useContext(AuthContext);
+  const isAuthenticated = user;
+  const role = user?.role;
+  const { login } = useContext(AuthContext);
+  const [formDataUser, setFormDataUser] = useState({});
+
+  const visibleRecette = HEADER_LINKS.filter((link) => {
+    if (!isAuthenticated) return false; // pas connecté → pas d'accès
+    if (link.auth === role) return true; // rôle correspondant
+  });
 
   useEffect(() => {
     getAllRecettes();
@@ -55,6 +69,18 @@ const PageRecette = () => {
     } catch (error) {}
   };
 
+  // Connexion user
+
+  const handleChangeUser = (event) => {
+    const { name, value } = event.target;
+    setFormDataUser((user) => ({ ...user, [name]: value }));
+  };
+
+  const handleSubmitUser = async (e) => {
+    e.preventDefault();
+    await login(formDataUser);
+  };
+
   return (
     <div className="raw" style={{ borderTop: "var(--marronRouge) 4px solid" }}>
       <nav aria-label="breadcrumb">
@@ -83,28 +109,24 @@ const PageRecette = () => {
         <div className="row" style={{ marginBottom: "3rem" }}>
           <p
             className=" phraseIntroDeux col-xs-1 col-md-12 col-lg-12 "
-            style={{  marginBottom: "3rem", fontSize: "1.4rem",  }}
+            style={{ marginBottom: "3rem", fontSize: "1.4rem" }}
           >
-            
-         
-             Laissez-vous inspirer par nos variantes créatives, gourmandes et
-            généreuses. 
-            Des idées simples et rapides à reproduire chez vous, avec le goût
-            authentique de nos pâtisseries.
+            Laissez-vous inspirer par nos variantes créatives, gourmandes et
+            généreuses. Des idées simples et rapides à reproduire chez vous,
+            avec le goût authentique de nos pâtisseries.
           </p>
         </div>
         <section>
-          <div style={{ padding: "0rem", paddingTop:"2rem", marginBottom: "3rem",  }}>
+          <div style={{ paddingTop: "2rem", marginBottom: "3rem" }}>
             <div className="row d-flex">
-              <h2 className=" titreSection col-sm-10 col-md-4 col-lg-5">
+              <h2 className="titreSection col-sm-10 col-md-4 col-lg-5">
                 {recette[7]?.titre}
               </h2>
-              <p className="pSection col-sm-12  col-md-6 col-lg-6 ">
+              <p className="pSection col-sm-12 col-md-6 col-lg-6">
                 {recette[7]?.description}
-                {/* <!-- Button trigger modal --> */}
                 <button
                   type="button"
-                  className=" btn btn-primary col-sm-1  "
+                  className="btn btn-primary col-sm-1"
                   data-bs-toggle="modal"
                   data-bs-target="#staticBackdrop"
                   style={{
@@ -117,11 +139,11 @@ const PageRecette = () => {
                   }}
                 >
                   Voir recette
-                </button>{" "}
+                </button>
               </p>
             </div>
 
-            {/* <!-- Modal --> */}
+            {/* Modal */}
             <div
               className="modal fade"
               id="staticBackdrop"
@@ -132,48 +154,98 @@ const PageRecette = () => {
               aria-hidden="true"
             >
               <div
-                className="modal-dialog  modal-dialog-centered modal-dialog row "
+                className="modal-dialog modal-dialog-centered modal-dialog row"
                 style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
               >
                 <div
                   className="modal-content"
-                  style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
+                  style={{ color: "var(--marronRouge)" }}
                 >
-                  <div className="modal-header ">
-                    <h1 className="modal-title " id="staticBackdropLabel">
-                      {recette[7]?.titre}
-                    </h1>
+                  {isAuthenticated ? (
+                    <>
+                      <div className="modal-header">
+                        <h1 className="modal-title" id="staticBackdropLabel">
+                          {recette[7]?.titre}
+                        </h1>
+                        <button
+                          type="button"
+                          className="btn-close"
+                          data-bs-dismiss="modal"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div
+                        className="modal-body"
+                        style={{ textAlign: "justify" }}
+                      >
+                        <h2 style={styles.titrePreparation}>
+                          {recette[7]?.nbPersonne}
+                        </h2>
+                        <h2 style={styles.titrePreparation}>Ingrédients:</h2>
+                        <p>{recette[7]?.ingredients}</p>
+                        <h2 style={styles.titrePreparation}>Préparation:</h2>
+                        <p>{recette[7]?.preparation}</p>
+                        <h2 style={styles.titrePreparation}>Astuce:</h2>
+                        <p>{recette[7]?.astuce}</p>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="modal-body">
+                      <p>
+                        Veuillez vous connecter pour découvrir la recette 😉{" "}
+                      </p>
+                      <h1 className="text-center mb-4">Sign</h1>
+                      <form onSubmit={handleSubmitUser}>
+                        {SIGN_FIELDS.map((field, index) => (
+                          <div
+                            className="input-group flex-nowrap mb-3"
+                            key={index}
+                          >
+                            <span
+                              className="input-group-text"
+                              id="addon-wrapping"  style={{border:"var(--marronRouge) 2px solid",}}
+                            >
+                              <i className={field.icon} style={{color:"var(--marronRouge)",}}></i>
+                            </span>
+                            <input
+                              type={field.type}
+                              className="form-control"
+                              placeholder={field.placeholder}
+                              aria-label={field.label}
+                              name={field.name}
+                              aria-describedby="addon-wrapping"
+                              onChange={handleChangeUser}
+                              style={{border:"var(--marronRouge) 2px solid",}}
+                            />
+                          </div>
+                        ))}
+                        <div className="d-grid">
+                          <button
+                            type="submit"
+                            className="btn  w-100"
+                            style={{border:"var(--marronRouge) 2px solid", color:"var(--marronRouge)",  marginBottom:"2rem" }}
+                          >
+Je me connecte                          </button>
+                        </div>
+                      </form>
+                      <Link to="/register">Vous n'avez pas de compte ?</Link>
+                    </div>
+                  )}
+                  {/* Footer commun */}
+                  <div className="modal-footer">
                     <button
                       type="button"
-                      className="btn-close"
+                      className="btn btn-primary col-xs-5 col-md-3"
                       data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+                      style={{
+                        backgroundColor: "var(--jaune)",
+                        alignSelf: "end",
+                        margin: "1rem",
+                      }}
+                    >
+                      Close
+                    </button>
                   </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 style={styles.titrePreparation}>
-                      {recette[7]?.nbPersonne}
-                    </h2>
-                    <h2 style={styles.titrePreparation}>Ingrédients:</h2>
-                    <p>{recette[7]?.ingredients}</p>
-                    <h2 style={styles.titrePreparation}>Préparation: </h2>
-                    <p>{recette[7]?.preparation}</p>
-                    <h2 style={styles.titrePreparation}>Astuce: </h2>
-                    <p>{recette[7]?.astuce}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary col-xs-5 col-md-3 "
-                    data-bs-dismiss="modal"
-                    style={{
-                      backgroundColor: "var(--jaune)",
-                      alignSelf: "end",
-                      margin: "1rem",
-                    }}
-                  >
-                    Close
-                  </button>
-                  {/* <button type="button" class="btn btn-primary">Understood</button> */}
                 </div>
               </div>
             </div>
@@ -182,7 +254,7 @@ const PageRecette = () => {
 
         {/* 2e recette  */}
         <section>
-          <div style={{ padding: "0rem", marginBottom: "3rem",  }}>
+          <div style={{ padding: "0rem", marginBottom: "3rem" }}>
             <div className="row d-flex">
               <h2
                 className=" titreSection col-sm-10 col-md-4 col-lg-5"

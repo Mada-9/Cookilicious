@@ -2,6 +2,10 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import ChatbotWidget from "./components/chatbot/ChatbotWidget";
 import { ToastContainer } from "react-toastify";
 import { AnimatePresence } from "framer-motion";
+import AnimatedPage from "../src/components/Motion/AnimatePage";
+
+import { Elements } from "@stripe/react-stripe-js";
+import stripePromise from "./utils/services/Stripe";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -63,27 +67,27 @@ function App() {
           {/* a definir */}
           {/* ROUTES FRONTEND PUBLIC */}
           <Route path="/" element={<Template />}>
-            <Route index element={<Home />} />
-            <Route path="Cookies" element={<Cookies />} />
-            <Route path="brookies" element={<Brookies />} />
-            <Route path="detail/:id" element={<DetailProduit />} />
-            <Route path="panier" element={<PagePanier />} />
-            <Route path="paiement" element={<PagePaiement />} />
-            <Route path="recette" element={<PageRecette />} />
-            <Route path="contact" element={<PageContact />} />
-            <Route path="apropos" element={<PageApropos />} />
-            <Route path="mentionslegales" element={<Mentionslegales />} />
-            <Route path="cgv" element={<CGV />} />
-            <Route path="rgpd" element={<RGPD />} />
+            <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
+            <Route path="Cookies" element={<AnimatedPage><Cookies /></AnimatedPage>} />
+            <Route path="brookies" element={<AnimatedPage><Brookies /></AnimatedPage>} />
+            <Route path="detail/:id" element={<AnimatedPage><DetailProduit /></AnimatedPage>} />
+            <Route path="panier" element={<AnimatedPage><PagePanier /></AnimatedPage>} />
+              <Route path="paiement" element={<AnimatedPage><PagePaiement /></AnimatedPage>} />
+            <Route path="recette" element={<AnimatedPage><PageRecette /></AnimatedPage>} />
+            <Route path="contact" element={<AnimatedPage><PageContact /></AnimatedPage>} />
+            <Route path="apropos" element={<AnimatedPage><PageApropos /></AnimatedPage>} />
+            <Route path="mentionslegales" element={<AnimatedPage><Mentionslegales /></AnimatedPage>} />
+            <Route path="cgv" element={<AnimatedPage><CGV /></AnimatedPage>} />
+            <Route path="rgpd" element={<AnimatedPage><RGPD /></AnimatedPage>} />
 
             {/* Routes publiques (non accessible si pas connecté) */}
             <Route element={<PublicRoute />}>
-              <Route path="sign" element={<Sign />} />
-              <Route path="register" element={<Register />} />
+              <Route path="sign" element={<AnimatedPage><Sign /></AnimatedPage>} />
+              <Route path="register" element={<AnimatedPage><Register /></AnimatedPage>} />
             </Route>
             {/* Routes privées (connexion requise) */}
             <Route element={<PrivateRoute />}>
-              <Route path="profil" element={<Profil />} />
+              <Route path="profil" element={<AnimatedPage><Profil /></AnimatedPage>} />
             </Route>
           </Route>
           {/* ROUTES ADMIN */}

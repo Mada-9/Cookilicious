@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
 
         // Redirige l'utilisateur vers la page d'accueil
-        navigate(`/`);
+        // navigate(`/`);
       }
     } catch (error) {
       console.log(error.message);
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (dataForm) => {
     try {
       const { status } = await axiosinstance.post(URL.AUTH_REGISTER, dataForm);
-      if (status === 201) toast.success("Produit supprimé avec succès");
+      if (status === 201) toast.success("Votre profil a bien été créé!");
       console.log("success register");
       navigate(`/`);
     } catch (error) {

@@ -28,11 +28,7 @@
 html,
 body {
   max-width: 100%;
-  
-
   font-family: 'test'!important;
-
-
 }
 
 
@@ -49,6 +45,16 @@ body {
   --caramel: #bd5505ff;
   
 }
+
+/* body.brown {
+  background-color:var(--marronFonce) !important;
+  color: var(--creme) !important;
+}
+body.creme {
+  background-color: var(--creme) !important;
+  color: var(--marronRouge) !important;
+} */
+
 
 #root {
   width: 100% !important;

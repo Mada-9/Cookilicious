@@ -1,6 +1,8 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
+import { ThemeContext } from "../../utils/context/ThemeContext";
+
 import { PanierContext } from "../../utils/context/PanierContext";
 import { AuthContext } from "../../utils/context/AuthContext";
 import HEADER_LINKS from "../../utils/config/LinkHeader";
@@ -10,6 +12,21 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const isAuthenticated = user;
   const role = user?.role;
+//  const [darkMode, setDarkMode] = useState(false);
+
+
+//   // Appliquer le thème au body
+//   useEffect(() => {
+//     if (darkMode) {
+//       document.body.style.backgroundColor = "var(--marronFonce)";
+//       document.body.style.color = "var(--creme)";
+//     } else {
+//       document.body.style.backgroundColor = "var(--creme)";
+//       document.body.style.color = "var(--marron)";
+//     }
+//   }, [darkMode]);
+
+
 
   const visibleLinks = HEADER_LINKS.filter((link) => {
     if (!link.auth) return true; // liens publics
@@ -114,8 +131,7 @@ const Header = () => {
             <ul className="navbar-nav ms-auto">
               {isAuthenticated ? (
                 <li className="nav-item">
-            
-                   <Link to="/sign"  onClick={logout} className="nav-link">
+                  <Link to="/sign" onClick={logout} className="nav-link">
                     Déconnexion
                   </Link>
                 </li>
@@ -145,8 +161,12 @@ const Header = () => {
               ({totalProduit()})
             </Link>
           </ul>
+         
         </div>
-      </nav>
+      </nav>   
+      {/* <button onClick={() => setDarkMode(!darkMode)}>
+        {darkMode ? "☀️ Mode clair" : "🌙 Mode sombre"}
+      </button> */}
     </header>
   );
 };
