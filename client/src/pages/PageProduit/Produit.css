@@ -91,25 +91,15 @@
   align-items: center;
   font-size: 0.8rem;
   color: var(--jaune);
-  border: #976658ff 2px solid;
   height: 2rem;
-  width: 5rem;
   margin-top: 0.2rem;
-}
-
-.btnDetail {
   position: relative;
   display: inline-block;
   width: 6rem;
-  height: 2rem;
-  font-size: 0.8rem;
-  font-family: "test" !important;
   perspective: 600px;
   border: none;
   background: transparent;
   cursor: pointer;
-  font-family: "Open Sans", sans-serif;
-  text-transform: uppercase;
   letter-spacing: 1px;
 }
 

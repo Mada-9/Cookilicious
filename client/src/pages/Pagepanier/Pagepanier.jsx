@@ -84,10 +84,10 @@ const PagePanier = () => {
                         {priceProduitByQuantity(produit.prix, produit.quantite)}
                         €
                       </p>
-                      <div className="btnQuantity">
-                        <button onClick={() => decremente(index)}>-</button>
+                      <div className="btnQuantityDiv">
+                        <button className="btnQuantity" onClick={() => decremente(index)}>-</button>
                         <p>{produit.index}</p>
-                        <button onClick={() => incremente(index)}>+</button>
+                        <button className="btnQuantity" onClick={() => incremente(index)}>+</button>
                       </div>
                     </div>
                     <div>
@@ -101,34 +101,40 @@ const PagePanier = () => {
                   </div>
                 </div>
               ))}
-              <p>Total du panier : {totalPrice} €</p>
+              <p>Total du panier : {totalPrice} € ({totalProduit()} produits)</p>
               <button
-                className="btnPasserCommande col-sm-1"
+                className="btnPasserCommande "
                 type="button"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop"
+                data-back="Passer la commande"
+                data-front="Passer la commande"
+                onClick={() => navigate("/paiement")}
               >
-                Passer la commande ({totalProduit()} produits)
+                
               </button>
-              <div
-                className="modal fade"
-                id="staticBackdrop"
-                tabIndex="-1"
-                aria-hidden="true"
-              >
+              {isAuthenticated ? (
+                <>
+                  <Link to="/paiement"></Link>
+                </>
+              ) : (
                 <div
-                  className="modal-dialog modal-dialog-centered modal-dialog row"
-                  style={{ maxWidth: "90%", padding: "3rem" }}
+                  className="modal fade"
+                  id="staticBackdrop"
+                  data-bs-backdrop="static"
+                  data-bs-keyboard="false"
+                  tabIndex="-1"
+                  aria-labelledby="staticBackdropLabel"
+                  aria-hidden="true"
                 >
                   <div
-                    className="modal-content"
-                    style={{ color: "var(--marronRouge)" }}
+                    className="modal-dialog modal-dialog-centered modal-dialog row"
+                    style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
                   >
-                    {isAuthenticated ? (
-                      <>
-                        <Link to="/paiement">Proceder au paiement</Link>
-                      </>
-                    ) : (
+                    <div
+                      className="modal-content"
+                      style={{ color: "var(--marronRouge)" }}
+                    >
                       <div className="modal-body">
                         <p>
                           Veuillez vous connecter afin de proceder au paiement
@@ -173,46 +179,35 @@ const PagePanier = () => {
                               style={{
                                 border: "var(--marronRouge) 2px solid",
                                 color: "var(--marronRouge)",
+                                marginBottom: "2rem",
                               }}
                             >
                               Je me connecte{" "}
                             </button>
                           </div>
                         </form>
-                        <Link
-                          to="/register"
-                          onClick={() => {
-                            const modal =
-                              document.getElementById("staticBackdrop");
-                            const backdrop =
-                              document.querySelector(".modal-backdrop");
+                        <Link to="/register">Vous n'avez pas de compte ?</Link>
+                      </div>
 
-                            if (modal) modal.classList.remove("show");
-                            if (backdrop) backdrop.remove();
-                            document.body.classList.remove("modal-open");
+                      {/* Footer commun */}
+                      <div className="modal-footer">
+                        <button
+                          type="button"
+                          className="btn btn-primary col-xs-5 col-md-3"
+                          data-bs-dismiss="modal"
+                          style={{
+                            backgroundColor: "var(--jaune)",
+                            alignSelf: "end",
+                            margin: "1rem",
                           }}
                         >
-                          Vous n'avez pas de compte ?
-                        </Link>
+                          Close
+                        </button>
                       </div>
-                    )}
-                    {/* Footer commun */}
-                    <div className="modal-footer">
-                      <button
-                        type="button"
-                        className="btn btn-primary col-xs-5 col-md-3"
-                        data-bs-dismiss="modal"
-                        style={{
-                          backgroundColor: "var(--jaune)",
-                          alignSelf: "end",
-                        }}
-                      >
-                        Close
-                      </button>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           ) : (
             <p>panier vide </p>

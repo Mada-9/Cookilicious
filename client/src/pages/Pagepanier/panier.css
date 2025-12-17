@@ -34,21 +34,94 @@
   width: 150px;
   height: 150px;
 }
-.btnQuantity {
+.btnQuantityDiv {
   display: flex;
   height: 2rem;
   gap: 1rem;
+  
+}
+
+.btnQuantity{
+   background: transparent;
+  border: 1px solid var(--marronFroid);
+  color: var(--marronRouge);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-content: center;
 }
 
 .bi {
-  
   font-size: 1rem;
 }
 
-.btnSupprimer{
-      color: var(--creme);
-    background-color: var(--marronRouge);
+.btnSupprimer {
+  background: transparent;
+  border: 1px solid var(--marronFroid);
+  color: var(--marronRouge);
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center;
+  font-size: 1rem;
 }
+
+.btnPasserCommande {
+  align-items: center;
+  color: var(--jaune);
+  margin: 2rem;
+  width: 90%;
+  height: 3rem;
+  perspective: 600px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* faces */
+.btnPasserCommande::before,
+.btnPasserCommande::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  backface-visibility: hidden;
+}
+
+/* face avant */
+.btnPasserCommande::before {
+  content: attr(data-front);
+  background: var(--creme);
+  color: var(--jaune);
+  transform: rotateX(0deg);
+  opacity: 1;
+  border: #976658ff 2px solid;
+}
+
+/* face arrière */
+.btnPasserCommande::after {
+  content: attr(data-back);
+  background: var(--marronRouge);
+  color: var(--creme);
+  transform: rotateX(-90deg);
+  opacity: 0;
+}
+
+/* hover flip */
+.btnPasserCommande:hover::before {
+  transform: rotateX(90deg);
+  opacity: 0;
+}
+
+.btnPasserCommande:hover::after {
+  transform: rotateX(0deg);
+  opacity: 1;
+}
+
 @media (max-width: 649px) {
   .mapProduit {
     gap: 2rem;
