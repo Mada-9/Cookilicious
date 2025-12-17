@@ -23,10 +23,20 @@ const URL = {
   DELETE_AVIS: "/api/avis/delete",
   UPDATE_AVIS: "/api/avis/update",
 
+  POST_COMMANDE: "/api/commande/post",
+  GET_ALL_COMMANDES: "/api/commande/get",
+  GET_DETAIL_COMMANDE: "/api/commande/get/:id",
+  DELETE_COMMANDE: "/api/commande/delete",
+
+  POST_MEMBRES: "/api/membre/post",
+  GET_ALL_MEMBRES: "/api/membre/get",
+  GET_DETAIL_MEMBRE: "/api/membre/get/:id",
+  DELETE_MEMBRE: "/api/membre/delete",
+  UPDATE_MEMBRE: "/api/membre/update",
+
   AUTH_REGISTER: "http://localhost:8000/api/auth/register",
   AUTH_SIGN: "http://localhost:8000/api/auth/login",
 };
 
-
-  // rajouter l'id ou pas?
+// rajouter l'id ou pas?
 export default URL;

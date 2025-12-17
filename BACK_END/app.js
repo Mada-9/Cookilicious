@@ -14,6 +14,8 @@ const produitRouter = require("./router/Produit.Router.js");
 const contactRouter = require("./router/Contact.Router.js");
 const recetteRouter = require("./router/Recette.Router.js");
 const avisRouter = require("./router/Avis.Router.js");
+const commandeRouter = require("./router/Commande.Router.js");
+const membreRouter = require("./router/Membre.Router.js");
 
 // CONNEXION MONGO
 connectDB(ENV.MONGO_URI, ENV.DB_NAME);
@@ -49,6 +51,8 @@ app.use("/api/produit", produitRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/recette", recetteRouter);
 app.use("/api/avis", avisRouter);
+app.use("/api/commande", commandeRouter)
+app.use("/api/membre", membreRouter)
 
 // Middleware d'erreurs (toujours en dernier 🚨)
 app.use(errorMiddleware);

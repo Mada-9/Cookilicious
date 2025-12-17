@@ -1,5 +1,7 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import { toast } from "react-toastify";
+
 import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
 
@@ -10,11 +12,9 @@ const PageContact = () => {
 
   const styles = {
     titleContact: {
-      fontSize: isMobile
-        ? "3rem"
-        :"4.5rem"
-        
-    },}
+      fontSize: isMobile ? "3rem" : "4.5rem",
+    },
+  };
 
   // ENVOIE FORMULAIRE
 
@@ -35,8 +35,10 @@ const PageContact = () => {
         formData.email.match(isValidEmail)
       ) {
         alert("message envoyé !");
+        toast.succes("message envoyé !");
       } else {
         alert("veuillez ecrire un message valide");
+        toast.danger("veuillez ecrire un message valide!");
       }
     } catch (error) {
       console.error("erreur lors de l'envoie du message:", error.message);
@@ -45,9 +47,11 @@ const PageContact = () => {
 
   return (
     <>
-      <h1 className="pt-3 mb-5 " style={styles.titleContact}>Contactez nous</h1>
+      <h1 className="pt-3 mb-5 " style={styles.titleContact}>
+        Contactez nous
+      </h1>
       <form
-      onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         className="row g-3 d-flex justify-content-center  pt-3 mb-5 "
         style={{
           border: "4px var(--marronRouge) solid",
@@ -55,12 +59,22 @@ const PageContact = () => {
         }}
       >
         <div className="col-9">
-          <label htmlFor="inputEmail4" className="form-label col-9 ">
+          <label htmlFor="inputEmail" className="form-label col-9 ">
             Email
           </label>
-          <input type="email" className="form-control" id="inputEmail4" name="email"  autoComplete="email"  value={formData.email}
-              onChange={handleChange} style={{ border: "4px solid var(--marronRouge)",
-                  color: "var(--marronRouge)",}}/>
+          <input
+            type="email"
+            className="form-control"
+            id="inputEmail"
+            name="email"
+            autoComplete="email"
+            value={formData.email}
+            onChange={handleChange}
+            style={{
+              border: "4px solid var(--marronRouge)",
+              color: "var(--marronRouge)",
+            }}
+          />
         </div>
         <div className="col-9">
           <label htmlFor="message" className="form-label col-9">
@@ -72,15 +86,20 @@ const PageContact = () => {
             name="message"
             id="message"
             autoComplete="message"
-             value={formData.message}
-              onChange={handleChange}
-               style={{ border: "4px solid var(--marronRouge)",
-                  color: "var(--marronRouge)",}}
-          >
-          </textarea>
+            value={formData.message}
+            onChange={handleChange}
+            style={{
+              border: "4px solid var(--marronRouge)",
+              color: "var(--marronRouge)",
+            }}
+          ></textarea>
         </div>
         <div className="col-12 mb-5">
-          <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onSubmit={handleSubmit}
+          >
             Envoyer
           </button>
         </div>
