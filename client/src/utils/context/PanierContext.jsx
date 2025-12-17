@@ -1,5 +1,7 @@
-import React, { createContext, useState, useEffect } from "react";
+import  { createContext, useState, useEffect } from "react";
 import { debounce } from "lodash";
+import { toast } from "react-toastify";
+
 
 export const PanierContext = createContext(); // l'exportation du context
 
@@ -115,6 +117,8 @@ export const PanierProvider = ({ children }) => {
         // si l'article existe déjà, on augmente sa quantité de 1
         if (produitFinded) {
           produitFinded.quantite += 1;
+                  toast.success("Votre produit a été ajouté au panier!");
+          
         } else {
           // sinon on ajoute l article dans le panier
           nouveauPanier.push({ ...product, quantite: 1 });

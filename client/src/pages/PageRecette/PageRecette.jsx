@@ -1,10 +1,15 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import URL from "../../utils/constant/url";
 import { Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { AuthContext } from "../../utils/context/AuthContext";
 import HEADER_LINKS from "../../utils/config/LinkHeader";
 import { SIGN_FIELDS } from "../../utils/config/FormFields";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
 
 //CSS
 
@@ -81,9 +86,38 @@ const PageRecette = () => {
     await login(formDataUser);
   };
 
+
+  const recetteRef = useRef(null);
+
+  useEffect(() => {
+    const el = recetteRef.current;
+    if (!el) return;
+
+    const totalScroll = el.scrollWidth - el.offsetWidth;
+
+    gsap.to(el, {
+      x: -totalScroll,
+      ease: "none",
+      scrollTrigger: {
+        trigger: el,
+        start: "top top",
+        end: () => `+=${el.scrollWidth}`,
+        scrub: true,
+        pin: true,
+      },
+    });
+  }, []);
+
   return (
-    <div className="raw" style={{ borderTop: "var(--marronRouge) 4px solid" }}>
-      <nav aria-label="breadcrumb">
+    <div className="" style={{marginTop:"3rem"}}>
+     
+
+      <h1 className=" titrePageRecette ">
+        {/* <h1 className=" titrePageRecette col-sm-6  col-md-6 col-lg-7"> */}
+        Nos <br />
+        Recettes
+      </h1>
+       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
             <Link to="/" style={{ width: "3rem" }}>
@@ -96,12 +130,6 @@ const PageRecette = () => {
           </li>
         </ol>
       </nav>
-
-      <h1 className=" titrePageRecette ">
-        {/* <h1 className=" titrePageRecette col-sm-6  col-md-6 col-lg-7"> */}
-        Nos <br />
-        Recettes
-      </h1>
       <div style={{ padding: "1.5rem" }}>
         <p className=" phraseIntro col-sm-6  col-md-8 col-lg-6"></p>
         {/* ************************************************************************************** */}
@@ -116,6 +144,38 @@ const PageRecette = () => {
             avec le goût authentique de nos pâtisseries.
           </p>
         </div>
+
+
+
+        {/* **************************** */}
+        <section className="homeRecipesWrapper">
+      <h2 className="homeRecipesTitle">
+        Testez <br /> nos <br /> recettes
+      </h2>
+      <div className="homeRecipes">
+        <div className="recetteContent" ref={recetteRef}>
+          <div className="recetteItem">
+            Testez nos recettes gourmandes <br />
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+          </div>
+          <div className="recetteItem">
+            Des recettes testées et approuvées! <br />
+            Maxime dolorem rem non cumque! Sed, architecto?
+          </div>
+          <div className="recetteItem">
+            Le plaisir du fait maison <br />
+            Pariatur minus doloribus sit consequatur, quidem culpa nulla aut delectus.
+          </div>
+          <div className="recetteItem">
+            Encore plus de gourmandises <br />
+            Inventore, vero! Lorem ipsum dolor sit amet consectetur.
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+        {/* **************************** */}
         <section>
           <div style={{ paddingTop: "2rem", marginBottom: "3rem" }}>
             <div className="row d-flex">
@@ -252,197 +312,7 @@ Je me connecte                          </button>
           </div>
         </section>
 
-        {/* 2e recette  */}
-        <section>
-          <div style={{ padding: "0rem", marginBottom: "3rem" }}>
-            <div className="row d-flex">
-              <h2
-                className=" titreSection col-sm-10 col-md-4 col-lg-5"
-                style={{ color: "var(--marronFroid)" }}
-              >
-                {recette[8]?.titre}
-              </h2>
-              <p className="pSection col-sm-12  col-md-6 col-lg-6 ">
-                {recette[8]?.description}
-                {/* <!-- Button trigger modal --> */}
-                <button
-                  type="button"
-                  className=" btn btn-primary col-sm-1  "
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
-                  style={{
-                    height: "2rem",
-                    marginLeft: "1rem",
-                    backgroundColor: "var(--caramel)",
-                    color: "var(--creme)",
-                    width: "9rem",
-                    alignContent: "center",
-                  }}
-                >
-                  Voir recette
-                </button>{" "}
-              </p>
-            </div>
-
-            {/* <!-- Modal --> */}
-            <div
-              className="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabIndex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div
-                className="modal-dialog  modal-dialog-centered modal-dialog row "
-                style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
-              >
-                <div
-                  className="modal-content"
-                  style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
-                >
-                  <div className="modal-header ">
-                    <h1 className="modal-title " id="staticBackdropLabel">
-                      {recette[8]?.titre}
-                    </h1>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 style={styles.titrePreparation}>
-                      {recette[8]?.nbPersonne}
-                    </h2>
-                    <h2 style={styles.titrePreparation}>Ingrédients:</h2>
-                    <p>{recette[8]?.ingredients}</p>
-                    <h2 style={styles.titrePreparation}>Préparation: </h2>
-                    <p>{recette[8]?.preparation}</p>
-                    <h2 style={styles.titrePreparation}>Astuce: </h2>
-                    <p>{recette[8]?.astuce}</p>
-                    <div className=" w-50 w-sm-100 d-flex mt-2">
-                      <img
-                        className="img-fluid"
-                        src={cookiechoco}
-                        alt="cookiePepiteChocolat"
-                        width={300}
-                        height={300}
-                      />
-                      <p className="align-self-center">AVIS:</p>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary col-xs-5 col-md-3 "
-                    data-bs-dismiss="modal"
-                    style={{
-                      backgroundColor: "var(--jaune)",
-                      alignSelf: "end",
-                      margin: "1rem",
-                    }}
-                  >
-                    Close
-                  </button>
-                  {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* 3e recette */}
-        <section>
-          <div style={{ padding: "0rem", marginBottom: "3rem" }}>
-            <div className="row d-flex">
-              <h2
-                className=" titreSection col-sm-10 col-md-4 col-lg-5"
-                style={{ color: "var(--marronFroid)" }}
-              >
-                {recette[8]?.titre}
-              </h2>
-              <p className="pSection col-sm-12  col-md-6 col-lg-6 ">
-                {recette[8]?.description}
-                {/* <!-- Button trigger modal --> */}
-                <button
-                  type="button"
-                  className=" btn btn-primary col-sm-1  "
-                  data-bs-toggle="modal"
-                  data-bs-target="#staticBackdrop"
-                  style={{
-                    height: "2rem",
-                    marginLeft: "1rem",
-                    backgroundColor: "var(--caramel)",
-                    color: "var(--creme)",
-                    width: "9rem",
-                    alignContent: "center",
-                  }}
-                >
-                  Voir recette
-                </button>{" "}
-              </p>
-            </div>
-
-            {/* <!-- Modal --> */}
-            <div
-              className="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabIndex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div
-                className="modal-dialog  modal-dialog-centered modal-dialog row "
-                style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
-              >
-                <div
-                  className="modal-content"
-                  style={{ color: "var(--marronRouge)", fontSize: "1.2rem" }}
-                >
-                  <div className="modal-header ">
-                    <h1 className="modal-title " id="staticBackdropLabel">
-                      {recette[8]?.titre}
-                    </h1>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 style={styles.titrePreparation}>
-                      {recette[8]?.nbPersonne}
-                    </h2>
-                    <h2 style={styles.titrePreparation}>Ingrédients:</h2>
-                    <p>{recette[8]?.ingredients}</p>
-                    <h2 style={styles.titrePreparation}>Préparation: </h2>
-                    <p>{recette[6]?.preparation}</p>
-                    <h2 style={styles.titrePreparation}>Astuce: </h2>
-                    <p>{recette[6]?.astuce}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-primary col-xs-5 col-md-3 "
-                    data-bs-dismiss="modal"
-                    style={{
-                      backgroundColor: "var(--jaune)",
-                      alignSelf: "end",
-                      margin: "1rem",
-                    }}
-                  >
-                    Close
-                  </button>
-                  {/* <button type="button" class="btn btn-primary">Understood</button> */}
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+       
 
         {/* SECTION AVIS */}
 

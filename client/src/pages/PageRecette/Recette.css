@@ -111,3 +111,33 @@
     margin-left: auto;
   }
 }
+.homeRecipesWrapper {
+  position: relative;
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.homeRecipesTitle {
+  position: sticky;
+  top: 2rem;
+  font-size: 4rem;
+  color: var(--marronRouge);
+  margin-bottom: 2rem;
+  z-index: 10;
+}
+
+.homeRecipes {
+  overflow: hidden;
+}
+
+.recetteContent {
+  display: flex;
+  gap: 4rem;
+}
+
+.recetteItem {
+  min-width: 30rem;
+  font-size: 1.6rem;
+  flex-shrink: 0; /* obligatoire pour scroll horizontal */
+}

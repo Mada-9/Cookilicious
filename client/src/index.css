@@ -1,8 +1,16 @@
+  /* * {overflow: visible !important;} */
 
-@font-face {
+ @font-face {
   font-family: "test";
-  src: url(../src/assets/fonts/Delight/OpenType-PS/Delight-ExtraBold.otf);
-}
+  src: url(../src/assets/fonts/Delight/OpenType-PS/Delight-Bold.otf);
+} 
+
+/* 
+ @font-face {
+  font-family: "test";
+  src: url(../src/assets/fonts/DominiqueRegularTrial/OpenType-PS/Dominique-Regular.otf);
+}  */
+
 @font-face {
   font-family: "varsity";
   src: url(../src/assets/fonts/varsity_team/VarsityTeam-Bold.otf);
@@ -19,22 +27,20 @@
 }
 
 @media screen and (min-width: 1140px) {
-    :root {
-        --fluid-screen: calc(var(--fluid-max-width) * 1px);
-    }
+  :root {
+    --fluid-screen: calc(var(--fluid-max-width) * 1px);
+  }
 }
-
 
 html,
 body {
   max-width: 100%;
-  font-family: 'test'!important;
+  font-family: "test" !important;
+  
 }
 
-
-
 :root {
-  --marronRouge: #73090b;  /* #880a0cff; */
+  --marronRouge: #73090b; /* #880a0cff; */
   --marronFroid: #833f3fff;
   --marronFonce: #5a1304ff;
   --marronClair: #6c3619;
@@ -43,7 +49,6 @@ body {
   --jaune: rgb(222, 146, 23);
   --creme: #fefaef;
   --caramel: #bd5505ff;
-  
 }
 
 /* body.brown {
@@ -55,20 +60,17 @@ body.creme {
   color: var(--marronRouge) !important;
 } */
 
-
 #root {
   width: 100% !important;
   max-width: 100% !important;
-
   font-size: 1rem;
   word-spacing: 5px;
   background-color: var(--creme);
   color: var(--marronRouge);
   padding: 0 !important;
-  overflow-x: hidden !important;
-  /* line-height: 200%; */
+   overflow-x: hidden !important; 
+ /* line-height: 200%; */
 }
-
 
 :root a {
   color: var(--marronRouge);
@@ -77,19 +79,29 @@ body.creme {
 a:hover {
   color: var(--jaune) !important;
 }
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show , .dropdown-item{
-    color: var(--jaune);
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show,
+.dropdown-item {
+  color: var(--jaune);
 }
 
-.dropdown-item.active, .dropdown-item:active {
-  color: var(--jaune)!important;
-  background-color: var(--creme)!important;
+.dropdown-item.active,
+.dropdown-item:active {
+  color: var(--jaune) !important;
+  background-color: var(--creme) !important;
 }
 
-/* h3{
-  font-size: 1.3rem !important;
-  text-decoration: underline;
-} */
+
+p{
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+h1{
+  font-size: 8rem !important;
+}
+
+
 /* FORMAT DESKTOP */
 
 /* @media (min-width: 1024px)  */

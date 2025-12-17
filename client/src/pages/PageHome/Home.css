@@ -1,4 +1,4 @@
-.titleHome{
+.titleHome {
   margin: 3rem;
 }
 
@@ -24,126 +24,143 @@
 
 .phraseDefilante {
   /* fontSize: isMobile ? "1rem" : "1.7rem", */
-  margin: 5rem ;
+  margin: 5rem;
   white-space: nowrap;
   display: inline-block;
-  
 }
 
-@keyframes scroll-left {
+/* @keyframes scroll-left {
   from {
     transform: translateX(50%);
   }
   to {
     transform: translateX(-100%);
   }
-}
+} */
 
 /* SECTION CATEGORIE */
+.categorie-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--marronRouge);
+}
 
+
+/* Contenu */
 .homeCategorieProduit {
-  background-color: var(--marronRouge);
-  /*  height: 33rem; */
-  flex-wrap: nowrap;
-  gap: 2rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  justify-content: center;
+  position: relative;
+  z-index: 2;
   align-items: center;
-}
-
-.phraseCategorie {
-  color: #f5edd7;
-  /* width: 40%; */
-  font-size: 3rem;
-  text-shadow: 0 0 5px var(--marronRouge);
-  line-height: 150%;
-  
-}
-
-.sectionCategorie {
-  color: #f5edd7;
-  text-shadow: 0 0 5px rgb(60, 36, 36);
-  border: var(--jaune), 3px, solid;
-  border-radius: 2%;
-  height: 29rem;
-  font-size: 3rem;
-  padding-top: 3rem;
-}
-
-.categorieUne {
-  background-image: url(https://plus.unsplash.com/premium_photo-1725384940713-45cdbbb49d94?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-  background-size: 54rem;
-  background-repeat: no-repeat;
-  background-position: 70%;
-  display: flex;
-  flex-direction: column;
-}
-.categorieDeux {
-  background-image: url(https://togetherasfamily.com/wp-content/uploads/2024/01/brookies-vertical-2.jpg);
-  background-size: 29rem;
-  background-position: 40%;
-  display: flex;
-  flex-direction: column;
-}
-
-.btnCommander {
-  margin-top: 12rem;
-  font-size: 1rem;
-  bottom: 30px;
-  padding: 10px;
   background-color: var(--marronRouge);
   color: var(--creme);
-  border: 3px var(--marronRouge) solid;
-  box-shadow: 0 0 10px black;
-  border-radius: 2%;
+  padding: 3rem;
+  margin-bottom: 5rem;
 }
 
+/* Texte */
+.phraseCategorie {
+  font-size: 3.2rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+/* Cartes catégories */
+.sectionCategorie {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* centre verticalement */
+  align-items: center;      /* centre horizontalement */
+  text-align: center;       /* texte centré */
+  height: 30rem;            /* assez haut pour le parallax */
+  background-position: center 0;
+  border-radius: 20px;
+  margin: 20px;
+  color: var(--creme);
+  will-change: background-position;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+@media (max-width: 768px) {
+  .sectionCategorie {
+    height: 25rem; /* plus petit sur mobile */
+  }
+}
+.categorieUne {
+  background-image: url(https://scientificallysweet.com/wp-content/uploads/2022/12/IMG_3394-feature.jpg);
+  background-size: 15rem;
+}
+.categorieDeux {
+  background-image: url(https://bakewithzoha.com/wp-content/uploads/2024/10/brown-butter-brookies-sliced-scaled.jpg);
+  background-size: 15rem;
+}
+.sectionCategorie:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.sectionCategorie h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Bouton style "bestia" */
+.btnCommander {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-self: center;
+}
+
+.btnCommander:hover {
+  background: #fff;
+  color: #541f1f;
+}
 /* SECTION RECETTE */
 
-.homeRecipes {
-  height: 34rem;
-  padding-top: 2rem;
-  margin-bottom: 4rem;
-  justify-content: center;
+.homeRecipesWrapper {
   position: relative;
+  padding: 6rem 2rem;
+  overflow: hidden;
 }
 
 .homeRecipesTitle {
-  /* color: " #7a2223ff", */
-  font-size: 5rem;
-  color: var(--marronRouge);
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-.recetteHome {
-  height: 22rem;
-  /* width: 42rem; */
-  border: 5px var(--caramel) solid;
+.homeRecipes {
+  overflow: hidden;
+  width: 100%;
+}
+
+.recetteContent {
   display: flex;
-  justify-content: center;
-  align-self: center;
+  gap: 2rem;
+  transition: transform 0.1s linear;
+}
+
+.recetteItem {
+  border: 2px solid var(--jaune);
+  min-width: 300px;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  text-align: center;
 }
 
 .moitieeBrookie {
+  width: 600px;
+   height: 660px;
   position: absolute;
-  width: 600px !important;
-  height:650px;
-  top: 2rem;
-  left: -19rem;
-  overflow: "hidden";
+  top: 0;
+  left: -16rem;
+  z-index: 2;
 }
 
-.btnRecette {
-  height: 2em;
-  margin-bottom: 1em;
-  font-size: 1em;
-  color: var(--creme);
-  border: 3px #976658ff solid;
-  background-color: #7a2223ff;
-  border-radius: 2%;
-  align-self: flex-end;
-  position: absolute;
-}
 
 /* SECTION JAUNE */
 .containerJaune {
@@ -184,13 +201,6 @@
     var(--bs-accordion-border-color);
 }
 
-.test{
-  position: absolute;
-  width: 14rem;
-  height: 13rem;
-  overflow: hidden;
-  margin-left: 25.5rem;
-}
 /* SECTION PRODUIT */
 
 .homeProduit {
@@ -204,7 +214,6 @@
   justify-self: center;
   font-size: 5rem;
   word-spacing: 0.5rem;
-  position: absolute;
 }
 
 .carousel-inner {
@@ -279,8 +288,7 @@
 .message {
   font-size: 2rem !important;
   color: var(--creme) !important;
-    margin-bottom: 1rem;
-
+  margin-bottom: 1rem;
 }
 
 .messageInput {
@@ -321,11 +329,8 @@
 }
 
 /* BAS DE PAGE */
-.defilantTitle {
-  width: 200rem;
-  animation: scroll-left-2 35s linear infinite;
-}
 
+/* 
 @keyframes scroll-left-2 {
   from {
     transform: translateX(1%);
@@ -333,7 +338,7 @@
   to {
     transform: translateX(-50%);
   }
-}
+} */
 
 @media (max-width: 448px) {
   .titleHome {
@@ -342,8 +347,7 @@
   }
   .phraseDefilante {
     font-size: 1rem;
-      margin: 1rem ;
-
+    margin: 1rem;
   }
   .phraseCategorie {
     font-size: 1.5rem;

@@ -38,11 +38,7 @@ const ProduitDetail = () => {
       ) : (
         <div>
           <div key={detailProduit._id}>
-            <h1
-            
-            >
-              {detailProduit.titre}
-            </h1>
+            <h1>{detailProduit.titre}</h1>
             <div
               style={{
                 padding: "2rem",
@@ -52,23 +48,23 @@ const ProduitDetail = () => {
               <img
                 className="detailProduitImg"
                 style={{ border: "2px var(--marronRouge) solid " }}
-                src={detailProduit.photo } 
+                src={detailProduit.photo}
                 alt={detailProduit.titre}
                 width={300}
                 height={300}
               />
               <div style={{ padding: "2rem" }}>
                 <p>{detailProduit.description}</p>
-                                <p>{detailProduit.prix}€</p>
-
+                <p>{detailProduit.ingredients}</p>
+                <p>{detailProduit.prix}€</p>
               </div>
             </div>
           </div>
         </div>
       )}
-       <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/produit">Retours aux produits</Link>{" "}
-        </button>
+      <button style={{ display: "flex", justifyContent: "center" }}>
+        <Link to="/admin/produit">Retours aux produits</Link>{" "}
+      </button>
     </>
   );
 };

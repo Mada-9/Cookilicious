@@ -1,7 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import axiosinstance from "../../utils/axios/axiosinstance";
+//animation
+import ScrollTrigger from "gsap/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger);
 
 // PAGES  ET URL
 import URL from "../../utils/constant/url";
@@ -15,6 +19,7 @@ const PageHome = ({}) => {
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  
 
   // MEDIA QUERY
 
@@ -111,83 +116,92 @@ const PageHome = ({}) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  // PARALLAX
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+
+      document.querySelectorAll(".sectionCategorie").forEach((el) => {
+        // parallax subtil
+        el.style.backgroundPosition = `center ${scrollY * 0.3}px`;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       <div className="home">
-      
-            <h1 style={styles.titleHome} className="titleHome">
-              COOKILICIOUS
-            </h1>
-            <div className="imageHome" onClick={() => navigate("/cookies")}>
-              <img
-                className="imagesHome"
-                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-                alt="COOKIE"
-              />
-              <img
-                className="imagesHome"
-                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-                alt="COOKIE"
-              />
-              <img
-                className="imagesHome"
-                src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-                alt="COOKIE"
-              />
-            </div>
-            <div className="defilantContainer">
-              <p className="phraseDefilante">
-                Des cookies & brookies uniques faits maison pour succomber à la
-                tentation.
-              </p>
-            </div>
+        <h1 style={styles.titleHome} className="titleHome">
+          COOKILICIOUS
+        </h1>
+        <div className="imageHome" onClick={() => navigate("/cookies")}>
+          <img
+            className="imagesHome"
+            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+            alt="COOKIE"
+          />
+          <img
+            className="imagesHome"
+            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+            alt="COOKIE"
+          />
+          <img
+            className="imagesHome"
+            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+            alt="COOKIE"
+          />
+        </div>
+        <div className="defilantContainer">
+          <p className="phraseDefilante">
+            Des cookies & brookies uniques faits maison pour succomber à la
+            tentation.
+          </p>
+        </div>
 
-        <div className="homeCategorieProduit row ">
-          <h2 className="phraseCategorie  col-lg-4 col-lg-2 ">
-            Parcourez nos différentes catégories, <br /> et <br /> laissez vous
-            succomber...
+        <div className="homeCategorieProduit row">
+          <h2 className="phraseCategorie col-12 col-lg-5">
+            Parcourez nos différentes catégories,
+            <br />
+            et
+            <br />
+            laissez-vous succomber…
           </h2>
 
-          <section className="sectionCategorie  categorieUne  col-md-5 col-lg-3 ">
-            COOKIES
+          <section className="sectionCategorie categorieUne col-12 col-md-6 col-lg-3">
+            <h3>COOKIES</h3>
             <Link to="/cookies">
               <button className="btnCommander">Commander</button>
             </Link>
           </section>
-          <section className="sectionCategorie categorieDeux col-md-5 col-lg-3 ">
-            BROOKIES
+
+          <section className="sectionCategorie categorieDeux col-12 col-md-6 col-lg-3">
+            <h3>BROOKIES</h3>
             <Link to="/brookies">
-              {/*  HASHLINK  NE FONCTIONNE PAS*/}
               <button className="btnCommander">Commander</button>
             </Link>
           </section>
         </div>
 
-        <div className="homeRecipes text-center ">
-          <h2 className="homeRecipesTitle col-lg-12  ">Testez nos recettes</h2>
-          <div className="row mx-auto  px-3">
-            <div className="recetteHome mx-auto col-lg-6  ">
-              (mettre slide recettes )
-              {/* {recette.map((item) => (
-              <p>{item.titre}</p>
-            ))} */}
-              <button
-                onClick={() => navigate("/recette")}
-                className="btnRecette col-sm-4"
-              >
-                Je découvre !
-              </button>
-            </div>
+         <section className="homeRecipesWrapper">
+      <img
+        className="moitieeBrookie"
+        src="https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
+        alt="cookies pistache"
+      />
+      <h2 className="homeRecipesTitle">Testez nos recettes</h2>
 
-            <img
-              className="moitieeBrookie  "
-              src={
-                "https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
-              }
-              alt="cookies pistache"
-            />
-          </div>
+      <div className="homeRecipes">
+        <div className="recetteContent" >
+          <div className="recetteItem">Testez nos recettes gourmandes</div>
+          <div className="recetteItem">Des recettes testées et approuvées!</div>
+          <div className="recetteItem">Le plaisir du fait maison</div>
+          <div className="recetteItem">Encore plus de gourmandises</div>
         </div>
+      </div>
+    </section>
         <div className="containerJaune ">
           <h3 className="jauneP">F.A.Q</h3>{" "}
           <div>
@@ -205,7 +219,7 @@ const PageHome = ({}) => {
                     aria-expanded="false"
                     aria-controls="flush-collapseOne"
                   >
-                    Quels sont les délais de livraison ? 
+                    Quels sont les délais de livraison ?
                   </button>
                 </h2>
                 <div
@@ -280,7 +294,7 @@ const PageHome = ({}) => {
               id="carouselProduit"
               data-bs-ride="carousel"
             >
-              <div className="carousel-inner mx-auto row ">
+              <div className="carousel-inner">
                 {produit
                   .filter((_, i) => i % 4 === 0) // on prend un produit sur 4 = début d'une diapo
                   .map((_, i) => (
@@ -424,17 +438,7 @@ const PageHome = ({}) => {
         <button className="btnBackToTop" onClick={scrollToTop}>
           Retour en haut
         </button>
-        <p className="defilantTitle">
-          COOKILIOUS <span> . </span> COOKILIOUS <span> . </span>COOKILIOUS
-          <span> . </span>COOKILIOUS <span> . </span>COOKILIOUS <span> . </span>
-          COOKILIOUS <span> . </span>COOKILIOUS <span> . </span>COOKILIOUS
-          <span> . </span>COOKILIOUS<span> . </span>COOKILIOUS<span> . </span>
-          COOKILIOUS<span> . </span>COOKILIOUS<span> . </span>COOKILIOUS
-          <span> . </span>COOKILIOUS<span> . </span>COOKILIOUS<span> . </span>
-          COOKILIOUS<span> . </span>COOKILIOUS<span> . </span>COOKILIOUS
-          <span> . </span>COOKILIOUS<span> . </span>COOKILIOUS<span> . </span>
-          COOKILIOUS<span> . </span>COOKILIOUS
-        </p>
+        <p className="defilantTitle">COOKILIOUS</p>
       </div>
     </>
   );

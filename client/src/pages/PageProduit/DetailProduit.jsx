@@ -77,40 +77,36 @@ const DetailProduit = () => {
         </ol>
       </nav>
 
-      {!detailProduit ? (
-        <p>Chargement</p>
-      ) : (
-        <div>
-          <div key={detailProduit._id}>
-            <p
-              style={{
-                color: "var(--creme)",
-                // backgroundColor: " #67200dff",
-                backgroundColor: "var(--marronRouge)",
-                height: "6rem",
-                alignContent: "center",
-                fontSize: "3.5rem",
-                width: "90%",
-              }}
-            >
-              {detailProduit.titre}
-            </p>
-            <div
-              style={{
-                display: "flex",
-                padding: "3rem",
-                justifyContent: "center",
-              }}
-            >
-              <img
-                className="detailProduitImg"
-                style={{ border: "5px var(--marronRouge) solid " }}
-                src={detailProduit.photo}
-                alt={detailProduit.titre}
-                width={460}
-                height={460}
-              />
-              <div style={{ padding: "3rem" }}>
+      <div style={{}}>
+        {!detailProduit ? (
+          <p>Chargement...</p>
+        ) : (
+          <div>
+            <div key={detailProduit._id} style={{ padding: "3rem" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyItems: "center",
+                  paddingBottom: "2rem",
+                }}
+                className=""
+              >
+                <h2 style={{ fontSize: "3rem" }} className="">
+                  {detailProduit.titre}
+                </h2>
+                <img
+                  className="detailProduitImg "
+                  style={{
+                    display: "flex",
+                    justifySelf: "center",
+                    alignSelf: "center",
+                  }}
+                  src={detailProduit.photo}
+                  alt={detailProduit.titre}
+                  width={460}
+                  height={460}
+                />
+                {/* <div style={{ padding: "3rem" }}>
                 <div style={{ fontSize: "1rem", display: "flex", gap: "1rem" }}>
                   <p style={{ fontSize: "2rem" }}> {detailProduit.prix} €</p>
                   <button onClick={() => decremente(index)}>-</button>
@@ -123,68 +119,134 @@ const DetailProduit = () => {
                   <button onClick={() => incremente(index)}>+</button>
                 </div>
                 <p>{detailProduit.description}</p>
+                
+              </div> */}{" "}
+                <h3 className="" style={{ paddingLeft: "10rem" }}>
+                  {detailProduit.prix}€
+                </h3>
+                
+                  <Link  style={{
+                    background: "transparent",
+                    border: "1px solid var(--marronFroid)",
+                    color: "var(--marronRouge)",
+                    padding: "12px 28px",
+                    marginLeft: "1rem",
+                    borderRadius: " 50px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    justifySelf: "center",
+                    alignContent:"center",
+                    textAlign:"center",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => addPanier(detailProduit)}> Ajouter au panier</Link>
+            
+              </div>
+              <div
+                style={{ paddingBottom: "3rem", display: "flex", gap: "3rem" }}
+              >
+                <p className="">{detailProduit.description}</p>
+
                 <button
                   style={{
-                    width: "30rem",
-                    height: "3rem",
-                    fontSize: "1.5rem",
-                    color: "var(--creme)",
-                    border: "var(--marronRouge) 3px solid",
-                    backgroundColor: "var(--jaune)",
-                    type: "submit",
+                    background: "transparent",
+                    border: "1px solid var(--marronFroid)",
+                    color: "var(--marronRouge)",
+                    padding: "12px 28px",
+                    borderRadius: " 50px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    justifySelf: "center",
+                    fontSize: "1rem",
                   }}
-                  onClick={() => addPanier(detailProduit)}
+                  onClick={() => decremente(index)}
                 >
-                  Ajouter au panier
+                  -
+                </button>
+                <p style={{ fontSize: "1rem" }}>{produit.index}6</p>
+                <button
+                  style={{
+                    background: "transparent",
+                    border: "1px solid var(--marronFroid)",
+                    color: "var(--marronRouge)",
+                    padding: "12px 28px",
+                    borderRadius: " 50px",
+                    cursor: "pointer",
+                    transition: "all 0.3s ease",
+                    justifySelf: "center",
+                    fontSize: "1rem",
+                  }}
+                  onClick={() => incremente(index)}
+                >
+                  +
                 </button>
               </div>
+              <p
+                style={{
+                  borderTop: "3px solid var(--marronRouge)",
+                  paddingTop: "2rem",
+                }}
+              >
+                {" "}
+                Ingrédients :
+                <br />
+                {detailProduit.ingredients}
+              </p>
             </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div style={{ padding: "3rem" }}>
-        <h2
-          style={{
-            textAlign: "left",
-            borderBottom: "3px solid var(--marronRouge)",
-            width: "50rem",
-          }}
-        >
-          Vous aimeriez aussi
-        </h2>
-        <div
-          style={{
-            justifySelf: "left",
-            display: "flex",
-            gap: "3rem",
-            marginTop: "2rem",
-          }}
-        >
-          <div
-            style={{ border: "5px var(--marronRouge) solid ", width: "13rem" }}
+        <div style={{ padding: "3rem", marginTop: "20rem" }}>
+          <h2
+            style={{
+              textAlign: "left",
+              borderBottom: "3px solid var(--marronRouge)",
+              width: "50rem",
+            }}
           >
-            <img
-              src={produit[7]?.photo}
-              alt={produit.titre}
-              width={160}
-              height={160}
-            />
-            <p>{produit[7]?.titre}</p>
-            <p>{produit[7]?.prix}</p>
-            <button onClick={() => navigate(`/#/${produit._id}`)}>voir</button>
-          </div>
+            Vous aimeriez aussi
+          </h2>
           <div
-            style={{ border: "5px var(--marronRouge) solid ", width: "13rem" }}
+            style={{
+              justifySelf: "left",
+              display: "flex",
+              gap: "3rem",
+              marginTop: "2rem",
+            }}
           >
-            <img
-              src={produit[6]?.photo}
-              alt={produit.titre}
-              width={160}
-              height={160}
-            />
-            <p>{produit[6]?.titre}</p>
-            <p>{produit[6]?.prix}</p>
+            <div
+              style={{
+                border: "5px var(--marronRouge) solid ",
+                width: "13rem",
+              }}
+            >
+              <img
+                src={produit[7]?.photo}
+                alt={produit.titre}
+                width={160}
+                height={160}
+              />
+              <p>{produit[7]?.titre}</p>
+              <p>{produit[7]?.prix}</p>
+              <button onClick={() => navigate(`/#/${produit._id}`)}>
+                voir
+              </button>
+            </div>
+            <div
+              style={{
+                border: "5px var(--marronRouge) solid ",
+                width: "13rem",
+              }}
+            >
+              <img
+                src={produit[6]?.photo}
+                alt={produit.titre}
+                width={160}
+                height={160}
+              />
+              <p>{produit[6]?.titre}</p>
+              <p>{produit[6]?.prix}</p>
+            </div>
           </div>
         </div>
       </div>

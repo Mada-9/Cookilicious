@@ -28,22 +28,20 @@ const Brookies = () => {
 
   return (
     <div className="produit">
-      <section
-        className="enteteProduit"
-        style={{ color: "var(--creme)", width: "100%" }}
-      >
+      <section className="enteteProduit" style={{ width: "100%" }}>
         <h1
           className="titlePageProduit"
           style={{
             textAlign: "center",
+            marginLeft: "3rem",
+            paddingTop: "5rem",
           }}
         >
           Nos Brookies
         </h1>
-       
       </section>
 
-      <nav aria-label="breadcrumb" style={{marginTop:"3rem"}}>
+      <nav aria-label="breadcrumb" style={{ marginTop: "3rem" }}>
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
             <Link to href="/" style={{ width: "3rem" }}>
@@ -56,21 +54,19 @@ const Brookies = () => {
           </li>
         </ol>
       </nav>
-      <p
-        className="introPageProduit"
-        style={{ color: "var(--marronRouge)", fontSize: "1rem",  margin:"3rem", textAlign:"center" }}
-      >
+      <p className="introPageProduit">
         Laissez-vous tenter par nos brookies fondants et croquants, préparés
         chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
         réunit le meilleur du brownie et du cookie.
       </p>
 
-      <div className="sectionBrookie" style={{ marginBottom: "8rem" }}>
+      <div className="sectionBrookie">
         <div className="produitContainer2 ">
           {produit.map(
             (item, index) =>
               index > 8 && (
                 <div key={item._id} className="produit2">
+                  <p className="titreProduit2">{item.titre}</p>{" "}
                   <img
                     style={{
                       padding: "1px",
@@ -80,35 +76,8 @@ const Brookies = () => {
                     width={235}
                     height={235}
                   />
-
-                  <p
-                    style={{
-                      fontSize: "1rem",
-                      margin: "0",
-                      borderBottom: "var(--marronRouge) 3px solid",
-                    }}
-                  >
-                    {item.titre}
-                  </p>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: " 5rem",
-                      paddingLeft: "1rem",
-                      paddingRight: "1rem",
-                    }}
-                  >
-                    <p
-                      style={{
-                        fontSize: "1.5rem",
-                        marginTop: "1.5rem",
-                        display: "flex",
-                      }}
-                    >
-                      {item.prix}€
-                    </p>
+                  <div className="prixBtn">
+                    <p>{item.prix}€</p>
                     <button
                       onClick={() => navigate(`/detail/${item._id}`)}
                       className="btnDetail"
@@ -124,7 +93,7 @@ const Brookies = () => {
       <Link
         to="/cookies"
         className="btnNavCookies"
-        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem", }}
+        style={{ marginBottom: "5rem", marginLeft: "2rem", width: "13rem" }}
       >
         Voir nos cookies
       </Link>

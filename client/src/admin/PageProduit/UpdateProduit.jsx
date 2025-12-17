@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import URL from "../../utils/constant/url";
 import axiosinstance from "../../utils/axios/axiosinstance";
-import {  Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-
 
 const UpdateProduit = () => {
   const [produit, setProduit] = useState({
     titre: "",
     description: "",
+    ingredients: "",
     prix: "",
     photo: "",
   });
@@ -49,9 +49,9 @@ const UpdateProduit = () => {
         `${URL.UPDATE_PRODUIT}/${id}`,
         produit
       );
-      if (status === 200) {    toast.success("Produit modifié");
-
+      if (status === 200) {
         setProduit(data);
+        toast.success("Produit updated");
       }
       console.log("Produit ajouté !");
     } catch (error) {
@@ -111,6 +111,17 @@ const UpdateProduit = () => {
             type="text"
             name="description"
             value={produit.description}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="ingredients" className="my-3">
+            Ingrédients :{" "}
+          </label>
+          <input
+            id="ingredients"
+            type="text"
+            name="ingredients"
+            value={produit.ingredients}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />

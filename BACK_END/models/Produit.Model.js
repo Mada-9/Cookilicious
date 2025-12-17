@@ -14,6 +14,10 @@ const Produit = mongoose.Schema(
       type: String, 
       required: true, 
     },
+    ingredients: { 
+      type: String, 
+      required: true, 
+    },
      photo: { 
       type: String, 
       required: true, 

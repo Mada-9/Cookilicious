@@ -9,6 +9,9 @@ import stripePromise from "./utils/services/Stripe";
 
 import "react-toastify/dist/ReactToastify.css";
 
+
+
+
 //PAGES CLIENT
 
 import Home from "./pages/PageHome/Home";

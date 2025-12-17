@@ -41,9 +41,8 @@ const PagePanier = () => {
       <div className="px-5 ">
         <h1 className="panierTitle">Panier</h1>
         <div className="produitsPanier row ">
-        {panier ? (
-          <div className="container ">
-            
+          {panier ? (
+            <div className="container ">
               {panier.map((produit, index) => (
                 <div key={index} className="mapProduit mx-auto px-5">
                   <div className="imgTitrePanier">
@@ -54,7 +53,7 @@ const PagePanier = () => {
                   <div className="actionPanier">
                     <div className="prixQuantity">
                       <p>
-                        Prix: 
+                        Prix:
                         {priceProduitByQuantity(produit.prix, produit.quantite)}
                         €
                       </p>
@@ -65,7 +64,10 @@ const PagePanier = () => {
                       </div>
                     </div>
                     <div>
-                      <button  className="btnSupprimer" onClick={() => removeProduit(produit)}>
+                      <button
+                        className="btnSupprimer"
+                        onClick={() => removeProduit(produit)}
+                      >
                         <i className="bi bi-x-lg"> supprimer du panier </i>
                       </button>
                     </div>
@@ -80,10 +82,10 @@ const PagePanier = () => {
                 Passer la commande ({totalProduit()} produits)
               </button>
             </div>
-         
-        ) : (
-          <p>panier vide </p>
-        )} </div>
+          ) : (
+            <p>panier vide </p>
+          )}{" "}
+        </div>
       </div>
     </div>
   );

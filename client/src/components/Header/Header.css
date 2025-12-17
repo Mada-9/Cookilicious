@@ -22,11 +22,11 @@
 .offcanvas.offcanvas-start {
   background-color: var(--creme);
 }
-
-a.nav-link {
+*/
+ a.nav-link {
   justify-self: left;
   padding-left: 2rem;
-}
+}  
 /* 
 .panier {
   margin-left: 2rem;
@@ -34,5 +34,5 @@ a.nav-link {
 
 .monheader,
 li {
-  padding: 0 0;
-}
+  padding: 0 0;}
+
