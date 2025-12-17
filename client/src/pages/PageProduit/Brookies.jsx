@@ -2,12 +2,18 @@ import { useState, useEffect } from "react";
 import URL from "../../utils/constant/url";
 import { useNavigate, Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 
 import "./Produit.css"; // CSS spécifique
 
 const Brookies = () => {
   const navigate = useNavigate();
   const [produit, setProduit] = useState([]);
+    const { scrollY } = useScroll();
+
+  // plus on scroll, plus ça monte lentement
+  const ySlow = useTransform(scrollY, [0, 600], [0, -120]);
 
   useEffect(() => {
     getAllProduits();
@@ -54,6 +60,9 @@ const Brookies = () => {
           </li>
         </ol>
       </nav>
+
+            <motion.section style={{ y: ySlow }}>
+
       <p className="introPageProduit">
         Laissez-vous tenter par nos brookies fondants et croquants, préparés
         chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
@@ -78,11 +87,11 @@ const Brookies = () => {
                   />
                   <div className="prixBtn">
                     <p>{item.prix}€</p>
-                    <button
-                      onClick={() => navigate(`/detail/${item._id}`)}
+                      <button
                       className="btnDetail"
-                    >
-                      VOIR
+                      data-back="Je le veux" data-front="Je le veux"
+                      onClick={() => navigate(`/detail/${item._id}`)}
+                    > 
                     </button>
                   </div>
                 </div>
@@ -90,6 +99,7 @@ const Brookies = () => {
           )}
         </div>
       </div>
+      </motion.section>
       <Link
         to="/cookies"
         className="btnNavCookies"

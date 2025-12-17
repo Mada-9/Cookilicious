@@ -1,6 +1,6 @@
 .titrePageRecette {
   color: var(--creme);
-      background-color: var(--jaune);
+  background-color: var(--jaune);
 
   font-size: 9rem;
   text-align: left;
@@ -102,8 +102,6 @@
   padding: "3rem" s;
 }
 
-
-
 @media (max-width: 576px) {
   .modal-dialog {
     max-width: 500px;
@@ -111,33 +109,20 @@
     margin-left: auto;
   }
 }
-.homeRecipesWrapper {
-  position: relative;
-  padding: 4rem 2rem;
-  min-height: 100vh;
-  overflow: hidden;
-}
 
-.homeRecipesTitle {
-  position: sticky;
-  top: 2rem;
-  font-size: 4rem;
-  color: var(--marronRouge);
-  margin-bottom: 2rem;
+.titreAnimRecette {
+  font-size: 6rem;
+  color: var(--jaune);
+  padding-left: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
 }
 
-.homeRecipes {
-  overflow: hidden;
-}
 
-.recetteContent {
-  display: flex;
-  gap: 4rem;
-}
-
-.recetteItem {
-  min-width: 30rem;
-  font-size: 1.6rem;
-  flex-shrink: 0; /* obligatoire pour scroll horizontal */
-}
+ .titrePreparation{
+    justify-self: center;
+    margin: 3rem;
+    color: var(--jaune);
+  }

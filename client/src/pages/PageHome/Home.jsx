@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import axiosinstance from "../../utils/axios/axiosinstance";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 //animation
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -19,7 +21,11 @@ const PageHome = ({}) => {
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  
+    const { scrollY } = useScroll();
+
+  // plus on scroll, plus ça monte lentement
+  const ySlow = useTransform(scrollY, [0, 900], [0, -90]);
+
 
   // MEDIA QUERY
 
@@ -137,6 +143,8 @@ const PageHome = ({}) => {
         <h1 style={styles.titleHome} className="titleHome">
           COOKILICIOUS
         </h1>
+                                    <motion.section style={{ y: ySlow }}>
+
         <div className="imageHome" onClick={() => navigate("/cookies")}>
           <img
             className="imagesHome"
@@ -153,7 +161,7 @@ const PageHome = ({}) => {
             src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
             alt="COOKIE"
           />
-        </div>
+        </div></motion.section>
         <div className="defilantContainer">
           <p className="phraseDefilante">
             Des cookies & brookies uniques faits maison pour succomber à la

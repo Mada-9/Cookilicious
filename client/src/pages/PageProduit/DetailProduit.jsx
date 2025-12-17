@@ -3,6 +3,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import { PanierContext } from "../../utils/context/PanierContext";
 import axiosinstance from "../../utils/axios/axiosinstance";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 
 const DetailProduit = () => {
   const {
@@ -20,6 +22,10 @@ const DetailProduit = () => {
   const { id } = params;
   const [detailProduit, setDetailProduit] = useState(null);
   const [produit, setProduit] = useState([]);
+     const { scrollY } = useScroll();
+
+  // plus on scroll, plus ça monte lentement
+  const ySlow = useTransform(scrollY, [0, 600], [0, -90]);
 
   useEffect(() => {
     if (id) {
@@ -94,6 +100,8 @@ const DetailProduit = () => {
                 <h2 style={{ fontSize: "3rem" }} className="">
                   {detailProduit.titre}
                 </h2>
+                            <motion.section style={{ y: ySlow }}>
+
                 <img
                   className="detailProduitImg "
                   style={{
@@ -105,7 +113,7 @@ const DetailProduit = () => {
                   alt={detailProduit.titre}
                   width={460}
                   height={460}
-                />
+                />  </motion.section>
                 {/* <div style={{ padding: "3rem" }}>
                 <div style={{ fontSize: "1rem", display: "flex", gap: "1rem" }}>
                   <p style={{ fontSize: "2rem" }}> {detailProduit.prix} €</p>
@@ -121,70 +129,83 @@ const DetailProduit = () => {
                 <p>{detailProduit.description}</p>
                 
               </div> */}{" "}
-                <h3 className="" style={{ paddingLeft: "10rem" }}>
+                <h2
+                  className=""
+                  style={{ paddingLeft: "9rem", paddingRight: "1rem" }}
+                >
                   {detailProduit.prix}€
-                </h3>
-                
-                  <Link  style={{
+                </h2>
+                <Link
+                  style={{
                     background: "transparent",
                     border: "1px solid var(--marronFroid)",
                     color: "var(--marronRouge)",
                     padding: "12px 28px",
-                    marginLeft: "1rem",
                     borderRadius: " 50px",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
                     justifySelf: "center",
-                    alignContent:"center",
-                    textAlign:"center",
+                    alignContent: "center",
+                    textAlign: "center",
                     fontSize: "1rem",
                   }}
-                  onClick={() => addPanier(detailProduit)}> Ajouter au panier</Link>
-            
+                  className="btnFlip"
+                  data-back="Back"
+                  data-front="Front"
+                  onClick={() => addPanier(detailProduit)}
+                >
+                  {" "}
+                  Ajouter au panier
+                </Link>
               </div>
               <div
                 style={{ paddingBottom: "3rem", display: "flex", gap: "3rem" }}
               >
-                <p className="">{detailProduit.description}</p>
-
-                <button
-                  style={{
-                    background: "transparent",
-                    border: "1px solid var(--marronFroid)",
-                    color: "var(--marronRouge)",
-                    padding: "12px 28px",
-                    borderRadius: " 50px",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    justifySelf: "center",
-                    fontSize: "1rem",
-                  }}
-                  onClick={() => decremente(index)}
+                <p className="col-9">{detailProduit.description}</p>
+                <div
+                  className="btnQuantite col-3"
+                  style={{ display: "flex", gap: "1rem" }}
                 >
-                  -
-                </button>
-                <p style={{ fontSize: "1rem" }}>{produit.index}6</p>
-                <button
-                  style={{
-                    background: "transparent",
-                    border: "1px solid var(--marronFroid)",
-                    color: "var(--marronRouge)",
-                    padding: "12px 28px",
-                    borderRadius: " 50px",
-                    cursor: "pointer",
-                    transition: "all 0.3s ease",
-                    justifySelf: "center",
-                    fontSize: "1rem",
-                  }}
-                  onClick={() => incremente(index)}
-                >
-                  +
-                </button>
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "1px solid var(--marronFroid)",
+                      color: "var(--marronRouge)",
+                      padding: "12px 28px",
+                      borderRadius: " 50px",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      justifySelf: "center",
+                      fontSize: "1rem",
+                    }}
+                    onClick={() => decremente(index)}
+                  >
+                    -
+                  </button>
+                  <p style={{ fontSize: "1rem" }}>{produit.index}6</p>
+                  <button
+                    style={{
+                      background: "transparent",
+                      border: "1px solid var(--marronFroid)",
+                      color: "var(--marronRouge)",
+                      padding: "12px 28px",
+                      borderRadius: " 50px",
+                      cursor: "pointer",
+                      transition: "all 0.3s ease",
+                      justifySelf: "center",
+                      fontSize: "1rem",
+                    }}
+                    onClick={() => incremente(index)}
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <p
                 style={{
                   borderTop: "3px solid var(--marronRouge)",
                   paddingTop: "2rem",
+                  marginBottom: "20rem",
                 }}
               >
                 {" "}
@@ -196,7 +217,7 @@ const DetailProduit = () => {
           </div>
         )}
 
-        <div style={{ padding: "3rem", marginTop: "20rem" }}>
+        {/* <div style={{ padding: "3rem", marginTop: "20rem" }}>
           <h2
             style={{
               textAlign: "left",
@@ -248,8 +269,9 @@ const DetailProduit = () => {
               <p>{produit[6]?.prix}</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
+    
     </>
   );
 };

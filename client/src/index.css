@@ -34,8 +34,17 @@
 
 html,
 body {
-  max-width: 100%;
   font-family: "test" !important;
+    width: 100% !important;
+  max-width: 100% !important;
+  font-size: 1rem;
+  word-spacing: 5px;
+  background-color: var(--creme) !important;
+  color: var(--marronRouge) !important;
+  padding: 0 !important;
+   overflow-x: hidden !important; 
+ /* line-height: 200%; */
+ 
   
 }
 
@@ -60,17 +69,9 @@ body.creme {
   color: var(--marronRouge) !important;
 } */
 
-#root {
-  width: 100% !important;
-  max-width: 100% !important;
-  font-size: 1rem;
-  word-spacing: 5px;
-  background-color: var(--creme);
-  color: var(--marronRouge);
-  padding: 0 !important;
-   overflow-x: hidden !important; 
- /* line-height: 200%; */
-}
+/* #root {
+
+} */
 
 :root a {
   color: var(--marronRouge);
