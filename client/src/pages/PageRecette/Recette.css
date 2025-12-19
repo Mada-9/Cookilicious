@@ -2,15 +2,18 @@
   color: var(--creme);
   background-color: var(--jaune);
 
-  font-size: 9rem;
+  font-size: 10rem !important;
   text-align: left;
-  height: 18.4rem;
+  height: 21rem;
   padding-left: 1rem;
+  margin-bottom: 2rem;
+  background-image: url(../../assets/images/cookiedough.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-.phraseIntro {
+ .phraseIntro {
   text-align: justify;
-  margin-top: 7.8rem;
+  margin-top: 5rem;
   margin-bottom: 14px;
 }
 
@@ -102,27 +105,163 @@
   padding: "3rem" s;
 }
 
-@media (max-width: 576px) {
-  .modal-dialog {
-    max-width: 500px;
-    margin-right: auto;
-    margin-left: auto;
-  }
+.titrePreparation {
+  justify-self: center;
+  margin: 3rem;
+  color: var(--jaune);
 }
 
 .titreAnimRecette {
-  font-size: 6rem;
+  /* font-size: 6rem; */
   color: var(--jaune);
   padding-left: 2rem;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 10;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  line-height: 1.1;
+  max-width: 400px;
 }
 
+.homeRecipesWrapper {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  margin-bottom: 10rem;
+}
 
- .titrePreparation{
+.animRecette {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10vh;
+  padding-left: 35vw !important; /* Espace pour le titre fixe */
+  justify-content: start !important;
+  position: relative !important;
+  z-index: 10 !important;
+  pointer-events: auto !important;
+}
+
+.recetteContent {
+  min-height: 400px;
+  width: 45rem;
+  flex-direction: column;
+  cursor: pointer;
+  flex-shrink: 0;
+  text-align: justify;
+  position: relative;
+  z-index: 100;
+  pointer-events: auto;
+}
+
+.titreRecetteContent {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.btnVoirRecette {
+  width: 30rem;
+  background: var(--marronRouge);
+  border: 1px solid var(--marronFroid);
+  color: var(--creme);
+  padding: 12px 28px;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  justify-self: center;
+  font-size: 1rem;
+  position: relative !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.vosAvis {
+  font-size: 5rem;
+  justify-self: center;
+  margin-bottom: 3rem;
+}
+
+.vosAvisSection {
+  display: flex;
+  text-align: "left";
+  margin-bottom: 2.5rem;
+}
+
+.vosAvisCommentaire {
+  text-align: left;
+  gap: 1rem;
+}
+
+.btnPublier {
+  width: 50% !important;
+  background: var(--jaune);
+  border: 1px solid var(--marronFroid);
+  color: var(--creme);
+  padding: 12px 28px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+/* responsive animation */
+@media (max-width: 768px) {
+  .homeRecipesWrapper {
+    height: auto; /* 🔑 */
+    overflow: visible; /* 🔑 */
+    position: static; /* 🔑 */
     justify-self: center;
-    margin: 3rem;
-    color: var(--jaune);
+    margin-bottom: 0rem;
   }
+
+  .titreAnimRecette {
+    position: static; /* le titre redevient normal */
+    transform: none;
+    margin-bottom: 2rem;
+    max-width: 100%;
+    text-align: center;
+    font-size: 4rem;
+  }
+
+  .animRecette {
+    padding-left: 0 !important; /* plus d’espace réservé */
+    padding-top: 2rem;
+  }
+
+  .titreRecetteContent {
+    font-size: 2rem !important;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+  .recetteContent {
+    margin-bottom: 3rem;
+    width: auto !important;
+    margin-right: 0;
+  }
+  .recetteContent p {
+    margin: 0rem;
+  }
+  .btnVoirRecette {
+    width: 100% !important; /* boutons mobile-friendly */
+    max-width: 100%;
+    margin-bottom: 3rem;
+    z-index: 10 !important;
+  }
+
+  .homeRecipesWrapper,
+  .animRecette,
+  .recetteContent {
+    z-index: auto;
+  }
+
+  .vosAvisSection {
+    display: flex;
+    flex-direction: column;
+  }
+  .vosAvisCommentaire {
+    text-align: justify !important;
+  }
+  .vosAvisImg {
+    border: "1px solid var(--marron)";
+  }
+}

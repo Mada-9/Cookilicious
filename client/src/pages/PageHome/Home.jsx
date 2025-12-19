@@ -15,17 +15,20 @@ import URL from "../../utils/constant/url";
 //CSS
 import "./Home.css"; // CSS spécifique
 
+//IMAGE
+
+import cookiebananepecan from "../../assets/images/copeauxchocolat.webp";
+
 const PageHome = ({}) => {
   const navigate = useNavigate();
   const [produit, setProduit] = useState([]);
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-    const { scrollY } = useScroll();
+  const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 900], [0, -90]);
-
 
   // MEDIA QUERY
 
@@ -56,7 +59,7 @@ const PageHome = ({}) => {
         : isTabletL
         ? "7rem"
         : isDesktop
-        ? "9rem"
+        ? "10rem"
         : "3rem",
     },
 
@@ -143,73 +146,74 @@ const PageHome = ({}) => {
         <h1 style={styles.titleHome} className="titleHome">
           COOKILICIOUS
         </h1>
-                                    <motion.section style={{ y: ySlow }}>
-
-        <div className="imageHome" onClick={() => navigate("/cookies")}>
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-          <img
-            className="imagesHome"
-            src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-            alt="COOKIE"
-          />
-        </div></motion.section>
+        <motion.section style={{ y: ySlow }}>
+          <div className="imageHome" onClick={() => navigate("/cookies")}>
+            <img
+              className="imagesHome"
+              src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+              alt="COOKIE"
+            />
+            <img
+              className="imagesHome"
+              src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+              alt="COOKIE"
+            />
+            <img
+              className="imagesHome"
+              src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+              alt="COOKIE"
+            />
+          </div>
+        </motion.section>
         <div className="defilantContainer">
           <p className="phraseDefilante">
-            Des cookies & brookies uniques faits maison pour succomber à la
-            tentation.
+            Irrésistible  100% fait maison
+           Texture fondante & cœur gourmand
+             Préparé chaque jour
           </p>
         </div>
+{/* 
+        <section className="homeSignaturePremium">
+          <div className="divHomeSignature">
+          <h1>Des Cookies & <br />Brookies  uniques  Irrésistibles   </h1> 
+            
+    
+          </div>
+        </section> */}
 
         <div className="homeCategorieProduit row">
-          <h2 className="phraseCategorie col-12 col-lg-5">
-            Parcourez nos différentes catégories,
+          <h2 className="phraseCategorie col-4 ">
+            Des Cookies & Brookies 
+            <br />uniques <br /> & <br /> irrésitibles
+            
             <br />
-            et
-            <br />
-            laissez-vous succomber…
+            <h3> Laissez-vous succomber…</h3>
+
           </h2>
+            <section className="sectionCategorie categorieUne col-3">
+              <h2>COOKIES</h2>
+              <Link to="/cookies">
+                <button className="btnCommander">Commander</button>
+              </Link>
+            </section>
 
-          <section className="sectionCategorie categorieUne col-12 col-md-6 col-lg-3">
-            <h3>COOKIES</h3>
-            <Link to="/cookies">
-              <button className="btnCommander">Commander</button>
-            </Link>
-          </section>
-
-          <section className="sectionCategorie categorieDeux col-12 col-md-6 col-lg-3">
-            <h3>BROOKIES</h3>
-            <Link to="/brookies">
-              <button className="btnCommander">Commander</button>
-            </Link>
-          </section>
+            <section className="sectionCategorie categorieDeux col-3">
+              <h2>BROOKIES</h2>
+              <Link to="/brookies">
+                <button className="btnCommander">Commander</button>
+              </Link>
+            </section>
         </div>
 
-         <section className="homeRecipesWrapper">
-      <img
-        className="moitieeBrookie"
-        src="https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
-        alt="cookies pistache"
-      />
-      <h2 className="homeRecipesTitle">Testez nos recettes</h2>
-
-      <div className="homeRecipes">
-        <div className="recetteContent" >
-          <div className="recetteItem">Testez nos recettes gourmandes</div>
-          <div className="recetteItem">Des recettes testées et approuvées!</div>
-          <div className="recetteItem">Le plaisir du fait maison</div>
-          <div className="recetteItem">Encore plus de gourmandises</div>
-        </div>
-      </div>
-    </section>
+        <section className="sectionRecetteContent">
+          <img
+            className="moitieeBrookie"
+            src="https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
+            alt="cookies pistache"
+            
+          />
+        
+        </section>
         <div className="containerJaune ">
           <h3 className="jauneP">F.A.Q</h3>{" "}
           <div>

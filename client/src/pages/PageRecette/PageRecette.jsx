@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import URL from "../../utils/constant/url";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { AuthContext } from "../../utils/context/AuthContext";
 import HEADER_LINKS from "../../utils/config/LinkHeader";
@@ -17,11 +20,18 @@ import "./Recette.css";
 //images
 import cookiegemini from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
 import cookiechoco from "../../assets/images/Cookiechoco.png";
+import cookiebananepecan from "../../assets/images/cookiebananepecan.webp";
+import cookiedough from "../../assets/images/cookiedough.webp";
 
 const PageRecette = () => {
   const [recette, setRecette] = useState([]);
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({
+    recetteTest: "",
+    commentaire: "",
+    image: "",
+  });
   const [avis, setAvis] = useState([]);
+  const { scrollY } = useScroll();
 
   // connexion
   const { user } = useContext(AuthContext);
@@ -49,23 +59,43 @@ const PageRecette = () => {
   };
 
   // FORMULAIRE AVIS
+
   const handleChange = (e) => {
+    // const { name, value } = e.target;
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log("FormData envoyé :", formData); // <- Vérifie ici
+
     try {
-      const { data } = await axiosinstance.post(URL.POST_AVIS, formData);
-      console.log(data);
-    } catch (error) {}
+      const { status, data } = await axiosinstance.post(
+        URL.POST_AVIS,
+        formData
+      );
+      console.log(formData);
+      if (status === 201) {
+        console.log("Avis publié !");
+        toast.success("Avis publié!");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  const getAvis = async () => {
+  useEffect(() => {
+    getAllAvis();
+  }, []);
+
+  const getAllAvis = async () => {
     try {
-      const { formData } = await axiosinstance.post(URL.POST_AVIS);
-      console.log(formData);
-    } catch (error) {}
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_AVIS);
+      console.log(data);
+      if (status === 200) setAvis(data);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   // Connexion user
@@ -80,96 +110,104 @@ const PageRecette = () => {
   };
 
   // ANIMATION
+
+  // plus on scroll, plus ça monte lentement (parallax)
+  const ySlow = useTransform(scrollY, [0, 600], [0, -120]);
+
   // REFS pour l'animation scroll vertical
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
   const titleRef = useRef(null);
 
   useEffect(() => {
-    const wrapper = wrapperRef.current;
-    const content = contentRef.current;
-    const title = titleRef.current;
+    if (!wrapperRef.current || !contentRef.current || !titleRef.current) return;
 
-    if (!wrapper || !content) return;
+    ScrollTrigger.matchMedia({
+      // =========================
+      // DESKTOP : animation active
+      // =========================
+      "(min-width: 769px)": () => {
+        const wrapper = wrapperRef.current;
+        const content = contentRef.current;
+        const title = titleRef.current;
 
-    // Calculer la distance totale de scroll vertical
-    const getScrollAmount = () => {
-      const contentHeight = content.scrollHeight;
-      const viewportHeight = window.innerHeight;
+        const getScrollAmount = () => {
+          const contentHeight = content.scrollHeight;
+          const viewportHeight = window.innerHeight;
+          const extraSpace = viewportHeight * 0.5;
+          return -(contentHeight + extraSpace);
+        };
 
-      // espace supplémentaire pour laisser respirer la fin
-      const extraSpace = viewportHeight * 0.5;
-
-      return -(contentHeight + extraSpace);
-    };
-
-    // Animation principale : scroll vertical du contenu
-    const verticalScroll = gsap.to(content, {
-      y: getScrollAmount,
-      ease: "none",
-      scrollTrigger: {
-        trigger: wrapper,
-        start: "top top",
-        end: () => `+=${content.scrollHeight + window.innerHeight}`,
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-        anticipatePin: 1,
-      },
-    });
-
-    // Animation des cartes de recettes individuelles
-    const recipeCards = content.querySelectorAll(".recetteContent");
-    recipeCards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        {
-          scale: 0.85,
-        },
-        {
-          scale: 1,
+        const verticalScroll = gsap.to(content, {
+          y: getScrollAmount,
+          ease: "none",
           scrollTrigger: {
-            trigger: card,
-            containerAnimation: verticalScroll,
-            start: "top bottom",
-            end: "center center",
+            trigger: wrapper,
+            start: "top top",
+            end: () => `+=${content.scrollHeight + window.innerHeight}`,
+            pin: true,
             scrub: 1,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
           },
-        }
-      );
+        });
+
+        const recipeCards = content.querySelectorAll(".recetteContent");
+        recipeCards.forEach((card) => {
+          gsap.fromTo(
+            card,
+            { scale: 0.85 },
+            {
+              scale: 1,
+              scrollTrigger: {
+                trigger: card,
+                containerAnimation: verticalScroll,
+                start: "top bottom",
+                end: "center center",
+                scrub: 1,
+              },
+            }
+          );
+        });
+
+        gsap.fromTo(
+          title,
+          { opacity: 0, x: -50 },
+          {
+            opacity: 1,
+            x: 0,
+            scrollTrigger: {
+              trigger: wrapper,
+              start: "top center",
+              end: "top top",
+              scrub: 1,
+            },
+          }
+        );
+
+        return () => {
+          ScrollTrigger.getAll().forEach((t) => t.kill());
+        };
+      },
+
+      // MOBILE : AUCUNE ANIMATION
+      "(max-width: 768px)": () => {
+        // On s'assure que tout est clean
+        gsap.set([contentRef.current, titleRef.current], {
+          clearProps: "all",
+        });
+      },
     });
 
-    // Animation du titre fixe (apparition)
-    gsap.fromTo(
-      title,
-      {
-        opacity: 0,
-        x: -50,
-      },
-      {
-        opacity: 1,
-        x: 0,
-        scrollTrigger: {
-          trigger: wrapper,
-          start: "top center",
-          end: "top top",
-          scrub: 1,
-        },
-      }
-    );
-
-    // Cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, [recette]); // Recalculer quand les recettes sont chargées
+    return () => ScrollTrigger.clearMatchMedia();
+  }, [recette]);
 
   return (
-    <div className="" style={{ marginTop: "3rem" }}>
-      <h1 className="titrePageRecette">
-        Nos <br />
-        Recettes
-      </h1>
+    <div className="pageRecette" style={{ marginTop: "2rem" }}>
+        <h1 className="titrePageRecette">
+          Nos <br />
+          Recettes
+        </h1>
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item px-3">
@@ -196,138 +234,59 @@ const PageRecette = () => {
           </p>
         </div>
         {/* SECTION AVEC SCROLL VERTICAL */}
-        <section
-          className="homeRecipesWrapper row"
-          ref={wrapperRef}
-          style={{
-            height: "100vh",
-            position: "relative",
-            overflow: "hidden",
-            marginBottom: "10rem",
-          }}
-        >
+        <section className="homeRecipesWrapper row" ref={wrapperRef}>
           {/* Titre fixe */}
-          <h2
-            className="titreAnimRecette"
-            ref={titleRef}
-            style={{
-              position: "absolute",
-              left: "5vw",
-              top: "50%",
-              transform: "translateY(-50%)",
-              zIndex: 10,
-              // fontSize: "clamp(2.5rem, 6vw, 5rem)",
-              lineHeight: "1.1",
-              maxWidth: "400px",
-            }}
-          >
+          <h2 className="titreAnimRecette" ref={titleRef}>
             Amusez <br /> vous ! <br />
             et pâtissez
           </h2>
 
           {/* Contenu qui défile verticalement */}
-          <div
-            className="animRecette"
-            ref={contentRef}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              paddingTop: "10vh",
-              paddingLeft: "35vw", // Espace pour le titre fixe
-              justifyContent: "start",
-            }}
-          >
+          <div className="animRecette" ref={contentRef}>
             {/* Vous pouvez mapper vos recettes ici */}
-            <div className="recetteContent" style={cardStyles}>
+            <div className="recetteContent">
               {/* <div style={numberStyles}>01</div> */}
-              <h3 style={titleCardStyles}> {recette[8]?.titre}</h3>
-              <p style={descStyles}>
-                Testez nos recettes gourmandes {recette[8]?.description}
-              </p>
+              <h3 className="titreRecetteContent"> {recette[8]?.titre}</h3>
+              <p>Testez nos recettes gourmandes {recette[8]?.description}</p>
               <button
                 type="button"
-                className="btn btn-primary col-sm-1"
+                className="btnVoirRecette"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop1"
-                style={{
-                  width: "30rem",
-                  background: "var(--marronRouge)",
-                  border: "1px solid var(--marronFroid)",
-                  color: "var(--creme)",
-                  padding: "12px 28px",
-                  borderRadius: " 50px",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  justifySelf: "center",
-                  fontSize: "1rem",
-                }}
               >
                 Voir la recette
               </button>
             </div>
 
-            <div className="recetteContent" style={cardStyles}>
-              <h3 style={titleCardStyles}>Recette 2 {recette[6]?.titre}</h3>
+            <div className="recetteContent">
+              <h3 className="titreRecetteContent">{recette[6]?.titre}</h3>
               <p style={descStyles}>
                 Des recettes testées et approuvées! {recette[7]?.description}
               </p>
               <button
                 type="button"
-                className="btn btn-primary col-sm-1"
+                className="btnVoirRecette"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop2"
-                style={{
-                  width: "30rem",
-                  background: "var(--marronRouge)",
-                  border: "1px solid var(--marronFroid)",
-                  color: "var(--creme)",
-                  padding: "12px 28px",
-                  borderRadius: " 50px",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  justifySelf: "center",
-                  fontSize: "1rem",
-                }}
               >
                 Voir la recette
               </button>
             </div>
 
-            <div className="recetteContent" style={cardStyles}>
-              <h3 style={titleCardStyles}>Recette 5 {recette[7]?.titre} </h3>
+            <div className="recetteContent">
+              <h3 className="titreRecetteContent"> {recette[7]?.titre} </h3>
               <p>
                 Une dernière recette pour le scroll {recette[7]?.description}
               </p>
               <button
                 type="button"
-                className="btn btn-primary col-sm-1"
+                className="btnVoirRecette"
                 data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop3"
-                style={{
-                  width: "30rem",
-                  background: "var(--marronRouge)",
-                  border: "1px solid var(--marronFroid)",
-                  color: "var(--creme)",
-                  padding: "12px 28px",
-                  borderRadius: " 50px",
-                  cursor: "pointer",
-                  transition: "all 0.3s ease",
-                  justifySelf: "center",
-                  fontSize: "1rem",
-                }}
               >
                 Voir la recette
               </button>
             </div>
-
-            {/* OU mapper vos vraies recettes depuis la BDD : */}
-            {/* {recette.slice(0, 5).map((r, index) => (
-              <div key={r.id} className="recetteContent" style={cardStyles}>
-                <div style={numberStyles}>{String(index + 1).padStart(2, '0')}</div>
-                <h3 style={titleCardStyles}>{r.titre}</h3>
-                <p style={descStyles}>{r.description}</p>
-              </div>
-            ))} */}
           </div>
         </section>
         {/* Modal premiere recette */}
@@ -416,7 +375,7 @@ const PageRecette = () => {
                   <Link
                     to="/register"
                     onClick={() => {
-                      const modal = document.getElementById("staticBackdrop");
+                      const modal = document.getElementById("staticBackdrop1");
                       const backdrop =
                         document.querySelector(".modal-backdrop");
 
@@ -538,7 +497,7 @@ const PageRecette = () => {
                   <Link
                     to="/register"
                     onClick={() => {
-                      const modal = document.getElementById("staticBackdrop");
+                      const modal = document.getElementById("staticBackdrop2");
                       const backdrop =
                         document.querySelector(".modal-backdrop");
 
@@ -653,7 +612,7 @@ const PageRecette = () => {
                   <Link
                     to="/register"
                     onClick={() => {
-                      const modal = document.getElementById("staticBackdrop");
+                      const modal = document.getElementById("staticBackdrop3");
                       const backdrop =
                         document.querySelector(".modal-backdrop");
 
@@ -690,59 +649,60 @@ const PageRecette = () => {
         </p>
         {/* RESTE DU CONTENU */}
         <div>
-          <img src={cookiechoco} alt="cookie" height={400} width={400} />
+          <img src={cookiebananepecan} alt="cookie" height={400} width={400} />
         </div>
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"
-          style={{ borderTop: "3px var(--marronRouge) solid",  marginBottom:"3rem" }}
+          style={{
+            borderTop: "3px var(--marronRouge) solid",
+            marginBottom: "3rem",
+          }}
         >
-          <h2 style={{ fontSize: "4rem", justifySelf: "center", marginBottom:"3rem" }}>Vos Avis</h2>
-          <div style={{ display: "flex" }}>
-            {" "}
-            <p style={{ textAlign: "left" }}>
-              <br />
-              lOREM :
-              <br />
-              <br />
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione
-              sit nulla aliquam perferendis! Labore placeat perspiciatis velit
-              dicta aliquid blanditiis cum, iste maxime odio iure libero quam,
-              suscipit dolor laborum.
-            </p>
-            <img
-              src={cookiechoco}
-              alt="cookie"
-              height={200}
-              width={200}
-              style={{ border: "1px solid var(--marron)" }}
-            />
-          </div>
+          <h2 className="vosAvis">Vos Avis</h2>
+          {avis.map((item) => (
+            <div key={item._id} className="vosAvisSection">
+              <div className="vosAvisCommentaire">
+                <p> user :{item.user}</p>
+                <p> Nom de la recette : {item.recetteTest}</p>
+                <p>Commentaire: {item.commentaire}</p>
+              </div>
+            </div>
+          ))}
+          <img
+            src={cookiechoco}
+            alt="cookie"
+            height={200}
+            width={200}
+            className="vosAvisImg"
+          />
         </div>
         {/* FORMULAIRE AVIS */}
         <div className="row justify-content-center">
           <div
-            className="col-12 col-md-12 py-4"
+            className=" avisSection"
             style={{
               fontSize: "1rem",
               borderTop: "3px var(--marronRouge) solid",
               alignItems: "center",
             }}
           >
-            <h1>Laisser un avis!</h1>
+            <h1 className="avisTitre">Laisser un avis!</h1>
             <form
               onSubmit={handleSubmit}
               className="row d-flex justify-content-center m-4"
             >
               <div className="form-group col-md-6 mb-3">
-                <label htmlFor="inputRecette" onChange={handleChange}>
-                  Recette testée
+                <label htmlFor="recetteTest">
+                  <h3> Recette testée</h3>
                 </label>
                 <input
                   type="text"
                   className="form-control"
-                  id="inputRecette"
+                  id="recetteTest"
+                  name="recetteTest"
                   placeholder="Recette testée"
+                  onChange={handleChange}
                   style={{
                     border: "4px solid var(--marronRouge)",
                     color: "var(--marronRouge)",
@@ -750,62 +710,54 @@ const PageRecette = () => {
                 />
               </div>
               <div className="form-group col-md-6">
-                <label htmlFor="commentaire" onChange={handleChange}>
-                  Commentaire
+                <label htmlFor="commentaire">
+                  <h3>Commentaire</h3>
                 </label>
                 <textarea
                   type="text"
-                  name="comentaire"
+                  name="commentaire"
                   id="commentaire"
                   className="form-control"
+                  onChange={handleChange}
                   placeholder="Votre Commentaire"
                   style={{
                     height: "10rem",
                     border: "4px solid var(--marronRouge)",
                     color: "var(--marronRouge)",
-                    marginBottom: "2rem",
+                    marginBottom: "1rem",
                   }}
                 ></textarea>
               </div>
-              <div className="">
-                <button
-                  onSubmit={handleSubmit}
-                  type="submit"
-                  className="btn btn-primary px-5"
-                >
-                  Publier
-                </button>
+              <div className="form-group col-md-6 mb-3">
+                <label htmlFor="image">
+                  <h3> Joindre une image</h3>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="image"
+                  name="image"
+                  placeholder="Inserez une image"
+                  onChange={handleChange}
+                  style={{
+                    border: "4px solid var(--marronRouge)",
+                    color: "var(--marronRouge)",
+                  }}
+                />
               </div>
+              <button
+                onSubmit={handleSubmit}
+                type="submit"
+                className="btnPublier"
+              >
+                Publier
+              </button>
             </form>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-// Styles pour les cartes de recettes (vertical scrolling)
-const cardStyles = {
-  minHeight: "400px",
-  width: "45rem",
-  flexDirection: "column",
-  cursor: "pointer",
-  flexShrink: 0,
-  textAlign: "justify",
-};
-
-const numberStyles = {
-  fontSize: "4rem",
-  fontWeight: "bold",
-  color: "var(--caramel)",
-  marginBottom: "1rem",
-  lineHeight: 1,
-};
-
-const titleCardStyles = {
-  fontSize: "2rem",
-  marginBottom: "1rem",
-  fontWeight: "600",
 };
 
 const descStyles = {};

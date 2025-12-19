@@ -1,5 +1,7 @@
 .titleHome {
   margin: 3rem;
+  justify-self: center;
+  font-size: 9.2rem !important;
 }
 
 .imageHome {
@@ -11,12 +13,13 @@
 .imagesHome {
   flex: 1;
   width: 20% !important;
+
 }
 
 .defilantContainer {
   width: 100%;
   font-size: 1.2rem;
-  margin-bottom: 0.8rem;
+  margin-bottom: 8rem;
   overflow: hidden;
   white-space: nowrap;
   animation: scroll-left 35s linear infinite;
@@ -24,58 +27,111 @@
 
 .phraseDefilante {
   /* fontSize: isMobile ? "1rem" : "1.7rem", */
-  margin: 5rem;
   white-space: nowrap;
   display: inline-block;
 }
 
-/* @keyframes scroll-left {
+@keyframes scroll-left {
   from {
-    transform: translateX(50%);
+    transform: translateX(60%);
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-80%);
   }
-} */
+}
+
+.homeSignaturePremium {
+  height: 25rem;
+  text-align: left;
+  margin-bottom: 4rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  display: flex;
+  align-items: center;
+  color: var(--marronRouge);
+
+}
+
+.divHomeSignature {
+  justify-self:left;
+  width: 100%;
+}
+
+.homeSignaturePremium h1 {
+  justify-self: left;
+    font-size: 4.2rem !important;
+
+
+
+}
+.homeSignaturePremium p {
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  justify-self: left;
+}
+
+.signatureValues {
+  display: flex;
+  justify-content: left;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.btnSignature {
+  background-color: transparent;
+  border: 2px solid var(--creme);
+  color: var(--marronRouge);
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSignature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
 
 /* SECTION CATEGORIE */
-.categorie-wrapper {
-  position: relative;
-  overflow: hidden;
-  background: var(--marronRouge);
-}
 
 
 /* Contenu */
 .homeCategorieProduit {
-  position: relative;
-  z-index: 2;
+  justify-content: center;
   align-items: center;
-  background-color: var(--marronRouge);
-  color: var(--creme);
-  padding: 3rem;
+display: flex;  position: relative;
+  z-index: 2;
+  padding: 1rem;
   margin-bottom: 5rem;
+  color: var(--creme);
+  background-color: var(--marronRouge) ;
+    gap: 3rem;
+
 }
 
 /* Texte */
 .phraseCategorie {
-  font-size: 3.2rem;
+  font-size: 3rem;
   line-height: 1.2;
   text-align: center;
+  margin-bottom: 3rem;
 }
+
 
 /* Cartes catégories */
 .sectionCategorie {
   display: flex;
   flex-direction: column;
-  justify-content: center;  /* centre verticalement */
-  align-items: center;      /* centre horizontalement */
-  text-align: center;       /* texte centré */
-  height: 30rem;            /* assez haut pour le parallax */
-  background-position: center 0;
-  border-radius: 20px;
-  margin: 20px;
+  justify-content: center; /* centre verticalement */
+  align-items: center; /* centre horizontalement */
+  text-align: center; /* texte centré */
+  height: 20rem; /* assez haut pour le parallax */
   color: var(--creme);
+  border-radius: 5%;
+  width: 20rem !important;
   will-change: background-position;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
@@ -97,9 +153,8 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-.sectionCategorie h3 {
-  font-size: 1.8rem;
-  margin-bottom: 20px;
+.sectionCategorie h2 {
+  font-size: 3rem;
 }
 
 /* Bouton style "bestia" */
@@ -113,6 +168,7 @@
   transition: all 0.3s ease;
   display: flex;
   justify-self: center;
+  font-size: 1.3rem;
 }
 
 .btnCommander:hover {
@@ -121,46 +177,22 @@
 }
 /* SECTION RECETTE */
 
-.homeRecipesWrapper {
+.sectionRecetteContent{
+
+  height: 35rem !important;
   position: relative;
-  padding: 6rem 2rem;
-  overflow: hidden;
+
 }
 
-.homeRecipesTitle {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.homeRecipes {
-  overflow: hidden;
-  width: 100%;
-}
-
-.recetteContent {
-  display: flex;
-  gap: 2rem;
-  transition: transform 0.1s linear;
-}
-
-.recetteItem {
-  border: 2px solid var(--jaune);
-  min-width: 300px;
-  padding: 2rem;
-  background-color: #f5f5f5;
-  border-radius: 1rem;
-  text-align: center;
-}
 
 .moitieeBrookie {
-  width: 600px;
-   height: 660px;
+  width: 550px;
+  height: 600px;
   position: absolute;
   top: 0;
   left: -16rem;
-  z-index: 2;
+  padding-bottom: 1.9rem;
 }
-
 
 /* SECTION JAUNE */
 .containerJaune {
