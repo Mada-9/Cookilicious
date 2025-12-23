@@ -19,18 +19,18 @@ const URL = {
 
   POST_AVIS: "/api/avis/post",
   GET_ALL_AVIS: "/api/avis/get",
-  GET_DETAIL_AVIS: "/api/avis/get/:id",
+  GET_DETAIL_AVIS: "/api/avis/get",
   DELETE_AVIS: "/api/avis/delete",
   UPDATE_AVIS: "/api/avis/update",
 
   POST_COMMANDE: "/api/commande/post",
   GET_ALL_COMMANDES: "/api/commande/get",
-  GET_DETAIL_COMMANDE: "/api/commande/get/:id",
+  GET_DETAIL_COMMANDE: "/api/commande/get",
   DELETE_COMMANDE: "/api/commande/delete",
 
   POST_MEMBRES: "/api/membre/post",
   GET_ALL_MEMBRES: "/api/membre/get",
-  GET_DETAIL_MEMBRE: "/api/membre/get/:id",
+  GET_DETAIL_MEMBRE: "/api/membre/get",
   DELETE_MEMBRE: "/api/membre/delete",
   UPDATE_MEMBRE: "/api/membre/update",
 

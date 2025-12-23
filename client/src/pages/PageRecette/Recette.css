@@ -7,11 +7,9 @@
   height: 21rem;
   padding-left: 1rem;
   margin-bottom: 2rem;
-  background-image: url(../../assets/images/cookiedough.webp);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-image: url(../../assets/images/tasty-chocolate-chips-arrangement-top-view-Photoroom.webp);
 }
- .phraseIntro {
+.phraseIntro {
   text-align: justify;
   margin-top: 5rem;
   margin-bottom: 14px;
@@ -135,7 +133,7 @@
 .animRecette {
   display: flex;
   flex-direction: column;
-  padding-top: 10vh;
+  padding-top: 20vh;
   padding-left: 35vw !important; /* Espace pour le titre fixe */
   justify-content: start !important;
   position: relative !important;
@@ -194,6 +192,13 @@
   gap: 1rem;
 }
 
+.avisSection {
+  justify-items: center;
+  font-size: 1rem;
+  border-top: 3px var(--marronRouge) solid;
+  align-items: center;
+}
+
 .btnPublier {
   width: 50% !important;
   background: var(--jaune);
@@ -204,6 +209,7 @@
   cursor: pointer;
   font-size: 1rem;
 }
+
 /* responsive animation */
 @media (max-width: 768px) {
   .homeRecipesWrapper {

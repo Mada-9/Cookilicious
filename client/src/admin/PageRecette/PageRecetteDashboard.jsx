@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import URL from "../../utils/constant/url";
 

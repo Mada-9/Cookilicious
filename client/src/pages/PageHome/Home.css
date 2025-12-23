@@ -1,19 +1,18 @@
 .titleHome {
   margin: 3rem;
   justify-self: center;
-  font-size: 9.2rem !important;
 }
 
 .imageHome {
   display: flex;
   position: static;
   padding-top: 0rem;
+  cursor: pointer;
 }
 
 .imagesHome {
   flex: 1;
   width: 20% !important;
-
 }
 
 .defilantContainer {
@@ -49,20 +48,16 @@
   display: flex;
   align-items: center;
   color: var(--marronRouge);
-
 }
 
 .divHomeSignature {
-  justify-self:left;
+  justify-self: left;
   width: 100%;
 }
 
 .homeSignaturePremium h1 {
   justify-self: left;
-    font-size: 4.2rem !important;
-
-
-
+  font-size: 4.2rem !important;
 }
 .homeSignaturePremium p {
   font-size: clamp(2.2rem, 4vw, 3.8rem);
@@ -97,19 +92,17 @@
 
 /* SECTION CATEGORIE */
 
-
 /* Contenu */
 .homeCategorieProduit {
   justify-content: center;
   align-items: center;
-display: flex;  position: relative;
-  z-index: 2;
+  display: flex !important;
+  position: relative;
   padding: 1rem;
   margin-bottom: 5rem;
-  color: var(--creme);
-  background-color: var(--marronRouge) ;
-    gap: 3rem;
-
+  color: var(--creme) !important;
+  background-color: var(--marronRouge);
+  gap: 3rem;
 }
 
 /* Texte */
@@ -120,7 +113,6 @@ display: flex;  position: relative;
   margin-bottom: 3rem;
 }
 
-
 /* Cartes catégories */
 .sectionCategorie {
   display: flex;
@@ -129,21 +121,31 @@ display: flex;  position: relative;
   align-items: center; /* centre horizontalement */
   text-align: center; /* texte centré */
   height: 20rem; /* assez haut pour le parallax */
-  color: var(--creme);
   border-radius: 5%;
-  width: 20rem !important;
   will-change: background-position;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
+.sectionCategorie a {
+  color: var(--creme);
+}
 @media (max-width: 768px) {
+  .phraseCategorie {
+    justify-content: center !important;
+  }
   .sectionCategorie {
     height: 25rem; /* plus petit sur mobile */
+    width: 100% !important;
+  }
+  .homeCategorieProduit {
+    flex-direction: column;
   }
 }
 .categorieUne {
   background-image: url(https://scientificallysweet.com/wp-content/uploads/2022/12/IMG_3394-feature.jpg);
   background-size: 15rem;
 }
+
 .categorieDeux {
   background-image: url(https://bakewithzoha.com/wp-content/uploads/2024/10/brown-butter-brookies-sliced-scaled.jpg);
   background-size: 15rem;
@@ -177,13 +179,10 @@ display: flex;  position: relative;
 }
 /* SECTION RECETTE */
 
-.sectionRecetteContent{
-
+.sectionRecetteContent {
   height: 35rem !important;
   position: relative;
-
 }
-
 
 .moitieeBrookie {
   width: 550px;

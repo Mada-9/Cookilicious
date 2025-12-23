@@ -39,12 +39,12 @@ export const AuthProvider = ({ children }) => {
 
         // Met à jour le state avec les données de l'utilisateur connecté
         setUser(data);
-
         // Redirige l'utilisateur vers la page d'accueil
         // navigate(`/`);
       }
     } catch (error) {
       console.log(error.message);
+      toast.error("erreur lors de l'envoi du formulaire");
     } finally {
       // Désactive l'indicateur de chargement car l'authentification est terminée
       setIsLoading(false);

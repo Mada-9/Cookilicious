@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useRef } from "react";
 import URL from "../../utils/constant/url";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {  useScroll, useTransform } from "framer-motion";
 
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { AuthContext } from "../../utils/context/AuthContext";
@@ -26,6 +26,7 @@ import cookiedough from "../../assets/images/cookiedough.webp";
 const PageRecette = () => {
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({
+    pseudo:"",
     recetteTest: "",
     commentaire: "",
     image: "",
@@ -246,8 +247,8 @@ const PageRecette = () => {
             {/* Vous pouvez mapper vos recettes ici */}
             <div className="recetteContent">
               {/* <div style={numberStyles}>01</div> */}
-              <h3 className="titreRecetteContent"> {recette[8]?.titre}</h3>
-              <p>Testez nos recettes gourmandes {recette[8]?.description}</p>
+              <h3 className="titreRecetteContent"> {recette[5]?.titre}</h3>
+              <p>Testez nos recettes gourmandes {recette[5]?.description}</p>
               <button
                 type="button"
                 className="btnVoirRecette"
@@ -261,7 +262,7 @@ const PageRecette = () => {
             <div className="recetteContent">
               <h3 className="titreRecetteContent">{recette[6]?.titre}</h3>
               <p style={descStyles}>
-                Des recettes testées et approuvées! {recette[7]?.description}
+                Des recettes testées et approuvées! {recette[6]?.description}
               </p>
               <button
                 type="button"
@@ -678,16 +679,19 @@ const PageRecette = () => {
           />
         </div>
         {/* FORMULAIRE AVIS */}
+        
         <div className="row justify-content-center">
           <div
             className=" avisSection"
             style={{
-              fontSize: "1rem",
-              borderTop: "3px var(--marronRouge) solid",
-              alignItems: "center",
+             
             }}
           >
             <h1 className="avisTitre">Laisser un avis!</h1>
+
+            {isAuthenticated ?(
+                 <>
+           
             <form
               onSubmit={handleSubmit}
               className="row d-flex justify-content-center m-4"
@@ -753,6 +757,59 @@ const PageRecette = () => {
                 Publier
               </button>
             </form>
+         
+         </>
+             ):(
+                <form onSubmit={handleSubmitUser}>
+                                <h2>Connectez vous pour rédiger un avis!</h2>
+
+                    {SIGN_FIELDS.map((field, index) => (
+                      <div className="input-group flex-nowrap mb-3" key={index}>
+                        <span
+                          className="input-group-text"
+                          id="addon-wrapping"
+                          style={{ border: "var(--marronRouge) 2px solid" }}
+                        >
+                          <i
+                            className={field.icon}
+                            style={{ color: "var(--marronRouge)" }}
+                          ></i>
+                        </span>
+                        <input
+                          type={field.type}
+                          className="form-control"
+                          placeholder={field.placeholder}
+                          aria-label={field.label}
+                          name={field.name}
+                          aria-describedby="addon-wrapping"
+                          onChange={handleChangeUser}
+                          style={{ border: "var(--marronRouge) 2px solid" }}
+                        />
+                      </div>
+                    ))}
+                    <div className="d-grid">
+                      <button
+                        type="submit"
+                        className="btn w-100"
+                        style={{
+                          border: "var(--marronRouge) 2px solid",
+                          color: "var(--marronRouge)",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        Je me connecte{" "}
+                      </button>
+                    </div>
+                        <Link
+                    to="/register"
+                    onClick={() => {
+                     
+                    }}
+                  >
+                    Vous n'avez pas de compte ?
+                  </Link>
+                  </form>
+            )}
           </div>
         </div>
       </div>

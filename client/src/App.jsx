@@ -42,9 +42,12 @@ import UpdateRecette from "./admin/PageRecette/UpdateRecette";
 import RecetteDetail from "./admin/PageRecette/RecetteDetail";
 import Dashboard from "./admin/PageDashboard/PageDashboard";
 import PageContactDashboard from "./admin/PageContact/PageContactDashboard";
-import PageAproposDashboard from "./admin/PageApropos/PageAproposDashboard";
 import PageMembresDashboard from "./admin/PageMembres/PageMembresDashboard";
+import MembreDetail from "./admin/PageMembres/MembreDetail";
+import UpdateMembre from "./admin/PageMembres/UpdateMembre"
 import PageCommandesDashboard from "./admin/PageCommandes/PageCommandesDashboard";
+import CommandeDetail from "./admin/PageCommandes/CommandeDetail"
+
 
 // TEMPLATES
 import Template from "./components/Template/Template";
@@ -63,7 +66,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={3000} />
+      <ToastContainer position="center" autoClose={3000} />
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
           {" "}
@@ -75,7 +78,7 @@ function App() {
             <Route path="brookies" element={<AnimatedPage><Brookies /></AnimatedPage>} />
             <Route path="detail/:id" element={<AnimatedPage><DetailProduit /></AnimatedPage>} />
             <Route path="panier" element={<AnimatedPage><PagePanier /></AnimatedPage>} />
-              <Route path="paiement" element={<AnimatedPage><PagePaiement /></AnimatedPage>} />
+            <Route path="paiement" element={<AnimatedPage><PagePaiement /></AnimatedPage>} />
             <Route path="recette" element={<AnimatedPage><PageRecette /></AnimatedPage>} />
             <Route path="contact" element={<AnimatedPage><PageContact /></AnimatedPage>} />
             <Route path="apropos" element={<AnimatedPage><PageApropos /></AnimatedPage>} />
@@ -88,11 +91,15 @@ function App() {
               <Route path="sign" element={<AnimatedPage><Sign /></AnimatedPage>} />
               <Route path="register" element={<AnimatedPage><Register /></AnimatedPage>} />
             </Route>
+
+
             {/* Routes privées (connexion requise) */}
             <Route element={<PrivateRoute />}>
               <Route path="profil" element={<AnimatedPage><Profil /></AnimatedPage>} />
             </Route>
           </Route>
+
+
           {/* ROUTES ADMIN */}
           <Route element={<PrivateRouteAdmin />}>
             <Route path="/admin" element={<TemplateAdmin />}>
@@ -106,13 +113,17 @@ function App() {
               <Route path="recette" element={<PageRecetteDashboard />} />
               <Route path="postrecette" element={<PostRecette />} />
               <Route path="updaterecette/:id" element={<UpdateRecette />} />
-              <Route path="recetteDetail/:id" element={<RecetteDetail />} />
+              <Route path="recettedetail/:id" element={<RecetteDetail />} />
               {/* messages */}
               <Route path="contact" element={<PageContactDashboard />} />
               {/* comptes */}
               <Route path="membres" element={<PageMembresDashboard />} />
+              <Route path="updatemembre/:id" element={<UpdateMembre/>} />
+              <Route path="membredetail/:id" element={<MembreDetail />} />
               {/* commandes */}
               <Route path="commandes" element={<PageCommandesDashboard />} />
+              <Route path="commandedetail/:id" element={< CommandeDetail/>} />
+
             </Route>
           </Route>
           <Route path="*" element={<Nothing />} />

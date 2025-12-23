@@ -49,7 +49,6 @@ const PageHome = ({}) => {
     titleHome: {
       fontFamily: "kaftus",
       marginTop: "2rem ",
-
       position: "relative",
       height: "7rem",
       fontSize: isMobile
@@ -59,7 +58,7 @@ const PageHome = ({}) => {
         : isTabletL
         ? "7rem"
         : isDesktop
-        ? "10rem"
+        ? "9.5rem"
         : "3rem",
     },
 
@@ -143,9 +142,9 @@ const PageHome = ({}) => {
   return (
     <>
       <div className="home">
-        <h1 style={styles.titleHome} className="titleHome">
+        <h2 style={styles.titleHome} className="titleHome " >
           COOKILICIOUS
-        </h1>
+        </h2>
         <motion.section style={{ y: ySlow }}>
           <div className="imageHome" onClick={() => navigate("/cookies")}>
             <img
@@ -182,22 +181,22 @@ const PageHome = ({}) => {
         </section> */}
 
         <div className="homeCategorieProduit row">
-          <h2 className="phraseCategorie col-4 ">
+          <h2 className="phraseCategorie  col-4  ">
             Des Cookies & Brookies 
             <br />uniques <br /> & <br /> irrésitibles
             
             <br />
-            <h3> Laissez-vous succomber…</h3>
+            <p> Laissez-vous succomber…</p>
 
           </h2>
             <section className="sectionCategorie categorieUne col-3">
-              <h2>COOKIES</h2>
-              <Link to="/cookies">
+               <Link to="/cookies"> <h2>COOKIES</h2>
+            
                 <button className="btnCommander">Commander</button>
               </Link>
             </section>
 
-            <section className="sectionCategorie categorieDeux col-3">
+            <section className="sectionCategorie categorieDeux col-3 ">
               <h2>BROOKIES</h2>
               <Link to="/brookies">
                 <button className="btnCommander">Commander</button>

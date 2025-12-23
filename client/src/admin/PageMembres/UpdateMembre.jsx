@@ -1,0 +1,140 @@
+import { useEffect, useState } from "react";
+import URL from "../../utils/constant/url";
+import axiosinstance from "../../utils/axios/axiosinstance";
+import { Link, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+
+const UpdateMembre = () => {
+  const [membre, setMembre] = useState({
+    nom: "",
+    prenom: "",
+    pseudo: "",
+    email: "",
+  });
+
+  const params = useParams();
+  const { id } = params;
+
+  useEffect(() => {
+    if (id) {
+      getMembre(id);
+    }
+  }, [id]);
+
+  const getMembre= async (id) => {
+    try {
+      const { data, status } = await axiosinstance.get(
+        `${URL.GET_DETAIL_MEMBRE}/${id}`
+      );
+      console.log(id);
+
+      if (status === 200) {
+        setMembre(data);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const handleChange = async (event) => {
+    const { name, value } = event.target;
+    setMembre((prevMembre) => ({ ...prevMembre, [name]: value }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { status, data } = await axiosinstance.put(
+        `${URL.UPDATE_MEMBRE}/${id}`,
+        user
+      );
+      if (status === 200) {
+        setMembre(data);
+        toast.success("User updated");
+      }
+      console.log("User updated !");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  return (
+    <>
+      <h2>Update Membre</h2>
+
+      <div
+        className="col-8"
+        style={{
+          border: "4px black solid",
+          justifySelf: "center",
+          alignSelf: "center",
+          margin: "2rem",
+          padding: "1rem",
+        }}
+      >
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            flexDirection: "column",
+            display: "flex",
+            justifyItems: "center",
+          }}
+        >
+          <label htmlFor="nom" className="my-3">
+            Nom :{" "}
+          </label>
+          <input
+            id="nom"
+            type="text"
+            name="nom"
+            value={membre.nom}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="prenom" className="my-3">
+            Prenom :{" "}
+          </label>
+          <input
+            id="prenom"
+            type="text"
+            name="prenom"
+            value={membre.prenom}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="pseudo" className="my-3">
+            pseudo :
+          </label>
+          <input
+            id="pseudo"
+            type="text"
+            name="pseudo"
+            value={membre.pseudo}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="email" className="my-3">
+            Email :{" "}
+          </label>
+          <input
+            id="email"
+            type="text"
+            name="email"
+            value={membre.email}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+
+          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+            <Link to="/admin/membres"> Update</Link>
+          </button>
+        </form> <button style={{ display: "flex", justifyContent: "center" }}>
+          <Link to="/admin/membres">Retours aux membres</Link>{" "}
+        </button>
+       
+      </div>
+    </>
+  );
+};
+
+export default UpdateMembre;

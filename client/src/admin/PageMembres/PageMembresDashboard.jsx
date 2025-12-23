@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { useNavigate } from "react-router-dom";
@@ -9,33 +7,32 @@ import URL from "../../utils/constant/url";
 import "../PageDashboard/Dashboard.css";
 
 const PageMembresDashboard = () => {
-  const [user, setUser] = useState([]);
+  const [membre, setMembre] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllUser();
+    getAllMembres();
   }, []);
 
-  const getAllUser = async () => {
-    const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
+  const getAllMembres = async () => {
+    const { data, status } = await axiosinstance.get(URL.GET_ALL_MEMBRES);
     console.log(data);
     try {
-      if (status === 200) setUser(data);
+      if (status === 200) setMembre(data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const deleteUser = async (id) => {
+  const deleteMembre = async (id) => {
     if (!window.confirm("Êtes-vous sûr de vouloir supprimer ?")) return;
 
     try {
-      const { status } = await axiosinstance.delete(
-        URL.DELETE_PRODUIT + "/" + id
-      );
-      if (status === 200) {
+      const response = await axiosinstance.delete(`${URL.DELETE_MEMBRE}/${id}`);
+
+      if (response.status === 200) {
         toast.success("Produit supprimé avec succès");
-        getAllUser();
+        getAllMembre();
       }
     } catch (error) {
       console.log(error.message);
@@ -44,7 +41,7 @@ const PageMembresDashboard = () => {
 
   return (
     <>
-      <h1>Gestion des user</h1>
+      <h1>Gestion des membres</h1>
       <div>CRUD user</div>
       <div
         className=""
@@ -59,36 +56,25 @@ const PageMembresDashboard = () => {
           <thead className="thead">
             <tr>
               <th className="thTable">ID</th>
-              <th className="thTable">Titre</th>
-              <th className="thTable">Prix</th>
-              <th className="thTable">Description</th>
-              <th className="thTable">Photo</th>
-              <th className="thTable">Actions</th>
+              <th className="thTable">Nom</th>
+              <th className="thTable">Prénom</th>
+              <th className="thTable">Pseudo</th>
+              <th className="thTable">Email</th>
+              <th className="thTable">Action</th>
             </tr>
           </thead>
           <tbody>
-            {produit.map((item) => (
+            {membre.map((item) => (
               <tr key={item._id}>
                 <td className="tdTable">{item._id}</td>
-                <td className="tdTable">{item.titre}</td>
-                <td className="tdTable">{item.prix}€</td>
-                <td className="tdTable">{item.description}</td>
-                <td className="tdTable">
-                  <img
-                    className="img-fluid"
-                    src={
-                      
-                      item.photo ||
-                      "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-                    }
-                    width={200}
-                    height={200}
-                    alt="images des cookies"
-                  />
-                </td>
+                <td className="tdTable">{item.nom}</td>
+                <td className="tdTable">{item.prenom}</td>
+                <td className="tdTable">{item.pseudo}</td>
+                <td className="tdTable">{item.email}</td>
+
                 <td className="tdActions">
                   <button
-                    onClick={() => navigate(`/admin/produituser/${item._id}`)}
+                    onClick={() => navigate(`/admin/membredetail/${item._id}`)}
                     style={{
                       color: "var(--marronRouge)",
                       border: "2px solid var(--marronRouge)",
@@ -100,7 +86,7 @@ const PageMembresDashboard = () => {
                     <i className="bi bi-eye"></i>
                   </button>
                   <button
-                    onClick={() => navigate(`/admin/updateuser/${item._id}`)}
+                    onClick={() => navigate(`/admin/updatemembre/${item._id}`)}
                     style={{
                       color: "var(--marronRouge)",
                       border: "2px solid var(--marronRouge)",
@@ -112,7 +98,7 @@ const PageMembresDashboard = () => {
                     <i className="bi bi-pencil"></i>
                   </button>
                   <button
-                    onClick={() => deleteUser(item._id)}
+                    onClick={() => deleteMembre(item._id)}
                     style={{
                       color: "var(--marronRouge)",
                       border: "2px solid var(--marronRouge)",
@@ -128,16 +114,12 @@ const PageMembresDashboard = () => {
             ))}
           </tbody>
         </table>
+        <button onClick={() => navigate("/admin/postuser")} className="btnCrud">
+          ajouter un nouveau user
+        </button>
       </div>
-
-      <button
-        onClick={() => navigate("/admin/postproduit")}
-        className="btnCrud"
-      >
-        ajouter un nouveau produit
-      </button>
     </>
   );
 };
 
-export default PageMembresDashboard ;
+export default PageMembresDashboard;

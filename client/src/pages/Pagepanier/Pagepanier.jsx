@@ -23,28 +23,10 @@ const PagePanier = () => {
     totalPrice,
   } = useContext(PanierContext); //pour gérer le panier grâce aux fonctions récupéré du paniercontext
   // connexion
-  const { user } = useContext(AuthContext);
-  const isAuthenticated = user;
-  const role = user?.role;
-  const { login } = useContext(AuthContext);
-  const [formDataUser, setFormDataUser] = useState({});
 
-  const visibleRecette = HEADER_LINKS.filter((link) => {
-    if (!isAuthenticated) return false; // pas connecté → pas d'accès
-    if (link.auth === role) return true; // rôle correspondant
-  });
 
-  // Connexion user
 
-  const handleChangeUser = (event) => {
-    const { name, value } = event.target;
-    setFormDataUser((user) => ({ ...user, [name]: value }));
-  };
 
-  const handleSubmitUser = async (e) => {
-    e.preventDefault();
-    await login(formDataUser);
-  };
 
   return (
     <div className="row pagePanier">
@@ -85,9 +67,19 @@ const PagePanier = () => {
                         €
                       </p>
                       <div className="btnQuantityDiv">
-                        <button className="btnQuantity" onClick={() => decremente(index)}>-</button>
+                        <button
+                          className="btnQuantity"
+                          onClick={() => decremente(index)}
+                        >
+                          -
+                        </button>
                         <p>{produit.index}</p>
-                        <button className="btnQuantity" onClick={() => incremente(index)}>+</button>
+                        <button
+                          className="btnQuantity"
+                          onClick={() => incremente(index)}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                     <div>
@@ -101,113 +93,21 @@ const PagePanier = () => {
                   </div>
                 </div>
               ))}
-              <p>Total du panier : {totalPrice} € ({totalProduit()} produits)</p>
-              <button
-                className="btnPasserCommande "
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-                data-back="Passer la commande"
-                data-front="Passer la commande"
-                onClick={() => navigate("/paiement")}
-              >
-                
-              </button>
-              {isAuthenticated ? (
-                <>
-                  <Link to="/paiement"></Link>
-                </>
-              ) : (
-                <div
-                  className="modal fade"
-                  id="staticBackdrop"
-                  data-bs-backdrop="static"
-                  data-bs-keyboard="false"
-                  tabIndex="-1"
-                  aria-labelledby="staticBackdropLabel"
-                  aria-hidden="true"
-                >
-                  <div
-                    className="modal-dialog modal-dialog-centered modal-dialog row"
-                    style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+              <p>
+                Total du panier : {totalPrice} € ({totalProduit()} produits)
+              </p>
+            
+                  <button
+                    className="btnPasserCommande "
+                    type="button"
+                   
+                    data-back="Passer la commande"
+                    data-front="Passer la commande"
+                    onClick={() => navigate("/paiement")}
                   >
-                    <div
-                      className="modal-content"
-                      style={{ color: "var(--marronRouge)" }}
-                    >
-                      <div className="modal-body">
-                        <p>
-                          Veuillez vous connecter afin de proceder au paiement
-                        </p>
-                        <h1 className="text-center mb-4">Sign</h1>
-                        <form onSubmit={handleSubmitUser}>
-                          {SIGN_FIELDS.map((field, index) => (
-                            <div
-                              className="input-group flex-nowrap mb-3"
-                              key={index}
-                            >
-                              <span
-                                className="input-group-text"
-                                id="addon-wrapping"
-                                style={{
-                                  border: "var(--marronRouge) 2px solid",
-                                }}
-                              >
-                                <i
-                                  className={field.icon}
-                                  style={{ color: "var(--marronRouge)" }}
-                                ></i>
-                              </span>
-                              <input
-                                type={field.type}
-                                className="form-control"
-                                placeholder={field.placeholder}
-                                aria-label={field.label}
-                                name={field.name}
-                                aria-describedby="addon-wrapping"
-                                onChange={handleChangeUser}
-                                style={{
-                                  border: "var(--marronRouge) 2px solid",
-                                }}
-                              />
-                            </div>
-                          ))}
-                          <div className="d-grid">
-                            <button
-                              type="submit"
-                              className="btn  w-100"
-                              style={{
-                                border: "var(--marronRouge) 2px solid",
-                                color: "var(--marronRouge)",
-                                marginBottom: "2rem",
-                              }}
-                            >
-                              Je me connecte{" "}
-                            </button>
-                          </div>
-                        </form>
-                        <Link to="/register">Vous n'avez pas de compte ?</Link>
-                      </div>
-
-                      {/* Footer commun */}
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-primary col-xs-5 col-md-3"
-                          data-bs-dismiss="modal"
-                          style={{
-                            backgroundColor: "var(--jaune)",
-                            alignSelf: "end",
-                            margin: "1rem",
-                          }}
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
+               
+                  </button>
+               
             </div>
           ) : (
             <p>panier vide </p>

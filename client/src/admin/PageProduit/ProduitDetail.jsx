@@ -29,7 +29,6 @@ const ProduitDetail = () => {
     }
   };
 
-  //ajout au panier
 
   return (
     <>

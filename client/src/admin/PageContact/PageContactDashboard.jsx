@@ -71,24 +71,31 @@ const PageContactDashboard = () => {
                 <td className="tdTable">{item.message}</td>
                 <td className="tdTable" >
                   <button
+                    onClick={() => navigate(`/admin/detailcontact/${item._id}`)}
+                    style={{
+                      color: "var(--marronRouge)",
+                      border: "2px solid var(--marronRouge)",
+                      width: "3rem",
+                      height: "3rem",
+                    }}
+                    className="btn  me-2"
+                  >
+                    <i className="bi bi-eye"></i>
+                  </button>
+                   
+                  
+                   <button
                     onClick={() => deleteMessage(item._id)}
-                    className="btn btn-danger"
+                    style={{
+                      color: "var(--marronRouge)",
+                      border: "2px solid var(--marronRouge)",
+                      width: "3rem",
+                      height: "3rem",
+                    }}
+                    className="btn "
                   >
                     <i className="bi bi-trash"></i>
                   </button>
-                   <button
-                    onClick={() => deleteMessage(item._id)}
-                    className="btn btn-warning"
-                  >
-                    voir message
-                  </button>
-                  <input
-                    type="checkbox"
-                    id="check"
-                    name="check"
-                    value="check"
-                    style={{ backgroundColor: "black" }}
-                  />
                 </td>
               </tr>
             ))}

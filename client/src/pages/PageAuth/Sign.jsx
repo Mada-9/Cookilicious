@@ -42,7 +42,7 @@ const Sign = () => {
               </div>
             ))}
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary w-100">
+              <button className="btn btn-primary w-100">
                 <Link to="/">Sign</Link>
               </button>
             </div>
