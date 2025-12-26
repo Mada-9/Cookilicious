@@ -131,7 +131,7 @@ const PagePaiement = () => {
           adresse: formData.adresse,
           complementAddresse: formData.complementAddresse,
           ville: formData.ville,
-          code_postal: formData.code_postal,
+          codePostal: formData.codePostal,
           pays: formData.pays,
         },
       };
@@ -258,7 +258,7 @@ const PagePaiement = () => {
                 <label className="form-label">Code postal</label>
                 <input
                   type="text"
-                  name="code_postal"
+                  name="codePostal"
                   className="form-control"
                   required
                   onChange={handleChange}

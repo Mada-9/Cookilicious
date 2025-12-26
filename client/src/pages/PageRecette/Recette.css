@@ -1,13 +1,11 @@
 .titrePageRecette {
   color: var(--creme);
-  background-color: var(--jaune);
-
+  background-color: var(--marronRouge);
   font-size: 10rem !important;
   text-align: left;
   height: 21rem;
   padding-left: 1rem;
   margin-bottom: 2rem;
-  background-image: url(../../assets/images/tasty-chocolate-chips-arrangement-top-view-Photoroom.webp);
 }
 .phraseIntro {
   text-align: justify;
@@ -133,7 +131,7 @@
 .animRecette {
   display: flex;
   flex-direction: column;
-  padding-top: 20vh;
+  padding-top: 50vh;
   padding-left: 35vw !important; /* Espace pour le titre fixe */
   justify-content: start !important;
   position: relative !important;

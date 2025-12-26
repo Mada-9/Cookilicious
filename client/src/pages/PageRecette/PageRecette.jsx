@@ -205,11 +205,7 @@ const PageRecette = () => {
 
   return (
     <div className="pageRecette" style={{ marginTop: "2rem" }}>
-        <h1 className="titrePageRecette">
-          Nos <br />
-          Recettes
-        </h1>
-      <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item px-3">
             <Link to="/" style={{ width: "3rem" }}>
@@ -221,6 +217,11 @@ const PageRecette = () => {
           </li>
         </ol>
       </nav>
+        <h1 className="titrePageRecette">
+          Nos <br />
+          Recettes
+        </h1>
+    
 
       <div style={{ padding: "3rem" }}>
         <p className="phraseIntro col-sm-6 col-md-8 col-lg-6"></p>
@@ -642,6 +643,7 @@ const PageRecette = () => {
             </div>
           </div>
         </div>{" "}
+        <h1>Lorem ipsum dolor.</h1>
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
           quo voluptatibus quisquam explicabo neque error exercitationem,
@@ -649,15 +651,14 @@ const PageRecette = () => {
           eligendi corrupti dolorem, eveniet sunt.
         </p>
         {/* RESTE DU CONTENU */}
-        <div>
-          <img src={cookiebananepecan} alt="cookie" height={400} width={400} />
-        </div>
+        
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"
           style={{
             borderTop: "3px var(--marronRouge) solid",
             marginBottom: "3rem",
+            marginTop:"20rem"
           }}
         >
           <h2 className="vosAvis">Vos Avis</h2>

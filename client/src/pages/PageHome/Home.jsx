@@ -48,7 +48,6 @@ const PageHome = ({}) => {
   const styles = {
     titleHome: {
       fontFamily: "kaftus",
-      marginTop: "2rem ",
       position: "relative",
       height: "7rem",
       fontSize: isMobile
@@ -142,7 +141,7 @@ const PageHome = ({}) => {
   return (
     <>
       <div className="home">
-        <h2 style={styles.titleHome} className="titleHome " >
+        <h2 style={styles.titleHome} className="titleHome ">
           COOKILICIOUS
         </h2>
         <motion.section style={{ y: ySlow }}>
@@ -166,12 +165,11 @@ const PageHome = ({}) => {
         </motion.section>
         <div className="defilantContainer">
           <p className="phraseDefilante">
-            Irrésistible  100% fait maison
-           Texture fondante & cœur gourmand
-             Préparé chaque jour
+            Irrésistible 100% fait maison Texture fondante & cœur gourmand
+            Préparé chaque jour
           </p>
         </div>
-{/* 
+        {/* 
         <section className="homeSignaturePremium">
           <div className="divHomeSignature">
           <h1>Des Cookies & <br />Brookies  uniques  Irrésistibles   </h1> 
@@ -179,43 +177,60 @@ const PageHome = ({}) => {
     
           </div>
         </section> */}
-
+        
         <div className="homeCategorieProduit row">
-          <h2 className="phraseCategorie  col-4  ">
-            Des Cookies & Brookies 
-            <br />uniques <br /> & <br /> irrésitibles
-            
+          <h2 className="phraseCategorie  col-sm-10 col-md-6 col-lg-4 ">
+            Des Cookies & Brookies
+            <br />
+            uniques <br /> & <br /> irrésitibles
             <br />
             <p> Laissez-vous succomber…</p>
-
           </h2>
-            <section className="sectionCategorie categorieUne col-3">
-               <Link to="/cookies"> <h2>COOKIES</h2>
-            
-                <button className="btnCommander">Commander</button>
-              </Link>
-            </section>
+          <section className="sectionCategorie categorieUne col-3">
+            <Link to="/cookies">
+              {" "}
+              <h2>COOKIES</h2>
+              <button className="btnCommander">Commander</button>
+            </Link>
+          </section>
 
-            <section className="sectionCategorie categorieDeux col-3 ">
-              <h2>BROOKIES</h2>
-              <Link to="/brookies">
-                <button className="btnCommander">Commander</button>
-              </Link>
-            </section>
+          <section className="sectionCategorie categorieDeux col-3 ">
+            <h2>BROOKIES</h2>
+            <Link to="/brookies">
+              <button className="btnCommander">Commander</button>
+            </Link>
+          </section>
         </div>
-
-        <section className="sectionRecetteContent">
+        
+        <section className="sectionRecette row ">
+          {" "}
+          <h1 className="recetteTitle col-12  mt-5">
+            Découvrez nos recettes
+          </h1>{" "}
+          <Link
+            to="/recette"
+            className="sectionRecetteContent  col-sm-10 col-md-9 "
+          >
+            <p>Lorem ipsum dolor sit amet consectetur elit.</p>
+            <p>Lorem ipsum dolor sit amet.</p>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+          </Link>{" "}
+          <button
+            className="btnRecette col-5"
+            data-back="Je le veux"
+            data-front="Je le veux"
+            onClick={() => navigate("/recette")}
+          ></button>
           <img
-            className="moitieeBrookie"
+            className="moitieeBrookie col-5"
             src="https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
             alt="cookies pistache"
-            
           />
-        
-        </section>
+        </section>{" "}
+      
         <div className="containerJaune ">
           <h3 className="jauneP">F.A.Q</h3>{" "}
-          <div>
+          <div className="faqContent">
             <div
               className=" accordion accordion-flush"
               id="accordionFlushExample"
@@ -294,103 +309,43 @@ const PageHome = ({}) => {
             </div>
           </div>
         </div>
-
         {/* PRODUITS AFFICHES SUR HOME */}
+        <div className="homeProduit">
+          <h1 className="homeProduitTitle text-left">One more sweetness...</h1>
 
-        <div className="homeProduit row">
-          <h2 className="homeProduitTitle mx-auto ">One more sweetness...</h2>
-          <div className="containerProduit row">
-            <div
-              className="carousel slide "
-              id="carouselProduit"
-              data-bs-ride="carousel"
-            >
-              <div className="carousel-inner">
-                {produit
-                  .filter((_, i) => i % 4 === 0) // on prend un produit sur 4 = début d'une diapo
-                  .map((_, i) => (
-                    <div
-                      key={i}
-                      className={`carousel-item ${i === 0 ? "active" : ""}`}
-                    >
-                      <div className="d-flex" style={{}}>
-                        {produit
-                          .slice(i, i + 4) // on prend 4 produits
-                          .map((item) => (
-                            <div
-                              key={item._id}
-                              className="produitCard col-sm-8 col-md-6 col-lg-4 col-xl-3"
-                            >
-                              <p>{item.titre}</p>
-                              <img
-                                className="img-fluid"
-                                src={
-                                  item.photo ||
-                                  "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-                                }
-                                alt={item.titre}
-                                width={150}
-                                height={150}
-                              />
-                              <p>{item.prix} €</p>
-                              <button
-                                className="produitCardBtn"
-                                onClick={() => navigate(`/detail/${item._id}`)}
-                              >
-                                Voir
-                              </button>
-                            </div>
-                          ))}
-                      </div>
+          <div className="row g-5">
+            {produit.map(
+              (item, index) =>
+                index < 4 && (
+                  <div key={item._id} className="col-12 col-md-6 col-lg-3">
+                    <div className=" produitCard">
+                      <p>{item.titre}</p>
+
+                      <img
+                        className="img-fluid"
+                        src={
+                          item.photo ||
+                          "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg"
+                        }
+                        alt={item.titre}
+                        width={200}
+                        height={200}
+                      />
+
+                      <p>{item.prix} €</p>
+                      <button
+                        className="produitCardBtn"
+                        onClick={() => navigate(`/detail/${item._id}`)}
+                      >
+                        voir
+                      </button>
                     </div>
-                  ))}
-              </div>
-            </div>
-            {/* BOUTON CARROUSEL */}
-            <div className="row" style={{ color: "black" }}>
-              <button
-                className="carousel-control-prev col-sm-4 "
-                style={{
-                  height: "2rem",
-                  marginTop: "35rem",
-                  marginLeft: "5rem",
-                  color: "var(--marronFonce)",
-                }}
-                type="button"
-                data-bs-target="#carouselProduit"
-                data-bs-slide="prev"
-              >
-                <span
-                  className="carousel-bi bi-caret-left-fill "
-                  aria-hidden="false"
-                ></span>
-                <span className="visually-hidden">Previous</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                style={{
-                  height: "2rem",
-                  marginTop: "35rem",
-                  marginRight: "5rem",
-
-                  color: "var(--marronFonce)",
-                }}
-                type="button"
-                data-bs-target="#carouselProduit"
-                data-bs-slide="next"
-              >
-                <span
-                  className="carousel-bi bi-caret-right-fill "
-                  aria-hidden="true"
-                ></span>
-                <span className="visually-hidden">Next</span>
-              </button>
-            </div>
+                  </div>
+                )
+            )}
           </div>
         </div>
-
         {/* SECTION CONTACT */}
-
         <div className="contactHome my-5 p-3">
           <div className="row">
             <form className=" homeFormContact " onSubmit={handleSubmit}>

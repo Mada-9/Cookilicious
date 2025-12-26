@@ -28,3 +28,7 @@
 }
 .btnCrud{margin-bottom: 4rem;   color: var(--marronRouge) !important;
 }
+
+.h2{
+  font-size: 4rem !important;
+}

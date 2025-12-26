@@ -56,6 +56,18 @@ const CommandeDetail = () => {
       <p>Status: {detailCommande.statut}</p>
       <p>Paiement: {detailCommande.paiement}</p>
 
+      <hr />
+
+      <h2>Information livraison: </h2>
+      <p>Addresse: {detailCommande.adresse_livraison.adresse}</p>
+      <p>
+        Complément d'addresse:
+        {detailCommande.adresse_livraison.complementAddresse}
+      </p>
+      <p>Ville: {detailCommande.adresse_livraison.ville}</p>
+      <p>Code Postal: {detailCommande.adresse_livraison.codePostal}</p>
+      <p>Pays: {detailCommande.adresse_livraison.pays}</p>
+
       <button style={{ marginTop: "2rem" }}>
         <Link to="/admin/commandes">Retour aux commandes</Link>
       </button>

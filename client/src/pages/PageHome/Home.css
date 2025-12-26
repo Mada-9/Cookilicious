@@ -1,5 +1,5 @@
 .titleHome {
-  margin: 3rem;
+  margin: 4rem;
   justify-self: center;
 }
 
@@ -18,7 +18,7 @@
 .defilantContainer {
   width: 100%;
   font-size: 1.2rem;
-  margin-bottom: 8rem;
+  margin: 5rem;
   overflow: hidden;
   white-space: nowrap;
   animation: scroll-left 35s linear infinite;
@@ -98,8 +98,9 @@
   align-items: center;
   display: flex !important;
   position: relative;
-  padding: 1rem;
-  margin-bottom: 5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+
   color: var(--creme) !important;
   background-color: var(--marronRouge);
   gap: 3rem;
@@ -107,20 +108,20 @@
 
 /* Texte */
 .phraseCategorie {
-  font-size: 3rem;
+  font-size: 4rem;
   line-height: 1.2;
   text-align: center;
-  margin-bottom: 3rem;
 }
 
 /* Cartes catégories */
 .sectionCategorie {
   display: flex;
+
   flex-direction: column;
   justify-content: center; /* centre verticalement */
   align-items: center; /* centre horizontalement */
   text-align: center; /* texte centré */
-  height: 20rem; /* assez haut pour le parallax */
+  height: 25rem; /* assez haut pour le parallax */
   border-radius: 5%;
   will-change: background-position;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -130,9 +131,6 @@
   color: var(--creme);
 }
 @media (max-width: 768px) {
-  .phraseCategorie {
-    justify-content: center !important;
-  }
   .sectionCategorie {
     height: 25rem; /* plus petit sur mobile */
     width: 100% !important;
@@ -159,13 +157,12 @@
   font-size: 3rem;
 }
 
-/* Bouton style "bestia" */
 .btnCommander {
   background: transparent;
   border: 1px solid #fff;
   color: #fff;
   padding: 12px 28px;
-  border-radius: 50px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -179,18 +176,103 @@
 }
 /* SECTION RECETTE */
 
-.sectionRecetteContent {
-  height: 35rem !important;
+.sectionRecette {
   position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 6rem 0 9rem 0;
+  align-content: start;
+  gap: 6rem;
+}
+
+.recetteTitle {
+  margin-left: 4rem;
+}
+.sectionRecetteContent {
+  /* border: 1px solid black; */
+  display: flex;
+  gap: 3rem;
+  justify-items: center;
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.btnRecette {
+  background: transparent;
+  border: none;
+  color: var(--marronRouge);
+  padding: 12px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  justify-self: center;
+  height: 4rem;
+  font-size: 1.3rem;
+  position: relative;
+  display: inline-block;
+}
+
+.btnRecette::before,
+.btnRecette::after {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  backface-visibility: hidden;
+}
+
+/* face avant */
+.btnRecette::before {
+  content: attr(data-front);
+  background: var(--creme);
+  color: var(--jaune);
+  transform: rotateX(0deg);
+  opacity: 1;
+  border: var(--marronRouge) 2px solid;
+}
+
+/* face arrière */
+.btnRecette::after {
+  content: attr(data-back);
+  background: var(--marronRouge);
+  color: var(--creme);
+  transform: rotateX(-90deg);
+  opacity: 0;
+}
+
+/* hover flip */
+.btnRecette:hover::before {
+  transform: rotateX(90deg);
+  opacity: 0;
+}
+
+.btnRecette:hover::after {
+  transform: rotateX(0deg);
+  opacity: 1;
 }
 
 .moitieeBrookie {
-  width: 550px;
-  height: 600px;
   position: absolute;
-  top: 0;
-  left: -16rem;
-  padding-bottom: 1.9rem;
+  left: -19rem;
+  padding-top: 14.3rem;
+  height: 880px;
+}
+
+/* section à definir 
+
+*/
+
+.aDefinir {
+  align-content: center;
+  padding: 3rem;
+  margin-bottom: 5rem;
+    margin-top: 5rem;
+
+}
+.aDefinir h2 {
+  line-height: 200%;
 }
 
 /* SECTION JAUNE */
@@ -199,26 +281,23 @@
   background-color: var(--jaune);
   align-content: center;
 }
+.faqContent {
+  background-color: var(--jaune);
+  align-content: center;
+}
 
 .jauneP {
   font-size: 4.5rem;
   color: var(--marronRouge);
-  width: 70%;
   padding-left: 3rem;
   text-align: left;
   line-height: 79px;
-  position: relative;
 }
 
 .accordion-button {
-  position: relative;
-  display: flex;
-  align-items: center;
   font-size: 2rem !important;
-  color: #880a0c !important;
-  text-align: left;
-  background-color: #de9217 !important;
-  overflow-anchor: none;
+  color: var(--marronRouge) !important;
+  background-color: var(--jaune) !important;
   transition: 1s;
 }
 
@@ -235,51 +314,35 @@
 /* SECTION PRODUIT */
 
 .homeProduit {
-  height: 33rem;
-  padding: 2rem;
-  margin-bottom: 7rem;
-  position: relative;
+  padding: 9rem 3rem 9rem 3rem;
 }
 
-.homeProduitTitle {
-  justify-self: center;
-  font-size: 5rem;
-  word-spacing: 0.5rem;
-}
-
-.carousel-inner {
-  margin-left: 3rem;
-  width: 70rem;
-}
-.d-flex {
-  gap: 3rem;
-  margin-right: 9rem;
-  margin-top: 10rem;
-}
 .produitCard {
-  border-radius: 8px;
-  width: 14rem;
+  border-top: var(--marronRouge) 2px solid !important;
   height: 20rem;
   text-align: center;
-  box-shadow: 0 0 5px var(--marronRouge);
-  border: 3px solid var(--caramel) !important;
   background-color: var(--creme);
-  font-size: 1.3rem;
+  margin-top: 5rem;
+  cursor: pointer;
 }
 
 .produitCardBtn {
   font-size: 1rem;
-  width: 4rem;
   color: var(--jaune);
-  border: #bd5505ff 2px solid;
-  background-color: var(--creme);
+  border: var(--marronRouge) 1px solid;
+  width: 10rem;
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  justify-self: center;
 }
 
 /* SECTION CONTACT  */
 
 .contactHome {
   /* height: 32rem; */
-  background-color: #5f0406;
+  background-color: var(--marronRouge);
   /* margin-top: 3rem;
   margin-bottom: 6rem; */
   /* justify-items: center; */
@@ -287,7 +350,6 @@
 }
 
 .homeContactTitle {
-  font-size: 4.5rem;
   color: var(--creme);
   margin-top: 4rem;
 }
@@ -300,6 +362,9 @@
 @media (max-width: 425px) {
   .homeContactTitle {
     font-size: 3rem;
+  }
+  .phraseCategorie {
+    text-align: center;
   }
 }
 .homeFormContact {
@@ -333,17 +398,23 @@
   height: 3rem !important;
   color: var(--marronRouge) !important;
   background-color: var(--creme) !important;
-
   font-size: 1.2rem !important;
   margin-bottom: 2rem;
 }
 
 .homeBtnContact {
-  height: 3rem;
-  border: 2px #fefaef solid !important;
-  color: var(--marronRouge) !important;
-  background-color: var(--creme) !important;
+  color: var(--creme) !important;
   font-size: 1.6rem !important;
+  height: 3rem;
+  background: transparent;
+  border: 3px solid #fff !important;
+  padding: 12px 28px;
+  border-radius: 50px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-self: center;
+  font-size: 1.3rem;
 }
 
 .btnBackToTop {
@@ -380,9 +451,7 @@
     font-size: 1rem;
     margin: 1rem;
   }
-  .phraseCategorie {
-    font-size: 1.5rem;
-  }
+
   .btnCommander {
     height: auto;
     font-size: 1rem !important;
@@ -399,23 +468,20 @@
     font-size: 2rem;
   }
 
-  .homeRecipes {
-    margin-bottom: 1rem;
+  .sectionRecette {
+    padding: 3rem !important;
   }
-  .homeRecipesTitle {
-    font-size: 2rem !important;
-  }
-  .recetteHome {
-    height: 15rem !important;
-    margin-top: 2rem;
+
+  .sectionRecetteContent {
+    flex-direction: column;
   }
   .moitieeBrookie {
     height: 20rem !important;
     left: -15rem !important;
   }
-  .homeProduitTitle {
+  .home h1 {
     padding-top: 5rem;
-    font-size: 2rem !important;
+    font-size: 3.2rem !important;
   }
 }
 

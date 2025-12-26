@@ -26,7 +26,7 @@ const Header = () => {
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-              <Link to="/admin/home">Dashboard</Link>{" "}
+              <Link to="/admin">Dashboard</Link>{" "}
             </h5>
             <button
               type="button"

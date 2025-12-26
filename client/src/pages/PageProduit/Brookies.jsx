@@ -4,16 +4,15 @@ import { useNavigate, Link } from "react-router-dom";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-
 import "./Produit.css"; // CSS spécifique
 
 const Brookies = () => {
   const navigate = useNavigate();
   const [produit, setProduit] = useState([]);
-    const { scrollY } = useScroll();
+  const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
-  const ySlow = useTransform(scrollY, [0, 600], [0, -120]);
+  const ySlow = useTransform(scrollY, [0, 700], [0, -120]);
 
   useEffect(() => {
     getAllProduits();
@@ -34,19 +33,6 @@ const Brookies = () => {
 
   return (
     <div className="produit">
-      <section className="enteteProduit" style={{ width: "100%" }}>
-        <h1
-          className="titlePageProduit"
-          style={{
-            textAlign: "center",
-            marginLeft: "3rem",
-            paddingTop: "5rem",
-          }}
-        >
-          Nos Brookies
-        </h1>
-      </section>
-
       <nav aria-label="breadcrumb" style={{ marginTop: "3rem" }}>
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item  px-3">
@@ -60,45 +46,55 @@ const Brookies = () => {
           </li>
         </ol>
       </nav>
+      <section className="enteteProduit" style={{ width: "100%" }}>
+        <h1
+          className="titlePageProduit"
+          style={{
+            textAlign: "center",
+            paddingTop: "4rem",
+          }}
+        >
+          Nos Brookies
+        </h1>
+      </section>
 
-            <motion.section style={{ y: ySlow }}>
+      <motion.section style={{ y: ySlow }}>
+        <p className="introPageProduit">
+          Laissez-vous tenter par nos brookies fondants et croquants, préparés
+          chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
+          réunit le meilleur du brownie et du cookie.
+        </p>
 
-      <p className="introPageProduit">
-        Laissez-vous tenter par nos brookies fondants et croquants, préparés
-        chaque jour avec des ingrédients de qualité. Un mariage gourmand qui
-        réunit le meilleur du brownie et du cookie.
-      </p>
-
-      <div className="sectionBrookie">
-        <div className="produitContainer2 ">
-          {produit.map(
-            (item, index) =>
-              index > 8 && (
-                <div key={item._id} className="produit2">
-                  <p className="titreProduit2">{item.titre}</p>{" "}
-                  <img
-                    style={{
-                      padding: "1px",
-                    }}
-                    src={item.photo}
-                    alt="cookie"
-                    width={235}
-                    height={235}
-                  />
-                  <div className="prixBtn">
-                    <p>{item.prix}€</p>
+        <div className="sectionBrookie">
+          <div className="produitContainer2 ">
+            {produit.map(
+              (item, index) =>
+                index > 8 && (
+                  <div key={item._id} className="produit2">
+                    <p className="titreProduit2">{item.titre}</p>{" "}
+                    <img
+                      style={{
+                        padding: "1px",
+                      }}
+                      src={item.photo}
+                      alt="cookie"
+                      width={235}
+                      height={235}
+                    />
+                    <div className="prixBtn">
+                      <p>{item.prix}€</p>
                       <button
-                      className="btnDetail"
-                      data-back="Je le veux" data-front="Je le veux"
-                      onClick={() => navigate(`/detail/${item._id}`)}
-                    > 
-                    </button>
+                        className="btnDetail"
+                        data-back="Je le veux"
+                        data-front="Je le veux"
+                        onClick={() => navigate(`/detail/${item._id}`)}
+                      ></button>
+                    </div>
                   </div>
-                </div>
-              )
-          )}
+                )
+            )}
+          </div>
         </div>
-      </div>
       </motion.section>
       <Link
         to="/cookies"

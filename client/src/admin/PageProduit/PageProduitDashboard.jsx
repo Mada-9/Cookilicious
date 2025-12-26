@@ -42,7 +42,7 @@ const PageProduitDashboard = () => {
 
   return (
     <>
-      <h1>Gestion des produits</h1>
+      <h2>Gestion des produits</h2>
       <div>CRUD produits</div>
       <div
         className=""
