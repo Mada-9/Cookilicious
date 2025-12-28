@@ -11,7 +11,7 @@ const PageApropos = () => {
           // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
-          fontSize: "4.5rem",
+          fontSize:"3rem"
         }}
         className="titreApropos"
       >
@@ -28,9 +28,9 @@ const PageApropos = () => {
         }}
       >
         {/* PREMIER PARAGRAPHE */}
-        <h1 style={{ fontSize: "3rem", marginBottom: "2rem" }}>
+        <h2 style={{  marginBottom: "2rem" }}>
           Notre Histoire
-        </h1>
+        </h2>
         <p style={{ textAlign: "justify" }}>
           Bienvenue dans l’univers de Cookilicious, un monde plein de saveurs,
           de douceurs et de créativité sucrée ! Ici, chaque recette est une
@@ -40,9 +40,9 @@ const PageApropos = () => {
 
         {/* {/* ************************************************************************************** */}
 
-        <h1 style={{ fontSize: "3rem", margin: "6rem 0 2rem  0" }} >
+        <h2 style={{  margin: "6rem 0 2rem  0" }} >
           Notre Mission
-        </h1>
+        </h2>
         <div style={{ display: "flex", gap: "5rem", marginBottom: "6rem", }}className="textApropos">
           <p style={{ textAlign: "justify",  }}>
             Chez Cookilicious, notre mission est simple : générer du plaisir à
@@ -75,15 +75,15 @@ const PageApropos = () => {
           }}
           className="textApropos"
         >
-          <h1
+          <h2
             style={{
               color: "var(--jaune)",
               textAlign: "left",
               alignSelf: "center",
-fontSize: "3rem",            }}
+          }}
           >
             Nos Cookies
-          </h1>
+          </h2>
           <p>
             Tous nos cookies sont faits maison en France, avec des ingrédients
             soigneusement sélectionnés. Nous explorons des goûts uniques et
@@ -96,9 +96,9 @@ fontSize: "3rem",            }}
 
         {/* ************************************************************************************** */}
         <div style={{ textAlign: "justify", maxWidth: "30rem" }}>
-          <h1 style={{ alignSelf: "center", marginBottom: "2rem",fontSize: "3rem", }}>
+          <h2 style={{ alignSelf: "center", marginBottom: "2rem",}}>
             Restons connectés
-          </h1>
+          </h2>
           <p>
             Une question? une commande spéciale? envie d’échanger autour de la
             pâtisserie? Contactez nous ! <br />

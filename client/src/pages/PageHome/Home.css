@@ -1,6 +1,43 @@
 .titleHome {
   margin: 4rem;
   justify-self: center;
+  font-size: 9.5rem !important;
+  font-family: "kaftus";
+  position: relative;
+  height: 7rem;
+}
+
+@media (max-width: 448px) {
+  .titleHome {
+    font-size: 2.4rem !important;
+  }
+}
+
+@media (min-width: 448px) and (max-width: 600px) {
+  .titleHome {
+    font-size: 3.5rem !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 780px) {
+  .titleHome {
+    font-size: 5rem !important;
+  }
+}
+
+
+
+@media (min-width: 850px) and ( max-width:1024px) {
+  .titleHome {
+    font-size: 7rem !important;
+  }
+}
+
+@media  ( min-width:1504px) {
+  .titleHome {
+    font-size: 15rem !important;
+    margin-bottom: 15rem;
+  }
 }
 
 .imageHome {
@@ -39,57 +76,6 @@
   }
 }
 
-.homeSignaturePremium {
-  height: 25rem;
-  text-align: left;
-  margin-bottom: 4rem;
-  padding-left: 2rem;
-  padding-right: 1rem;
-  display: flex;
-  align-items: center;
-  color: var(--marronRouge);
-}
-
-.divHomeSignature {
-  justify-self: left;
-  width: 100%;
-}
-
-.homeSignaturePremium h1 {
-  justify-self: left;
-  font-size: 4.2rem !important;
-}
-.homeSignaturePremium p {
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
-  justify-self: left;
-}
-
-.signatureValues {
-  display: flex;
-  justify-content: left;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
-  font-size: 1.1rem;
-}
-
-.btnSignature {
-  background-color: transparent;
-  border: 2px solid var(--creme);
-  color: var(--marronRouge);
-  padding: 1rem 3rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btnSignature:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-
 /* SECTION CATEGORIE */
 
 /* Contenu */
@@ -100,10 +86,9 @@
   position: relative;
   padding-top: 2rem;
   padding-bottom: 2rem;
-
   color: var(--creme) !important;
   background-color: var(--marronRouge);
-  gap: 3rem;
+  gap: 4rem;
 }
 
 /* Texte */
@@ -116,7 +101,6 @@
 /* Cartes catégories */
 .sectionCategorie {
   display: flex;
-
   flex-direction: column;
   justify-content: center; /* centre verticalement */
   align-items: center; /* centre horizontalement */
@@ -180,14 +164,12 @@
   position: relative;
   display: flex;
   justify-content: center;
-  padding: 6rem 0 9rem 0;
+  padding-top: 6rem;
+  padding-bottom: 9rem;
   align-content: start;
   gap: 6rem;
 }
 
-.recetteTitle {
-  margin-left: 4rem;
-}
 .sectionRecetteContent {
   /* border: 1px solid black; */
   display: flex;
@@ -263,50 +245,44 @@
 /* section à definir 
 
 */
-
-.aDefinir {
-  align-content: center;
-  padding: 3rem;
-  margin-bottom: 5rem;
-    margin-top: 5rem;
-
-}
-.aDefinir h2 {
-  line-height: 200%;
+.sectionJaune {
+  color: var(--creme);
+  background-color: var(--jaune);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 /* SECTION JAUNE */
-.containerJaune {
+.sectionFaq {
   height: 28rem;
-  background-color: var(--jaune);
+  background-color: var(--marronRouge);
   align-content: center;
 }
 .faqContent {
-  background-color: var(--jaune);
+  background-color: var(--marronRouge);
   align-content: center;
 }
 
-.jauneP {
-  font-size: 4.5rem;
-  color: var(--marronRouge);
+.faqP {
+  color: var(--creme);
+  font-size: 4rem;
   padding-left: 3rem;
   text-align: left;
   line-height: 79px;
 }
 
 .accordion-button {
-  font-size: 2rem !important;
-  color: var(--marronRouge) !important;
-  background-color: var(--jaune) !important;
+  font-size: 1.5rem !important;
+  color: var(--creme) !important;
+  background-color: var(--marronRouge) !important;
   transition: 1s;
 }
 
 .accordion-item {
   padding-left: 2rem;
   text-align: left;
-
-  color: var(--marronFonce) !important;
-  background-color: var(--jaune) !important;
+  color: var(--creme) !important;
+  background-color: var(--marronRouge) !important;
   border: var(--bs-accordion-border-width) solid
     var(--bs-accordion-border-color);
 }
@@ -314,7 +290,8 @@
 /* SECTION PRODUIT */
 
 .homeProduit {
-  padding: 9rem 3rem 9rem 3rem;
+  padding-top: 9rem;
+  padding-bottom: 17rem;
 }
 
 .produitCard {
@@ -342,57 +319,37 @@
 
 .contactHome {
   /* height: 32rem; */
-  background-color: var(--marronRouge);
   /* margin-top: 3rem;
   margin-bottom: 6rem; */
-  /* justify-items: center; */
   position: relative;
 }
 
 .homeContactTitle {
-  color: var(--creme);
+  justify-self: center;
   margin-top: 4rem;
-}
-/* .form-control:focus{
-  color: var(--jaune) !important;
-  border-color: var(--jaune) !important;
-  box-shadow: #de9217 !important;
-} */
-
-@media (max-width: 425px) {
-  .homeContactTitle {
-    font-size: 3rem;
-  }
-  .phraseCategorie {
-    text-align: center;
-  }
+  font-size: 6rem !important;
 }
 .homeFormContact {
-  display: flex;
-  flex-direction: row-reverse;
+  justify-self: right !important;
+  margin-right: 2rem !important;
 }
 
-@media (max-width: 800px) {
-  .homeFormContact {
-    display: flex;
-    flex-direction: column;
-  }
-}
 /* alert */
 
 .email,
 .message {
   font-size: 2rem !important;
-  color: var(--creme) !important;
+  color: var(--marronRouge) !important;
   margin-bottom: 1rem;
 }
 
 .messageInput {
-  height: 6rem !important;
+  min-height: 6rem !important;
   color: var(--marronRouge) !important;
   background-color: var(--creme) !important;
   font-size: 1.2rem !important;
   margin-bottom: 2rem;
+  border: 2px solid var(--marronRouge) !important;
 }
 .emailInput {
   height: 3rem !important;
@@ -400,15 +357,17 @@
   background-color: var(--creme) !important;
   font-size: 1.2rem !important;
   margin-bottom: 2rem;
+  border: 2px solid var(--marronRouge) !important;
 }
 
 .homeBtnContact {
-  color: var(--creme) !important;
+  color: var(--marronRouge) !important;
+  justify-content: center;
+  align-content: center;
   font-size: 1.6rem !important;
   height: 3rem;
   background: transparent;
-  border: 3px solid #fff !important;
-  padding: 12px 28px;
+  border: 3px solid var(--marronRouge) !important;
   border-radius: 50px !important;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -430,6 +389,11 @@
   border: 2px solid var(--marronFroid);
 }
 
+.defilantTitle {
+  margin-left: 5rem;
+  font-family: "kaftus" !important;
+}
+
 /* BAS DE PAGE */
 
 /* 
@@ -442,6 +406,15 @@
   }
 } */
 
+@media (max-width: 425px) {
+  .homeContactTitle {
+    font-size: 3rem;
+  }
+  .phraseCategorie {
+    text-align: center;
+    font-size: 3rem;
+  }
+}
 @media (max-width: 448px) {
   .titleHome {
     height: 2rem !important;
@@ -479,9 +452,16 @@
     height: 20rem !important;
     left: -15rem !important;
   }
-  .home h1 {
-    padding-top: 5rem;
-    font-size: 3.2rem !important;
+
+  .homeContactTitle {
+    text-align: center;
+    margin: 3rem;
+    font-size: 3rem !important;
+  }
+  .homeFormContact {
+    justify-content: center !important;
+    margin: 0rem !important;
+    margin-bottom: 3rem !important;
   }
 }
 

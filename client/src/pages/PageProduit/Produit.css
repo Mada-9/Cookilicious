@@ -41,8 +41,20 @@
 
 } */
 
-.titlePageProduit {
-  font-size: 9rem !important;
+ .titlePageProduit {
+  font-size: 9rem ;
+} 
+
+@media (max-width: 448px) {
+  .titlePageProduit {
+    font-size: 3.3rem !important;
+  }
+}
+
+@media (min-width: 448px) and (max-width: 825px) {
+ .titlePageProduit {
+    font-size: 6rem !important;
+  }
 }
 
 .introPageProduit {

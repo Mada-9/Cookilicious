@@ -2,7 +2,7 @@ import { useState, useEffect, useContext, useRef } from "react";
 import URL from "../../utils/constant/url";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import {  useScroll, useTransform } from "framer-motion";
+import { useScroll, useTransform } from "framer-motion";
 
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { AuthContext } from "../../utils/context/AuthContext";
@@ -26,7 +26,7 @@ import cookiedough from "../../assets/images/cookiedough.webp";
 const PageRecette = () => {
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({
-    pseudo:"",
+    pseudo: "",
     recetteTest: "",
     commentaire: "",
     image: "",
@@ -205,7 +205,7 @@ const PageRecette = () => {
 
   return (
     <div className="pageRecette" style={{ marginTop: "2rem" }}>
-        <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb">
         <ol className="breadcrumb my-3">
           <li className="breadcrumb-item px-3">
             <Link to="/" style={{ width: "3rem" }}>
@@ -217,11 +217,10 @@ const PageRecette = () => {
           </li>
         </ol>
       </nav>
-        <h1 className="titrePageRecette">
-          Nos <br />
-          Recettes
-        </h1>
-    
+      <h1 className="titrePageRecette">
+        Nos <br />
+        Recettes
+      </h1>
 
       <div style={{ padding: "3rem" }}>
         <p className="phraseIntro col-sm-6 col-md-8 col-lg-6"></p>
@@ -651,14 +650,13 @@ const PageRecette = () => {
           eligendi corrupti dolorem, eveniet sunt.
         </p>
         {/* RESTE DU CONTENU */}
-        
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"
           style={{
             borderTop: "3px var(--marronRouge) solid",
             marginBottom: "3rem",
-            marginTop:"20rem"
+            marginTop: "20rem",
           }}
         >
           <h2 className="vosAvis">Vos Avis</h2>
@@ -680,136 +678,123 @@ const PageRecette = () => {
           />
         </div>
         {/* FORMULAIRE AVIS */}
-        
         <div className="row justify-content-center">
-          <div
-            className=" avisSection"
-            style={{
-             
-            }}
-          >
-            <h1 className="avisTitre">Laisser un avis!</h1>
+          <div className=" avisSection" style={{}}>
+            <h2 className="avisTitre">Laisser un avis!</h2>
 
-            {isAuthenticated ?(
-                 <>
-           
-            <form
-              onSubmit={handleSubmit}
-              className="row d-flex justify-content-center m-4"
-            >
-              <div className="form-group col-md-6 mb-3">
-                <label htmlFor="recetteTest">
-                  <h3> Recette testée</h3>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="recetteTest"
-                  name="recetteTest"
-                  placeholder="Recette testée"
-                  onChange={handleChange}
-                  style={{
-                    border: "4px solid var(--marronRouge)",
-                    color: "var(--marronRouge)",
-                  }}
-                />
-              </div>
-              <div className="form-group col-md-6">
-                <label htmlFor="commentaire">
-                  <h3>Commentaire</h3>
-                </label>
-                <textarea
-                  type="text"
-                  name="commentaire"
-                  id="commentaire"
-                  className="form-control"
-                  onChange={handleChange}
-                  placeholder="Votre Commentaire"
-                  style={{
-                    height: "10rem",
-                    border: "4px solid var(--marronRouge)",
-                    color: "var(--marronRouge)",
-                    marginBottom: "1rem",
-                  }}
-                ></textarea>
-              </div>
-              <div className="form-group col-md-6 mb-3">
-                <label htmlFor="image">
-                  <h3> Joindre une image</h3>
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="image"
-                  name="image"
-                  placeholder="Inserez une image"
-                  onChange={handleChange}
-                  style={{
-                    border: "4px solid var(--marronRouge)",
-                    color: "var(--marronRouge)",
-                  }}
-                />
-              </div>
-              <button
-                onSubmit={handleSubmit}
-                type="submit"
-                className="btnPublier"
-              >
-                Publier
-              </button>
-            </form>
-         
-         </>
-             ):(
-                <form onSubmit={handleSubmitUser}>
-                                <h2>Connectez vous pour rédiger un avis!</h2>
+            {isAuthenticated ? (
+              <>
+                <form
+                  onSubmit={handleSubmit}
+                  className="row justify-content-center m-4"
+                >
+                  <div className="form-group col-8 mb-3">
+                    <label htmlFor="recetteTest">
+                      <h3> Recette testée</h3>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="recetteTest"
+                      name="recetteTest"
+                      placeholder="Recette testée"
+                      onChange={handleChange}
+                      style={{
+                        border: "4px solid var(--marronRouge)",
+                        color: "var(--marronRouge)",
+                      }}
+                    />
+                  </div>
+                  <div className="form-group col-8">
+                    <label htmlFor="commentaire">
+                      <h3>Commentaire</h3>
+                    </label>
+                    <textarea
+                      type="text"
+                      name="commentaire"
+                      id="commentaire"
+                      className="form-control"
+                      onChange={handleChange}
+                      placeholder="Votre Commentaire"
+                      style={{
+                        height: "10rem",
+                        border: "4px solid var(--marronRouge)",
+                        color: "var(--marronRouge)",
+                        marginBottom: "1rem",
+                      }}
+                    ></textarea>
+                  </div>
+                  <div className="form-group col-8 mb-3">
+                    <label htmlFor="image">
+                      <h3> Joindre une image</h3>
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="image"
+                      name="image"
+                      placeholder="Inserez une image"
+                      onChange={handleChange}
+                      style={{
+                        border: "4px solid var(--marronRouge)",
+                        color: "var(--marronRouge)",
+                      }}
+                    />
+                  </div>
+                  <button
+                    onSubmit={handleSubmit}
+                    type="submit"
+                    className="btnPublier"
+                  >
+                    Publier
+                  </button>
+                </form>
+              </>
+            ) : (
+              <form onSubmit={handleSubmitUser}>
+                <h2>Connectez vous pour rédiger un avis!</h2>
 
-                    {SIGN_FIELDS.map((field, index) => (
-                      <div className="input-group flex-nowrap mb-3" key={index}>
-                        <span
-                          className="input-group-text"
-                          id="addon-wrapping"
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        >
-                          <i
-                            className={field.icon}
-                            style={{ color: "var(--marronRouge)" }}
-                          ></i>
-                        </span>
-                        <input
-                          type={field.type}
-                          className="form-control"
-                          placeholder={field.placeholder}
-                          aria-label={field.label}
-                          name={field.name}
-                          aria-describedby="addon-wrapping"
-                          onChange={handleChangeUser}
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        />
-                      </div>
-                    ))}
-                    <div className="d-grid">
-                      <button
-                        type="submit"
-                        className="btn w-100"
-                        style={{
-                          border: "var(--marronRouge) 2px solid",
-                          color: "var(--marronRouge)",
-                          marginBottom: "2rem",
-                        }}
-                      >
-                        Je me connecte{" "}
-                      </button>
-                    </div>
-                        <Link
-                    to="/register"
-                    onClick={() => {
-                     
+                {SIGN_FIELDS.map((field, index) => (
+                  <div className="input-group flex-nowrap mb-3" key={index}>
+                    <span
+                      className="input-group-text"
+                      id="addon-wrapping"
+                      style={{ border: "var(--marronRouge) 2px solid" }}
+                    >
+                      <i
+                        className={field.icon}
+                        style={{ color: "var(--marronRouge)" }}
+                      ></i>
+                    </span>
+                    <input
+                      type={field.type}
+                      className="form-control"
+                      placeholder={field.placeholder}
+                      aria-label={field.label}
+                      name={field.name}
+                      aria-describedby="addon-wrapping"
+                      onChange={handleChangeUser}
+                      style={{ border: "var(--marronRouge) 2px solid" }}
+                    />
+                  </div>
+                ))}
+                <div className="d-grid">
+                  <button
+                    type="submit"
+                    className="btn w-100"
+                    style={{
+                      border: "var(--marronRouge) 2px solid",
+                      color: "var(--marronRouge)",
+                      marginBottom: "2rem",
                     }}
                   >
-                    Vous n'avez pas de compte ?
-                  </Link>
-                  </form>
+                    Je me connecte{" "}
+                  </button>
+                </div>
+                <Link to="/register" onClick={() => {}}>
+                  Vous n'avez pas de compte ?
+                </Link>
+              </form>
             )}
           </div>
         </div>

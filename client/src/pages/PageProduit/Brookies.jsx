@@ -47,7 +47,7 @@ const Brookies = () => {
         </ol>
       </nav>
       <section className="enteteProduit" style={{ width: "100%" }}>
-        <h1
+        <h2
           className="titlePageProduit"
           style={{
             textAlign: "center",
@@ -55,7 +55,7 @@ const Brookies = () => {
           }}
         >
           Nos Brookies
-        </h1>
+        </h2>
       </section>
 
       <motion.section style={{ y: ySlow }}>

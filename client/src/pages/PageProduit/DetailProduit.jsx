@@ -5,6 +5,7 @@ import { PanierContext } from "../../utils/context/PanierContext";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+import "./DetailProduit.css"
 
 const DetailProduit = () => {
   const {
@@ -22,7 +23,7 @@ const DetailProduit = () => {
   const { id } = params;
   const [detailProduit, setDetailProduit] = useState(null);
   const [produit, setProduit] = useState([]);
-     const { scrollY } = useScroll();
+  const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 600], [0, -90]);
@@ -88,54 +89,20 @@ const DetailProduit = () => {
           <p>Chargement...</p>
         ) : (
           <div>
-            <div key={detailProduit._id} style={{ padding: "3rem" }}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyItems: "center",
-                  paddingBottom: "2rem",
-                }}
-                className=""
-              >
-                <h2 style={{ fontSize: "3rem" }} className="">
+            <div
+              key={detailProduit._id}
+              style={{ padding: "3rem" }}
+              className="row"
+            >
+              <div style={{ display: "flex", height: "3rem" }} className="detailProduitContent">
+                <h3  className="detailTitre col-9">
                   {detailProduit.titre}
-                </h2>
-                            <motion.section style={{ y: ySlow }}>
-
-                <img
-                  className="detailProduitImg "
-                  style={{
-                    display: "flex",
-                    justifySelf: "center",
-                    alignSelf: "center",
-                  }}
-                  src={detailProduit.photo}
-                  alt={detailProduit.titre}
-                  width={460}
-                  height={460}
-                />  </motion.section>
-                {/* <div style={{ padding: "3rem" }}>
-                <div style={{ fontSize: "1rem", display: "flex", gap: "1rem" }}>
-                  <p style={{ fontSize: "2rem" }}> {detailProduit.prix} €</p>
-                  <button onClick={() => decremente(index)}>-</button>
-                  <p
-                    style={{ backgroundColor: "var(--creme)", border: "none" }}
-                  >
-                    quantité
-                  </p>
-                  <p>{detailProduit.index}</p>
-                  <button onClick={() => incremente(index)}>+</button>
-                </div>
-                <p>{detailProduit.description}</p>
-                
-              </div> */}{" "}
-                <h2
-                  className=""
-                  style={{ paddingLeft: "9rem", paddingRight: "1rem" }}
-                >
+                </h3>
+                <h3 className="produitPrix col-1" style={{ marginRight: "3rem", marginLeft:"2rem"}}>
                   {detailProduit.prix}€
-                </h2>
-                <Link
+                </h3>
+
+                <button
                   style={{
                     background: "transparent",
                     border: "1px solid var(--marronFroid)",
@@ -144,24 +111,44 @@ const DetailProduit = () => {
                     borderRadius: " 50px",
                     cursor: "pointer",
                     transition: "all 0.3s ease",
-                    justifySelf: "center",
                     alignContent: "center",
                     textAlign: "center",
                     fontSize: "1rem",
+                    height: "30rem",
+                    width: "7rem",
+                    marginTop: "3rem",
                   }}
-                  className="btnFlip"
-                  data-back="Back"
-                  data-front="Front"
                   onClick={() => addPanier(detailProduit)}
+                  className="btnAjout col-1"
+                  // data-back="Back"
+                  // data-front="Front"
                 >
-                  {" "}
+                  <Link></Link>
                   Ajouter au panier
-                </Link>
+                </button>
               </div>
+
+              <motion.section style={{ y: ySlow }}>
+                <img
+                  className="detailProduitImg image-fluid"
+                  style={{
+                  
+                  }}
+                  src={detailProduit.photo}
+                  alt={detailProduit.titre}
+              
+                />{" "}
+              </motion.section>
+
               <div
-                style={{ paddingBottom: "3rem", display: "flex", gap: "3rem" }}
+                style={{
+                  paddingBottom: "3rem",
+                  display: "flex",
+                  gap: "3rem",
+                  marginTop: "3rem",
+                }}
               >
-                <p className="col-9">{detailProduit.description}</p>
+                <p className="descProduit col-9">{detailProduit.description}</p>
                 <div
                   className="btnQuantite col-3"
                   style={{ display: "flex", gap: "1rem" }}
@@ -271,7 +258,6 @@ const DetailProduit = () => {
           </div>
         </div> */}
       </div>
-    
     </>
   );
 };

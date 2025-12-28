@@ -54,8 +54,11 @@ const PageContact = () => {
         onSubmit={handleSubmit}
         className="row g-3 d-flex justify-content-center  pt-3 mb-5 "
         style={{
-          border: "4px var(--marronRouge) solid",
-          justifySelf: "center",
+          // borderLeft: "4px var(--marronRouge) solid",
+          boxShadow:"  9rem 3rem 3rem 3rem",
+          justifySelf: "right",
+          
+
         }}
       >
         <div className="col-9">
@@ -94,7 +97,7 @@ const PageContact = () => {
             }}
           ></textarea>
         </div>
-        <div className="col-12 mb-5">
+        <div className="col-9 mb-5">
           <button
             type="submit"
             className="btn btn-primary"
