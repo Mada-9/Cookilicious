@@ -3,8 +3,13 @@ const mongoose = require("mongoose");
 const Avis = mongoose.Schema(
   {
     //qui publie l'avis
-  
-        recetteTest: {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+    },
+
+    recetteTest: {
       type: String,
       required: true,
     },
@@ -12,7 +17,7 @@ const Avis = mongoose.Schema(
       type: String,
       required: true,
     },
-     image: {
+    image: {
       type: String,
       required: false,
     },

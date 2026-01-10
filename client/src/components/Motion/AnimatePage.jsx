@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
 
+
+// Animation transition de page
+
+
+
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
   in: { opacity: 1, y: 0 },

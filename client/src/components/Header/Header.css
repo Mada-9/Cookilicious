@@ -1,7 +1,5 @@
 @media (min-width: 769px) {
-  .navbar.navbar-expand-lg {
-    justify-self: right;
-  }
+ 
   .dropdown-menu {
     margin-left: 3rem !important;
     margin-top: 0 !important;
@@ -27,12 +25,19 @@
   justify-self: left;
   padding-left: 2rem;
 }  
-/* 
+
 .panier {
-  margin-left: 2rem;
-} */
+  margin-left: 1rem;
+
+}
+
 
 .monheader,
 li {
   padding: 0 0;}
 
+  .navbar.navbar-expand-lg {
+    justify-self: right;
+    background: transparent;
+    margin-right: 1rem;
+  }

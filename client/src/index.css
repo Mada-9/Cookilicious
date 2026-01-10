@@ -1,7 +1,7 @@
 /* * {overflow: visible !important;} */
 
 @font-face {
-  font-family: "test";
+  font-family: "delight";
   src: url(../src/assets/fonts/Delight/OpenType-PS/Delight-Bold.otf);
 }
 
@@ -34,8 +34,8 @@
 
 html,
 body {
-  font-family: "test" !important;
-  width: 100% !important;
+  font-family: "delight" !important;
+  /* width: 100% !important; */
   max-width: 100% !important;
   font-size: 1rem;
   word-spacing: 5px;
@@ -45,6 +45,7 @@ body {
   overflow-x: hidden !important;
   /* line-height: 200%; */
 }
+
 
 :root {
   --marronRouge: #73090b; /* #880a0cff; */
@@ -99,7 +100,12 @@ h1 {
   font-size: 8rem !important;
 }
 
-
+/* On s'assure que le header ne bloque pas la vue */
+header {
+  background-color: transparent !important;
+  position: relative; 
+  z-index: 10;
+}
 
 h2 {
     font-size: 4rem !important;

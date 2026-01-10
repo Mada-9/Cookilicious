@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
 const Recette = mongoose.Schema(
-    { // objet recette
+    {
+      
+
         titre: { 
           type: String, 
           required: true, 

@@ -22,7 +22,6 @@ const PagePanier = () => {
     panier,
     totalPrice,
   } = useContext(PanierContext); //pour gérer le panier grâce aux fonctions récupéré du paniercontext
-  // connexion
 
 
 
@@ -30,6 +29,7 @@ const PagePanier = () => {
 
   return (
     <div className="row pagePanier">
+
       <nav aria-label="breadcrumb col-sm-12">
         <ol className="breadcrumb my-3 ">
           <li className="breadcrumb-item  px-3">
@@ -56,7 +56,7 @@ const PagePanier = () => {
                 <div key={index} className="mapProduit mx-auto px-5">
                   <div className="imgTitrePanier">
                     <p className="titrePanier">{produit.titre}</p>
-                    <img src={produit.photo} alt="" className="imgPanier" />
+                    <img src={produit.photo} alt={produit.titre} className="imgPanier" />
                   </div>
                   {console.log("PRODUIT PANIER => ", produit)}
                   <div className="actionPanier">
@@ -73,7 +73,7 @@ const PagePanier = () => {
                         >
                           -
                         </button>
-                        <p>{produit.index}</p>
+                        <p>{produit.quantite}</p>
                         <button
                           className="btnQuantity"
                           onClick={() => incremente(index)}

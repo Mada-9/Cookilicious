@@ -5,9 +5,8 @@ import "./PageApropos.css"
 const PageApropos = () => {
   return (
     <>
-      <h1
+      <h2
         style={{
-          borderTop: "2px solid var(--marronRouge)",
           // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
@@ -16,7 +15,7 @@ const PageApropos = () => {
         className="titreApropos"
       >
         À propos  de  Cookilicious
-      </h1>
+      </h2>
 
       {/* ************************************************************************************** */}
 

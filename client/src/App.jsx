@@ -1,12 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import ChatbotWidget from "./components/chatbot/ChatbotWidget";
 import { ToastContainer } from "react-toastify";
 import { AnimatePresence } from "framer-motion";
 import AnimatedPage from "../src/components/Motion/AnimatePage";
-
-import { Elements } from "@stripe/react-stripe-js";
-import stripePromise from "./utils/services/Stripe";
-
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -23,13 +18,17 @@ import PageApropos from "./pages/PageApropos/PageApropos";
 import PageContact from "./pages/PageContact/PageContact";
 import PagePanier from "./pages/Pagepanier/Pagepanier";
 import PagePaiement from "./pages/Pagepanier/PagePaiement";
-import Profil from "./pages/PageAuth/Profil";
+import ValidationCommande from "./pages/Pagepanier/ValidationCommande"
+import Profil from "./pages/PageProfil/Profil";
+import Commandes from "./pages/PageProfil/Commandes";
+import Paramètres from "./pages/PageProfil/Paramètres";
 import Sign from "./pages/PageAuth/Sign";
 import Register from "./pages/PageAuth/Register";
 import Nothing from "./pages/PageNothing/Nothing";
 import Mentionslegales from "./pages/PagesPolitiques/MentionsLegales";
 import CGV from "./pages/PagesPolitiques/CGV";
 import RGPD from "./pages/PagesPolitiques/RGPD";
+import VerifyEmail from "./components/VerifyEmail";
 
 //PAGES ADMIN
 import PageProduitDashboard from "../src/admin/PageProduit/PageProduitDashboard";
@@ -46,7 +45,10 @@ import PageMembresDashboard from "./admin/PageMembres/PageMembresDashboard";
 import MembreDetail from "./admin/PageMembres/MembreDetail";
 import UpdateMembre from "./admin/PageMembres/UpdateMembre"
 import PageCommandesDashboard from "./admin/PageCommandes/PageCommandesDashboard";
-import CommandeDetail from "./admin/PageCommandes/CommandeDetail"
+import UpdateCommande from "./admin/PageCommandes/UpdateCommande";
+import CommandeDetail from "./admin/PageCommandes/CommandeDetail";
+import PageAvisDashboard from "./admin/PageAvis/PageAvisDashboard";
+import AvisDetail from "./admin/PageAvis/AvisDetail";
 
 
 // TEMPLATES
@@ -66,11 +68,14 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="center" autoClose={3000} />
+      <ToastContainer position="top-right"
+autoClose={3000}
+
+
+ />
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
-          {" "}
-          {/* a definir */}
+
           {/* ROUTES FRONTEND PUBLIC */}
           <Route path="/" element={<Template />}>
             <Route index element={<AnimatedPage><Home /></AnimatedPage>} />
@@ -79,6 +84,7 @@ function App() {
             <Route path="detail/:id" element={<AnimatedPage><DetailProduit /></AnimatedPage>} />
             <Route path="panier" element={<AnimatedPage><PagePanier /></AnimatedPage>} />
             <Route path="paiement" element={<AnimatedPage><PagePaiement /></AnimatedPage>} />
+            <Route path="/paiement/redirect" element={<AnimatedPage><ValidationCommande /></AnimatedPage>} />
             <Route path="recette" element={<AnimatedPage><PageRecette /></AnimatedPage>} />
             <Route path="contact" element={<AnimatedPage><PageContact /></AnimatedPage>} />
             <Route path="apropos" element={<AnimatedPage><PageApropos /></AnimatedPage>} />
@@ -90,13 +96,17 @@ function App() {
             <Route element={<PublicRoute />}>
               <Route path="sign" element={<AnimatedPage><Sign /></AnimatedPage>} />
               <Route path="register" element={<AnimatedPage><Register /></AnimatedPage>} />
+              <Route path="/verify/:token" element={<VerifyEmail />} /> 
             </Route>
 
 
             {/* Routes privées (connexion requise) */}
             <Route element={<PrivateRoute />}>
               <Route path="profil" element={<AnimatedPage><Profil /></AnimatedPage>} />
+              <Route path="profil/commandes" element={<AnimatedPage><Commandes /></AnimatedPage>} />
+              <Route path="profil/paramètres" element={<AnimatedPage><Paramètres /></AnimatedPage>} />
             </Route>
+
           </Route>
 
 
@@ -122,7 +132,11 @@ function App() {
               <Route path="membredetail/:id" element={<MembreDetail />} />
               {/* commandes */}
               <Route path="commandes" element={<PageCommandesDashboard />} />
+              <Route path="updatecommande/:id" element={<UpdateCommande/>} />
               <Route path="commandedetail/:id" element={< CommandeDetail/>} />
+                {/* abis */}
+              <Route path="avis" element={<PageAvisDashboard />} />
+              <Route path="avisdetail/:id" element={< AvisDetail/>} />
 
             </Route>
           </Route>
@@ -130,7 +144,6 @@ function App() {
         </Routes>
       </AnimatePresence>
 
-      <ChatbotWidget />
     </>
   );
 }

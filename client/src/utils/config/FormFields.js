@@ -1,4 +1,3 @@
-
 export const MEMBRE_FIELDS = [
   {
     label: "Pseudo",
@@ -9,7 +8,7 @@ export const MEMBRE_FIELDS = [
   },
   {
     label: "Email",
-    type: "text",
+    type: "email",
     name: "email",
     id: "email",
     placeholder: "votre email",
@@ -57,7 +56,7 @@ export const MEMBRE_FIELDS = [
 export const SIGN_FIELDS = [
   {
     label: "Email",
-    type: "text",
+    type: "email",
     name: "email",
     id: "email",
     placeholder: "votre email",
@@ -100,7 +99,7 @@ export const REGISTER_FIELDS = [
   },
   {
     label: "Email",
-    type: "text",
+    type: "email",
     name: "email",
     id: "email",
     icon: "bi bi-envelope-at-fill",
@@ -115,7 +114,7 @@ export const REGISTER_FIELDS = [
     placeholder: "Mot de passe",
   },
   {
-    label: "Civilite",
+    label: "civilite",
     name: "civilite",
     id: "civilite",
     icon: "bi bi-gender-trans",
@@ -123,5 +122,74 @@ export const REGISTER_FIELDS = [
     opt1: "homme",
     opt2: "femme",
     opt3: "x",
+  },
+];
+
+export const LIVRAISON_FIELDS = [
+  {
+    label: "Nom",
+    type: "text",
+    name: "nom",
+    id: "nom",
+    // icon: "bi bi-person-fill",
+    placeholder: "Votre nom",
+  },
+  {
+    label: "Prenom",
+    type: "text",
+    name: "prenom",
+    id: "prenom",
+    // icon: "bi bi-person-fill",
+    placeholder: "Votre prénom",
+  },
+
+  {
+    label: "Email",
+    type: "Email",
+    name: "email",
+    id: "email",
+    icon: "bi bi-envelope-at-fill",
+    placeholder: "Votre email",
+  },
+  {
+    label: "Adresse",
+    type: "text",
+    name: "adresse",
+    id: "adresse",
+    // icon: "bi bi-shield-lock-fill",
+    placeholder: "votre adresse postale",
+  },
+  {
+    label: "Complement Addresse",
+    type: "text",
+    name: "complementAddresse",
+    id: "complementAddresse",
+    // icon: "bi bi-shield-lock-fill",
+    placeholder: "bâtiment, maison, étage...",
+  },
+  {
+    label: "ville",
+    type: "text",
+    name: "ville",
+    id: "ville",
+    // icon: "bi bi-shield-lock-fill",
+    placeholder: " paris",
+  },
+  {
+    label: "pays",
+    type: "text",
+    name: "pays",
+    id: "pays",
+    // icon: "bi bi-shield-lock-fill",
+    placeholder: "...",
+  opt1: "france",
+  },
+
+  {
+    label: "Code Postal",
+    type: "number",
+    name: "CodePostal",
+    id: "CodePostal",
+    placeholder: " 75014",
   },
 ];

@@ -10,6 +10,7 @@ const UpdateMembre = () => {
     prenom: "",
     pseudo: "",
     email: "",
+    role: "",
   });
 
   const params = useParams();
@@ -21,7 +22,7 @@ const UpdateMembre = () => {
     }
   }, [id]);
 
-  const getMembre= async (id) => {
+  const getMembre = async (id) => {
     try {
       const { data, status } = await axiosinstance.get(
         `${URL.GET_DETAIL_MEMBRE}/${id}`
@@ -46,7 +47,7 @@ const UpdateMembre = () => {
     try {
       const { status, data } = await axiosinstance.put(
         `${URL.UPDATE_MEMBRE}/${id}`,
-        user
+        membre
       );
       if (status === 200) {
         setMembre(data);
@@ -124,14 +125,28 @@ const UpdateMembre = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
+          <label htmlFor="role" className="my-3">
+            Role :{" "}
+          </label>
+         
+          <select
+            id="role"
+            name="role"
+            onChange={handleChange}
+            style={{ color: "var(--marronRouge)" }}
+          >
+            <option value="">{membre.role}</option>
+            <option value="user">user</option>
+            <option value="admin">admin</option>
+          </select>
 
           <button className="my-4" style={{ color: "var(--marronRouge)" }}>
-            <Link to="/admin/membres"> Update</Link>
+            Update
           </button>
-        </form> <button style={{ display: "flex", justifyContent: "center" }}>
+        </form>{" "}
+        <button style={{ display: "flex", justifyContent: "center" }}>
           <Link to="/admin/membres">Retours aux membres</Link>{" "}
         </button>
-       
       </div>
     </>
   );

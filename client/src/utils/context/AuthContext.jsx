@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
         // Met à jour le state avec les données de l'utilisateur connecté
         setUser(data);
         // Redirige l'utilisateur vers la page d'accueil
-        // navigate(`/`);
+        navigate(`/`);
       }
     } catch (error) {
       console.log(error.message);
@@ -55,7 +55,12 @@ export const AuthProvider = ({ children }) => {
   const register = async (dataForm) => {
     try {
       const { status } = await axiosinstance.post(URL.AUTH_REGISTER, dataForm);
-      if (status === 201) toast.success("Votre profil a bien été créé!");
+      if (status === 201)
+        toast.success(
+          "Vérifiez vos emails pour valider votre compte."
+        );
+      toast.success("Vérifiez vos emails pour valider votre compte.");
+
       console.log("success register");
       navigate(`/`);
     } catch (error) {

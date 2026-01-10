@@ -203,453 +203,263 @@ const PageRecette = () => {
     return () => ScrollTrigger.clearMatchMedia();
   }, [recette]);
 
-  return (
-    <div className="pageRecette" style={{ marginTop: "2rem" }}>
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb my-3">
-          <li className="breadcrumb-item px-3">
-            <Link to="/" style={{ width: "3rem" }}>
-              Home
-            </Link>
-          </li>
-          <li className="breadcrumb-item" aria-current="page">
-            Recettes
-          </li>
-        </ol>
-      </nav>
-      <h1 className="titrePageRecette">
-        Nos <br />
-        Recettes
-      </h1>
+  useEffect(() => {
+    // Ajoute la classe au body quand on arrive sur la page
+    document.body.classList.add("bg-recette-global");
 
-      <div style={{ padding: "3rem" }}>
-        <p className="phraseIntro col-sm-6 col-md-8 col-lg-6"></p>
-        <div className="row" style={{ marginBottom: "3rem" }}>
-          <p
-            className="phraseIntroDeux col-xs-1 col-md-12 col-lg-12"
-            style={{ marginBottom: "3rem", fontSize: "1.4rem" }}
-          >
+    // Retire la classe quand on quitte la page
+    return () => {
+      document.body.classList.remove("bg-recette-global");
+    };
+  }, []);
+
+  return (
+    <div className="pageRecette">
+      {/* Cette div contiendra l'image de fond et remontera sous le header */}
+      <div className="header-recette-background">
+        <nav aria-label="breadcrumb">
+          <ol className="breadcrumb pt-3">
+            {" "}
+            {/* Utilise pt-3 au lieu de my-3 pour éviter les marges blanches en haut */}
+            <li className="breadcrumb-item px-3">
+              <Link to="/" style={{ width: "3rem" }}>
+                Home
+              </Link>
+            </li>
+            <li className="breadcrumb-item" aria-current="page">
+              Recettes
+            </li>
+          </ol>
+        </nav>
+
+        <div className="titre">
+          <h1 className="titrePageRecette px-4">
+            Lancez-vous <br /> en cuisine
+          </h1>
+          <h2 className="titrePageRecetteh2 px-4">
+            et testez nos meilleures recettes
+          </h2>
+        </div>
+
+        <div className="phraseIntro">
+          <h2 className="px-5 pt-5">Lorem ipsum dolor.</h2>
+          <p className="col-sm-6 col-md-8 col-lg-12 px-5 mt-5 pb-5">
+            {" "}
+            {/* Ajout pb-5 pour l'espace en bas */}
             Laissez-vous inspirer par nos variantes créatives, gourmandes et
             généreuses. Des idées simples et rapides à reproduire chez vous,
-            avec le goût authentique de nos pâtisseries.
+            avec le goût authentique de nos pâtisseries. <br />
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum,
+            autem. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Quis, doloribus laboriosam quas iste aut magni!{" "}
           </p>
         </div>
+      </div>
+      <div>
         {/* SECTION AVEC SCROLL VERTICAL */}
-        <section className="homeRecipesWrapper row" ref={wrapperRef}>
-          {/* Titre fixe */}
-          <h2 className="titreAnimRecette" ref={titleRef}>
-            Amusez <br /> vous ! <br />
-            et pâtissez
-          </h2>
-
-          {/* Contenu qui défile verticalement */}
-          <div className="animRecette" ref={contentRef}>
-            {/* Vous pouvez mapper vos recettes ici */}
-            <div className="recetteContent">
-              {/* <div style={numberStyles}>01</div> */}
-              <h3 className="titreRecetteContent"> {recette[5]?.titre}</h3>
-              <p>Testez nos recettes gourmandes {recette[5]?.description}</p>
-              <button
-                type="button"
-                className="btnVoirRecette"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop1"
-              >
-                Voir la recette
-              </button>
-            </div>
-
-            <div className="recetteContent">
-              <h3 className="titreRecetteContent">{recette[6]?.titre}</h3>
-              <p style={descStyles}>
-                Des recettes testées et approuvées! {recette[6]?.description}
-              </p>
-              <button
-                type="button"
-                className="btnVoirRecette"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop2"
-              >
-                Voir la recette
-              </button>
-            </div>
-
-            <div className="recetteContent">
-              <h3 className="titreRecetteContent"> {recette[7]?.titre} </h3>
-              <p>
-                Une dernière recette pour le scroll {recette[7]?.description}
-              </p>
-              <button
-                type="button"
-                className="btnVoirRecette"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop3"
-              >
-                Voir la recette
-              </button>
-            </div>
-          </div>
-        </section>
-        {/* Modal premiere recette */}
-        <div
-          className="modal fade"
-          id="staticBackdrop1"
-          tabIndex="-1"
-          aria-hidden="true"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered modal-dialog row"
-            style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+        <div>
+          {" "}
+          <section
+            className="homeRecipesWrapper row"
+            style={{ padding: "3rem" }}
+            ref={wrapperRef}
           >
-            <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)" }}
-            >
-              {isAuthenticated ? (
-                <>
-                  <div className="modal-header">
-                    <h2 className="modal-title" id="staticBackdropLabel">
-                      {recette[8]?.titre}
-                    </h2>
+            {/* Titre fixe */}
+            <h2 className="titreAnimRecette" ref={titleRef}>
+              Amusez <br /> vous ! <br />
+              et pâtissez
+            </h2>
+
+            {/* Contenu qui défile verticalement */}
+            <div className="animRecette" ref={contentRef}>
+              {/* Vous pouvez mapper vos recettes ici */}
+              {recette.map((item) => (
+                <div key={item._id}>
+                  {" "}
+                  <div className="recetteContent">
+                    {/* <div style={numberStyles}>01</div> */}
+                    <h3 className="titreRecetteContent"> {item.titre}</h3>
+                    <p>Testez nos recettes gourmandes {item.description}</p>
                     <button
                       type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
+                      className="btnVoirRecette"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop1"
+                    >
+                      Voir la recette
+                    </button>
                   </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 className="titrePreparation">
-                      {recette[8]?.nbPersonne}
-                    </h2>
-                    <h2 className="titrePreparation">Ingrédients:</h2>
-                    <p>{recette[8]?.ingredients}</p>
-                    <h2 className="titrePreparation">Préparation:</h2>
-                    <p>{recette[8]?.preparation}</p>
-                    <h2 className="titrePreparation">Astuce:</h2>
-                    <p>{recette[8]?.astuce}</p>
+                  <div className="recetteContent">
+                    <h3 className="titreRecetteContent">{item.titre}</h3>
+                    <p style={descStyles}>
+                      Des recettes testées et approuvées! {item.description}
+                    </p>
+                    <button
+                      type="button"
+                      className="btnVoirRecette"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop2"
+                    >
+                      Voir la recette
+                    </button>
                   </div>
-                </>
-              ) : (
-                <div className="modal-body">
-                  <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
-                  <h1 className="text-center mb-4">Sign</h1>
-                  <form onSubmit={handleSubmitUser}>
-                    {SIGN_FIELDS.map((field, index) => (
-                      <div className="input-group flex-nowrap mb-3" key={index}>
-                        <span
-                          className="input-group-text"
-                          id="addon-wrapping"
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        >
-                          <i
-                            className={field.icon}
-                            style={{ color: "var(--marronRouge)" }}
-                          ></i>
-                        </span>
-                        <input
-                          type={field.type}
-                          className="form-control"
-                          placeholder={field.placeholder}
-                          aria-label={field.label}
-                          name={field.name}
-                          aria-describedby="addon-wrapping"
-                          onChange={handleChangeUser}
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        />
-                      </div>
-                    ))}
-                    <div className="d-grid">
+                  <div className="recetteContent">
+                    <h3 className="titreRecetteContent"> {item.titre} </h3>
+                    <p>
+                      Une dernière recette pour le scroll {item.description}
+                    </p>
+                    <button
+                      type="button"
+                      className="btnVoirRecette"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop3"
+                    >
+                      Voir la recette
+                    </button>
+                  </div>{" "}
+                </div>
+              ))}
+            </div>
+          </section>
+          {/* Modal premiere recette */}
+          <div
+            className="modal fade"
+            id="staticBackdrop1"
+            tabIndex="-1"
+            aria-hidden="true"
+          >
+            <div
+              className="modal-dialog modal-dialog-centered modal-dialog row"
+              style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+            >
+              <div
+                className="modal-content"
+                style={{ color: "var(--marronRouge)" }}
+              >
+                {isAuthenticated ? (
+                  <>
+                    <div className="modal-header">
+                      <h2 className="modal-title" id="staticBackdropLabel">
+                        {item.titre}
+                      </h2>
                       <button
-                        type="submit"
-                        className="btn w-100"
-                        style={{
-                          border: "var(--marronRouge) 2px solid",
-                          color: "var(--marronRouge)",
-                          marginBottom: "2rem",
-                        }}
-                      >
-                        Je me connecte{" "}
-                      </button>
+                        type="button"
+                        className="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
                     </div>
-                  </form>
-                  <Link
-                    to="/register"
-                    onClick={() => {
-                      const modal = document.getElementById("staticBackdrop1");
-                      const backdrop =
-                        document.querySelector(".modal-backdrop");
+                    <div
+                      className="modal-body"
+                      style={{ textAlign: "justify" }}
+                    >
+                      <h2 className="titrePreparation">{item.nbPersonne}</h2>
+                      <h2 className="titrePreparation">Ingrédients:</h2>
+                      <p>{item.ingredients}</p>
+                      <h2 className="titrePreparation">Préparation:</h2>
+                      <p>{item.preparation}</p>
+                      <h2 className="titrePreparation">Astuce:</h2>
+                      <p>{item.astuce}</p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="modal-body">
+                    <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
+                    <h1 className="text-center mb-4">Sign</h1>
+                    <form onSubmit={handleSubmitUser}>
+                      {SIGN_FIELDS.map((field, index) => (
+                        <div
+                          className="input-group flex-nowrap mb-3"
+                          key={index}
+                        >
+                          <span
+                            className="input-group-text"
+                            id="addon-wrapping"
+                            style={{
+                              border: "var(--marronRouge) 2px solid",
+                            }}
+                          >
+                            <i
+                              className={field.icon}
+                              style={{ color: "var(--marronRouge)" }}
+                            ></i>
+                          </span>
+                          <input
+                            type={field.type}
+                            className="form-control"
+                            placeholder={field.placeholder}
+                            aria-label={field.label}
+                            name={field.name}
+                            aria-describedby="addon-wrapping"
+                            onChange={handleChangeUser}
+                            style={{
+                              border: "var(--marronRouge) 2px solid",
+                            }}
+                          />
+                        </div>
+                      ))}
+                      <div className="d-grid">
+                        <button
+                          type="submit"
+                          className="btn w-100"
+                          style={{
+                            border: "var(--marronRouge) 2px solid",
+                            color: "var(--marronRouge)",
+                            marginBottom: "2rem",
+                          }}
+                        >
+                          Je me connecte{" "}
+                        </button>
+                      </div>
+                    </form>
+                    <Link
+                      to="/register"
+                      onClick={() => {
+                        const modal =
+                          document.getElementById("staticBackdrop1");
+                        const backdrop =
+                          document.querySelector(".modal-backdrop");
 
-                      if (modal) modal.classList.remove("show");
-                      if (backdrop) backdrop.remove();
-                      document.body.classList.remove("modal-open");
+                        if (modal) modal.classList.remove("show");
+                        if (backdrop) backdrop.remove();
+                        document.body.classList.remove("modal-open");
+                      }}
+                    >
+                      Vous n'avez pas de compte ?
+                    </Link>
+                  </div>
+                )}
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-primary col-xs-5 col-md-3"
+                    data-bs-dismiss="modal"
+                    style={{
+                      backgroundColor: "var(--jaune)",
+                      alignSelf: "end",
                     }}
                   >
-                    Vous n'avez pas de compte ?
-                  </Link>
+                    Close
+                  </button>
                 </div>
-              )}
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary col-xs-5 col-md-3"
-                  data-bs-dismiss="modal"
-                  style={{
-                    backgroundColor: "var(--jaune)",
-                    alignSelf: "end",
-                  }}
-                >
-                  Close
-                </button>
               </div>
             </div>
           </div>
         </div>
         {/* Modal 2e recette */}
-        <div
-          className="modal fade"
-          id="staticBackdrop2"
-          tabIndex="-1"
-          aria-hidden="true"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered modal-dialog row"
-            style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
-          >
-            <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)" }}
-            >
-              {isAuthenticated ? (
-                <>
-                  <div className="modal-header">
-                    <h2 className="modal-title" id="staticBackdropLabel">
-                      {recette[6]?.titre}
-                    </h2>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 className="titrePreparation">
-                      {recette[6]?.nbPersonne}
-                    </h2>
-                    <h2 className="titrePreparation">Ingrédients:</h2>
-                    <p>{recette[6]?.ingredients}</p>
-                    <h2 className="titrePreparation">Préparation:</h2>
-                    <p>{recette[6]?.preparation}</p>
-                    <h2 className="titrePreparation">Astuce:</h2>
-                    <p>{recette[8]?.astuce}</p>
-                  </div>
-                </>
-              ) : (
-                <div className="modal-body">
-                  <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
-                  <h1 className="text-center mb-4">Sign</h1>
-                  <form onSubmit={handleSubmitUser}>
-                    {SIGN_FIELDS.map((field, index) => (
-                      <div className="input-group flex-nowrap mb-3" key={index}>
-                        <span
-                          className="input-group-text"
-                          id="addon-wrapping"
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        >
-                          <i
-                            className={field.icon}
-                            style={{ color: "var(--marronRouge)" }}
-                          ></i>
-                        </span>
-                        <input
-                          type={field.type}
-                          className="form-control"
-                          placeholder={field.placeholder}
-                          aria-label={field.label}
-                          name={field.name}
-                          aria-describedby="addon-wrapping"
-                          onChange={handleChangeUser}
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        />
-                      </div>
-                    ))}
-                    <div className="d-grid">
-                      <button
-                        type="submit"
-                        className="btn w-100"
-                        style={{
-                          width: "30rem",
-                          background: "var(--marronRouge)",
-                          border: "1px solid var(--marronFroid)",
-                          color: "var(--creme)",
-                          padding: "12px 28px",
-                          borderRadius: "50px",
-                          cursor: "pointer",
-                          transition: "all 0.3s ease",
-                          justifySelf: "center",
-                          fontSize: "1rem",
-                        }}
-                      >
-                        Je me connecte{" "}
-                      </button>
-                    </div>
-                  </form>
-                  <Link
-                    to="/register"
-                    onClick={() => {
-                      const modal = document.getElementById("staticBackdrop2");
-                      const backdrop =
-                        document.querySelector(".modal-backdrop");
 
-                      if (modal) modal.classList.remove("show");
-                      if (backdrop) backdrop.remove();
-                      document.body.classList.remove("modal-open");
-                    }}
-                  >
-                    Vous n'avez pas de compte ?
-                  </Link>
-                </div>
-              )}
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary col-xs-5 col-md-3"
-                  data-bs-dismiss="modal"
-                  style={{
-                    backgroundColor: "var(--jaune)",
-                    alignSelf: "end",
-                  }}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Modal 3e recette */}
-        <div
-          className="modal fade"
-          id="staticBackdrop3"
-          tabIndex="-1"
-          aria-hidden="true"
-        >
-          <div
-            className="modal-dialog modal-dialog-centered modal-dialog row"
-            style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
-          >
-            <div
-              className="modal-content"
-              style={{ color: "var(--marronRouge)" }}
-            >
-              {isAuthenticated ? (
-                <>
-                  <div className="modal-header">
-                    <h2 className="modal-title" id="staticBackdropLabel">
-                      {recette[7]?.titre}
-                    </h2>
-                    <button
-                      type="button"
-                      className="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div className="modal-body" style={{ textAlign: "justify" }}>
-                    <h2 className="titrePreparation">
-                      {recette[7]?.nbPersonne}
-                    </h2>
-                    <h2 className="titrePreparation">Ingrédients:</h2>
-                    <p>{recette[7]?.ingredients}</p>
-                    <h2 className="titrePreparation">Préparation:</h2>
-                    <p>{recette[7]?.preparation}</p>
-                    <h2 className="titrePreparation">Astuce:</h2>
-                    <p>{recette[7]?.astuce}</p>
-                  </div>
-                </>
-              ) : (
-                <div className="modal-body">
-                  <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
-                  <h1 className="text-center mb-4">Sign</h1>
-                  <form onSubmit={handleSubmitUser}>
-                    {SIGN_FIELDS.map((field, index) => (
-                      <div className="input-group flex-nowrap mb-3" key={index}>
-                        <span
-                          className="input-group-text"
-                          id="addon-wrapping"
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        >
-                          <i
-                            className={field.icon}
-                            style={{ color: "var(--marronRouge)" }}
-                          ></i>
-                        </span>
-                        <input
-                          type={field.type}
-                          className="form-control"
-                          placeholder={field.placeholder}
-                          aria-label={field.label}
-                          name={field.name}
-                          aria-describedby="addon-wrapping"
-                          onChange={handleChangeUser}
-                          style={{ border: "var(--marronRouge) 2px solid" }}
-                        />
-                      </div>
-                    ))}
-                    <div className="d-grid">
-                      <button
-                        type="submit"
-                        className="btn w-100"
-                        style={{
-                          border: "var(--marronRouge) 2px solid",
-                          color: "var(--marronRouge)",
-                          marginBottom: "2rem",
-                        }}
-                      >
-                        Je me connecte{" "}
-                      </button>
-                    </div>
-                  </form>
-                  <Link
-                    to="/register"
-                    onClick={() => {
-                      const modal = document.getElementById("staticBackdrop3");
-                      const backdrop =
-                        document.querySelector(".modal-backdrop");
-
-                      if (modal) modal.classList.remove("show");
-                      if (backdrop) backdrop.remove();
-                      document.body.classList.remove("modal-open");
-                    }}
-                  >
-                    Vous n'avez pas de compte ?
-                  </Link>
-                </div>
-              )}
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary col-xs-5 col-md-3"
-                  data-bs-dismiss="modal"
-                  style={{
-                    backgroundColor: "var(--jaune)",
-                    alignSelf: "end",
-                  }}
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>{" "}
-        <h1>Lorem ipsum dolor.</h1>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellendus
-          quo voluptatibus quisquam explicabo neque error exercitationem,
-          asperiores, cumque porro voluptate laborum facilis sint vel placeat
-          eligendi corrupti dolorem, eveniet sunt.
-        </p>
         {/* RESTE DU CONTENU */}
+        {/* <div style={{backgroundColor:"var(--jaune)", paddingTop:"3rem"}}>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          <h2>Aimons nos cookies</h2>
+          
+        </div> */}
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"

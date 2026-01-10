@@ -47,7 +47,7 @@ const Produit = () => {
       </nav>
       <div style={{ display: "flex", alignItems: "end" }}>
         <div className="enteteProduit row" style={{ width: "100%" }} >
-          <h2
+          <h1
             className="titlePageProduit col-sm-2"
             style={{
               textAlign: "left",
@@ -56,7 +56,7 @@ const Produit = () => {
             }}
           >
             Nos <br /> Cookies
-          </h2>
+          </h1>
         </div>{" "}
         <img
           src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"

@@ -26,7 +26,9 @@ const URL = {
   POST_COMMANDE: "/api/commande/post",
   GET_ALL_COMMANDES: "/api/commande/get",
   GET_DETAIL_COMMANDE: "/api/commande/get",
+  GET_USER_COMMANDES: "/api/commande/get/user/",
   DELETE_COMMANDE: "/api/commande/delete",
+  UPDATE_COMMANDE: "/api/commande/update",
 
   POST_MEMBRES: "/api/membre/post",
   GET_ALL_MEMBRES: "/api/membre/get",
@@ -36,6 +38,7 @@ const URL = {
 
   AUTH_REGISTER: "http://localhost:8000/api/auth/register",
   AUTH_SIGN: "http://localhost:8000/api/auth/login",
+  AUTH_VERIFY_EMAIL: "http://localhost:8000/api/auth/verify",
 };
 
 // rajouter l'id ou pas?

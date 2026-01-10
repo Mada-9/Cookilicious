@@ -45,6 +45,7 @@ const UserDetail = () => {
               <p>Prenom: {detailUser.prenom}</p>
               <p> Pseudo: {detailUser.pseudo}</p>
               <p>Email: {detailUser.email}</p>
+              <p>Role: {detailUser.role}</p>
             </div>
           </div>
         </div>

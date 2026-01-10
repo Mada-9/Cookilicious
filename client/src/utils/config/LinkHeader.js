@@ -5,7 +5,7 @@ const HEADER_LINKS = [
 //   { label: "Recettes", path: "/recette",  },
 //   { label: "Apropos", path: "/apropos" },
 //   { label: "Contact", path: "/contact" },
-  { label: "Profil", path: "/profil", auth: "user" },
+  { label: "Mon compte", path: "/profil", auth: "user" },
   { label: "Dashboard", path: "/admin", auth: "admin" },
 ];
 

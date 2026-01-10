@@ -12,7 +12,7 @@ const post = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const avis = await AvisModel.find(req.params);
+    const avis = await AvisModel.find(req.params).populate("user");
     res.status(200).json(avis);
   } catch (error) {
     next(createError(error.status || 500, error.message, error.details));

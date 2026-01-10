@@ -1,16 +1,49 @@
+/* 1. On prépare la page */
+.pageRecette {
+  margin-top: 0 !important;
+}
+
+/* 2. Le bandeau avec l'image */
+.header-recette-background {
+  /* Ton image de texture vanille */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), 
+                    url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
+  background-size: cover;
+  background-position: center;
+  
+  /* C'est ici qu'on fait remonter le fond sous le header parent */
+  margin-top: -100px; /* Doit correspondre à la hauteur de ton header */
+  padding-top: 100px; /* On pousse le contenu vers le bas pour ne pas qu'il soit SOUS le texte du header */
+  
+  border-bottom: 2px solid var(--marronRouge); /* Optionnel : une petite ligne de séparation */
+}
+
+/* 3. On rend le header du template transparent uniquement quand on est sur cette page */
+/* (Garde ton useEffect qui ajoute .bg-recette-global au body) */
+.bg-recette-global header {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  position: relative; /* Pour qu'il reste au dessus du flux */
+  z-index: 1000;
+}
+
+
 .titrePageRecette {
-  color: var(--creme);
-  background-color: var(--marronRouge);
   font-size: 10rem !important;
   text-align: left;
-  height: 21rem;
-  padding-left: 1rem;
-  margin-bottom: 2rem;
+  padding-left: 1rem;  
+
+}
+.titrePageRecetteh2{
+  margin-bottom: 6rem ;
 }
 .phraseIntro {
   text-align: justify;
-  margin-top: 5rem;
-  margin-bottom: 14px;
+  color: var(--creme);
+  background-color: var(--marronRouge);
+  padding-bottom: 14px;
+  height: 25rem;
 }
 
 /* 
@@ -131,7 +164,7 @@
 .animRecette {
   display: flex;
   flex-direction: column;
-  padding-top: 50vh;
+  padding-top: 30vh;
   padding-left: 35vw !important; /* Espace pour le titre fixe */
   justify-content: start !important;
   position: relative !important;

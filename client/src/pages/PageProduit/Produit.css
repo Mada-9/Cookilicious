@@ -42,7 +42,7 @@
 } */
 
  .titlePageProduit {
-  font-size: 9rem ;
+  font-size: 9.5rem !important;
 } 
 
 @media (max-width: 448px) {

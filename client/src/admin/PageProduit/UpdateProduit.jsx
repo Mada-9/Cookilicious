@@ -53,7 +53,7 @@ const UpdateProduit = () => {
         setProduit(data);
         toast.success("Produit updated");
       }
-      console.log("Produit ajouté !");
+      console.log("Produit updated !");
     } catch (error) {
       console.log(error.message);
     }

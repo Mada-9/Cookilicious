@@ -32,6 +32,7 @@ const Sign = () => {
                 </span>
                 <input
                   type={field.type}
+                  
                   className="form-control"
                   placeholder={field.placeholder}
                   aria-label={field.label}
@@ -43,7 +44,7 @@ const Sign = () => {
             ))}
             <div className="d-grid">
               <button className="btn btn-primary w-100">
-                <Link to="/">Sign</Link>
+           Sign
               </button>
             </div>
           </form>

@@ -1,9 +1,8 @@
 import { useState, useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import { AuthContext } from "../../utils/context/AuthContext";
 import { PanierContext } from "../../utils/context/PanierContext";
-import HEADER_LINKS from "../../utils/config/LinkHeader";
 import { SIGN_FIELDS } from "../../utils/config/FormFields";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { toast } from "react-toastify";
@@ -17,399 +16,394 @@ import {
 
 import "./PagePaiement.css";
 
-// Initialisation Stripe (clé publique)
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+const CheckoutForm = ({ onPaymentSuccess }) => {
+  const stripe = useStripe();
+  const elements = useElements();
+  const [loading, setLoading] = useState(false);
 
-// FORMULAIRE DE PAIEMENT
-const CheckoutForm = () => {
-  const stripe = useStripe(); // instance Stripe
-  const elements = useElements(); // éléments Stripe
-
-  // Soumission du formulaire
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Sécurité : Stripe pas encore chargé
     if (!stripe || !elements) return;
 
-    // Ici viendra plus tard le vrai paiement
-
-    alert("Paiement simulé ");
-    toast.success("Paiement validé!");
+    setLoading(true);
+    // Simulation du traitement Stripe (à remplacer par stripe.confirmCardPayment plus tard)
+    setTimeout(async () => {
+      setLoading(false);
+      toast.success("Paiement validé !");
+      await onPaymentSuccess(); // <--- C'est ici qu'on appelle handleFinalSuccess
+    }, 1500);
   };
 
   return (
-    <form className="checkout-form" onSubmit={handleSubmit}>
-      {/* Champ carte bancaire Stripe */}
-      <div className="card-element-wrapper">
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#3a1f1f",
-                "::placeholder": {
-                  color: "#9c7c7c",
-                },
-              },
-              invalid: {
-                color: "#c0392b",
-              },
-            },
-          }}
-        />
+    <form onSubmit={handleSubmit}>
+      <div className="p-3 border rounded mb-3">
+        <CardElement />
       </div>
-
-      {/* Bouton paiement */}
-      <button className="pay-button" type="submit" disabled={!stripe}>
-        Payer
+      <button
+        className="btn btn-success w-100"
+        disabled={!stripe || loading}
+        data-bs-dismiss="modal"
+      >
+        {loading ? "Traitement..." : "Confirmer le paiement"}
       </button>
     </form>
   );
 };
 
-//  PAGE PAIEMENT
+// *********************************************************************************************************************
+
+// *********************************************************************************************************************
+
 const PagePaiement = () => {
-  const [formData, setFormData] = useState([]);
-  const [formDataUser, setFormDataUser] = useState([]);
-  const [panier, setPanier] = useState([]);
-  const { user } = useContext(AuthContext);
-  const isAuthenticated = user;
-  const role = user?.role;
-  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { user, login } = useContext(AuthContext);
+  // const [panier, setPanier] = useState([]);
+  const [formData, setFormData] = useState({});
+  const [livraison, setLivraison] = useState({});
+  const {
+    incremente,
+    decremente,
+    addPanier,
+    removeProduit,
+    priceProduitByQuantity,
+    totalProduit,
+    panier,
+    totalPrice,
+  } = useContext(PanierContext);
 
-  // CONNEXION
+  // useEffect(() => {
+  //   setPanier(JSON.parse(localStorage.getItem("panier")) || []);
+  // }, []);
 
-  const visibleform = HEADER_LINKS.filter((link) => {
-    if (!isAuthenticated) return false; // pas connecté → pas d'accès
-    if (link.auth === role) return true; // rôle correspondant
-  });
+  // mettre dans checkform
+  const handleFinalSuccess = async () => {
+    try {
+      // Calcul du total
+      const prixTotalCommande = panier.reduce(
+        (acc, i) => acc + i.prix * i.quantite,
+        0
+      );
 
-  // Connexion user
+      const commande = {
+        user: user._id,
+        // On passe directement l'objet livraison tel quel
+        adresse_livraison: {
+          nom: livraison.nom,
+          prenom: livraison.prenom,
+          email: livraison.email,
+          adresse: livraison.adresse,
+          complementAdresse: livraison.complementAddresse || "",
+          ville: livraison.ville,
+          pays: livraison.pays,
+          codePostal: livraison.CodePostal,
+        },
+        items: panier.map((i) => ({
+          produit: i._id,
+          quantity: i.quantite,
+          prixUnitaire: i.prix,
+          nom: i.nom,
+        })),
+        prixTotal: prixTotalCommande,
+        paiement: "carte",
+      };
+
+      console.log("Envoi de la commande :", commande); // Pour débugger
+
+      const { status } = await axiosinstance.post(URL.POST_COMMANDE, commande);
+
+      if (status === 201 || status === 200) {
+        toast.success("Commande réussie !");
+        localStorage.removeItem("panier");
+        navigate("/paiement/redirect");
+      }
+    } catch (error) {
+      console.error("Détails erreur :", error.response?.data || error.message);
+      toast.error("Erreur lors de l'enregistrement");
+    }
+  };
+
+  // formulaire livraison
+  const handleChangeForm = (e) => {
+    const { name, value } = e.target;
+    setLivraison((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+  };
+
+  // user
 
   const handleChangeUser = (event) => {
     const { name, value } = event.target;
-    setFormDataUser((user) => ({ ...user, [name]: value }));
+    setFormData((user) => ({ ...user, [name]: value }));
   };
 
   const handleSubmitUser = async (e) => {
     e.preventDefault();
-    await login(formDataUser);
+    await login(formData);
   };
-
-  // CREATION DE COMMANDE LORS DU PAIEMENT
-
-  useEffect(() => {
-    const storedPanier = JSON.parse(localStorage.getItem("panier")) || [];
-    setPanier(storedPanier);
-  }, []);
-
-  const postCommande = async () => {
-    try {
-      const items = panier.map((item) => ({
-        produit: item._id,
-        quantity: item.quantite,
-        prixUnitaire: item.prix,
-        nom: item.nom,
-        description: item.description,
-        image: item.image,
-      }));
-
-      const prixTotal = items.reduce(
-        (total, item) => total + item.quantity * item.prixUnitaire,
-        0
-      );
-
-      const commandeData = {
-        user: user._id,
-        items, // items avec détail
-        prixTotal,
-        paiement: "carte",
-        adresse_livraison: {
-          nom: formData.nom,
-          prenom: formData.prenom,
-          adresse: formData.adresse,
-          complementAddresse: formData.complementAddresse,
-          ville: formData.ville,
-          codePostal: formData.codePostal,
-          pays: formData.pays,
-        },
-      };
-
-      const { data } = await axiosinstance.post(
-        URL.POST_COMMANDE,
-        commandeData
-      );
-
-      toast.success("Commande créée avec succès 🎉");
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-      toast.error("Erreur lors de la création de la commande");
-    }
-  };
-
-  const handleChange = (e) => {
-    // const { name, value } = e.target;
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  //handlesubmit form livraison = enregistrement de commande
 
   return (
-    <div className="paiement-page" style={{ padding: "3rem", gap: "4rem" }}>
-      {/* Fil d’Ariane */}
-      <nav className="breadcrumb">
-        <Link to="/panier">Panier</Link>
-        <span> / Paiement</span>
-      </nav>
-      {isAuthenticated ? (
-        <>
-          {/* form livraison */}
-          <h2>Formulaire de Livraion</h2>
+    <div className="pagePaiement">
+      <h2 className="text-center my-4">Paiement</h2>
 
-          <form
-            style={{
-              border: "2px solid black",
-              padding: "2rem",
-              width: "100%",
-              maxWidth: "600px",
-            }}
-            onSubmit={(e) => {
-              e.preventDefault();
-              postCommande();
-            }}
-          >
-            {/* NOM / PRÉNOM */}
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <label className="form-label">Nom</label>
-                <input
-                  type="text"
-                  name="nom"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-md-6">
-                <label className="form-label">Prénom</label>
-                <input
-                  type="text"
-                  name="prenom"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            {/* EMAIL (optionnel pour la commande) */}
-            <div className="mb-3">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="form-control"
-                placeholder="email@example.com"
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* ADRESSE */}
-            <div className="mb-3">
-              <label className="form-label">Adresse</label>
-              <input
-                type="text"
-                name="adresse"
-                className="form-control"
-                required
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* COMPLÉMENT */}
-            <div className="mb-3">
-              <label className="form-label">Complément d’adresse</label>
-              <input
-                type="text"
-                name="complementAddresse"
-                className="form-control"
-                placeholder="Bâtiment, étage, etc."
-                onChange={handleChange}
-              />
-            </div>
-
-            {/* VILLE / CODE POSTAL / PAYS */}
-            <div className="row mb-4">
-              <div className="col-md-6">
-                <label className="form-label">Ville</label>
-                <input
-                  type="text"
-                  name="ville"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-md-3">
-                <label className="form-label">Code postal</label>
-                <input
-                  type="text"
-                  name="codePostal"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
-
-              <div className="col-md-3">
-                <label className="form-label">Pays</label>
-                <select
-                  name="pays"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
+      <div className="container py-5">
+        <div className="row g-5">
+          <div className="col-12 col-lg-7">
+            {user ? (
+              <div className="border p-4 rounded shadow-sm">
+                <h3 className="mb-4 text-center">Détails de livraison</h3>
+                <form
+                  onSubmit={handleSubmitForm}
+                  className="p-2"
+                  style={{ color: "var(--jaune)", fontSize: "1rem" }}
                 >
-                  <option value="">Choisir…</option>
-                  <option value="France">France</option>
-                </select>
-              </div>
-            </div>
-
-            {/* BOUTON */}
-            <button
-              type="submit"
-              className="btn btn-primary w-100"
-              data-bs-toggle="modal"
-              data-bs-target="#staticBackdrop"
-            >
-              Procéder au paiement
-            </button>
-          </form>
-        </>
-      ) : (
-        <>
-          {" "}
-          <h2 className="text-center mb-4">
-            {" "}
-            Connectez vous pour proceder au paiement
-          </h2>
-          <form onSubmit={handleSubmitUser}>
-            {SIGN_FIELDS.map((field, index) => (
-              <div className="input-group flex-nowrap mb-3" key={index}>
-                <span
-                  className="input-group-text"
-                  id="addon-wrapping"
-                  style={{
-                    border: "var(--marronRouge) 2px solid",
-                  }}
-                >
-                  <i
-                    className={field.icon}
+                  <label htmlFor="nom" className="form-label">
+                    Nom
+                  </label>
+                  <input
+                    type="text"
+                    name="nom"
+                    id="nom"
+                    className="form-control mb-3"
+                    placeholder="Votre nom"
+                    onChange={handleChangeForm}
+                    required
                     style={{ color: "var(--marronRouge)" }}
-                  ></i>
-                </span>
-                <input
-                  type={field.type}
-                  className="form-control"
-                  placeholder={field.placeholder}
-                  aria-label={field.label}
-                  name={field.name}
-                  aria-describedby="addon-wrapping"
-                  onChange={handleChangeUser}
-                  style={{
-                    border: "var(--marronRouge) 2px solid",
-                  }}
-                />
-              </div>
-            ))}
-            <div className="d-grid">
-              <button
-                type="submit"
-                className="btn w-100"
-                style={{
-                  border: "var(--marronRouge) 2px solid",
-                  color: "var(--marronRouge)",
-                  marginBottom: "2rem",
-                }}
-                onClick={() => {
-                  document.body.classList.remove("modal-open");
-                }}
-              >
-                Je me connecte
-              </button>
-            </div>
-          </form>{" "}
-        </>
-      )}
-      {/* carte paiement  */}
-      <div
-        className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        tabIndex="-1"
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
-      >
-        <div
-          className="modal-dialog modal-dialog-centered modal-dialog row"
-          style={{ height: "auto", padding: "3rem" }}
-        >
-          <div
-            className="modal-content"
-            style={{ color: "var(--marronRouge)" }}
-          >
-            <>
-              <div className="modal-header">
-                <h1 className="modal-title" id="staticBackdropLabel"></h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body" style={{ textAlign: "justify" }}>
-                {" "}
-                {/* Carte paiement */}
-                <div
-                  className="paiement-card"
-                  style={{
-                    border: "2px solid black",
-                    width: "20rem",
-                    height: "10rem",
-                    justifySelf: "right",
-                  }}
-                >
-                  <h2>Paiement sécurisé</h2>
+                  />
 
-                  {/* Stripe Elements doit englober le formulaire */}
-                  <Elements stripe={stripePromise}>
-                    <CheckoutForm />
-                  </Elements>
-                  {/* paiement validé = envoie d'émail de confirmation avec recap panier */}
-                </div>
+                  <label htmlFor="prenom" className="form-label">
+                    Prénom
+                  </label>
+                  <input
+                    type="text"
+                    name="prenom"
+                    id="prenom"
+                    className="form-control mb-3"
+                    placeholder="Votre prénom"
+                    onChange={handleChangeForm}
+                    required
+                    style={{ color: "var(--marronRouge)" }}
+                  />
+
+                  <label htmlFor="email" className="form-label">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="form-control mb-3"
+                    placeholder="Votre email"
+                    onChange={handleChangeForm}
+                    required
+                    style={{ color: "var(--marronRouge)" }}
+                  />
+
+                  <label htmlFor="adresse" className="form-label">
+                    Adresse
+                  </label>
+                  <input
+                    type="text"
+                    name="adresse"
+                    id="adresse"
+                    className="form-control mb-3"
+                    placeholder="Votre adresse postale"
+                    onChange={handleChangeForm}
+                    required
+                    style={{ color: "var(--marronRouge)" }}
+                  />
+
+                  <div className="row">
+                    <div className="col-md-6">
+                      <label htmlFor="ville" className="form-label">
+                        Ville
+                      </label>
+                      <input
+                        type="text"
+                        name="ville"
+                        id="ville"
+                        className="form-control mb-3"
+                        placeholder="Paris"
+                        onChange={handleChangeForm}
+                        required
+                        style={{ color: "var(--marronRouge)" }}
+                      />
+                    </div>
+                    <div className="col-md-3">
+                      <label htmlFor="pays" className="form-label">
+                        Pays
+                      </label>
+                      <select
+                        name="pays"
+                        id="pays"
+                        className="form-select mb-3"
+                        onChange={handleChangeForm}
+                        required
+                        style={{ color: "var(--marronRouge)" }}
+                      >
+                        <option value="">Choisir...</option>
+                        <option value="france">France</option>
+                      </select>
+                    </div>
+                    <div className="col-md-3">
+                      <label htmlFor="CodePostal" className="form-label">
+                        CP
+                      </label>
+                      <input
+                        type="number"
+                        name="CodePostal"
+                        id="CodePostal"
+                        className="form-control mb-3"
+                        placeholder="75014"
+                        onChange={handleChangeForm}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn btn-primary w-100 btn-lg mt-4"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                  >
+                    Aller au paiement sécurisé
+                  </button>
+                </form>
               </div>
-            </>
-            <div className="modal-body">
-              {/* Footer commun */}
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-primary col-xs-5 col-md-3"
-                  data-bs-dismiss="modal"
+            ) : (
+              /* Ton bloc connexion reste ici */
+              <div className="col-md-5 mx-auto border p-4 rounded text-center">
+                <h4>Veuillez vous connecter</h4>
+                <form onSubmit={handleSubmitUser}>
+                  {SIGN_FIELDS.map((field, index) => (
+                    <div className="input-group flex-nowrap mb-3" key={index}>
+                      <span className="input-group-text" id="addon-wrapping">
+                        <i className={field.icon}></i>
+                      </span>
+                      <input
+                        type={field.type}
+                        className="form-control"
+                        placeholder={field.placeholder}
+                        aria-label={field.label}
+                        name={field.name}
+                        aria-describedby="addon-wrapping"
+                        onChange={handleChangeUser}
+                      />
+                    </div>
+                  ))}
+                  <div className="d-grid">
+                    <button className="btn btn-primary w-100">Sign</button>
+                  </div>
+                </form>
+              </div>
+            )}
+          </div>
+
+          {/* SECTION RÉSUMÉ PANIER : col-lg-5 sur PC, col-12 sur mobile */}
+          <div
+            className="col-12 col-lg-5"
+            style={{
+              border: "3px solid var(--marronRouge)",
+              padding: "2rem",
+              height: "fit-content", // S'adapte au contenu mais reste fixe si scroll
+              position: "sticky", // Optionnel : reste visible quand on scroll le formulaire sur PC
+              top: "20px",
+            }}
+          >
+            <h3 className="text-center mb-4" style={{ color: "var(--jaune)" }}>
+              Détail panier
+            </h3>
+
+            {/* BARRE DE SCROLL : On limite la hauteur ici */}
+            <div
+              style={{
+                maxHeight: "400px",
+                overflowY: "auto",
+                overflowX: "hidden",
+                paddingRight: "10px",
+                marginBottom: "20px",
+              }}
+            >
+              {panier.map((produit, index) => (
+                <div
+                  key={index}
+                  className="mapProduit row mb-3 "
+                  style={{
+                    display: "flex",
+                    borderBottom: "1px solid var(--marronRouge",
+                    paddingBottom: "10px",
+                  }}
                 >
-                  Close
-                </button>
-              </div>
+                  <div className="col-4">
+                    {" "}
+                    <p className="">{produit.titre}</p>
+                    <img
+                      className="img-fluid "
+                      src={produit.photo}
+                      alt={produit.titre}
+                    />
+                  </div>
+                  <div className="col-4 ">
+                    <p className="">Prix: {produit.prix}€</p>
+                    <div style={{ alignContent: "center" }}>
+                      <p className="">Qté: x{produit.quantite}</p>
+                      <Link
+                        to="/panier"
+                        className="btn "
+                        style={{
+                          marginRight: "2rem",
+                          borderRadius: "20px",
+                          border: "1px var(--marronRouge) solid",
+                        }}
+                      >
+                        Modifier
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="pt-3 border-top text-center">
+              <p>Total : {totalPrice} €</p>
+              <p className="text-muted small">({totalProduit()} produits)</p>
             </div>
           </div>
         </div>
-      </div>{" "}
+      </div>
+      {/* MODAL PAIEMENT */}
+      <div
+        className="modal"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        tabIndex="-1"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">
+                Paiement : {panier.reduce((t, i) => t + i.prix * i.quantite, 0)}
+                €
+              </h5>
+            </div>
+            <div className="modal-body">
+              <Elements stripe={stripePromise}>
+                <CheckoutForm onPaymentSuccess={handleFinalSuccess} />
+              </Elements>
+            </div>{" "}
+            <button
+              type="button"
+              className="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

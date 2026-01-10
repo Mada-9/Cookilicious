@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useMediaQuery } from "react-responsive";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { toast } from "react-toastify";
+
 
 //animation
 import ScrollTrigger from "gsap/ScrollTrigger";
@@ -17,7 +18,6 @@ import "./Home.css"; // CSS spécifique
 
 //IMAGE
 
-import cookiebananepecan from "../../assets/images/copeauxchocolat.webp";
 
 const PageHome = ({}) => {
   const navigate = useNavigate();
@@ -30,22 +30,7 @@ const PageHome = ({}) => {
   // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 900], [0, -90]);
 
-  // MEDIA QUERY
 
-  const isMobile = useMediaQuery({ query: "(max-width: 425px)" });
-  const isTablet = useMediaQuery({
-    query: "(min-width: 426px) and ( max-width:768px)",
-  });
-  const isTabletL = useMediaQuery({
-    query: "(min-width: 769px) and ( max-width:1024px)",
-  });
-  const isDesktop = useMediaQuery({ query: "(min-width: 1024px)" });
-
-  // POUR DETECTER LA TAILLE DE L'ECRAN
-
-  //a refaire dans  CSS, (bootstrap)row
-
-  
 
 
   useEffect(() => {
@@ -91,9 +76,9 @@ const PageHome = ({}) => {
         status === 201 &&
         formData.email.match(isValidEmail)
       ) {
-        alert("message envoyé !");
+        toast.succes("message envoyé !");
       } else {
-        alert("veuillez ecrire un message valide");
+        toast.error("veuillez ecrire un message valide");
       }
     } catch (error) {
       console.error("erreur lors de l'envoie du message:", error.message);
@@ -123,9 +108,7 @@ const PageHome = ({}) => {
   return (
     <>
       <div className="home">
-        <h1 className="titleHome ">
-          COOKILICIOUS
-        </h1>
+        <h1 className="titleHome ">COOKILICIOUS</h1>
         <motion.section style={{ y: ySlow }}>
           <div className="imageHome" onClick={() => navigate("/cookies")}>
             <img
@@ -147,8 +130,10 @@ const PageHome = ({}) => {
         </motion.section>
         <div className="defilantContainer">
           <p className="phraseDefilante">
-            Irrésistible 100% fait maison Texture fondante & cœur gourmand
-            Préparé chaque jour
+            {/* Irrésistible 100% fait maison Texture fondante & cœur gourmand
+            Préparé chaque jour */}
+            Des cookies & brookies uniques faits maison pour succomber à la
+            tentation.
           </p>
         </div>
         {/* 
@@ -181,22 +166,31 @@ const PageHome = ({}) => {
           </section>
         </div>
         <section className="sectionRecette row px-5">
-          {" "}
           <h1 className="recetteTitle col-12  mt-5 ">
             Découvrez nos recettes
           </h1>{" "}
           <Link
             to="/recette"
-            className="sectionRecetteContent  col-sm-10 col-md-9 "
+            className="sectionRecetteContent col-sm-10 col-md-11  "
           >
-            <p>Lorem ipsum dolor sit amet consectetur elit.</p>
-            <p>Lorem ipsum dolor sit amet.</p>
-            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            {/* <p>Explorez des recettes savoureuses, pensées pour sublimer chaque ingrédient et transformer vos moments en véritables instants de plaisir..</p> */}
+            <p className=" ">
+              Des recettes inspirantes et accessibles pour éveiller votre
+              créativité en cuisine.
+            </p>{" "}
+            {/* <p>
+              Des recettes soigneusement élaborées pour sublimer les saveurs et
+              transformer chaque moment en expérience gourmande.
+            </p> */}
+            <p>
+              Des créations culinaires inspirées, conçues pour mettre en valeur
+              les ingrédients
+            </p>
           </Link>{" "}
           <button
             className="btnRecette col-5"
-            data-back="Je le veux"
-            data-front="Je le veux"
+            data-back="Je décrouvre"
+            data-front="Je décrouvre"
             onClick={() => navigate("/recette")}
           ></button>
           <img
@@ -205,20 +199,30 @@ const PageHome = ({}) => {
             alt="cookies pistache"
           />
         </section>
-        <section
-          className="sectionJaune row px-5"
-       
-        >
+        {/* <section className="sectionJaune row px-5">
           <h1 className="col-12">
-            Lorem ipsum <br /> dolor.
+            100% fait
+            <br /> maison.
           </h1>
-          <p className="col-12">
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-            Repellendus quo voluptatibus quisquam explicabo neque error
-            exercitationem, asperiores, cumque porro voluptate laborum facilis
-            sint vel placeat eligendi corrupti dolorem, eveniet sunt.
+          <p className="col-12 ">
+            Texture fondante & cœur gourmand Préparé chaque jour Lorem ipsum,
+            dolor sit amet consectetur adipisicing elit. Repellendus quo
+            voluptatibus quisquam explicabo neque error exercitationem.
           </p>
-        </section>
+        </section> */}
+        <div style={{ backgroundColor: "var(--jaune)", padding: "4rem 0rem 4rem 0rem", justifyItems:"center", }}>
+          
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
+
+          
+      
+        </div>
         {/* PRODUITS AFFICHES SUR HOME */}
         <div className="homeProduit px-5 ">
           <h1 className="homeProduitTitle text-left ">One more sweetness...</h1>
@@ -336,59 +340,58 @@ const PageHome = ({}) => {
             </div>
           </div>
         </section>
-        {/* SECTION CONTACT */}
-        <div className="contactHome ">
-          <h1 className="homeContactTitle">Contactez nous!</h1>
+        {/* SECTION CONTACT */}<section className="contactHome">
+  <div className="contactWrapper">
+    
+    <div className="contactInfoSide">
+      <h2 className="contactTitle">
+        Parlons de gourmandise.
+      </h2>
+      <p className="contactText">
+        Une idée, une collaboration ou une envie particulière ?
+        <br />
+        Écris-nous. Le reste suivra.
+      </p>
+    </div>
 
-          <form className=" homeFormContact row" onSubmit={handleSubmit}>
-            {/* Champs du formulaire */}
+    <form className="contactForm" onSubmit={handleSubmit}>
+      <div className="contactField">
+        <label>Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="tonemail@exemple.com"
+          className="contactInput"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-            <div className=" col-8 ">
-              <label htmlFor="email" className="email justify-self-center ">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                autoComplete="email"
-                className="emailInput form-control"
-                placeholder="Ecrivez votre email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
+      <div className="contactField">
+        <label>Message</label>
+        <textarea
+          name="message"
+          placeholder="Dites-nous tout..."
+          className="contactTextarea"
+          value={formData.message}
+          onChange={handleChange}
+          required
+        />
+      </div>
 
-            <div className="col-8 ">
-              <label htmlFor="message" className="message ">
-                Message
-              </label>
-              <textarea
-                type="text"
-                name="message"
-                id="message"
-                autoComplete="message"
-                className="messageInput form-control"
-                placeholder="Votre message"
-                value={formData.message}
-                onChange={handleChange}
-              ></textarea>{" "}
-              {/* Bouton */}
-              <button
-                type="submit"
-                className="homeBtnContact col-12"
-                onSubmit={handleSubmit}
-              >
-                Envoyer
-              </button>
-            </div>
-          </form>
-        </div>
+      <button type="submit" className="contactBtn">
+        Envoyer
+      </button>
+    </form>
+
+  </div>
+</section>
+
         {/* fin de page  */}
         <button className="btnBackToTop" onClick={scrollToTop}>
           Retour en haut
         </button>
-        <p className="defilantTitle">COOKILIOUS</p>
       </div>
     </>
   );
