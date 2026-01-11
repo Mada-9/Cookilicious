@@ -8,20 +8,22 @@ import "./Produit.css"; // CSS spécifique
 
 const Brookies = () => {
   const navigate = useNavigate();
-  const [produit, setProduit] = useState([]);
+  const [brookie, setBrookie] = useState([]);
   const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 700], [0, -120]);
 
   useEffect(() => {
-    getAllProduits();
+    getAllBrookies();
   }, []);
 
-  const getAllProduits = async () => {
+  const getAllBrookies = async () => {
     try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
-      if (status === 200) setProduit(data);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_BROOKIES);
+      if (status === 200) {
+      const brookiesActifs = data.filter((item) => item.isActive === true);
+      setBrookie(brookiesActifs);}
     } catch (error) {
       console.log(error.message);
     }
@@ -67,9 +69,9 @@ const Brookies = () => {
 
         <div className="sectionBrookie">
           <div className="produitContainer2 ">
-            {produit.map(
-              (item, index) =>
-                index > 8 && (
+            {brookie.map(
+              (item) =>
+               (
                   <div key={item._id} className="produit2">
                     <p className="titreProduit2">{item.titre}</p>{" "}
                     <img
@@ -87,7 +89,7 @@ const Brookies = () => {
                         className="btnDetail"
                         data-back="Je le veux"
                         data-front="Je le veux"
-                        onClick={() => navigate(`/detail/${item._id}`)}
+                        onClick={() => navigate(`/brookie/${item._id}`)}
                       ></button>
                     </div>
                   </div>

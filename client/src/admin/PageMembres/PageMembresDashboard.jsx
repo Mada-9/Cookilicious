@@ -38,6 +38,24 @@ const PageMembresDashboard = () => {
       console.log(error.message);
     }
   };
+//  Toggle  avec PUT
+  const toggleStatus = async (id, currentStatus) => {
+    try {
+      const { status } = await axiosinstance.put(
+        `${URL.UPDATE_RECETTE}/${id}`,
+        { isActive: !currentStatus } // On inverse juste isActive
+      );
+
+      if (status === 200) {
+        toast.success(currentStatus ? "Recette désactivé" : "Recette activé");
+        getAllRecette();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erreur");
+    }
+  };
+
 
   return (
     <>
@@ -73,6 +91,33 @@ const PageMembresDashboard = () => {
                 <td className="tdTable">{item.email}</td>
 
                 <td className="tdActions">
+                   <span
+                    style={{
+                      padding: "0.5rem 1rem",
+                      borderRadius: "20px",
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      textTransform: "uppercase",
+                      backgroundColor: item.isActive ? "#28a745" : "#dc3545",
+                      color: "white",
+                    }}
+                  >
+                    {item.isActive ? "Actif" : "Désactivé"}
+                  </span>
+
+                  <button
+                    onClick={() => toggleStatus(item._id, item.isActive)}
+                    style={{
+                      color: "var(--marronRouge)",
+                      border: "2px solid var(--marronRouge)",
+                      marginTop: "0.5rem",
+                      padding: "0.3rem 0.8rem",
+                      fontSize: "12px",
+                    }}
+                    className="btn"
+                  >
+                    {item.isActive ? "Désactiver" : "Activer"}
+                  </button>
                   <button
                     onClick={() => navigate(`/admin/membredetail/${item._id}`)}
                     style={{

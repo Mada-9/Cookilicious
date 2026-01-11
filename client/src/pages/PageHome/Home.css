@@ -159,8 +159,8 @@
 /* SECTION RECETTE */
 
 .sectionRecette {
-  background-image: url(../../assets/images/copeauxbackground.png);
-  background-size: 70%;
+  /* background-image: url(../../assets/images/copeauxbackground.png) ;
+  background-size: 70%; */
   position: relative;
   display: flex;
   justify-content: center;

@@ -59,14 +59,17 @@ const Footer = () => {
 };
  const styles = {
     footer: {
+      height:"20rem",
       backgroundColor: "var(--marronRouge)",
       color: "#fefaef ",
       paddingTop: "2rem",
       paddingLeft:"7rem",
-      fontSize:"1rem"
+      fontSize:"1rem",
+      
     },
 
     mentionsGenerales: {
+      
       display: "flex",
       textAlign: "center",
       color: "#fefaef " ,

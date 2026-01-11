@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import URL from "../../utils/constant/url";
 import axiosinstance from "../../utils/axios/axiosinstance";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateMembre = () => {
@@ -15,6 +15,7 @@ const UpdateMembre = () => {
 
   const params = useParams();
   const { id } = params;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -52,10 +53,12 @@ const UpdateMembre = () => {
       if (status === 200) {
         setMembre(data);
         toast.success("User updated");
+        navigate("/admin/membres");
       }
       console.log("User updated !");
     } catch (error) {
       console.log(error.message);
+      toast.error("User not updated!");
     }
   };
 
@@ -128,7 +131,7 @@ const UpdateMembre = () => {
           <label htmlFor="role" className="my-3">
             Role :{" "}
           </label>
-         
+
           <select
             id="role"
             name="role"
@@ -145,7 +148,7 @@ const UpdateMembre = () => {
           </button>
         </form>{" "}
         <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/membres">Retours aux membres</Link>{" "}
+          Retour aux membres
         </button>
       </div>
     </>

@@ -1,72 +1,44 @@
-import { useEffect, useState } from "react";
-import URL from "../../utils/constant/url";
+import { useState } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
-import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const UpdateProduit = () => {
-  const [produit, setProduit] = useState({
+import URL from "../../utils/constant/url";
+import { Link, useNavigate } from "react-router-dom";
+
+const PostCookie = () => {
+  const [cookie, setCookie] = useState({
     titre: "",
+    prix: "",
     description: "",
     ingredients: "",
-    prix: "",
     photo: "",
   });
-
-  const params = useParams();
-  const { id } = params;
-  const navigate = useNavigate;
-
-  useEffect(() => {
-    if (id) {
-      getProduit(id);
-    }
-  }, [id]);
-
-  const getProduit = async (id) => {
-    try {
-      const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_PRODUIT}/${id}`
-      );
-      console.log(id);
-
-      if (status === 200) {
-        setProduit(data);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const navigate = useNavigate();
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
-    setProduit((prevProduit) => ({ ...prevProduit, [name]: value }));
+    setCookie((prevCookie) => ({ ...prevCookie, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const { status, data } = await axiosinstance.put(
-        `${URL.UPDATE_PRODUIT}/${id}`,
-        produit
-      );
-      if (status === 200) {
-        setProduit(data);
-        toast.success("Produit updated");
-        toast.error("Produit not");
+      const { status } = await axiosinstance.post(URL.POST_COOKIE, cookie);
+      if (status === 201) {
+        console.log("Cookie ajouté !");
+        toast.success("Cookie add!");
 
-        navigate("/admin/produit");
+        navigate("/admin/cookies");
       }
-      console.log("Produit updated !");
     } catch (error) {
       console.log(error.message);
+      toast.error("Cookie not add!");
     }
   };
 
   return (
-    <>
-      <div>Update Produit</div>
-
+    <div style={{}}>
+      <h1>Post Cookie</h1>
       <div
         className="col-8"
         style={{
@@ -92,7 +64,6 @@ const UpdateProduit = () => {
             id="titre"
             type="text"
             name="titre"
-            value={produit.titre}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
@@ -103,7 +74,6 @@ const UpdateProduit = () => {
             id="prix"
             type="number"
             name="prix"
-            value={produit.prix}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
@@ -114,18 +84,16 @@ const UpdateProduit = () => {
             id="description"
             type="text"
             name="description"
-            value={produit.description}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <label htmlFor="ingredients" className="my-3">
-            Ingrédients :{" "}
+            Ingredients :{" "}
           </label>
           <input
             id="ingredients"
             type="text"
             name="ingredients"
-            value={produit.ingredients}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
@@ -136,20 +104,19 @@ const UpdateProduit = () => {
             id="photo"
             type="text"
             name="photo"
-            value={produit.photo}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <button className="my-4" style={{ color: "var(--marronRouge)" }}>
-            Update
+            Créer
           </button>
         </form>
         <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/produit">Retours aux produits</Link>{" "}
+          Retour aux cookies
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
-export default UpdateProduit;
+export default PostCookie;

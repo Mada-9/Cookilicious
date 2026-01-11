@@ -32,8 +32,11 @@ const Recette = mongoose.Schema(
           type:String,
           required:false
           
-        }
-        // difficulté
+        },
+        isActive: {
+    type: Boolean,
+    default: true
+  }
       },
       { timestamps: true } // crée createdAt et updatedAt automatiquement
     )

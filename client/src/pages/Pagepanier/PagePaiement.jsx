@@ -147,7 +147,7 @@ const PagePaiement = () => {
 
   return (
     <div className="pagePaiement">
-      <h2 className="text-center my-4">Paiement</h2>
+      <h2 className="text-center my-4">Finalisation paiement</h2>
 
       <div className="container py-5">
         <div className="row g-5">
@@ -303,14 +303,14 @@ const PagePaiement = () => {
             )}
           </div>
 
-          {/* SECTION RÉSUMÉ PANIER : col-lg-5 sur PC, col-12 sur mobile */}
+          {/*  RÉSUMÉ PANIER*/}
           <div
             className="col-12 col-lg-5"
             style={{
               border: "3px solid var(--marronRouge)",
               padding: "2rem",
-              height: "fit-content", // S'adapte au contenu mais reste fixe si scroll
-              position: "sticky", // Optionnel : reste visible quand on scroll le formulaire sur PC
+              height: "fit-content", 
+              position: "sticky", 
               top: "20px",
             }}
           >
@@ -369,8 +369,7 @@ const PagePaiement = () => {
             </div>
 
             <div className="pt-3 border-top text-center">
-              <p>Total : {totalPrice} €</p>
-              <p className="text-muted small">({totalProduit()} produits)</p>
+              <p>Total : {totalPrice} € ({totalProduit()} produits)</p>
             </div>
           </div>
         </div>

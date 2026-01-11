@@ -7,7 +7,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 import "./DetailProduit.css";
 
-const DetailProduit = () => {
+const DetailBrookie = () => {
   const {
     panier,
     addPanier,
@@ -21,30 +21,30 @@ const DetailProduit = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
-  const [detailProduit, setDetailProduit] = useState(null);
-  const [produit, setProduit] = useState([]);
+  const [detailBrookie, setDetailBrookie] = useState(null);
+  const [brookie, setBrookie] = useState([]);
   const [quantite, setQuantite] = useState(1);
 
   const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
-  const ySlow = useTransform(scrollY, [0, 550], [0, -10]);
+  const ySlow = useTransform(scrollY, [0, 600], [0, -120]);
 
   useEffect(() => {
     if (id) {
-      getProduit(id);
+      getBrookie(id);
     }
   }, [id]);
 
-  const getProduit = async (id) => {
+  const getBrookie = async (id) => {
     try {
       const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_PRODUIT}/${id}`
+        `${URL.GET_DETAIL_BROOKIE}/${id}`
       );
       console.log(id);
 
       if (status === 200) {
-        setDetailProduit(data);
+        setDetailBrookie(data);
       }
     } catch (error) {
       console.log(error.message);
@@ -52,13 +52,13 @@ const DetailProduit = () => {
   };
 
   useEffect(() => {
-    getAllProduits();
+    getAllBrookies();
   }, []);
 
-  const getAllProduits = async () => {
+  const getAllBrookies = async () => {
     try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
-      if (status === 200) setProduit(data);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_BROOKIES);
+      if (status === 200) setBrookie(data);
     } catch (error) {
       console.log(error.message);
     }
@@ -71,12 +71,12 @@ const DetailProduit = () => {
      
 
       <div style={{}}>
-        {!detailProduit ? (
+        {!detailBrookie ? (
           <p>Chargement...</p>
         ) : (
           <div>
             <div
-              key={detailProduit._id}
+              key={detailBrookie._id}
               style={{ padding: "3rem" }}
               className="row"
             >
@@ -85,12 +85,12 @@ const DetailProduit = () => {
           
           <li className="breadcrumb-item">
             
-            <Link to="/cookies" style={{ width: "6rem" }}>
-              Produits
+            <Link to="/brookies" style={{ width: "6rem" }}>
+              Brookies
             </Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to="">{detailProduit.titre}</Link>
+            <Link to="">{detailBrookie.titre}</Link>
           </li>
         </ol>
       </nav>
@@ -98,12 +98,12 @@ const DetailProduit = () => {
                 style={{ display: "flex", height: "3rem" }}
                 className="detailProduitContent"
               >
-                <h2 className="detailTitre col-10">{detailProduit.titre}</h2>
+                <h2 className="detailTitre col-10">{detailBrookie.titre}</h2>
                 <h2
                   className="produitPrix col-1"
                   style={{ marginRight: "3rem" }}
                 >
-                  {detailProduit.prix}€
+                  {detailBrookie.prix}€
                 </h2>
               </div>
 
@@ -112,8 +112,8 @@ const DetailProduit = () => {
                   <img
                     className="detailProduitImg "
                     style={{}}
-                    src={detailProduit.photo}
-                    alt={detailProduit.titre}
+                    src={detailBrookie.photo}
+                    alt={detailBrookie.titre}
                   />
                 </motion.section>
                 <Link
@@ -129,7 +129,7 @@ const DetailProduit = () => {
                     fontSize: "1rem",
                     width: "7rem",
                   }}
-                  onClick={() => addPanier({ ...detailProduit, quantite })}
+                  onClick={() => addPanier({ ...detailBrookie, quantite })}
                   className="btnAjout "
                   // data-back="Back"
                   // data-front="Front"
@@ -148,7 +148,7 @@ const DetailProduit = () => {
                   marginTop: "3rem",
                 }}
               >
-                <p className="descProduit  col-sm-12 col-md-6 col-lg-8">{detailProduit.description}</p>
+                <p className="descProduit  col-sm-12 col-md-6 col-lg-8">{detailBrookie.description}</p>
                 <div
                   className="btnQuantite col-5 col-lg-5"
                   style={{ display: "flex", gap: "1rem" }}
@@ -187,7 +187,7 @@ const DetailProduit = () => {
                   >
                     +
                   </button>
-                  <p className="col-lg-5"> Total: {detailProduit.prix * quantite} €</p>
+                  <p className="col-lg-5"> Total: {detailBrookie.prix * quantite} €</p>
                 </div>
               </div>
               <p
@@ -201,7 +201,7 @@ const DetailProduit = () => {
                 {" "}
                 Ingrédients :
                 <br />
-                {detailProduit.ingredients}
+                {detailBrookie.ingredients}
               </p>
             </div>
           </div>
@@ -265,4 +265,4 @@ const DetailProduit = () => {
   );
 };
 
-export default DetailProduit;
+export default DetailBrookie;

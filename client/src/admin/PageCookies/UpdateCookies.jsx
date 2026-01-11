@@ -4,35 +4,34 @@ import axiosinstance from "../../utils/axios/axiosinstance";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const UpdateRecette = () => {
-   const [recette, setRecette] = useState({
-   titre:"",
-        description: "",
-        image: "",
-        nbPersonne:"",
-        ingredients:"",
-        preparation:"",
-        astuce:""});
+const UpdateCookie = () => {
+  const [cookie, setCookie] = useState({
+    titre: "",
+    description: "",
+    ingredients: "",
+    prix: "",
+    photo: "",
+  });
 
   const params = useParams();
   const { id } = params;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
-      getRecette(id);
+      getCookie(id);
     }
   }, [id]);
 
-  const getRecette = async (id) => {
+  const getCookie = async (id) => {
     try {
       const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_RECETTE}/${id}`
+        `${URL.GET_DETAIL_COOKIE}/${id}`
       );
       console.log(id);
 
       if (status === 200) {
-        setRecette(data);
+        setCookie(data);
       }
     } catch (error) {
       console.log(error.message);
@@ -41,34 +40,31 @@ const UpdateRecette = () => {
 
   const handleChange = async (event) => {
     const { name, value } = event.target;
-    setRecette((prevRecette) => ({ ...prevRecette, [name]: value }));
+    setCookie((prevCookie) => ({ ...prevCookie, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { status, data } = await axiosinstance.put(
-        `${URL.UPDATE_RECETTE}/${id}`,
-        recette
+        `${URL.UPDATE_COOKIE}/${id}`,
+        cookie
       );
-      console.log(data);
-      
       if (status === 200) {
-        toast.success("Recette updated");
-
-        setRecette(data);
-                navigate("/admin/recette");
-
+        setCookie(data);
+        toast.success("Cookie updated");
+        navigate("/admin/cookies");
       }
-      console.log("Recette updated !");
+      console.log("Cookie updated !");
     } catch (error) {
       console.log(error.message);
+      toast.error("Cookie  not updated");
     }
   };
 
   return (
     <>
-      <div>Update Recette</div>
+      <div>Update Cookie</div>
 
       <div
         className="col-8"
@@ -89,92 +85,70 @@ const UpdateRecette = () => {
           }}
         >
           <label htmlFor="titre" className="my-3">
-            Titre :
+            Titre :{" "}
           </label>
           <input
             id="titre"
             type="text"
             name="titre"
-            value={recette.titre}
+            value={cookie.titre}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="prix" className="my-3">
+            Prix :{" "}
+          </label>
+          <input
+            id="prix"
+            type="number"
+            name="prix"
+            value={cookie.prix}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <label htmlFor="description" className="my-3">
-            Description :
+            Description :{" "}
           </label>
           <input
             id="description"
             type="text"
             name="description"
-            value={recette.description}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="nbPersonne" className="my-3">
-            Nombre de personnes :
-          </label>
-          <input
-            id="nbPersonne"
-            type="text"
-            name="nbPersonne"
-            value={recette.nbPersonne}
+            value={cookie.description}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <label htmlFor="ingredients" className="my-3">
-            Ingrédients :
+            Ingrédients :{" "}
           </label>
           <input
             id="ingredients"
             type="text"
             name="ingredients"
-            value={recette.ingredients}
+            value={cookie.ingredients}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <label htmlFor="preparation" className="my-3">
-            Préparation :
+          <label htmlFor="photo" className="my-3">
+            Photo :{" "}
           </label>
           <input
-            id="preparation"
+            id="photo"
             type="text"
-            name="preparation"
-            value={recette.preparation}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="astuce" className="my-3">
-            Astuce :
-          </label>
-          <input
-            id="astuce"
-            type="text"
-            name="astuce"
-            value={recette.astuce || ""}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="image" className="my-3">
-            Image :
-          </label>
-          <input
-            id="image"
-            type="text"
-            name="image"
-            value={recette.image}
+            name="photo"
+            value={cookie.photo}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <button className="my-4" style={{ color: "var(--marronRouge)" }}>
-          Update
+            Update
           </button>
         </form>
         <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/recette">Retour aux recettes</Link>{" "}
+          <Link to="/admin/cookies"> Retour aux cookies</Link>
         </button>
       </div>
     </>
   );
 };
 
-export default UpdateRecette;
+export default UpdateCookie;

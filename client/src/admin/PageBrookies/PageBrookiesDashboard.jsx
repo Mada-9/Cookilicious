@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { useNavigate } from "react-router-dom";
@@ -7,65 +6,63 @@ import URL from "../../utils/constant/url";
 
 import "../PageDashboard/Dashboard.css";
 
-const PageAvisDashboard = () => {
-  const [avis, setAvis] = useState([]);
+const PageBrookiesDashboard = () => {
+  const [brookie, setBrookie] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    getAllAvis();
+    getAllBrookies();
   }, []);
 
-  const getAllAvis = async () => {
-    const { data, status } = await axiosinstance.get(URL.GET_ALL_AVIS);
-    console.log(data);
+  const getAllBrookies = async () => {
     try {
-      if (status === 200) setAvis(data);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_BROOKIES);
+      console.log(data);
+      if (status === 200) setBrookie(data);
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const deleteAvis = async (id) => {
+  const deleteBrookie = async (id) => {
     if (!window.confirm("Êtes-vous sûr de vouloir supprimer ?")) return;
 
     try {
       const { status } = await axiosinstance.delete(
-        URL.DELETE_AVIS + "/" + id
+        URL.DELETE_BROOKIE + "/" + id
       );
       if (status === 200) {
-        toast.success("Avis supprimé avec succès");
-        getAllAvis();
+        toast.success("Brookie supprimé avec succès");
+        getAllBrookies();
       }
     } catch (error) {
       console.log(error.message);
     }
   };
 
-
-  
   //  Toggle  avec PUT
   const toggleStatus = async (id, currentStatus) => {
     try {
       const { status } = await axiosinstance.put(
-        `${URL.UPDATE_AVIS}/${id}`,
+        `${URL.UPDATE_BROOKIE}/${id}`,
         { isActive: !currentStatus } // On inverse juste isActive
       );
 
       if (status === 200) {
-        toast.success(currentStatus ? "Avis désactivé" : "Avis activé");
-        getAllAvis();
+        toast.success(currentStatus ? "Brookie désactivé" : "Brookie activé");
+        getAllBrookies();
       }
     } catch (error) {
       console.error(error);
       toast.error("Erreur");
     }
   };
+
   return (
     <>
-      <h2>Gestion des avis</h2>
-      <div>CRUD avis</div>
+      <h2>Gestion des brookies</h2>
+      <div>CRUD brookies</div>
       <div
-        className=""
         style={{
           justifySelf: "center",
           alignSelf: "center",
@@ -77,23 +74,35 @@ const PageAvisDashboard = () => {
           <thead className="thead">
             <tr>
               <th className="thTable">ID</th>
-              <th className="thTable">user</th>
-              <th className="thTable">commentaire</th>
-              <th className="thTable">date</th>
+              <th className="thTable">Titre</th>
+              <th className="thTable">Prix</th>
+              <th className="thTable">Description</th>
               <th className="thTable">Photo</th>
-           
+              <th className="thTable">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {avis.map((item) => (
+            {brookie.map((item) => (
               <tr key={item._id}>
                 <td className="tdTable">{item._id}</td>
-                <td className="tdTable">{item.user}</td>
-                <td className="tdTable">{item.commentaire}</td>
-                <td className="tdTable">{item.date}</td>
-                
+                <td className="tdTable">{item.titre}</td>
+                <td className="tdTable">{item.prix}€</td>
+                <td className="tdTable">{item.description}</td>
+                <td className="tdTable">
+                  <img
+                    className="img-fluid"
+                    src={
+                      item.photo ||
+                      "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
+                    }
+                    width={200}
+                    height={200}
+                    alt="images des brokies"
+                  />
+                </td>
+
                 <td className="tdActions">
-                   <span
+                  <span
                     style={{
                       padding: "0.5rem 1rem",
                       borderRadius: "20px",
@@ -121,27 +130,38 @@ const PageAvisDashboard = () => {
                     {item.isActive ? "Désactiver" : "Activer"}
                   </button>
                   <button
-                    onClick={() => navigate(`/admin/avisdetail/${item._id}`)}
+                    onClick={() => navigate(`/admin/brookiedetail/${item._id}`)}
                     style={{
                       color: "var(--marronRouge)",
                       border: "2px solid var(--marronRouge)",
                       width: "3rem",
                       height: "3rem",
                     }}
-                    className="btn  me-2"
+                    className="btn me-2"
                   >
                     <i className="bi bi-eye"></i>
                   </button>
-                 
                   <button
-                    onClick={() => deleteAvis(item._id)}
+                    onClick={() => navigate(`/admin/updatebrookie/${item._id}`)}
                     style={{
                       color: "var(--marronRouge)",
                       border: "2px solid var(--marronRouge)",
                       width: "3rem",
                       height: "3rem",
                     }}
-                    className="btn "
+                    className="btn me-2"
+                  >
+                    <i className="bi bi-pencil"></i>
+                  </button>
+                  <button
+                    onClick={() => deleteBrookie(item._id)}
+                    style={{
+                      color: "var(--marronRouge)",
+                      border: "2px solid var(--marronRouge)",
+                      width: "3rem",
+                      height: "3rem",
+                    }}
+                    className="btn"
                   >
                     <i className="bi bi-trash"></i>
                   </button>
@@ -152,11 +172,11 @@ const PageAvisDashboard = () => {
         </table>
       </div>
 
-     
+      <button onClick={() => navigate("/admin/postbrookie")} className="btnCrud">
+        ajouter un nouveau brookie
+      </button>
     </>
   );
 };
 
-
-
-export default PageAvisDashboard
+export default PageBrookiesDashboard;

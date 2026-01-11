@@ -15,9 +15,9 @@ const PageProduitDashboard = () => {
   }, []);
 
   const getAllProduit = async () => {
-    const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
-    console.log(data);
     try {
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
+      console.log(data);
       if (status === 200) setProduit(data);
     } catch (error) {
       console.log(error.message);
@@ -40,12 +40,29 @@ const PageProduitDashboard = () => {
     }
   };
 
+  //  Toggle  avec PUT
+  const toggleStatus = async (id, currentStatus) => {
+    try {
+      const { status } = await axiosinstance.put(
+        `${URL.UPDATE_PRODUIT}/${id}`,
+        { isActive: !currentStatus } // On inverse juste isActive
+      );
+
+      if (status === 200) {
+        toast.success(currentStatus ? "Produit désactivé" : "Produit activé");
+        getAllProduit();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erreur");
+    }
+  };
+
   return (
     <>
       <h2>Gestion des produits</h2>
       <div>CRUD produits</div>
       <div
-        className=""
         style={{
           justifySelf: "center",
           alignSelf: "center",
@@ -75,7 +92,6 @@ const PageProduitDashboard = () => {
                   <img
                     className="img-fluid"
                     src={
-                      
                       item.photo ||
                       "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
                     }
@@ -84,7 +100,35 @@ const PageProduitDashboard = () => {
                     alt="images des cookies"
                   />
                 </td>
+
                 <td className="tdActions">
+                  <span
+                    style={{
+                      padding: "0.5rem 1rem",
+                      borderRadius: "20px",
+                      fontSize: "12px",
+                      fontWeight: "700",
+                      textTransform: "uppercase",
+                      backgroundColor: item.isActive ? "#28a745" : "#dc3545",
+                      color: "white",
+                    }}
+                  >
+                    {item.isActive ? "Actif" : "Désactivé"}
+                  </span>
+
+                  <button
+                    onClick={() => toggleStatus(item._id, item.isActive)}
+                    style={{
+                      color: "var(--marronRouge)",
+                      border: "2px solid var(--marronRouge)",
+                      marginTop: "0.5rem",
+                      padding: "0.3rem 0.8rem",
+                      fontSize: "12px",
+                    }}
+                    className="btn"
+                  >
+                    {item.isActive ? "Désactiver" : "Activer"}
+                  </button>
                   <button
                     onClick={() => navigate(`/admin/produitdetail/${item._id}`)}
                     style={{
@@ -93,7 +137,7 @@ const PageProduitDashboard = () => {
                       width: "3rem",
                       height: "3rem",
                     }}
-                    className="btn  me-2"
+                    className="btn me-2"
                   >
                     <i className="bi bi-eye"></i>
                   </button>
@@ -117,7 +161,7 @@ const PageProduitDashboard = () => {
                       width: "3rem",
                       height: "3rem",
                     }}
-                    className="btn "
+                    className="btn"
                   >
                     <i className="bi bi-trash"></i>
                   </button>
@@ -139,3 +183,4 @@ const PageProduitDashboard = () => {
 };
 
 export default PageProduitDashboard;
+

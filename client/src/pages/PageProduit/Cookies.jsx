@@ -7,21 +7,26 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import "./Produit.css"; // CSS spécifique
 
 const Produit = () => {
-  const navigate = useNavigate();
-  const [produit, setProduit] = useState([]);
+   const navigate = useNavigate();
+  const [cookie, setCookie] = useState([]);
   const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
-  const ySlow = useTransform(scrollY, [0, 900], [0, -120]);
+  const ySlow = useTransform(scrollY, [0, 700], [0, -120]);
 
   useEffect(() => {
-    getAllProduits();
+    getAllCookies();
   }, []);
 
-  const getAllProduits = async () => {
+  const getAllCookies = async () => {
     try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
-      if (status === 200) setProduit(data);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_COOKIES);
+      console.log(data);
+      
+      if (status === 200) {
+        const cookiesActifs = data.filter((item) => item.isActive === true);
+        setCookie(cookiesActifs);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -46,7 +51,7 @@ const Produit = () => {
         </ol>
       </nav>
       <div style={{ display: "flex", alignItems: "end" }}>
-        <div className="enteteProduit row" style={{ width: "100%" }} >
+        <div className="enteteProduit row" style={{ width: "100%" }}>
           <h1
             className="titlePageProduit col-sm-2"
             style={{
@@ -73,9 +78,9 @@ const Produit = () => {
         </p>
         <section className="sectionCookie">
           <div className="produitContainer2 ">
-            {produit.map(
-              (item, index) =>
-                index > 4 && (
+            {cookie.map(
+              (item) =>
+               (
                   <div key={item._id} className="produit2">
                     <p className="titreProduit2">{item.titre}</p>
                     <img
@@ -91,7 +96,7 @@ const Produit = () => {
                         className="btnDetail"
                         data-back="Je le veux"
                         data-front="Je le veux"
-                        onClick={() => navigate(`/detail/${item._id}`)}
+                        onClick={() => navigate(`/cookie/${item._id}`)}
                       ></button>
                     </div>
                   </div>

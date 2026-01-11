@@ -25,6 +25,8 @@ import cookiedough from "../../assets/images/cookiedough.webp";
 
 const PageRecette = () => {
   const [recette, setRecette] = useState([]);
+  const [selectedRecette, setSelectedRecette] = useState(null);
+
   const [formData, setFormData] = useState({
     pseudo: "",
     recetteTest: "",
@@ -53,7 +55,10 @@ const PageRecette = () => {
   const getAllRecettes = async () => {
     try {
       const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
-      if (status === 200) setRecette(data);
+      if (status === 200) {
+        const recetteActifs = data.filter((item) => item.isActive === true);
+        setRecette(recetteActifs);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -93,7 +98,10 @@ const PageRecette = () => {
     try {
       const { data, status } = await axiosinstance.get(URL.GET_ALL_AVIS);
       console.log(data);
-      if (status === 200) setAvis(data);
+      if (status === 200) {
+        const avisActifs = data.filter((item) => item.isActive === true);
+        setAvis(avisActifs);
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -124,9 +132,7 @@ const PageRecette = () => {
     if (!wrapperRef.current || !contentRef.current || !titleRef.current) return;
 
     ScrollTrigger.matchMedia({
-      // =========================
       // DESKTOP : animation active
-      // =========================
       "(min-width: 769px)": () => {
         const wrapper = wrapperRef.current;
         const content = contentRef.current;
@@ -203,6 +209,8 @@ const PageRecette = () => {
     return () => ScrollTrigger.clearMatchMedia();
   }, [recette]);
 
+  //pour le header
+
   useEffect(() => {
     // Ajoute la classe au body quand on arrive sur la page
     document.body.classList.add("bg-recette-global");
@@ -213,6 +221,10 @@ const PageRecette = () => {
     };
   }, []);
 
+  // MODAL RECETTE
+  const openModal = (recetteItem) => {
+    setSelectedRecette(recetteItem);
+  };
   return (
     <div className="pageRecette">
       {/* Cette div contiendra l'image de fond et remontera sous le header */}
@@ -257,90 +269,63 @@ const PageRecette = () => {
       </div>
       <div>
         {/* SECTION AVEC SCROLL VERTICAL */}
-        <div>
-          {" "}
-          <section
-            className="homeRecipesWrapper row"
-            style={{ padding: "3rem" }}
-            ref={wrapperRef}
-          >
-            {/* Titre fixe */}
-            <h2 className="titreAnimRecette" ref={titleRef}>
-              Amusez <br /> vous ! <br />
-              et pâtissez
-            </h2>
+        <section
+          className="homeRecipesWrapper row"
+          style={{ padding: "3rem" }}
+          ref={wrapperRef}
+        >
+          {/* Titre fixe */}
+          <h2 className="titreAnimRecette" ref={titleRef}>
+            Amusez <br /> vous ! <br />
+            et pâtissez
+          </h2>
 
-            {/* Contenu qui défile verticalement */}
-            <div className="animRecette" ref={contentRef}>
-              {/* Vous pouvez mapper vos recettes ici */}
-              {recette.map((item) => (
+          {/* Contenu qui défile verticalement */}
+          <div className="animRecette" ref={contentRef}>
+            {" "}
+            <div>
+              {recette.map((item, index) => (
                 <div key={item._id}>
-                  {" "}
+                  {/* Vous pouvez mapper vos recettes ici */}
                   <div className="recetteContent">
-                    {/* <div style={numberStyles}>01</div> */}
                     <h3 className="titreRecetteContent"> {item.titre}</h3>
                     <p>Testez nos recettes gourmandes {item.description}</p>
                     <button
                       type="button"
                       className="btnVoirRecette"
                       data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop1"
+                      data-bs-target="#staticBackdrop"
+                      onClick={() => openModal(item)} // pour ouvrir le modal au click
                     >
                       Voir la recette
                     </button>
                   </div>
-                  <div className="recetteContent">
-                    <h3 className="titreRecetteContent">{item.titre}</h3>
-                    <p style={descStyles}>
-                      Des recettes testées et approuvées! {item.description}
-                    </p>
-                    <button
-                      type="button"
-                      className="btnVoirRecette"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop2"
-                    >
-                      Voir la recette
-                    </button>
-                  </div>
-                  <div className="recetteContent">
-                    <h3 className="titreRecetteContent"> {item.titre} </h3>
-                    <p>
-                      Une dernière recette pour le scroll {item.description}
-                    </p>
-                    <button
-                      type="button"
-                      className="btnVoirRecette"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop3"
-                    >
-                      Voir la recette
-                    </button>
-                  </div>{" "}
                 </div>
-              ))}
+              ))}{" "}
             </div>
-          </section>
-          {/* Modal premiere recette */}
+          </div>
+        </section>
+        {/* Modal premiere recette */}
+        <div
+          className="modal fade"
+          id="staticBackdrop"
+          tabIndex="-1"
+          aria-hidden="true"
+        >
           <div
-            className="modal fade"
-            id="staticBackdrop1"
-            tabIndex="-1"
-            aria-hidden="true"
+            className="modal-dialog modal-dialog-centered modal-dialog row"
+            style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
           >
             <div
-              className="modal-dialog modal-dialog-centered modal-dialog row"
-              style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+              className="modal-content"
+              style={{ color: "var(--marronRouge)" }}
             >
-              <div
-                className="modal-content"
-                style={{ color: "var(--marronRouge)" }}
-              >
-                {isAuthenticated ? (
+              {isAuthenticated ? (
+                selectedRecette && ( //  AFFICHE LES DONNÉES SI UNE RECETTE EST SÉLECTIONNÉE
                   <>
                     <div className="modal-header">
                       <h2 className="modal-title" id="staticBackdropLabel">
-                        {item.titre}
+                        {selectedRecette.titre}
                       </h2>
                       <button
                         type="button"
@@ -353,95 +338,89 @@ const PageRecette = () => {
                       className="modal-body"
                       style={{ textAlign: "justify" }}
                     >
-                      <h2 className="titrePreparation">{item.nbPersonne}</h2>
+                      <h2 className="titrePreparation">
+                        {selectedRecette.nbPersonne}
+                      </h2>
                       <h2 className="titrePreparation">Ingrédients:</h2>
-                      <p>{item.ingredients}</p>
+                      <p>{selectedRecette.ingredients}</p>
                       <h2 className="titrePreparation">Préparation:</h2>
-                      <p>{item.preparation}</p>
+                      <p>{selectedRecette.preparation}</p>
                       <h2 className="titrePreparation">Astuce:</h2>
-                      <p>{item.astuce}</p>
+                      <p>{selectedRecette.astuce}</p>
                     </div>
                   </>
-                ) : (
-                  <div className="modal-body">
-                    <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
-                    <h1 className="text-center mb-4">Sign</h1>
-                    <form onSubmit={handleSubmitUser}>
-                      {SIGN_FIELDS.map((field, index) => (
-                        <div
-                          className="input-group flex-nowrap mb-3"
-                          key={index}
+                )
+              ) : (
+                <div className="modal-body">
+                  <p>Veuillez vous connecter pour découvrir la recette 😉 </p>
+                  <h1 className="text-center mb-4">Sign</h1>
+                  <form onSubmit={handleSubmitUser}>
+                    {SIGN_FIELDS.map((field, index) => (
+                      <div className="input-group flex-nowrap mb-3" key={index}>
+                        <span
+                          className="input-group-text"
+                          id="addon-wrapping"
+                          style={{ border: "var(--marronRouge) 2px solid" }}
                         >
-                          <span
-                            className="input-group-text"
-                            id="addon-wrapping"
-                            style={{
-                              border: "var(--marronRouge) 2px solid",
-                            }}
-                          >
-                            <i
-                              className={field.icon}
-                              style={{ color: "var(--marronRouge)" }}
-                            ></i>
-                          </span>
-                          <input
-                            type={field.type}
-                            className="form-control"
-                            placeholder={field.placeholder}
-                            aria-label={field.label}
-                            name={field.name}
-                            aria-describedby="addon-wrapping"
-                            onChange={handleChangeUser}
-                            style={{
-                              border: "var(--marronRouge) 2px solid",
-                            }}
-                          />
-                        </div>
-                      ))}
-                      <div className="d-grid">
-                        <button
-                          type="submit"
-                          className="btn w-100"
-                          style={{
-                            border: "var(--marronRouge) 2px solid",
-                            color: "var(--marronRouge)",
-                            marginBottom: "2rem",
-                          }}
-                        >
-                          Je me connecte{" "}
-                        </button>
+                          <i
+                            className={field.icon}
+                            style={{ color: "var(--marronRouge)" }}
+                          ></i>
+                        </span>
+                        <input
+                          type={field.type}
+                          className="form-control"
+                          placeholder={field.placeholder}
+                          aria-label={field.label}
+                          name={field.name}
+                          aria-describedby="addon-wrapping"
+                          onChange={handleChangeUser}
+                          style={{ border: "var(--marronRouge) 2px solid" }}
+                        />
                       </div>
-                    </form>
-                    <Link
-                      to="/register"
-                      onClick={() => {
-                        const modal =
-                          document.getElementById("staticBackdrop1");
-                        const backdrop =
-                          document.querySelector(".modal-backdrop");
+                    ))}
+                    <div className="d-grid">
+                      <button
+                        type="submit"
+                        className="btn w-100"
+                        style={{
+                          border: "var(--marronRouge) 2px solid",
+                          color: "var(--marronRouge)",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        Je me connecte{" "}
+                      </button>
+                    </div>
+                  </form>
+                  <Link
+                    to="/register"
+                    onClick={() => {
+                      const modal = document.getElementById("staticBackdrop1");
+                      const backdrop =
+                        document.querySelector(".modal-backdrop");
 
-                        if (modal) modal.classList.remove("show");
-                        if (backdrop) backdrop.remove();
-                        document.body.classList.remove("modal-open");
-                      }}
-                    >
-                      Vous n'avez pas de compte ?
-                    </Link>
-                  </div>
-                )}
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-primary col-xs-5 col-md-3"
-                    data-bs-dismiss="modal"
-                    style={{
-                      backgroundColor: "var(--jaune)",
-                      alignSelf: "end",
+                      if (modal) modal.classList.remove("show");
+                      if (backdrop) backdrop.remove();
+                      document.body.classList.remove("modal-open");
                     }}
                   >
-                    Close
-                  </button>
+                    Vous n'avez pas de compte ?
+                  </Link>
                 </div>
+              )}
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="btn btn-primary col-xs-5 col-md-3"
+                  data-bs-dismiss="modal"
+                  style={{
+                    backgroundColor: "var(--jaune)",
+                    alignSelf: "end",
+                  }}
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
@@ -449,17 +428,39 @@ const PageRecette = () => {
         {/* Modal 2e recette */}
 
         {/* RESTE DU CONTENU */}
-        {/* <div style={{backgroundColor:"var(--jaune)", paddingTop:"3rem"}}>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          <h2>Aimons nos cookies</h2>
-          
-        </div> */}
+        <div
+          style={{
+            display: "flex",
+            backgroundColor: "#e4e463ff",
+            border: "2px solid var(--marronRouge)",
+          }}
+        >
+          <img
+            src={cookiegemini}
+            alt="cookie"
+            height={350}
+            width={350}
+            style={{
+              backgroundColor: "#c6819bff",
+              borderRight: "2px solid var(--marronRouge)",
+            }}
+          />
+          <img
+            src={cookiebananepecan}
+            alt="cookie"
+            height={350}
+            width={350}
+            style={{ borderRight: "2px solid var(--marronRouge)" }}
+          />
+          <img
+            src={cookiechoco}
+            alt="cookie"
+            height={350}
+            width={350}
+            style={{ borderRight: "2px solid var(--marronRouge)" }}
+          />
+        </div>
+
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"
@@ -467,6 +468,7 @@ const PageRecette = () => {
             borderTop: "3px var(--marronRouge) solid",
             marginBottom: "3rem",
             marginTop: "20rem",
+            padding: "3rem",
           }}
         >
           <h2 className="vosAvis">Vos Avis</h2>

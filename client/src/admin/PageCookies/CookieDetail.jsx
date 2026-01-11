@@ -3,64 +3,69 @@ import { Link, useParams } from "react-router-dom";
 import URL from "../../utils/constant/url";
 import axiosinstance from "../../utils/axios/axiosinstance";
 
-const AvisDetail = () => {
+const CookieDetail = () => {
   const params = useParams();
   const { id } = params;
-  const [detailAvis, setDetailAvis] = useState([]);
+  const [detailCookie, setDetailCookie] = useState([]);
 
   useEffect(() => {
     if (id) {
-      getAvis(id);
+      getCookie(id);
     }
   }, [id]);
 
-  const getAvis = async (id) => {
+  const getCookie = async (id) => {
     try {
       const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_AVIS}/${id}`
+        `${URL.GET_DETAIL_COOKIE}/${id}`
       );
       console.log(id);
 
       if (status === 200) {
-        setDetailAvis(data);
+        setDetailCookie(data);
       }
     } catch (error) {
       console.log(error.message);
     }
   };
 
+
   return (
     <>
-      {!detailAvis ? (
+      {!detailCookie ? (
         <p>Chargement</p>
       ) : (
         <div>
-          <div key={detailAvis._id}>
+          <div key={detailCookie._id}>
+            <h1>{detailCookie.titre}</h1>
             <div
               style={{
                 padding: "2rem",
                 justifyContent: "center",
               }}
             >
-              <p>{detailAvis.user}</p>
-              <p>{detailAvis.commentaire}</p>
-              <p>{detailAvis.date}</p>
               <img
                 className="detailProduitImg"
                 style={{ border: "2px var(--marronRouge) solid " }}
-                src={detailAvis.image}
-                width={200}
-                height={100}
+                src={detailCookie.photo}
+                alt={detailCookie.titre}
+                width={300}
+                height={300}
               />
+              <div style={{ padding: "2rem" }}>
+                <p>{detailCookie.description}</p>
+                <p>{detailCookie.ingredients}</p>
+                <p>{detailCookie.prix}€</p>
+              </div>
             </div>
           </div>
         </div>
       )}
       <button style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/admin/avis">Retour aux avis</Link>{" "}
+        <Link to="/admin/cookies">Retour aux cookies</Link>{" "}
       </button>
     </>
   );
 };
 
-export default AvisDetail;
+export default CookieDetail;

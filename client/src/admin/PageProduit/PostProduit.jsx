@@ -27,6 +27,7 @@ const PostProduit = () => {
       if (status === 201) {
         console.log("Article ajouté !");
         toast.success("Produit ajouté!");
+        navigate("/admin/produit");
       }
     } catch (error) {
       console.log(error.message);

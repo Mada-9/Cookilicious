@@ -4,71 +4,67 @@ import axiosinstance from "../../utils/axios/axiosinstance";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const UpdateRecette = () => {
-   const [recette, setRecette] = useState({
-   titre:"",
-        description: "",
-        image: "",
-        nbPersonne:"",
-        ingredients:"",
-        preparation:"",
-        astuce:""});
+const UpdateBrookie = () => {
+  const [brookie, setBrookie] = useState({
+    titre: "",
+    description: "",
+    ingredients: "",
+    prix: "",
+    photo: "",
+  });
 
   const params = useParams();
   const { id } = params;
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
-      getRecette(id);
+      getBrookie(id);
     }
   }, [id]);
 
-  const getRecette = async (id) => {
+  const getBrookie = async (id) => {
     try {
       const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_RECETTE}/${id}`
+        `${URL.GET_DETAIL_BROOKIE}/${id}`
       );
       console.log(id);
 
       if (status === 200) {
-        setRecette(data);
+        setBrookie(data);
       }
     } catch (error) {
       console.log(error.message);
     }
   };
 
-  const handleChange = async (event) => {
+  const handleChange = (event) => {
     const { name, value } = event.target;
-    setRecette((prevRecette) => ({ ...prevRecette, [name]: value }));
+    setBrookie((prevBrookie) => ({ ...prevBrookie, [name]: value }));
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const { status, data } = await axiosinstance.put(
-        `${URL.UPDATE_RECETTE}/${id}`,
-        recette
+        `${URL.UPDATE_BROOKIE}/${id}`,
+        brookie
       );
-      console.log(data);
-      
       if (status === 200) {
-        toast.success("Recette updated");
-
-        setRecette(data);
-                navigate("/admin/recette");
-
+        setBrookie(data);
+        toast.success("Brookie updated!");
+        navigate("/admin/brookies");
       }
-      console.log("Recette updated !");
+      console.log("Brookie updated !");
     } catch (error) {
       console.log(error.message);
+      toast.error("Brookie not updated!");
     }
   };
 
   return (
     <>
-      <div>Update Recette</div>
+      <div>Update Brookie</div>
 
       <div
         className="col-8"
@@ -89,92 +85,70 @@ const UpdateRecette = () => {
           }}
         >
           <label htmlFor="titre" className="my-3">
-            Titre :
+            Titre :{" "}
           </label>
           <input
             id="titre"
             type="text"
             name="titre"
-            value={recette.titre}
+            value={brookie.titre}
+            style={{ color: "var(--marronRouge)" }}
+            onChange={handleChange}
+          />
+          <label htmlFor="prix" className="my-3">
+            Prix :{" "}
+          </label>
+          <input
+            id="prix"
+            type="number"
+            name="prix"
+            value={brookie.prix}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <label htmlFor="description" className="my-3">
-            Description :
+            Description :{" "}
           </label>
           <input
             id="description"
             type="text"
             name="description"
-            value={recette.description}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="nbPersonne" className="my-3">
-            Nombre de personnes :
-          </label>
-          <input
-            id="nbPersonne"
-            type="text"
-            name="nbPersonne"
-            value={recette.nbPersonne}
+            value={brookie.description}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <label htmlFor="ingredients" className="my-3">
-            Ingrédients :
+            Ingrédients :{" "}
           </label>
           <input
             id="ingredients"
             type="text"
             name="ingredients"
-            value={recette.ingredients}
+            value={brookie.ingredients}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <label htmlFor="preparation" className="my-3">
-            Préparation :
+          <label htmlFor="photo" className="my-3">
+            Photo :{" "}
           </label>
           <input
-            id="preparation"
+            id="photo"
             type="text"
-            name="preparation"
-            value={recette.preparation}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="astuce" className="my-3">
-            Astuce :
-          </label>
-          <input
-            id="astuce"
-            type="text"
-            name="astuce"
-            value={recette.astuce || ""}
-            style={{ color: "var(--marronRouge)" }}
-            onChange={handleChange}
-          />
-          <label htmlFor="image" className="my-3">
-            Image :
-          </label>
-          <input
-            id="image"
-            type="text"
-            name="image"
-            value={recette.image}
+            name="photo"
+            value={brookie.photo}
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
           <button className="my-4" style={{ color: "var(--marronRouge)" }}>
-          Update
+            Update
           </button>
         </form>
         <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/recette">Retour aux recettes</Link>{" "}
+          <Link to="/admin/brookies">Retour aux brookies</Link>{" "}
         </button>
       </div>
     </>
   );
 };
 
-export default UpdateRecette;
+export default UpdateBrookie;

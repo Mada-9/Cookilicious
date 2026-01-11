@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import URL from "../../utils/constant/url";
 import axiosinstance from "../../utils/axios/axiosinstance";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const UpdateProduit = () => {
@@ -11,6 +11,7 @@ const UpdateProduit = () => {
 
   const params = useParams();
   const { id } = params;
+  const navigate = useNavigate;
 
   useEffect(() => {
     if (id) {
@@ -47,11 +48,13 @@ const UpdateProduit = () => {
       );
       if (status === 200) {
         setCommande(data);
-        toast.success("Commande updated");
+        toast.success("Commande updated!");
+        navigate("/admin/commandes");
       }
       console.log("Commande updated !");
     } catch (error) {
       console.log(error.message);
+      toast.error("Commande not updated!");
     }
   };
 
@@ -84,7 +87,7 @@ const UpdateProduit = () => {
           <select
             name="statut"
             className="form-control"
-            required  
+            required
             onChange={handleChange}
             style={{ color: "var(--marronRouge)" }}
           >
@@ -101,7 +104,7 @@ const UpdateProduit = () => {
           </button>
         </form>
         <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/commandes">Retours aux commandes</Link>{" "}
+          <Link to="/admin/commandes">Retour aux commandes</Link>{" "}
         </button>
       </div>
     </>

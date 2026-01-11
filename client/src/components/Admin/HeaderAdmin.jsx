@@ -36,9 +36,19 @@ const Header = () => {
             ></button>
           </div>
           <ul className="navbar-nav">
-              <li className="nav-item px-2">
+            <li className="nav-item px-2">
               <Link to="/admin/produit" className="nav-link">
                 Gestion des produits
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/admin/cookies" className="nav-link">
+                Gestion des cookies
+              </Link>
+            </li>
+            <li className="nav-item px-2">
+              <Link to="/admin/brookies" className="nav-link">
+                Gestion des brookies
               </Link>
             </li>
             <li className="nav-item px-2">
@@ -48,8 +58,7 @@ const Header = () => {
             </li>
             <li className="nav-item px-2">
               <Link to="/admin/membres " className="nav-link">
-                Gestion des membres{" "} 
-                {/* CHANGER EN MEMBRES */}
+                Gestion des membres {/* CHANGER EN MEMBRES */}
               </Link>
             </li>
             <li className="nav-item px-2">
@@ -62,11 +71,9 @@ const Header = () => {
                 Gestion des commandes
               </Link>
             </li>
-             <li className="nav-item px-2">
+            <li className="nav-item px-2">
               <Link to="/" className="nav-link">
                 Home
-              
-
               </Link>
             </li>
           </ul>

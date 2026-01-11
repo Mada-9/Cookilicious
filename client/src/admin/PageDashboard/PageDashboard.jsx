@@ -14,6 +14,8 @@ const PageDashboard = () => {
     >
       <h1 style={{ fontSize: "5rem" }}>Dashboard Home </h1>
       <Link to="/admin/produit">Crud produits</Link>
+      <Link to="/admin/produit">Crud cookies</Link>
+      <Link to="/admin/produit">Crud brookies</Link>
       <Link to="/admin/recette">Crud recettes</Link>
       <Link to="/admin/membres">Crud membres</Link>
       <Link to="/admin/contact">Crud messages</Link>

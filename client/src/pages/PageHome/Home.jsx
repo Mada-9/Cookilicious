@@ -4,7 +4,6 @@ import axiosinstance from "../../utils/axios/axiosinstance";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { toast } from "react-toastify";
 
-
 //animation
 import ScrollTrigger from "gsap/ScrollTrigger";
 import gsap from "gsap";
@@ -17,11 +16,13 @@ import URL from "../../utils/constant/url";
 import "./Home.css"; // CSS spécifique
 
 //IMAGE
-
+import Brookie from "../../assets/images/brookie.webp"
 
 const PageHome = ({}) => {
   const navigate = useNavigate();
-  const [produit, setProduit] = useState([]);
+  const [cookie, setCookie] = useState([]);
+  const [brookie, setBrookie] = useState([]);
+
   const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
@@ -30,21 +31,32 @@ const PageHome = ({}) => {
   // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 900], [0, -90]);
 
-
-
-
   useEffect(() => {
-    getAllProduits();
+    getAllCookies();
   }, []);
 
-  const getAllProduits = async () => {
+  const getAllCookies = async () => {
     try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_PRODUITS);
-      if (status === 200) setProduit(data);
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_COOKIES);
+      if (status === 200) setCookie(data);
     } catch (error) {
       console.log(error.message);
     }
   };
+
+
+   useEffect(() => {
+    getAllBrookies();
+  }, []);
+    const getAllBrookies = async () => {
+    try {
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_BROOKIES);
+      if (status === 200) setBrookie(data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 
   useEffect(() => {
     getAllRecettes();
@@ -76,7 +88,7 @@ const PageHome = ({}) => {
         status === 201 &&
         formData.email.match(isValidEmail)
       ) {
-        toast.succes("message envoyé !");
+        toast.success("message envoyé !");
       } else {
         toast.error("veuillez ecrire un message valide");
       }
@@ -166,18 +178,16 @@ const PageHome = ({}) => {
           </section>
         </div>
         <section className="sectionRecette row px-5">
-          <h1 className="recetteTitle col-12  mt-5 ">
-            Découvrez nos recettes
-          </h1>{" "}
+          <h1 className="recetteTitle col-12  mt-5 ">Découvrez nos recettes</h1>{" "}
           <Link
             to="/recette"
             className="sectionRecetteContent col-sm-10 col-md-11  "
           >
             {/* <p>Explorez des recettes savoureuses, pensées pour sublimer chaque ingrédient et transformer vos moments en véritables instants de plaisir..</p> */}
-            <p className=" ">
+            <p>
               Des recettes inspirantes et accessibles pour éveiller votre
               créativité en cuisine.
-            </p>{" "}
+            </p>
             {/* <p>
               Des recettes soigneusement élaborées pour sublimer les saveurs et
               transformer chaque moment en expérience gourmande.
@@ -195,7 +205,7 @@ const PageHome = ({}) => {
           ></button>
           <img
             className="moitieeBrookie col-5"
-            src="https://www.harrisfarm.com.au/cdn/shop/files/brrokie.png?v=1694316224"
+            src={Brookie}
             alt="cookies pistache"
           />
         </section>
@@ -210,27 +220,50 @@ const PageHome = ({}) => {
             voluptatibus quisquam explicabo neque error exercitationem.
           </p>
         </section> */}
-        <div style={{ backgroundColor: "var(--jaune)", padding: "4rem 0rem 4rem 0rem", justifyItems:"center", }}>
-          
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-          <h3 style={{marginBottom:"0.7rem", wordSpacing:"20px"}}>Texture fondante, cœur ultra gourmand… un plaisir 100 % Cookilicious.</h3>
-
-          
-      
+        <div
+          style={{
+            backgroundColor: "var(--jaune)",
+            padding: "4rem 0rem 4rem 0rem",
+            justifyItems: "center",
+          }}
+        >
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
+          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
+            Texture fondante, cœur ultra gourmand… un plaisir 100 %
+            Cookilicious.
+          </h3>
         </div>
         {/* PRODUITS AFFICHES SUR HOME */}
         <div className="homeProduit px-5 ">
           <h1 className="homeProduitTitle text-left ">One more sweetness...</h1>
 
           <div className="row g-5">
-            {produit.map(
+            {cookie.map(
               (item, index) =>
-                index < 4 && (
+                index < 2 && (
                   <div key={item._id} className="col-12 col-md-6 col-lg-3">
                     <div className=" produitCard">
                       <p>{item.titre}</p>
@@ -249,7 +282,7 @@ const PageHome = ({}) => {
                       <p>{item.prix} €</p>
                       <button
                         className="produitCardBtn"
-                        onClick={() => navigate(`/detail/${item._id}`)}
+                        onClick={() => navigate(`/cookie/${item._id}`)}
                       >
                         voir
                       </button>
@@ -257,6 +290,38 @@ const PageHome = ({}) => {
                   </div>
                 )
             )}
+            {brookie.map(
+              (brookie, index) =>
+                index < 2 && (
+                  <div key={brookie._id} className="col-12 col-md-6 col-lg-3">
+                    <div className=" produitCard">
+                      <p>{brookie.titre}</p>
+
+                      <img
+                        className="img-fluid"
+                        src={
+                          brookie.photo ||
+                          "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg"
+                        }
+                        alt={brookie.titre}
+                        width={200}
+                        height={200}
+                      />
+
+                      <p>{brookie.prix} €</p>
+                      <button
+                        className="produitCardBtn"
+                        onClick={() => navigate(`/brookie/${item._id}`)}
+                      >
+                        voir
+                      </button>
+                    </div>
+                  </div>
+                )
+            )}
+           
+
+
           </div>
         </div>
         <section className="sectionFaq">
@@ -340,53 +405,50 @@ const PageHome = ({}) => {
             </div>
           </div>
         </section>
-        {/* SECTION CONTACT */}<section className="contactHome">
-  <div className="contactWrapper">
-    
-    <div className="contactInfoSide">
-      <h2 className="contactTitle">
-        Parlons de gourmandise.
-      </h2>
-      <p className="contactText">
-        Une idée, une collaboration ou une envie particulière ?
-        <br />
-        Écris-nous. Le reste suivra.
-      </p>
-    </div>
+        {/* SECTION CONTACT */}
+        <section className="contactHome">
+          <div className="contactWrapper">
+            <div className="contactInfoSide">
+              <h2 className="contactTitle">Parlons de gourmandise.</h2>
+              <p className="contactText">
+                Une idée, une collaboration ou une envie particulière ?
+                <br />
+                Écris-nous. Le reste suivra.
+              </p>
+            </div>
 
-    <form className="contactForm" onSubmit={handleSubmit}>
-      <div className="contactField">
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="tonemail@exemple.com"
-          className="contactInput"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-      </div>
+            <form className="contactForm" onSubmit={handleSubmit}>
+              <div className="contactField">
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="tonemail@exemple.com"
+                  className="contactInput"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-      <div className="contactField">
-        <label>Message</label>
-        <textarea
-          name="message"
-          placeholder="Dites-nous tout..."
-          className="contactTextarea"
-          value={formData.message}
-          onChange={handleChange}
-          required
-        />
-      </div>
+              <div className="contactField">
+                <label>Message</label>
+                <textarea
+                  name="message"
+                  placeholder="Dites-nous tout..."
+                  className="contactTextarea"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-      <button type="submit" className="contactBtn">
-        Envoyer
-      </button>
-    </form>
-
-  </div>
-</section>
+              <button type="submit" className="contactBtn">
+                Envoyer
+              </button>
+            </form>
+          </div>
+        </section>
 
         {/* fin de page  */}
         <button className="btnBackToTop" onClick={scrollToTop}>

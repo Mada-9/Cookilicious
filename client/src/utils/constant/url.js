@@ -7,6 +7,18 @@ const URL = {
   DELETE_PRODUIT: "/api/produit/delete",
   UPDATE_PRODUIT: "/api/produit/update",
 
+  POST_COOKIE: "/api/cookie/post",
+  GET_ALL_COOKIES: "/api/cookie/get",
+  GET_DETAIL_COOKIE: "/api/cookie/get",
+  DELETE_COOKIE: "/api/cookie/delete",
+  UPDATE_COOKIE: "/api/cookie/update",
+
+  POST_BROOKIE: "/api/brookie/post",
+  GET_ALL_BROOKIES: "/api/brookie/get",
+  GET_DETAIL_BROOKIE: "/api/brookie/get",
+  DELETE_BROOKIE: "/api/brookiesdelete",
+  UPDATE_BROOKIE: "/api/brookie/update",
+
   POST_RECETTE: "/api/recette/post",
   GET_ALL_RECETTES: "/api/recette/get",
   GET_DETAIL_RECETTE: "/api/recette/get",

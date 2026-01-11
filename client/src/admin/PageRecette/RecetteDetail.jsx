@@ -70,7 +70,7 @@ const RecetteDetail = () => {
         </div>
       )}
       <button style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/admin/recette">Retours aux recettes</Link>{" "}
+        <Link to="/admin/recette">Retour aux recettes</Link>{" "}
       </button>
     </>
   );

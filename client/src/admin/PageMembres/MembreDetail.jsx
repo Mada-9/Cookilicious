@@ -50,7 +50,7 @@ const UserDetail = () => {
           </div>
         </div>
         <button style={{ display: "flex", justifySelf: "center" }}>
-          <Link to="/admin/membres">Retours aux membres</Link>{" "}
+          <Link to="/admin/membres">Retour aux membres</Link>{" "}
         </button>
       </div>
     </>
