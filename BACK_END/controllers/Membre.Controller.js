@@ -100,10 +100,32 @@ const updateById = async (req, res, next) => {
     next(createError(error.status || 500, error.message, error.details)); 
   }
 };
+const updatePassword = async (req, res, next) => {
+  try {
+    const { id, oldPassword, newPassword } = req.body;
+    const user = await UserModel.findById(id);
+
+    // VÉRIFICATION : L'ancien mot de passe est-il le bon ?
+    const isCorrect = await bcrypt.compare(oldPassword, user.password);
+    if (!isCorrect) return next(createError(400, "Ancien mot de passe incorrect"));
+
+    // HACHAGE : On crypte le nouveau
+    const salt = await bcrypt.genSalt(10); //Le Salt est une chaîne de caractères aléatoire que l'on ajoute au mot de passe avant de le hacher.
+    user.password = await bcrypt.hash(newPassword, salt);
+    
+    await user.save();
+    res.status(200).json({ message: "Mot de passe mis à jour !" });
+  } catch (error) {
+    next(createError(500, "Erreur serveur"));
+  }
+};
+
+
 
 module.exports = {
   get,
   getById,
   deleteById,
-  updateById
+  updateById,
+  updatePassword
 };

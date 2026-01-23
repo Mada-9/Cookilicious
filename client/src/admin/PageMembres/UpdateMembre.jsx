@@ -64,12 +64,12 @@ const UpdateMembre = () => {
 
   return (
     <>
-      <h2>Update Membre</h2>
+      <h2 className="dashboardHeader">Update Membre</h2>
 
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "2px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",
@@ -143,13 +143,31 @@ const UpdateMembre = () => {
             <option value="admin">admin</option>
           </select>
 
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+           <button 
+             className="btn my-5 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Update
           </button>
-        </form>{" "}
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          Retour aux membres
+        </form>
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/membres">Retour aux membres</Link>
         </button>
+      </div>
       </div>
     </>
   );

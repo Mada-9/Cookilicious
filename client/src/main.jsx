@@ -2,7 +2,6 @@ import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import { PanierProvider } from "./utils/context/PanierContext.jsx";
-import { ThemeProvider } from "./utils/context/ThemeContext.jsx";
 import { AuthProvider } from "./utils/context/AuthContext.jsx";
 import "./index.css";
 import App from "./App.jsx";
@@ -27,9 +26,7 @@ createRoot(document.getElementById("root")).render(
       <AuthProvider>
         <PanierProvider>
           <ScrollToTop />
-          <ThemeProvider>
             <App />{" "}
-          </ThemeProvider>
         </PanierProvider>
       </AuthProvider>{" "}
     </BrowserRouter>{" "}

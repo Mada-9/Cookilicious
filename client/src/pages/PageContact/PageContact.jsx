@@ -1,22 +1,18 @@
 import { useState } from "react";
-import { useMediaQuery } from "react-responsive";
 import { toast } from "react-toastify";
-
 import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
+import cookie from "../../assets/images/cookievelvetpistache.jpg";
 
 const PageContact = () => {
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
 
-  // ENVOIE FORMULAIRE
-
   const handleChange = (e) => {
-    // const { name, value } = e.target;
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+ const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -39,75 +35,88 @@ const PageContact = () => {
   };
 
   return (
-    <>
-    <div>
-      <div
-        style={{
-          background: "var(--marronRouge)",
-          color: "var(--creme)",
-          paddingBottom: "6rem",
-          borderBottom:"2px var(--creme) solid"
-          
-        }}
-        className="col-12"
-      >
-        {" "}
-        <h2 className="p-5  titleContact text-center">Contactez nous</h2>
-        <form
-          onSubmit={handleSubmit}
-          className="row justify-content-center g-3  pt-5  "
-          style={{
-            // borderLeft: "4px var(--marronRouge) solid",
-            justifySelf: "center",
-            borderRadius: "2rem",
-            boxShadow: "0px 0px 10px -5px #c5c5c5ff",
-          }}
-        >
-          <div className="col-9">
-            <label htmlFor="inputEmail" className="form-label col-9 ">
-              Email
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="inputEmail"
-              name="email"
-              autoComplete="email"
-              value={formData.email}
-              onChange={handleChange}
-              style={{
-                border: "4px solid var(--marronRouge)",
-                color: "var(--marronRouge)",
-              }}
-            />
-          </div>
-          <div className="col-9">
-            <label htmlFor="message" className="form-label col-9">
-              Votre message
-            </label>
-            <textarea
-              type="text"
-              className="form-control mb-1"
-              name="message"
+    <div className="container-fluid p-0" style={{ backgroundColor: "var(--creme)",  }}>
+      <div className="row g-0">
+        
+        <h1>ACCESIBILITe FORM</h1>
+        {/* CÔTÉ GAUCHE : Image avec Overlay */}
+        <div  style={{ backgroundColor:"var(--jaune)"  }} className="col-lg-6 d-flex flex-column justify-content-center align-items-center p-5 text-center" 
+            >
+          <h2 className="display-4 fw-bold mb-3">
+            Contactez nous!
+          </h2>
+          <p className="px-md-5">
+            Notre équipe vous répond avec le sourire
+          </p>
+        </div>
+
+        <div className="col-lg-6 d-flex justify-content-center align-items-center p-5">
+          <form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: "450px" }}>
+            
+            <div className="mb-4">
+              <label className="form-label" htmlFor="email" style={{ color: "var(--marronRouge)" }}>
+                Votre Email
+              </label>
+              <input
+              id="email"
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="nom@exemple.com"
+                value={formData.email}
+                onChange={handleChange}
+                style={{
+                  border: "none",
+                  borderBottom: "2px solid var(--marronRouge)",
+                  borderRadius: "0",
+                  padding: "12px 0",
+                  boxShadow: "none",
+                  backgroundColor: "var(--creme)"
+                }}
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="form-label" htmlFor="message" style={{ color: "var(--marronRouge)", letterSpacing: "1px" }}>
+                Votre Message
+              </label>
+              <textarea
               id="message"
-              autoComplete="message"
-              value={formData.message}
-              onChange={handleChange}
-              style={{
-                border: "4px solid var(--marronRouge)",
-                color: "var(--marronRouge)",
+                name="message"
+                className="form-control"
+                placeholder="Racontez-nous tout..."
+                value={formData.message}
+                onChange={handleChange}
+                style={{
+                  border: "2px solid var(--marronRouge)",
+                  borderRadius: "12px",
+                  padding: "15px",
+                                    backgroundColor: "var(--creme)"
+
+                }}
+              ></textarea>
+            </div>
+
+            <button 
+              type="submit" 
+              className="btn w-100 py-3 mt-2"
+              style={{ 
+                backgroundColor: "var(--jaune)", 
+                color: "var(--marronRouge)", 
+                borderRadius: "50px",
+                border: "none",
+                transition: "transform 0.2s"
               }}
-            ></textarea>
-          </div>
-          <div className="col-9 mb-5">
-            <button type="submit" className="btn btn-primary">
-              Envoyer
-            </button>{" "}
-          </div>
-        </form>
+              onMouseOver={(e) => e.target.style.transform = "scale(1.02)"}
+              onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+            >
+              Envoyer la gourmandise 🍪
+            </button>
+          </form>
+        </div>
+
       </div>
-      </div>
-    </>
+    </div>
   );
 };
 

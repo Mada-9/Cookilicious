@@ -6,7 +6,7 @@ import URL from "../../utils/constant/url";
 
 import "../PageDashboard/Dashboard.css";
 
-const PageProduitDashboard = () => {
+const PageRecetteDashboard = () => {
   const [recette, setRecette] = useState([]);
   const navigate = useNavigate();
 
@@ -15,9 +15,8 @@ const PageProduitDashboard = () => {
   }, []);
 
   const getAllRecettes = async () => {
-    const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
-    console.log(data);
     try {
+      const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
       if (status === 200) setRecette(data);
     } catch (error) {
       console.log(error.message);
@@ -25,154 +24,157 @@ const PageProduitDashboard = () => {
   };
 
   const deleteRecette = async (id) => {
-    if (!window.confirm("Êtes-vous sûr de vouloir supprimer ?")) return;
-
+    if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette recette ?")) return;
     try {
-      const { status } = await axiosinstance.delete(
-        URL.DELETE_RECETTE + "/" + id
-      );
+      const { status } = await axiosinstance.delete(URL.DELETE_RECETTE + "/" + id);
       if (status === 200) {
-        toast.success("Recette supprimé avec succès");
+        toast.success("Recette supprimée avec succès");
         getAllRecettes();
       }
     } catch (error) {
       console.log(error.message);
     }
   };
-  //  Toggle  avec PUT
+
   const toggleStatus = async (id, currentStatus) => {
     try {
       const { status } = await axiosinstance.put(
         `${URL.UPDATE_RECETTE}/${id}`,
-        { isActive: !currentStatus } // On inverse juste isActive
+        { isActive: !currentStatus }
       );
-
       if (status === 200) {
-        toast.success(currentStatus ? "Recette désactivé" : "Recette activé");
+        toast.success(currentStatus ? "Recette désactivée" : "Recette activée");
         getAllRecettes();
       }
     } catch (error) {
       console.error(error);
-      toast.error("Erreur");
+      toast.error("Erreur de mise à jour");
     }
   };
 
   return (
-    <>
-      <h1>Gestion des recettes</h1>
-      <div>CRUD recettes</div>
-      <div
-        style={{
-          justifySelf: "center",
-          alignSelf: "center",
-          margin: "2rem",
-          padding: "1rem",
-        }}
-      >
-        <table className="table wx-auto">
-          <thead className="thead">
-            <tr>
-              <th className="thTable">ID</th>
-              <th className="thTable">Titre</th>
-              <th className="thTable">Description</th>
-              <th className="thTable">image</th>
-              <th className="thTable">actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recette.map((item) => (
-              <tr key={item._id}>
-                <td className="tdTable">{item._id}</td>
-                <td className="tdTable">{item.titre}</td>
-                <td className="tdTable">{item.description}</td>
-                <td className="tdTable">
-                  <img className="img-fluid"
-                    src={item.image || "image"}
-                    width={200}
-                    height={200}
-                    alt="images des cookies"
-                  />
-                </td>
-                <td className="tdActions">
-                   <span
-                    style={{
-                      padding: "0.5rem 1rem",
-                      borderRadius: "20px",
-                      fontSize: "12px",
-                      fontWeight: "700",
-                      textTransform: "uppercase",
-                      backgroundColor: item.isActive ? "#28a745" : "#dc3545",
-                      color: "white",
-                    }}
-                  >
-                    {item.isActive ? "Actif" : "Désactivé"}
-                  </span>
-
-                  <button
-                    onClick={() => toggleStatus(item._id, item.isActive)}
-                    style={{
-                      color: "var(--marronRouge)",
-                      border: "2px solid var(--marronRouge)",
-                      marginTop: "0.5rem",
-                      padding: "0.3rem 0.8rem",
-                      fontSize: "12px",
-                    }}
-                    className="btn"
-                  >
-                    {item.isActive ? "Désactiver" : "Activer"}
-                  </button>
-                  <button
-                    onClick={() => navigate(`/admin/recettedetail/${item._id}`)}
-                    style={{
-                      color: "var(--marronRouge)",
-                      border: "2px solid var(--marronRouge)",
-                      width: "3rem",
-                      height: "3rem",
-                    }}
-                    className="btn  me-2"
-                  >
-                    <i className="bi bi-eye"></i>
-                  </button>
-                  <button
-                    onClick={() => navigate(`/admin/updaterecette/${item._id}`)}
-                    style={{
-                      color: "var(--marronRouge)",
-                      border: "2px solid var(--marronRouge)",
-                      width: "3rem",
-                      height: "3rem",
-                    }}
-                    className="btn me-2"
-                  >
-                    <i className="bi bi-pencil"></i>
-                  </button>
-                  <button
-                    onClick={() => deleteRecette(item._id)}
-                    style={{
-                      color: "var(--marronRouge)",
-                      border: "2px solid var(--marronRouge)",
-                      width: "3rem",
-                      height: "3rem",
-                    }}
-                    className="btn "
-                  >
-                    <i className="bi bi-trash"></i>
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div className="container-fluid px-2 px-md-5 py-4">
+      <div className="dashboardHeader text-center mb-5">
+        <h2 className="fw-bold">Gestion des Recettes</h2>
       </div>
 
-      <button
+      <div className="row justify-content-center">
+        <div className="col-12 col-xl-11">
+          
+          {/* --- 1. VERSION DESKTOP : TABLEAU --- */}
+          <div className="d-none d-md-block shadow-sm rounded bg-white overflow-hidden">
+            <table className="table align-middle mb-0">
+              <thead className="bg-light">
+                <tr>
+                  <th className="py-3 px-4 thTable">Recette</th>
+                  <th className="thTable">ID</th>
+                  <th className="thTable">Description</th>
+                  <th className="thTable">Statut</th>
+                  <th className="text-center thTable">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {recette.map((item) => (
+                  <tr key={item._id}>
+                    <td className="px-4 tdTable">
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={item.image }
+                          alt={item.titre}
+                          className="rounded me-3 shadow-sm"
+                          style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                        />
+                        <span className="fw-bold text-dark">{item.titre}</span>
+                      </div>
+                    </td>
+                    <td className="tdTable"><span className="badge bg-light text-dark border small">{item._id.substring(0, 8)}...</span></td>
+                    <td className="text-muted small tdTable" style={{ maxWidth: "250px" }}>
+                      <div className="text-truncate">{item.description}</div>
+                    </td>
+                    <td className="tdTable">
+                      <span 
+                        className={`badge rounded-pill ${item.isActive ? "bg-success" : "bg-danger"}`}
+                        style={{ fontSize: "10px", padding: "0.5em 1em" }}
+                      >
+                        {item.isActive ? "ACTIF" : "INACTIF"}
+                      </span>
+                    </td>
+                    <td>
+                      <div className="d-flex justify-content-center gap-2">
+                        <button onClick={() => toggleStatus(item._id, item.isActive)} className="btn btn-sm btn-outline-secondary" title="Changer statut">
+                          <i className={`bi ${item.isActive ? "bi-toggle-on text-success" : "bi-toggle-off"}`}></i>
+                        </button>
+                        <button onClick={() => navigate(`/admin/recettedetail/${item._id}`)} className="btn btn-sm btn-outline-secondary">
+                          <i className="bi bi-eye"></i>
+                        </button>
+                        <button onClick={() => navigate(`/admin/updaterecette/${item._id}`)} className="btn btn-sm btn-outline-secondary">
+                          <i className="bi bi-pencil"></i>
+                        </button>
+                        <button onClick={() => deleteRecette(item._id)} className="btn btn-sm btn-outline-danger">
+                          <i className="bi bi-trash"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
-        onClick={() => navigate("/admin/postrecette")}
-        className="btnCrud"
-      >
-        ajouter une nouvelle recette
-      </button>
-    </>
+          {/* --- 2. VERSION MOBILE : CARTES  --- */}
+          <div className="d-md-none">
+            {recette.map((item) => (
+              <div key={item._id} className="card mb-3 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div className="card-body p-3">
+                  <div className="d-flex align-items-center mb-3">
+                    <img
+                      src={item.image}
+                      alt={item.titre}
+                      className="rounded-3 shadow-sm me-3"
+                      style={{ width: "80px", height: "80px", objectFit: "cover" }}
+                    />
+                    <div>
+                      <h6 className="fw-bold mb-1">{item.titre}</h6>
+                      <p className="text-muted small mb-1">ID: {item._id.substring(0, 8)}...</p>
+                      <span className={`badge ${item.isActive ? "bg-success" : "bg-danger"}`} style={{fontSize: "9px"}}>
+                        {item.isActive ? "VISIBLE" : "MASQUÉ"}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="d-flex justify-content-between border-top pt-3 mt-2">
+                     <button onClick={() => toggleStatus(item._id, item.isActive)} className="btn btn-light btn-sm flex-grow-1 me-2 border">
+                      <i className="bi bi-power me-1"></i> Statut
+                    </button><button onClick={() => navigate(`/admin/recettedetail/${item._id}`)} className="btn btn-light btn-sm flex-grow-1 me-2 border">
+                      <i className="bi bi-eye me-1"></i> voir
+                    </button>
+                   
+                    <button onClick={() => navigate(`/admin/updaterecette/${item._id}`)} className="btn btn-light btn-sm flex-grow-1 me-2 border">
+                      <i className="bi bi-pencil me-1"></i> Modif.
+                    </button>
+                    <button onClick={() => deleteRecette(item._id)} className="btn btn-outline-danger btn-sm px-3">
+                      <i className="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </div>
+
+      <div className="text-center mt-5 mb-5">
+        <button
+          className="btn btn-lg px-5 rounded-pill  fw-bold"
+          style={{ backgroundColor: "var(--marronRouge)", color:"var(--creme)" }}
+          onClick={() => navigate("/admin/postrecette")}
+        >
+          <i className="bi bi-plus-circle me-2"></i> Ajouter une recette
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default PageProduitDashboard;
+export default PageRecetteDashboard;

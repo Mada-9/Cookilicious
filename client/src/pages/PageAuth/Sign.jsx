@@ -2,12 +2,12 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { AuthContext } from "../../utils/context/AuthContext";
-
 import { SIGN_FIELDS } from "../../utils/config/FormFields";
 
 const Sign = () => {
   const { login } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,10 +20,11 @@ const Sign = () => {
   };
 
   return (
-    <div className="container m-5">
-      <div className="row shadow rounded overflow-hidden">
-        <div className="col-md-6  p-5">
-          <h1 className="text-center mb-4">Sign</h1>
+    <div className="container my-5 mx-auto px-3 sign">
+      
+      <div className="row shadow rounded overflow-hidden g-0">
+        <div className="col-12 col-md-6 p-4 p-lg-5 ">
+          <h2 className="text-center mb-4">Connexion</h2>
           <form onSubmit={handleSubmit}>
             {SIGN_FIELDS.map((field, index) => (
               <div className="input-group flex-nowrap mb-3" key={index}>
@@ -31,26 +32,47 @@ const Sign = () => {
                   <i className={field.icon}></i>
                 </span>
                 <input
-                  type={field.type}
-                  
-                  className="form-control"
+                  type={field.type === "password" ? (showPassword ? "text" : "password") : field.type}
+                  className="form-control sign"
                   placeholder={field.placeholder}
                   aria-label={field.label}
                   name={field.name}
                   aria-describedby="addon-wrapping"
                   onChange={handleChange}
                 />
+                {field.type === "password" && (
+                  <button 
+                    className="btn btn-outline-secondary" 
+                    type="button" 
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"}></i>
+                  </button>
+                )}
               </div>
             ))}
-            <div className="d-grid">
-              <button className="btn btn-primary w-100">
-           Sign
+            <div className="d-grid mb-3">
+              <button className="btn  w-100"  style={{
+                  color: "var(--creme)",
+                  backgroundColor: "var(--marronRouge)",
+                }}>
+                Connexion
               </button>
             </div>
           </form>
-          <Link to="/register">Vous n'avez pas de compte ?</Link>
+          <div className="text-center">
+            <Link to="/register" className="text-decoration-none">
+              Vous n'avez pas de compte ?
+            </Link>
+          </div>
         </div>
-        <div className="col-md-6 p-0">image ?</div>
+
+        {/* d-none : caché sur mobile | d-md-block : affiché à partir de desktop */}
+        <div 
+          className="col-md-6 d-none d-md-block p-0" 
+          style={{backgroundColor:"var(--marronRouge)"}}
+        >
+        </div>
       </div>
     </div>
   );

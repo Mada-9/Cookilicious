@@ -25,14 +25,10 @@ const UpdateCookie = () => {
 
   const getCookie = async (id) => {
     try {
-      const { data, status } = await axiosinstance.get(
-        `${URL.GET_DETAIL_COOKIE}/${id}`
-      );
+      const { data, status } = await axiosinstance.get(`${URL.GET_DETAIL_COOKIE}/${id}`);
       console.log(id);
 
-      if (status === 200) {
-        setCookie(data);
-      }
+      if (status === 200) { setCookie(data); }
     } catch (error) {
       console.log(error.message);
     }
@@ -64,12 +60,12 @@ const UpdateCookie = () => {
 
   return (
     <>
-      <div>Update Cookie</div>
+      <h2 className="dashboardHeader">Update Cookie</h2>
 
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "2px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",
@@ -139,13 +135,31 @@ const UpdateCookie = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+         <button 
+             className="btn my-5 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Update
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/cookies"> Retour aux cookies</Link>
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/cookies">Retour aux cookies</Link>
         </button>
+      </div>
       </div>
     </>
   );

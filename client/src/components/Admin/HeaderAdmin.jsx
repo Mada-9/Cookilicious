@@ -36,11 +36,7 @@ const Header = () => {
             ></button>
           </div>
           <ul className="navbar-nav">
-            <li className="nav-item px-2">
-              <Link to="/admin/produit" className="nav-link">
-                Gestion des produits
-              </Link>
-            </li>
+           
             <li className="nav-item px-2">
               <Link to="/admin/cookies" className="nav-link">
                 Gestion des cookies
@@ -54,6 +50,12 @@ const Header = () => {
             <li className="nav-item px-2">
               <Link to="/admin/recette" className="nav-link">
                 Gestion des recettes
+              </Link>
+            </li>
+         
+            <li className="nav-item px-2">
+              <Link to=   "/admin/avis" className="nav-link">
+                Gestion des avis
               </Link>
             </li>
             <li className="nav-item px-2">

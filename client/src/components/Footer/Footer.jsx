@@ -1,105 +1,90 @@
 import { Link } from "react-router-dom";
 
-
 const Footer = () => {
- 
   return (
-    <div className="row" style={styles.footer}>
-      <div className="col-10 mx-xl-4 justify-content-center " style={styles.mentionsGenerales}>
-        <section className=" col-2 col-xs-4  col-md-4 col-lg-4 col-xl-4 col-xxl-2" style={styles.footerSection}>
-          <div className="row ">
-            <h3 style={styles.mentionsH3}>Politique</h3>
-            <Link to="/cgv" style={styles.footerLink}>
-              CGV
-            </Link>
-            <Link to="/mentionslegales" style={styles.footerLink}>
-              Mentions légales
-            </Link>
-            <Link to="/rgpd" style={styles.footerLink}>
-              {" "}
-              RGPD
-            </Link>
-          </div>
-        </section>
+    <footer className="container-fluid" style={styles.footer}>
+      
+      <div className="row justify-content-center text-center">
 
-        <section className="col-2 col-xs-4  col-md-4 col-lg-4 col-xl-4 col-xxl-2 " style={styles.footerSection}>
-          <h3 style={styles.mentionsH3}>Entreprise</h3>
-          <div className="row ">
-            <Link to="/apropos" style={styles.footerLink} >
-              {" "}
-              A propos
-            </Link>
-            <Link to="/" style={styles.footerLink}>
-              {" "}
-              home
-            </Link>
-            <Link to="/apropos" style={styles.footerLink}>
-              suivez nous{" "}
-            </Link>
-            <Link to="/connexion" style={styles.footerLink} >
-              compte{" "}
-            </Link>
+        {/* PRODUITS */}
+        <div className="col-12 col-md-6 col-lg-3 mb-4">
+          <div style={styles.section}>
+            <h3 style={styles.title}>Produits</h3>
+            <Link to="/cookies" style={styles.link}>Cookies</Link>
+            <Link to="/brookies" style={styles.link}>Brookies</Link>
+            <Link to="/recette" style={styles.link}>Recettes</Link>
           </div>
-        </section>
+        </div>
 
-        <section className="col-2 col-xs-4 col-md-4  col-lg-5 col-xl-3  col-xxl-2 " style={styles.footerSection}>
-          <h3 style={styles.mentionsH3}>aide</h3>
-          <div className="row ">
-            <Link to="/contact" style={styles.footerLink}>
-              Contact
-            </Link>
-            
+        {/* ENTREPRISE */}
+        <div className="col-12 col-md-6 col-lg-3 mb-4">
+          <div style={styles.section}>
+            <h3 style={styles.title}>Cookilicious</h3>
+            <Link to="/apropos" style={styles.link}>À propos</Link>
+            <Link to="/contact" style={styles.link}>Contact</Link>
+            <Link to="/faq" style={styles.link}>FAQ</Link>
           </div>
-        </section>
+        </div>
+
+        {/* LÉGAL */}
+        <div className="col-12 col-md-6 col-lg-3 mb-4">
+          <div style={styles.section}>
+            <h3 style={styles.title}>Légal</h3>
+            <Link to="/cgv" style={styles.link}>CGV</Link>
+            <Link to="/mentionslegales" style={styles.link}>Mentions légales</Link>
+            <Link to="/rgpd" style={styles.link}>RGPD</Link>
+          </div>
+        </div>
+
       </div>
-    </div>
-    
+
+      <hr style={styles.separator} />
+
+      <div className="row">
+        <div className="col text-center" style={styles.bottom}>
+          © {new Date().getFullYear()} COOKILICIOUS -
+        </div>
+      </div>
+
+    </footer>
   );
-  
 };
- const styles = {
-    footer: {
-      height:"20rem",
-      backgroundColor: "var(--marronRouge)",
-      color: "#fefaef ",
-      paddingTop: "2rem",
-      paddingLeft:"7rem",
-      fontSize:"1rem",
-      
-    },
 
-    mentionsGenerales: {
-      
-      display: "flex",
-      textAlign: "center",
-      color: "#fefaef " ,
-      // justifyContent:"center"
-      gap:"2rem"
-    },
+const styles = {
+  footer: {
+    backgroundColor: "var(--marronRouge)",
+    color: "#fefaef",
+    padding: "3rem 1.5rem 2rem",
+  },
 
-    footerLink: {
-      // padding: "0.1rem",
-      // margin: "0 ",
-      justifyContent: "center",
-      width: "25rem",
-      color: "#fefaef " ,
-    },
+  section: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",     // ⭐ centre chaque section
+    gap: "0.45rem",
+  },
 
-    // mentionsP: {
-    //   fontSize: "1rem",
-    // },
+  title: {
+    fontSize: "1rem",
+    textDecoration: "underline",
+    marginBottom: "0.6rem",
+  },
 
-    mentionsH3: {
-      fontSize: "1rem ",
-      textDecoration: "underline",
-      
-      // justifySelf: "center",
-    },
+  link: {
+    color: "#fefaef",
+    textDecoration: "none",
+    fontSize: "0.95rem",
+  },
 
-    footerSection: {
-      // justifySelf: "center",
-    },
-  };
+  separator: {
+    borderColor: "rgba(254,250,239,0.25)",
+    margin: "2rem 0 1rem",
+  },
 
+  bottom: {
+    fontSize: "0.8rem",
+    opacity: 0.7,
+  },
+};
 
 export default Footer;

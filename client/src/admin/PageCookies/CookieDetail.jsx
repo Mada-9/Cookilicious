@@ -29,7 +29,6 @@ const CookieDetail = () => {
     }
   };
 
-
   return (
     <>
       {!detailCookie ? (
@@ -37,7 +36,7 @@ const CookieDetail = () => {
       ) : (
         <div>
           <div key={detailCookie._id}>
-            <h1>{detailCookie.titre}</h1>
+            <h2 className="dashboardHeader">{detailCookie.titre}</h2>
             <div
               style={{
                 padding: "2rem",
@@ -46,24 +45,54 @@ const CookieDetail = () => {
             >
               <img
                 className="detailProduitImg"
-                style={{ border: "2px var(--marronRouge) solid " }}
+                style={{
+                  justifySelf: "center",
+                  margin: "0",
+                }}
                 src={detailCookie.photo}
                 alt={detailCookie.titre}
                 width={300}
                 height={300}
               />
-              <div style={{ padding: "2rem" }}>
-                <p>{detailCookie.description}</p>
-                <p>{detailCookie.ingredients}</p>
-                <p>{detailCookie.prix}€</p>
+              <div
+                style={{
+                  padding: "2rem",
+                  borderTop: "5px var(--marronRouge) solid ",
+                  margin: "5rem",
+                }}
+              >
+                <p>
+                  <span style={{ fontStyle: "italic", textDecoration:"underLine" }}>
+                    Description
+                  </span> : <br /> {detailCookie.description}
+                </p>
+                <p>
+                  <span style={{ fontStyle: "italic", textDecoration:"underLine" }}>Ingrédients</span> :
+                  <br /> {detailCookie.ingredients}
+                </p>
+                <p>
+                  <span style={{ fontStyle: "italic", textDecoration:"underLine" }}>Prix</span> :<br />{" "}
+                  {detailCookie.prix}€
+                </p>
               </div>
             </div>
           </div>
         </div>
       )}
-      <button style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/admin/cookies">Retour aux cookies</Link>{" "}
-      </button>
+
+      <div className="text-center mt-5 mb-5">
+        <button
+          className="btn btn-dark btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/cookies">Retour aux cookies</Link>
+        </button>
+      </div>
     </>
   );
 };

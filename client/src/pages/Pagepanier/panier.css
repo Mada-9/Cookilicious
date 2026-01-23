@@ -123,6 +123,11 @@
 }
 
 @media (max-width: 649px) {
+
+  .titrePanier{
+    margin-left:1rem
+  }
+  .panierTitle{justify-self: center;}
   .mapProduit {
     gap: 2rem;
   }
@@ -135,12 +140,18 @@
   .produitsPanier {
     width: auto;
   }
+
   .btnSupprimer {
     font-size: 1rem;
     width: 10rem;
   }
+  .totalPanier{
+    margin-left: 3.5rem;
+  }
   .btnPasserCommande {
     font-size: 1.2rem;
+    width: 15rem;
+    align-self: center;
   }
 }
 @media (max-width: 375px) {

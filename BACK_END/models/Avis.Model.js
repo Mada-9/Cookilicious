@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const Avis = mongoose.Schema(
   {
-    //qui publie l'avis
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
@@ -21,6 +20,7 @@ const Avis = mongoose.Schema(
       type: String,
       required: false,
     },
+  
     isActive: {
     type: Boolean,
     default: true

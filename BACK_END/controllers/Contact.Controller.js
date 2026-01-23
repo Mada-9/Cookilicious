@@ -7,7 +7,7 @@ const post = async (req, res, next) => {
     const contact = await ContactModel.create(req.body); //await
     res.status(201).json(contact); //reponse à la création de la requête, 201 code créa, en format json
   } catch (error) {
-    // cpaturer les erreurs
+    // capturer les erreurs
     next(createError(error.status || 500, error.message, error.details)); // erreur 500= erreur serveur, +message erreur et details
   }
 };
@@ -46,10 +46,8 @@ const deleteById = async (req, res, next) => {
   }
 };
 
-// PAS BESOIN DE UPDATE?
 
 module.exports = {
-  // pour exporter les méthodes et les utiliser dans les différents fichiers
   post,
   get,
   getById,

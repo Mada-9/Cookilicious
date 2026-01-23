@@ -1,9 +1,6 @@
 import { motion } from "framer-motion";
 
-
 // Animation transition de page
-
-
 
 const pageVariants = {
   initial: { opacity: 0, y: 20 },
@@ -14,7 +11,7 @@ const pageVariants = {
 const pageTransition = {
   type: "tween",
   ease: "easeInOut",
-  duration: 0.2, 
+  duration: 0.2,
 };
 
 export default function AnimatedPage({ children }) {
@@ -27,7 +24,6 @@ export default function AnimatedPage({ children }) {
       transition={pageTransition}
     >
       {children}
-      
     </motion.div>
   );
 }

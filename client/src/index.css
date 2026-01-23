@@ -1,15 +1,8 @@
-/* * {overflow: visible !important;} */
-
+/* --- POLICES --- */
 @font-face {
   font-family: "delight";
   src: url(../src/assets/fonts/Delight/OpenType-PS/Delight-Bold.otf);
 }
-
-/* 
- @font-face {
-  font-family: "test";
-  src: url(../src/assets/fonts/DominiqueRegularTrial/OpenType-PS/Dominique-Regular.otf);
-}  */
 
 @font-face {
   font-family: "varsity";
@@ -26,29 +19,9 @@
   src: url(../src/assets/fonts/Horizon_Regular.otf);
 }
 
-@media screen and (min-width: 1140px) {
-  :root {
-    --fluid-screen: calc(var(--fluid-max-width) * 1px);
-  }
-}
-
-html,
-body {
-  font-family: "delight" !important;
-  /* width: 100% !important; */
-  max-width: 100% !important;
-  font-size: 1rem;
-  word-spacing: 5px;
-  background-color: var(--creme) !important;
-  color: var(--marronRouge) !important;
-  padding: 0 !important;
-  overflow-x: hidden !important;
-  /* line-height: 200%; */
-}
-
-
+/* --- VARIABLES --- */
 :root {
-  --marronRouge: #73090b; /* #880a0cff; */
+  --marronRouge: #73090b; 
   --marronFroid: #833f3fff;
   --marronFonce: #5a1304ff;
   --marronClair: #6c3619;
@@ -59,26 +32,34 @@ body {
   --caramel: #bd5505ff;
 }
 
-/* body.brown {
-  background-color:var(--marronFonce) !important;
-  color: var(--creme) !important;
-}
-body.creme {
+/* --- BASE --- */
+html,
+body {
+  font-family: "delight" !important;
+  max-width: 100% !important;
+  font-size: 16px; /* Base pour les calculs rem */
+  word-spacing: 5px;
   background-color: var(--creme) !important;
   color: var(--marronRouge) !important;
-} */
+  padding: 0 !important;
+  overflow-x: hidden !important;
+}
 
-/* #root {
-
-} */
-
+/* --- LIENS & NAV --- */
 :root a {
   color: var(--marronRouge);
   text-decoration: none;
 }
+
 a:hover {
   color: var(--jaune) !important;
 }
+
+ .nav-link.show{
+  color: var(--jaune) !important;
+}
+
+
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show,
 .dropdown-item {
@@ -91,53 +72,35 @@ a:hover {
   background-color: var(--creme) !important;
 }
 
-p {
-  font-size: 1.5rem !important;
-  font-weight: 600 !important;
-}
+/* --- TYPOGRAPHIE RESPONSIVE (FLUIDE) --- */
 
+/* h1 : de 3rem sur mobile à 8rem sur desktop */
 h1 {
-  font-size: 8rem !important;
+  font-size: clamp(3rem, 12vw, 8rem) !important;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
 }
 
-/* On s'assure que le header ne bloque pas la vue */
+/* h2 : de 2.2rem sur mobile à 4rem sur desktop */
+h2 {
+  font-size: clamp(2.2rem, 8vw, 4rem) !important;
+  line-height: 1.2;
+}
+
+/* p : de 1.1rem sur mobile à 1.5rem sur desktop */
+p {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.5;
+}
+
+/* --- HEADER --- */
 header {
   background-color: transparent !important;
   position: relative; 
   z-index: 10;
 }
 
-h2 {
-    font-size: 4rem !important;
+.register, .sign{
+   color:var(--marronRouge) !important;
 }
-
-@media (max-width: 448px) {
-  body h1 {
-    font-size: 3.3rem !important;
-  }
-}
-
-@media (min-width: 448px) and (max-width: 825px) {
-  body h1 {
-    font-size: 6rem !important;
-  }
-}
-
-
-@media (max-width: 448px) {
-  body h2 {
-    font-size: 3rem !important;
-  }
-}
-
-@media (min-width: 448px) and (max-width: 825px) {
-  body h2 {
-    font-size: 4rem !important;
-  }
-}
-
-
-/* FORMAT DESKTOP */
-
-/* @media (min-width: 1024px)  */
-/* MON HEADER  ET TITRE*/

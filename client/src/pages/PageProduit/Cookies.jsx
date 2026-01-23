@@ -32,9 +32,7 @@ const Produit = () => {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+ 
   return (
     <div className="produit">
       <nav aria-label="breadcrumb" style={{ marginTop: "2rem" }}>
@@ -117,23 +115,7 @@ const Produit = () => {
       >
         Voir nos recettes
       </Link>
-      <button
-        style={{
-          display: "flex",
-          justifySelf: "end",
-          marginBottom: "10rem",
-          marginRight: "2rem",
-          backgroundColor: "#833f3fff",
-          color: " #fefaef",
-          border: "2px solid #833f3fff",
-          width: "5rem",
-          height: "4rem",
-          fontSize: "0.7rem",
-        }}
-        onClick={scrollToTop}
-      >
-        retour en haut
-      </button>
+     
     </div>
   );
 };

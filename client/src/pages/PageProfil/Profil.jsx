@@ -4,9 +4,8 @@ import { AuthContext } from "../../utils/context/AuthContext";
 
 const Profile = () => {
   const { user, logout, isLoading } = useContext(AuthContext);
-  const navigate = useNavigate();
 
-  // 1. Gestion du chargement (évite le crash au rafraîchissement)
+  // 1. Gestion du chargement 
   if (isLoading) {
     return (
       <div className="container py-5 text-center">
@@ -27,7 +26,7 @@ const Profile = () => {
     );
   }
 
-  // 3. Récupération des données (Gère le cas où l'API renvoie {user: {...}})
+  // 3. Récupération des données 
   const userData = user.user ? user.user : user;
 
   return (
@@ -94,7 +93,7 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Main Content Area */}
+        {/* Main Content  */}
         <div className="col-md-8" >
           <div className="card shadow-sm border-0 mb-4">
             <div className="card-header bg-white py-3">

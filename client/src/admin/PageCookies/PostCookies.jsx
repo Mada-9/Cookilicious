@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 
 import URL from "../../utils/constant/url";
 import { Link, useNavigate } from "react-router-dom";
+import { color } from "framer-motion";
 
 const PostCookie = () => {
   const [cookie, setCookie] = useState({
@@ -37,12 +38,12 @@ const PostCookie = () => {
   };
 
   return (
-    <div style={{}}>
-      <h1>Post Cookie</h1>
+    <div >
+      <h2 className="dashboardHeader">Post Cookie</h2>
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "2px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",
@@ -58,7 +59,7 @@ const PostCookie = () => {
           }}
         >
           <label htmlFor="titre" className="my-3">
-            Titre :{" "}
+            Titre :
           </label>
           <input
             id="titre"
@@ -68,7 +69,7 @@ const PostCookie = () => {
             onChange={handleChange}
           />
           <label htmlFor="prix" className="my-3">
-            Prix :{" "}
+            Prix :
           </label>
           <input
             id="prix"
@@ -107,13 +108,31 @@ const PostCookie = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+          <button 
+             className="btn my-4 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Créer
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          Retour aux cookies
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/cookies">Retour aux cookies</Link>
         </button>
+      </div>
       </div>
     </div>
   );

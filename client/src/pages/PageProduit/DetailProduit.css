@@ -1,66 +1,21 @@
-/* $speed: 0.5s;  */
+/* --- BOUTON FLIP (Garder inchangé) --- */
 
-.btnFlip {
-  opacity: 1;
-  outline: 0;
-  color: #fff;
-  line-height: 40px;
-  position: relative;
-  text-align: center;
-  letter-spacing: 1px;
-  display: inline-block;
-  text-decoration: none;
-  font-family: "Open Sans";
-  text-transform: uppercase;
+/* ... reste de ton bouton flip ... */
 
-  .btnFlip:hover {
-    .btnFlip:after {
-      opacity: 1;
-      transform: translateY(0) rotateX(0);
-    }
-
-    .btnFlip:before {
-      opacity: 0;
-      transform: translateY(50%) rotateX(90deg);
-    }
-  }
-
-  .btnFlipafter {
-    top: 0;
-    left: 0;
-    opacity: 0;
-    width: 100%;
-    color: #323237;
-    display: block;
-    transition: 0, 5;
-    position: absolute;
-    background: #adadaf;
-    content: attr(data-back);
-    transform: translateY(-50%) rotateX(90deg);
-  }
-
-  &:before {
-    top: 0;
-    left: 0;
-    opacity: 1;
-    color: #adadaf;
-    display: block;
-    padding: 0 30px;
-    line-height: 40px;
-    transition: 0, 5;
-    position: relative;
-    background: #323237;
-    content: attr(data-front);
-    transform: translateY(0) rotateX(0);
-  }
+/* --- BASE DESKTOP --- */
+.produitPrix{
+  margin-left: 3rem !important;
 }
 
 
-
 .detailProduitImg {
+    margin-top: 4rem;
+
   margin-left: 22rem;
   max-width: 460px;
-  max-height: 460px;
+  width: 100%; /* Important pour le responsive */
+  height: auto;
+  object-fit: cover;
 }
 
 .imgBtnAjout {
@@ -68,95 +23,126 @@
   gap: 16rem;
 }
 
+/* --- RESPONSIVE MOBILE (426px et moins) --- */
 @media (max-width: 426px) {
   .detailProduitContent {
     display: flex;
+    flex-direction: row; /* Garde titre et prix côte à côte */
+    justify-content: space-between;
+    width: 100%;
     gap: 1rem;
+    height: auto !important; /* Laisse le contenu respirer */
   }
 
   .detailProduitContent h2 {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important; /* Taille ajustée pour petit écran */
   }
 
   .produitPrix {
-    margin-right: 2rem !important;
+    margin-right: 0 !important;
+    white-space: nowrap;
   }
 
-  .btnAjout {
-    height: 5rem !important;
-    margin-top: 13rem !important;
+  .imgBtnAjout {
+    flex-direction: column; /* Image au dessus du bouton */
+    gap: 2rem !important;
+    align-items: center;
   }
 
   .detailProduitImg {
-    margin-left: 3rem !important;
-    height: 200px !important;
-    width: 200px !important;
+    margin-left: 0 !important; /* Reset de la marge desktop */
+    height: 250px !important;
+    width: 250px !important;
     border: 1px solid var(--jaune);
   }
 
-  .descBtn {
-    flex-direction: column;
-  }
-}
-
-@media (min-width: 426px) and (max-width: 768px) {
-  .detailProduitImg {
-    margin-top: 4rem !important;
-    height: 300px !important;
-    margin-left: 13rem !important;
-  }
-
   .btnAjout {
-    margin-top: 5rem !important;
-    height: 15rem !important;
+    margin-top: 1rem !important;
+    height: auto !important;
+    width: 100% !important;
+    padding: 1rem !important;
   }
-  .imgBtnAjout {
-    display: flex;
+
+  .descBtn {
+    flex-direction: column !important;
     gap: 2rem !important;
   }
 
-  .descBtn {
-    gap: "1rem";
+  .btnQuantite {
+    width: 100% !important;
+    justify-content: center;
   }
 }
 
-@media (min-width: 1020px) and (max-width: 1200px) {
-  .detailProduitImg {
-    margin-left: 18rem !important;
-    margin-top: 5rem;
-    max-width: 460px;
-    max-height: 460px;
+/* --- TABLETTE (427px à 768px) --- */
+@media (min-width: 427px) and (max-width: 768px) {
+  .detailProduitContent{
+    margin-bottom: 3rem;
+
   }
+  .detailProduitImg {    margin-left: 13rem !important;
+    margin-top: 2rem !important;
+    height: 300px !important;
+    width: 300px !important;
+    gap: 0 !important;
+  }
+
   .imgBtnAjout {
-    gap: 6rem !important;
-    padding-top: 5rem !important;
+    justify-content: center;
+    gap: 6rem;
   }
-}
 
-@media (min-width: 1200px) and (max-width: 1440px) {
-  .detailProduitImg {
-    padding-top: 1rem !important;
-    max-width: 460px;
-    max-height: 460px;
-  }
   .btnAjout {
-    height: 25rem;
-    margin-top: 2rem;
-  }
-  .detailProduitContent h2{
-    font-size: 2.5rem !important;
+    height: 15rem !important;
+    margin-top: 3rem;
   }
 }
 
-@media (min-width: 1440px) {
-  .detailProduitImg {
-    margin-left: 32rem;
-    margin-top: 2rem;
-    max-width: 460px;
-    max-height: 460px;
+/* --- PETIT DESKTOP (1020px - 1200px) --- */
+@media (min-width: 1020px) and (max-width: 1200px) {
+   .detailProduitContent{
+    margin-bottom: 3rem;
+
   }
+  .detailProduitImg {    margin-left: 13rem !important;
+    margin-top: 2rem !important;
+    height: 500px !important;
+    width: 500px !important;
+    gap: 0 !important;
+  }
+
   .imgBtnAjout {
-    padding-top: 5rem !important;
-    gap: 18rem;
+    justify-content: center;
+    gap: 6rem;
+  }
+
+  .btnAjout {
+    height: auto !important;
+    margin-top: 3rem;
+  }
+  
+}
+
+/* --- GRANDS ECRANS (1440px+) --- */
+@media (min-width: 1440px) {
+  .detailProduitContent{
+    margin-bottom: 3rem;
+
+  }
+  .detailProduitImg {    margin-left: 25rem !important;
+    margin-top: 2rem !important;
+    height: 300px !important;
+    width: 300px !important;
+    gap: 0 !important;
+  }
+
+  .imgBtnAjout {
+    justify-content: center;
+    gap: 17rem;
+  }
+
+  .btnAjout {
+    height: 15rem !important;
+    margin-top: 3rem;
   }
 }

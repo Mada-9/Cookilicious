@@ -1,5 +1,3 @@
-import React from "react";
-
 const URL = {
   POST_PRODUIT: "/api/produit/post",
   GET_ALL_PRODUITS: "/api/produit/get",
@@ -47,11 +45,11 @@ const URL = {
   GET_DETAIL_MEMBRE: "/api/membre/get",
   DELETE_MEMBRE: "/api/membre/delete",
   UPDATE_MEMBRE: "/api/membre/update",
-
+  UPDATE_PASSWORD: "/api/membre/updatepassword",
+  
   AUTH_REGISTER: "http://localhost:8000/api/auth/register",
   AUTH_SIGN: "http://localhost:8000/api/auth/login",
   AUTH_VERIFY_EMAIL: "http://localhost:8000/api/auth/verify",
 };
 
-// rajouter l'id ou pas?
 export default URL;

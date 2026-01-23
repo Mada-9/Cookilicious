@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import URL from "../../utils/constant/url";
 import { AuthContext } from "../../utils/context/AuthContext";
 import axiosInstance from "../../utils/axios/axiosinstance";
+import { Link } from "react-router-dom";
 
 const Commandes = () => {
   const { user, isLoading } = useContext(AuthContext);
@@ -17,6 +18,8 @@ const Commandes = () => {
       const { data } = await axiosInstance.get(
         URL.GET_USER_COMMANDES + user._id
       );
+      console.log(data);
+
       setCommandes(data);
     } catch (error) {
       console.log(error.message);
@@ -72,19 +75,18 @@ const Commandes = () => {
             className="card shadow-sm border-0 mb-4 overflow-hidden"
             style={{ borderRadius: "15px" }}
           >
-            {/* Header de la commande - Style MarronRouge comme le Profile */}
             <div
               className="
-    card-header 
-    border-0 
-    d-flex 
-    flex-column 
-    flex-md-row 
-    justify-content-between 
-    align-items-start 
-    align-items-md-center 
-    py-3
-  "
+                card-header 
+                border-0 
+                d-flex 
+                flex-column 
+                flex-md-row 
+                justify-content-between 
+                align-items-start 
+                align-items-md-center 
+                py-3
+              "
               style={{
                 backgroundColor: "var(--marronRouge)",
                 color: "var(--creme)",
@@ -122,7 +124,6 @@ const Commandes = () => {
                         style={{
                           color: "var(--marronRouge)",
                           marginRight: "1rem",
-                      
                         }}
                       >
                         Prénom:
@@ -217,22 +218,37 @@ const Commandes = () => {
                     Détails des articles
                   </h6>
                   <div className="mb-3">
-                    {item.items.map((produit, index) => (
+                    {item.items.map((article, index) => (
                       <div
                         key={index}
                         className="d-flex justify-content-between align-items-center mb-2"
                       >
-                        <span className="small text-muted">
-                          <span
-                            className="fw-bold"
-                            style={{ color: "var(--marronRouge)" }}
-                          >
-                            {produit.quantity}x
-                          </span>{" "}
-                          {produit.produit.titre || "Produit"}
-                        </span>
+                        <div className="d-flex align-items-center">
+                          {article.image && (
+                            <img
+                              src={article.image}
+                              alt={article.titre}
+                              style={{
+                                width: "40px",
+                                height: "40px",
+                                objectFit: "cover",
+                                borderRadius: "5px",
+                                marginRight: "10px",
+                              }}
+                            />
+                          )}
+                          <span className="small text-muted">
+                            <span
+                              className="fw-bold"
+                              style={{ color: "var(--marronRouge)" }}
+                            >
+                              {article.quantity}x
+                            </span>
+                            {article.titre}
+                          </span>
+                        </div>
                         <span className="small fw-bold">
-                          {produit.prixUnitaire}€
+                          {article.prixUnitaire}€
                         </span>
                       </div>
                     ))}
@@ -263,6 +279,19 @@ const Commandes = () => {
           </div>
         ))
       )}
+      <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+                 fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/profil">Retour aux commandes</Link>
+        </button>
+      </div>
     </div>
   );
 };

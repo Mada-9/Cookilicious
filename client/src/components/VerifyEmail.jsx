@@ -16,9 +16,10 @@ const VerifyEmail = () => {
 
   const verifyEmail = async () => {
     try {
-
       // Appelle ton backend pour vérifier le token
-      const { status } = await axiosinstance.get(`${URL.AUTH_VERIFY_EMAIL}/${token}`);
+      const { status } = await axiosinstance.get(
+        `${URL.AUTH_VERIFY_EMAIL}/${token}`
+      );
 
       if (status === 200) {
         localStorage.removeItem("auth"); // On vide l'ancien état non-vérifié
@@ -77,17 +78,20 @@ const VerifyEmail = () => {
 
         {isVerifying ? (
           <>
-            <div
-              style={{
-                width: "50px",
-                height: "50px",
-                border: "5px solid #f6d14b",
-                borderTop: "5px solid #63332a",
-                borderRadius: "50%",
-                margin: "30px auto",
-                animation: "spin 1s linear infinite",
-              }}
-            ></div>
+            <div style={{ margin: "30px auto" }}>
+              <span
+                style={{
+                  fontSize: "60px",
+                  animation: "spin 2s linear infinite",
+                  display: "inline-block",
+                  
+               
+                }}
+              >
+                🍪
+              </span>
+            </div>
+
             <p style={{ color: "#555", fontSize: "18px" }}>
               Vérification de votre email en cours...
             </p>

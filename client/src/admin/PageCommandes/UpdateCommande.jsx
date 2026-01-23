@@ -11,7 +11,7 @@ const UpdateProduit = () => {
 
   const params = useParams();
   const { id } = params;
-  const navigate = useNavigate;
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -60,7 +60,7 @@ const UpdateProduit = () => {
 
   return (
     <>
-      <div>Update Commande</div>
+      <h2 className="dashboardHeader">Update Commande</h2>
 
       <div
         className="col-8"
@@ -99,13 +99,31 @@ const UpdateProduit = () => {
             <option value="annulee">Annulee</option>
           </select>
 
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
-            <button> Update</button>
+         <button 
+             className="btn my-5 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+            Update
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/commandes">Retour aux commandes</Link>{" "}
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/commandes">Retour aux commandes</Link>
         </button>
+      </div>
       </div>
     </>
   );

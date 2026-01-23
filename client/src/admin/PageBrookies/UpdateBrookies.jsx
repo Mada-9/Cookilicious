@@ -64,12 +64,12 @@ const UpdateBrookie = () => {
 
   return (
     <>
-      <div>Update Brookie</div>
+      <h2  className="dashboardHeader">Update Brookie</h2>
 
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "2px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",
@@ -139,13 +139,31 @@ const UpdateBrookie = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+           <button 
+             className="btn my-5 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Update
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/brookies">Retour aux brookies</Link>{" "}
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/brookies">Retour aux brookies</Link>
         </button>
+      </div>
       </div>
     </>
   );

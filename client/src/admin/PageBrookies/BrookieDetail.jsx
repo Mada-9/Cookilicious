@@ -37,7 +37,7 @@ const BrookieDetail = () => {
       ) : (
         <div>
           <div key={detailBrookie._id}>
-            <h1>{detailBrookie.titre}</h1>
+            <h2 className="dashboardHeader">{detailBrookie.titre}</h2>
             <div
               style={{
                 padding: "2rem",
@@ -46,24 +46,34 @@ const BrookieDetail = () => {
             >
               <img
                 className="detailProduitImg"
-                style={{ border: "2px var(--marronRouge) solid " }}
+                style={{justifySelf:"center", margin:"0" }}
                 src={detailBrookie.photo}
                 alt={detailBrookie.titre}
                 width={300}
                 height={300}
               />
-              <div style={{ padding: "2rem" }}>
-                <p>{detailBrookie.description}</p>
-                <p>{detailBrookie.ingredients}</p>
-                <p>{detailBrookie.prix}€</p>
+              <div style={{ padding: "2rem", borderTop: "5px var(--marronRouge) solid ", margin:"5rem" }}>
+                <p> <span style={{fontStyle:"italic", textDecoration:"underLine"}}>Description</span> : <br />  {detailBrookie.description}</p>
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Ingrédients</span> : <br /> {detailBrookie.ingredients}</p>
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Prix</span> :<br /> {detailBrookie.prix}€</p>
               </div>
             </div>
           </div>
         </div>
       )}
-      <button style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/admin/brookies">Retour aux brookies</Link>{" "}
-      </button>
+      <div className="text-center mt-5 mb-5">
+        <button
+          className="btn btn-dark btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/brookies">Retour aux brookies</Link>
+        </button>
+      </div>
     </>
   );
 };

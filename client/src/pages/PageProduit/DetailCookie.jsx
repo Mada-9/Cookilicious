@@ -94,7 +94,7 @@ const DetailCookie = () => {
                 style={{ display: "flex", height: "3rem" }}
                 className="detailProduitContent"
               >
-                <h2 className="detailTitre col-10">{detailCookie.titre}</h2>
+                <h2 className="detailTitre col-9">{detailCookie.titre}</h2>
                 <h2
                   className="produitPrix col-1"
                   style={{ marginRight: "3rem" }}
@@ -107,7 +107,8 @@ const DetailCookie = () => {
                 <motion.section style={{ y: ySlow }}>
                   <img
                     className="detailProduitImg "
-                    style={{}}
+                    height={800}
+                    width={800}
                     src={detailCookie.photo}
                     alt={detailCookie.titre}
                   />
@@ -127,8 +128,6 @@ const DetailCookie = () => {
                   }}
                   onClick={() => addPanier({ ...detailCookie, quantite })}
                   className="btnAjout "
-                  // data-back="Back"
-                  // data-front="Front"
                 >
                   Ajouter <br />
                   au <br />
@@ -188,7 +187,7 @@ const DetailCookie = () => {
                   </button>
                   <p className="col-lg-5">
                     {" "}
-                    Total: {detailCookie.prix * quantite} €
+                    Total: {detailCookie.prix * quantite}€
                   </p>
                 </div>
               </div>
@@ -196,7 +195,7 @@ const DetailCookie = () => {
                 style={{
                   borderTop: "3px solid var(--marronRouge)",
                   paddingTop: "2rem",
-                  marginBottom: "20rem",
+                  marginBottom: "10rem",
                 }}
                 className="col-12"
               >
@@ -209,8 +208,10 @@ const DetailCookie = () => {
           </div>
         )}
 
-        {/* <div style={{ padding: "3rem", marginTop: "20rem" }}>
-          <h2
+        <div
+          style={{ padding: "3rem", marginTop: "5rem", marginBottom: "10rem" }}
+        >
+          <h3
             style={{
               textAlign: "left",
               borderBottom: "3px solid var(--marronRouge)",
@@ -218,50 +219,88 @@ const DetailCookie = () => {
             }}
           >
             Vous aimeriez aussi
-          </h2>
+          </h3>
           <div
             style={{
               justifySelf: "left",
               display: "flex",
-              gap: "3rem",
+              gap: "5rem",
               marginTop: "2rem",
             }}
           >
             <div
               style={{
-                border: "5px var(--marronRouge) solid ",
-                width: "13rem",
+                borderRight: "var(--jaune) 4px solid ",
+                paddingRight: "3rem",
+                textAlign: "center",
+                backgroundColor: "var(--creme)",
+                cursor: "pointer",
               }}
             >
               <img
-                src={produit[7]?.photo}
-                alt={produit.titre}
+                src={cookie[1]?.photo}
+                alt={cookie[1]?.titre}
                 width={160}
                 height={160}
+                style={{ marginTop: "3rem" }}
               />
-              <p>{produit[7]?.titre}</p>
-              <p>{produit[7]?.prix}</p>
-              <button onClick={() => navigate(`/#/${produit._id}`)}>
+              <p>{cookie[1]?.titre}</p>
+              <p>{cookie[1]?.prix}€</p>
+              <button
+                onClick={() => navigate(`/#/${cookie._id}`)}
+                style={{
+                  fontSize: "1rem",
+                  color: "var(--jaune)",
+                  border: "var(--marronRouge) 1px solid",
+                  width: "10rem",
+                  background: "transparent",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  justifySelf: "center",
+                }}
+              >
                 voir
               </button>
             </div>
             <div
               style={{
-                border: "5px var(--marronRouge) solid ",
-                width: "13rem",
+                borderRight: "var(--jaune) 4px solid ",
+                textAlign: "center",
+                paddingRight: "3rem",
+
+                backgroundColor: "var(--creme)",
+                cursor: "pointer",
               }}
             >
               <img
-                src={produit[6]?.photo}
-                alt={produit.titre}
+                src={cookie[2]?.photo}
+                alt={cookie[2]?.titre}
                 width={160}
                 height={160}
+                style={{ marginTop: "3rem" }}
               />
-              <p>{produit[6]?.titre}</p>
-              <p>{produit[6]?.prix}</p>
+              <p>{cookie[2]?.titre}</p>
+              <p>{cookie[2]?.prix}€</p>
+              <button
+                onClick={() => navigate(`/#/${cookie._id}`)}
+                style={{
+                  fontSize: "1rem",
+                  color: "var(--jaune)",
+                  border: "var(--marronRouge) 1px solid",
+                  width: "10rem",
+                  background: "transparent",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  justifySelf: "center",
+                }}
+              >
+                voir
+              </button>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

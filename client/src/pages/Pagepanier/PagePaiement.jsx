@@ -56,6 +56,8 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
 // *********************************************************************************************************************
 
 const PagePaiement = () => {
+    const [showPassword, setShowPassword] = useState(false);
+
   const navigate = useNavigate();
   const { user, login } = useContext(AuthContext);
   // const [panier, setPanier] = useState([]);
@@ -99,10 +101,11 @@ const PagePaiement = () => {
           codePostal: livraison.CodePostal,
         },
         items: panier.map((i) => ({
-          produit: i._id,
-          quantity: i.quantite,
+          produitId: i._id,
+          titre: i.titre, // On l'envoie pour qu'il soit sauvegardé dans la commande
+          image: i.photo, // On l'envoie aussi
           prixUnitaire: i.prix,
-          nom: i.nom,
+          quantite: i.quantite,
         })),
         prixTotal: prixTotalCommande,
         paiement: "carte",
@@ -215,6 +218,19 @@ const PagePaiement = () => {
                     required
                     style={{ color: "var(--marronRouge)" }}
                   />
+                  <label htmlFor="complementAdresse" className="form-label">
+                    Complement d'adresse
+                  </label>
+                  <input
+                    type="text"
+                    name="complementAdresse"
+                    id="complementAdresse"
+                    className="form-control mb-3"
+                    placeholder="Etage, bâtiment, résidence, maison,... "
+                    onChange={handleChangeForm}
+                    required
+                    style={{ color: "var(--marronRouge)" }}
+                  />
 
                   <div className="row">
                     <div className="col-md-6">
@@ -276,23 +292,32 @@ const PagePaiement = () => {
               </div>
             ) : (
               /* Ton bloc connexion reste ici */
-              <div className="col-md-5 mx-auto border p-4 rounded text-center">
+              <div className="col-md-9 mx-auto  p-5  text-center" style={{border:"1px solid var(--marronRouge)", borderRadius:"5%"}}>
                 <h4>Veuillez vous connecter</h4>
                 <form onSubmit={handleSubmitUser}>
                   {SIGN_FIELDS.map((field, index) => (
-                    <div className="input-group flex-nowrap mb-3" key={index}>
-                      <span className="input-group-text" id="addon-wrapping">
-                        <i className={field.icon}></i>
+                   <div className="input-group flex-nowrap mb-3 " key={index} style={{marginRight:"5rem"}}>
+                      <span className="input-group-text" id="addon-wrapping" style={{ border: "var(--marronRouge) 2px solid" }}>
+                        <i className={field.icon} style={{ color: "var(--marronRouge)" }} ></i>
                       </span>
                       <input
-                        type={field.type}
+                        type={field.type === "password" ? (showPassword ? "text" : "password") : field.type}
                         className="form-control"
                         placeholder={field.placeholder}
-                        aria-label={field.label}
                         name={field.name}
-                        aria-describedby="addon-wrapping"
                         onChange={handleChangeUser}
+                        style={{ border: "var(--marronRouge) 2px solid", borderRight: "none" }}
                       />
+                      {field.type === "password" && (
+                        <button 
+                          className="btn btn-outline-secondary" 
+                          type="button" 
+                          onClick={() => setShowPassword(!showPassword)}
+                          style={{ border: "var(--marronRouge) 2px solid", borderLeft: "none" }}
+                        >
+                          <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"} style={{ color: "var(--marronRouge)" }}></i>
+                        </button>
+                      )}
                     </div>
                   ))}
                   <div className="d-grid">
@@ -309,8 +334,8 @@ const PagePaiement = () => {
             style={{
               border: "3px solid var(--marronRouge)",
               padding: "2rem",
-              height: "fit-content", 
-              position: "sticky", 
+              height: "fit-content",
+              position: "sticky",
               top: "20px",
             }}
           >
@@ -318,7 +343,7 @@ const PagePaiement = () => {
               Détail panier
             </h3>
 
-            {/* BARRE DE SCROLL : On limite la hauteur ici */}
+            {/* BARRE DE SCROLL  */}
             <div
               style={{
                 maxHeight: "400px",
@@ -369,7 +394,9 @@ const PagePaiement = () => {
             </div>
 
             <div className="pt-3 border-top text-center">
-              <p>Total : {totalPrice} € ({totalProduit()} produits)</p>
+              <p>
+                Total : {totalPrice} € ({totalProduit()} produits)
+              </p>
             </div>
           </div>
         </div>

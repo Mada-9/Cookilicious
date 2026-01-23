@@ -3,7 +3,7 @@ const AvisModel = require("../models/Avis.Model.js");
 
 const post = async (req, res, next) => {
   try {
-    const avis = await AvisModel.create(req.body);
+    const avis = await AvisModel.create(req.body).populate("user", "username pseudo");
     res.status(201).json(avis);
   } catch (error) {
     next(createError(error.status || 500, error.message, error.details));
@@ -12,7 +12,7 @@ const post = async (req, res, next) => {
 
 const get = async (req, res, next) => {
   try {
-    const avis = await AvisModel.find(req.params).populate("user");
+    const avis = await AvisModel.find(req.params).populate("user", "username _id");
     res.status(200).json(avis);
   } catch (error) {
     next(createError(error.status || 500, error.message, error.details));

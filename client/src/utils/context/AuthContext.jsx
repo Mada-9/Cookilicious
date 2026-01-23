@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import URL from "../constant/url";
 import axiosinstance from "../axios/axiosinstance";
 
-// créeez un context d'authentifiaction
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -27,7 +26,6 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
 
-      // requete axios
       const { data, status } = await axiosinstance.post(
         URL.AUTH_SIGN,
         dataForm
@@ -36,7 +34,6 @@ export const AuthProvider = ({ children }) => {
       if (status === 200) {
         // Sauvegarde les données de l'utilisateur dans le localStorage pour les conserver
         localStorage.setItem("auth", JSON.stringify(data));
-
         // Met à jour le state avec les données de l'utilisateur connecté
         setUser(data);
         // Redirige l'utilisateur vers la page d'accueil
@@ -52,28 +49,38 @@ export const AuthProvider = ({ children }) => {
   };
 
   // Fonction pour gérer l'inscription
-  const register = async (dataForm) => {
-    try {
-      const { status } = await axiosinstance.post(URL.AUTH_REGISTER, dataForm);
-      if (status === 201)
-        toast.success(
-          "Vérifiez vos emails pour valider votre compte."
-        );
-      toast.success("Vérifiez vos emails pour valider votre compte.");
+ const register = async (dataForm) => {
+  // 1. Définition de la Regex de sécurité
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-      console.log("success register");
-      navigate(`/`);
-    } catch (error) {
-      console.log(error.message);
+  // 2. Vérification locale AVANT l'appel API (évite des requêtes inutiles)
+  if (!passwordRegex.test(dataForm.password)) {
+    return toast.error("Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un symbole.");
+  }
+
+  try {
+    // 3. Appel au backend
+    const { status } = await axiosinstance.post(URL.AUTH_REGISTER, dataForm);
+
+    if (status === 201) {
+      toast.success("Succès ! Vérifiez vos emails pour valider votre compte.");
+      console.log("Inscription réussie");
+      navigate(`/`); // Redirection vers l'accueil ou login
     }
-  };
+  } catch (error) {
+    // 4. Gestion des erreurs serveur (ex: email déjà pris ou erreur 400)
+    const errorMsg = error.response?.data?.message || "Une erreur est survenue lors de l'inscription.";
+    toast.error(errorMsg);
+    console.error("Erreur register:", error.message);
+  }
+};
 
   const isLoggedIn = async () => {
     setIsLoading(true);
     try {
       // Récupére les données de l'utilisateur depuis le stockage local.
       const userData = await localStorage.getItem("auth");
-
+      
       // Met à jour l'état de l'utilisateur avec les données récupérées.
       setUser(userData ? JSON.parse(userData) : null);
     } catch (error) {

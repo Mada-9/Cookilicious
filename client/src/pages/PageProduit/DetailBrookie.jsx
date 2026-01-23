@@ -68,8 +68,6 @@ const DetailBrookie = () => {
 
   return (
     <>
-     
-
       <div style={{}}>
         {!detailBrookie ? (
           <p>Chargement...</p>
@@ -80,34 +78,32 @@ const DetailBrookie = () => {
               style={{ padding: "3rem" }}
               className="row"
             >
-               <nav aria-label="breadcrumb">
-        <ol className="breadcrumb my-3">
-          
-          <li className="breadcrumb-item">
-            
-            <Link to="/brookies" style={{ width: "6rem" }}>
-              Brookies
-            </Link>
-          </li>
-          <li className="breadcrumb-item">
-            <Link to="">{detailBrookie.titre}</Link>
-          </li>
-        </ol>
-      </nav>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb my-3">
+                  <li className="breadcrumb-item">
+                    <Link to="/brookies" style={{ width: "6rem" }}>
+                      Brookies
+                    </Link>
+                  </li>
+                  <li className="breadcrumb-item">
+                    <Link to="">{detailBrookie.titre}</Link>
+                  </li>
+                </ol>
+              </nav>
               <div
                 style={{ display: "flex", height: "3rem" }}
                 className="detailProduitContent"
               >
-                <h2 className="detailTitre col-10">{detailBrookie.titre}</h2>
+                <h2 className="detailTitre col-9">{detailBrookie.titre}</h2>
                 <h2
-                  className="produitPrix col-1"
-                  style={{ marginRight: "3rem" }}
+                  className="produitPrix col-2"
+                  style={{ marginRight: "7rem" }}
                 >
                   {detailBrookie.prix}€
                 </h2>
               </div>
 
-              <div className="imgBtnAjout"  >
+              <div className="imgBtnAjout">
                 <motion.section style={{ y: ySlow }}>
                   <img
                     className="detailProduitImg "
@@ -135,12 +131,13 @@ const DetailBrookie = () => {
                   // data-front="Front"
                 >
                   Ajouter <br />
-                  au <br />panier
+                  au <br />
+                  panier
                 </Link>
               </div>
 
               <div
-              className="descBtn"
+                className="descBtn"
                 style={{
                   paddingBottom: "3rem",
                   display: "flex",
@@ -148,7 +145,9 @@ const DetailBrookie = () => {
                   marginTop: "3rem",
                 }}
               >
-                <p className="descProduit  col-sm-12 col-md-6 col-lg-8">{detailBrookie.description}</p>
+                <p className="descProduit  col-sm-12 col-md-6 col-lg-8">
+                  {detailBrookie.description}
+                </p>
                 <div
                   className="btnQuantite col-5 col-lg-5"
                   style={{ display: "flex", gap: "1rem" }}
@@ -187,7 +186,10 @@ const DetailBrookie = () => {
                   >
                     +
                   </button>
-                  <p className="col-lg-5"> Total: {detailBrookie.prix * quantite} €</p>
+                  <p className="col-lg-5">
+                    {" "}
+                    Total: {detailBrookie.prix * quantite} €
+                  </p>
                 </div>
               </div>
               <p
@@ -207,59 +209,101 @@ const DetailBrookie = () => {
           </div>
         )}
 
-        {/* <div style={{ padding: "3rem", marginTop: "20rem" }}>
-          <h2
+        
+        <div style={{ padding: "3rem", marginTop: "5rem", marginBottom:"10rem" }}>
+          <h3
             style={{
               textAlign: "left",
               borderBottom: "3px solid var(--marronRouge)",
               width: "50rem",
+
             }}
           >
             Vous aimeriez aussi
-          </h2>
+          </h3>
           <div
             style={{
               justifySelf: "left",
               display: "flex",
-              gap: "3rem",
+              gap: "5rem",
               marginTop: "2rem",
+              
             }}
           >
             <div
               style={{
-                border: "5px var(--marronRouge) solid ",
-                width: "13rem",
+                borderRight: "var(--jaune) 4px solid ",
+              paddingRight:"3rem",
+                textAlign: "center",
+                backgroundColor: "var(--creme)",
+                cursor: "pointer",
               }}
             >
               <img
-                src={produit[7]?.photo}
-                alt={produit.titre}
+                src={brookie[1]?.photo}
+                alt={brookie[1]?.titre}
                 width={160}
                 height={160}
+                style={{marginTop:"3rem"}}
               />
-              <p>{produit[7]?.titre}</p>
-              <p>{produit[7]?.prix}</p>
-              <button onClick={() => navigate(`/#/${produit._id}`)}>
+              <p>{brookie[1]?.titre}</p>
+              <p>{brookie[1]?.prix}€</p>
+              <button
+                onClick={() => navigate(`/#/${brookie._id}`)}
+                style={{
+                  fontSize: "1rem",
+                  color: "var(--jaune)",
+                  border: "var(--marronRouge) 1px solid",
+                  width: "10rem",
+                  background: "transparent",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  justifySelf: "center",
+                }}
+              >
                 voir
               </button>
             </div>
-            <div
+<div
               style={{
-                border: "5px var(--marronRouge) solid ",
-                width: "13rem",
+                borderRight: "var(--jaune) 4px solid ",
+                textAlign: "center",
+                              paddingRight:"3rem",
+
+                backgroundColor: "var(--creme)",
+                cursor: "pointer",
               }}
             >
               <img
-                src={produit[6]?.photo}
-                alt={produit.titre}
+                src={brookie[2]?.photo}
+                alt={brookie[2]?.titre}
                 width={160}
                 height={160}
+                style={{marginTop:"3rem"}}
               />
-              <p>{produit[6]?.titre}</p>
-              <p>{produit[6]?.prix}</p>
+              <p>{brookie[2]?.titre}</p>
+              <p>{brookie[2]?.prix}€</p>
+              <button
+                onClick={() => navigate(`/#/${brookie._id}`)}
+                style={{
+                  fontSize: "1rem",
+                  color: "var(--jaune)",
+                  border: "var(--marronRouge) 1px solid",
+                  width: "10rem",
+                  background: "transparent",
+                  borderRadius: "10px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  justifySelf: "center",
+                }}
+              >
+                voir
+              </button>
             </div>
+          
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

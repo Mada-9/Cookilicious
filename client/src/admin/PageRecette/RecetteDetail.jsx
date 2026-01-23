@@ -29,7 +29,6 @@ const RecetteDetail = () => {
     }
   };
 
-  //ajout au panier
 
   return (
     <>
@@ -38,7 +37,7 @@ const RecetteDetail = () => {
       ) : (
         <div>
           <div key={detailRecette._id}>
-            <h1>{detailRecette.titre}</h1>
+            <h2  className="dashboardHeader" style={{margin:"2rem"}}>{detailRecette.titre}</h2>
             <div
               style={{
                 padding: "2rem",
@@ -47,31 +46,38 @@ const RecetteDetail = () => {
             >
               <img
                 className="detailProduitImg"
-                style={{ border: "2px var(--marronRouge) solid " }}
+                style={{justifySelf:"center", margin:"0" }}
                 src={detailRecette.image}
                 alt={detailRecette.titre}
                 width={300}
                 height={300}
               />
-              <div style={{ padding: "2rem" }}>
-                <p>{detailRecette.description}</p>
-                <br />
-                <p>{detailRecette.nbPersonne}</p>
-                <br />
-                <p>{detailRecette.ingredients}</p>
-                <br />
+               <div style={{ padding: "2rem", borderTop: "5px var(--marronRouge) solid ", margin:"5rem" }}>
+                <p> <span style={{fontStyle:"italic", textDecoration:"underLine"}}>Description</span> : <br />   {detailRecette.description}</p>
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Nombre de personnes</span> : <br /> {detailRecette.nbPersonne}</p>
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Ingrédients</span> :<br /> {detailRecette.ingredients}</p>
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Preparation</span> :<br />{detailRecette.preparation}</p>              
+                <p><span style={{fontStyle:"italic", textDecoration:"underLine"}}>Astuce</span> : <br /> {detailRecette.astuce}</p>
 
-                <p>{detailRecette.preparation}</p>
-                <br />
-                <p>{detailRecette.astuce}</p>
+
               </div>
             </div>
           </div>
         </div>
       )}
-      <button style={{ display: "flex", justifyContent: "center" }}>
-        <Link to="/admin/recette">Retour aux recettes</Link>{" "}
-      </button>
+              <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/recette">Retour aux recettes</Link>
+        </button>
+      </div>
     </>
   );
 };

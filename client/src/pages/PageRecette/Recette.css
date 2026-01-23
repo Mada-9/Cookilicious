@@ -1,21 +1,25 @@
 /* 1. On prépare la page */
 .pageRecette {
   margin-top: 0 !important;
+  padding-bottom: 10rem;
 }
 
 /* 2. Le bandeau avec l'image */
 .header-recette-background {
   /* Ton image de texture vanille */
-  background-image: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), 
-                    url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0.2)
+    ),
+    url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
   background-size: cover;
   background-position: center;
-  
+
   /* C'est ici qu'on fait remonter le fond sous le header parent */
   margin-top: -100px; /* Doit correspondre à la hauteur de ton header */
   padding-top: 100px; /* On pousse le contenu vers le bas pour ne pas qu'il soit SOUS le texte du header */
-  
-  border-bottom: 2px solid var(--marronRouge); /* Optionnel : une petite ligne de séparation */
+
+  border-bottom: 30px solid var(--marronFroid); /* Optionnel : une petite ligne de séparation */
 }
 
 /* 3. On rend le header du template transparent uniquement quand on est sur cette page */
@@ -30,28 +34,122 @@
 
 
 .titrePageRecette {
-  font-size: 10rem !important;
+  font-size: 10rem;
   text-align: left;
-  padding-left: 1rem;  
-
+  padding-left: 1rem;
 }
-.titrePageRecetteh2{
-  margin-bottom: 6rem ;
+.titrePageRecetteh2 {
+  margin-bottom: 6rem;
 }
 .phraseIntro {
   text-align: justify;
   color: var(--creme);
   background-color: var(--marronRouge);
   padding-bottom: 14px;
-  height: 25rem;
+  height: auto;
 }
 
-/* 
-@media (max-width: 992px) {
-  .titrePageRecette {
-    font-size: 5rem;
+.intro {
+  text-align: center;
+}
+
+.horizontalTitle h2 {
+  text-align: center;
+  justify-self: center;
+  font-size: 5rem !important;
+  margin-top: 9rem;
+}
+
+/* Conteneur principal */
+.recipesContainerHorizontal {
+  padding: 4rem 2rem;
+  background-color: var(--creme); /* ou la couleur de ton choix */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Le wrapper qui permet le scroll */
+.horizontalScrollWrapper {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  padding: 1rem 0.5rem 2rem 0.5rem;
+  scroll-behavior: smooth;
+  /* Masquer la scrollbar sur IE/Edge */
+  -ms-overflow-style: none;
+  /* Masquer la scrollbar sur Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--jaune) transparent;
+}
+
+/* Style des cartes */
+.recetteCard {
+  width: 50rem !important;
+  height: auto;
+  border-radius: 20px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 20px rgba(161, 107, 14, 0.503);
+  border: 1px solid #eee;
+  transition: transform 0.3s ease;
+}
+
+.recetteCard:hover {
+  transform: translateY(-10px);
+  border-color: var(--jaune);
+}
+
+.recetteCardBadge {
+  background: var(--jaune);
+  color: var(--marronRouge);
+  width: fit-content;
+  padding: 2px 12px;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.titreRecetteCard {
+  color: var(--marronRouge);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.descRecetteCard {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.btnVoirRecetteCard {
+  background: transparent;
+  border: 2px solid var(--marronRouge);
+  color: var(--marronRouge);
+  padding: 10px;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.btnVoirRecetteCard:hover {
+  background: var(--marronRouge);
+  color: white;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+  .recetteCard {
+    min-width: 260px;
   }
-} */
+  .horizontalTitle h2 {
+    font-size: 1.8rem;
+  }
+}
 
 @media (max-width: 576px) {
   .introRecette {
@@ -222,12 +320,19 @@
   text-align: left;
   gap: 1rem;
 }
-
+.ligne{
+  border:3px solid var(--marronRouge);
+  width: 70%;
+  justify-self: center;
+}
 .avisSection {
   justify-items: center;
   font-size: 1rem;
-  border-top: 3px var(--marronRouge) solid;
+  /* border-top: 3px var(--marronRouge) solid; */
   align-items: center;
+  padding-top: 5rem;
+
+
 }
 
 .btnPublier {
@@ -243,10 +348,18 @@
 
 /* responsive animation */
 @media (max-width: 768px) {
+  .phraseIntro {
+    height: 32rem;
+  }
+
+  .phraseIntro p {
+    margin-top: 0 !important;
+  }
+
   .homeRecipesWrapper {
-    height: auto; /* 🔑 */
-    overflow: visible; /* 🔑 */
-    position: static; /* 🔑 */
+    height: auto;
+    overflow: visible;
+    position: static;
     justify-self: center;
     margin-bottom: 0rem;
   }

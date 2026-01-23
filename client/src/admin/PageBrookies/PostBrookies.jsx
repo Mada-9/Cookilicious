@@ -36,8 +36,8 @@ const PostBrookie = () => {
   };
 
   return (
-    <div style={{}}>
-      <h1>Post Brookie</h1>
+    <div >
+      <h2 className="dashboardHeader">Post Brookie</h2>
       <div
         className="col-8"
         style={{
@@ -106,13 +106,31 @@ const PostBrookie = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+       <button 
+             className="btn my-4 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Créer
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          Retour aux bookies
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/brookies">Retour aux brookies</Link>
         </button>
+      </div>
       </div>
     </div>
   );

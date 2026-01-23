@@ -28,7 +28,6 @@ const get = async (req, res, next) => {
 const getById = async (req, res, next) => {
   try {
     const commande = await CommandeModel.findById(req.params.id)
-      .populate("items.produit")
       .populate("user");
 
     // .populate("user")
@@ -47,7 +46,6 @@ const getByUser = async (req, res, next) => {
 
     // Trouve toutes les commandes de cet utilisateur
     const commandes = await CommandeModel.find({ user: userId })
-      .populate("items.produit")
       .sort({ createdAt: -1 }); // Du plus récent au plus ancien
 
     res.status(200).json(commandes);

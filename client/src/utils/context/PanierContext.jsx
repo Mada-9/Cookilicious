@@ -17,17 +17,13 @@ export const PanierProvider = ({ children }) => {
   useEffect(() => {
     const loadPanier = async () => {
       // fonction chargée de récupérer le panier depuis le localStorage
-
       try {
         const panierJSON = await localStorage.getItem("panier");
         // récupère la valeur associée à la clé "panier" dans le localStorage (au format JSON)
-
         if (panierJSON !== null) {
           // si un panier existe dans le localStorage
-
           const panierStorage = JSON.parse(panierJSON);
           // convertit la chaîne JSON en tableau JavaScript
-
           setPanier(panierStorage);
           // met à jour l'état du panier
         }
@@ -120,9 +116,11 @@ export const PanierProvider = ({ children }) => {
         } else {
           // sinon on ajoute l article dans le panier
           nouveauPanier.push({ ...product });
+          toast.success("Votre produit a été ajouté au panier!");
+
         }
       } else {
-        // sinon on ajoutremoveArticlee l article dans le panier
+        // sinon on ajout removeArticlee l article dans le panier
         nouveauPanier.push({ ...product });
       }
       // Enregistre le nouveau panier dans le storage grace a setItem

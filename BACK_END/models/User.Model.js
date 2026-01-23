@@ -29,7 +29,6 @@ const User = mongoose.Schema(
       enum: ["femme", "homme", "x"],
       required: true,
     },
-    // rajouter date de naissance et adresse, cp, ville????
     role: {
       type: String,
       enum: ["admin", "user"], // permet de mettre une contrainte pour specifier ce que l'on veut, choisir une option parmis celles-ci

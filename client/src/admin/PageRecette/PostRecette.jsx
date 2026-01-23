@@ -38,7 +38,7 @@ const PostRecette = () => {
 
   return (
     <div style={{}}>
-      <h1>Post Recette</h1>
+      <h2 className="dashboardHeader">Post Recette</h2>
       <div
         className="col-8"
         style={{
@@ -127,13 +127,31 @@ const PostRecette = () => {
             style={{ color: "var(--marronRouge)" }}
             onChange={handleChange}
           />
-          <button className="my-4" style={{ color: "var(--marronRouge)" }}>
+           <button 
+             className="btn my-4 btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            color: "var(--creme)",
+            backgroundColor: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
             Créer
           </button>
         </form>
-        <button style={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/admin/recette">Retour aux recettes</Link>{" "}
+        <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
+           fw-bold"
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/admin/recette">Retour aux recettes</Link>
         </button>
+      </div>
       </div>
     </div>
   );

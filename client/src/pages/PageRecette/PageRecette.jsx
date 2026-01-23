@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import URL from "../../utils/constant/url";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useScroll, useTransform } from "framer-motion";
-
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { AuthContext } from "../../utils/context/AuthContext";
 import HEADER_LINKS from "../../utils/config/LinkHeader";
@@ -18,26 +17,27 @@ gsap.registerPlugin(ScrollTrigger);
 import "./Recette.css";
 
 //images
-import cookiegemini from "../../assets/images/Gemini_Generated_Image_jnk9izjnk9izjnk9-Photoroom.png";
-import cookiechoco from "../../assets/images/Cookiechoco.png";
+import cookie from "../../assets/images/cookiebananepecan.webp";
 import cookiebananepecan from "../../assets/images/cookiebananepecan.webp";
 import cookiedough from "../../assets/images/cookiedough.webp";
 
 const PageRecette = () => {
+  const navigate = useNavigate();
   const [recette, setRecette] = useState([]);
+  const [avis, setAvis] = useState([]);
+  const { scrollY } = useScroll();
+  const [showPassword, setShowPassword] = useState(false);
   const [selectedRecette, setSelectedRecette] = useState(null);
 
+  // connexion
+  const { user } = useContext(AuthContext);
   const [formData, setFormData] = useState({
-    pseudo: "",
+    user: user?._id || "", // On stocke l'ID de l'user connecté
     recetteTest: "",
     commentaire: "",
     image: "",
   });
-  const [avis, setAvis] = useState([]);
-  const { scrollY } = useScroll();
 
-  // connexion
-  const { user } = useContext(AuthContext);
   const isAuthenticated = user;
   const role = user?.role;
   const { login } = useContext(AuthContext);
@@ -66,6 +66,12 @@ const PageRecette = () => {
 
   // FORMULAIRE AVIS
 
+  useEffect(() => {
+    if (user?._id) {
+      setFormData((prev) => ({ ...prev, user: user._id }));
+    }
+  }, [user]);
+
   const handleChange = (e) => {
     // const { name, value } = e.target;
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -73,7 +79,7 @@ const PageRecette = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("FormData envoyé :", formData); // <- Vérifie ici
+    console.log("FormData envoyé :", formData);
 
     try {
       const { status, data } = await axiosinstance.post(
@@ -123,91 +129,20 @@ const PageRecette = () => {
   // plus on scroll, plus ça monte lentement (parallax)
   const ySlow = useTransform(scrollY, [0, 600], [0, -120]);
 
-  // REFS pour l'animation scroll vertical
-  const wrapperRef = useRef(null);
-  const contentRef = useRef(null);
-  const titleRef = useRef(null);
+  // 1. Déclare la ref en haut de ton composant
+  const scrollRef = useRef(null);
 
-  useEffect(() => {
-    if (!wrapperRef.current || !contentRef.current || !titleRef.current) return;
-
-    ScrollTrigger.matchMedia({
-      // DESKTOP : animation active
-      "(min-width: 769px)": () => {
-        const wrapper = wrapperRef.current;
-        const content = contentRef.current;
-        const title = titleRef.current;
-
-        const getScrollAmount = () => {
-          const contentHeight = content.scrollHeight;
-          const viewportHeight = window.innerHeight;
-          const extraSpace = viewportHeight * 0.5;
-          return -(contentHeight + extraSpace);
-        };
-
-        const verticalScroll = gsap.to(content, {
-          y: getScrollAmount,
-          ease: "none",
-          scrollTrigger: {
-            trigger: wrapper,
-            start: "top top",
-            end: () => `+=${content.scrollHeight + window.innerHeight}`,
-            pin: true,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            anticipatePin: 1,
-          },
-        });
-
-        const recipeCards = content.querySelectorAll(".recetteContent");
-        recipeCards.forEach((card) => {
-          gsap.fromTo(
-            card,
-            { scale: 0.85 },
-            {
-              scale: 1,
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: verticalScroll,
-                start: "top bottom",
-                end: "center center",
-                scrub: 1,
-              },
-            }
-          );
-        });
-
-        gsap.fromTo(
-          title,
-          { opacity: 0, x: -50 },
-          {
-            opacity: 1,
-            x: 0,
-            scrollTrigger: {
-              trigger: wrapper,
-              start: "top center",
-              end: "top top",
-              scrub: 1,
-            },
-          }
-        );
-
-        return () => {
-          ScrollTrigger.getAll().forEach((t) => t.kill());
-        };
-      },
-
-      // MOBILE : AUCUNE ANIMATION
-      "(max-width: 768px)": () => {
-        // On s'assure que tout est clean
-        gsap.set([contentRef.current, titleRef.current], {
-          clearProps: "all",
-        });
-      },
-    });
-
-    return () => ScrollTrigger.clearMatchMedia();
-  }, [recette]);
+  // 2. Fonction pour faire défiler de la largeur d'une carte (ex: 340px)
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 340;
+      if (direction === "left") {
+        scrollRef.current.scrollLeft -= scrollAmount;
+      } else {
+        scrollRef.current.scrollLeft += scrollAmount;
+      }
+    }
+  };
 
   //pour le header
 
@@ -227,12 +162,10 @@ const PageRecette = () => {
   };
   return (
     <div className="pageRecette">
-      {/* Cette div contiendra l'image de fond et remontera sous le header */}
       <div className="header-recette-background">
         <nav aria-label="breadcrumb">
           <ol className="breadcrumb pt-3">
             {" "}
-            {/* Utilise pt-3 au lieu de my-3 pour éviter les marges blanches en haut */}
             <li className="breadcrumb-item px-3">
               <Link to="/" style={{ width: "3rem" }}>
                 Home
@@ -252,60 +185,44 @@ const PageRecette = () => {
             et testez nos meilleures recettes
           </h2>
         </div>
-
-        <div className="phraseIntro">
-          <h2 className="px-5 pt-5">Lorem ipsum dolor.</h2>
-          <p className="col-sm-6 col-md-8 col-lg-12 px-5 mt-5 pb-5">
-            {" "}
-            {/* Ajout pb-5 pour l'espace en bas */}
-            Laissez-vous inspirer par nos variantes créatives, gourmandes et
-            généreuses. Des idées simples et rapides à reproduire chez vous,
-            avec le goût authentique de nos pâtisseries. <br />
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum,
-            autem. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Quis, doloribus laboriosam quas iste aut magni!{" "}
-          </p>
-        </div>
       </div>
-      <div>
-        {/* SECTION AVEC SCROLL VERTICAL */}
-        <section
-          className="homeRecipesWrapper row"
-          style={{ padding: "3rem" }}
-          ref={wrapperRef}
-        >
-          {/* Titre fixe */}
-          <h2 className="titreAnimRecette" ref={titleRef}>
-            Amusez <br /> vous ! <br />
-            et pâtissez
-          </h2>
 
-          {/* Contenu qui défile verticalement */}
-          <div className="animRecette" ref={contentRef}>
-            {" "}
-            <div>
-              {recette.map((item, index) => (
-                <div key={item._id}>
-                  {/* Vous pouvez mapper vos recettes ici */}
-                  <div className="recetteContent">
-                    <h3 className="titreRecetteContent"> {item.titre}</h3>
-                    <p>Testez nos recettes gourmandes {item.description}</p>
-                    <button
-                      type="button"
-                      className="btnVoirRecette"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop"
-                      onClick={() => openModal(item)} // pour ouvrir le modal au click
-                    >
-                      Voir la recette
-                    </button>
-                  </div>
+      <div>
+        <div className="horizontalTitle">
+          <h2>Amusez-vous & pâtissez</h2>
+        </div>
+        <p className=" intro col-sm-6 col-md-8 col-lg-12 px-5 mt-5 pb-5">
+          Laissez-vous inspirer par nos variantes créatives, gourmandes et
+          généreuses. Des idées simples et rapides à reproduire chez vous, avec
+          le goût authentique de nos pâtisseries. <br />
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quis,
+          doloribus laboriosam quas iste aut magni!
+        </p>
+        <section className="recipesContainerHorizontal">
+          <div className="horizontalScrollWrapper">
+            {recette.map((item) => (
+              <div key={item._id} className="recetteCard">
+                <div className="recetteCardBadge">Recette</div>
+                <div className="recetteCardBody">
+                  <h3 className="titreRecetteCard">{item.titre}</h3>
+                  <p className="descRecetteCard">
+                    <img src={item.image} alt="" height={250} width={250} />
+                  </p>
+                  <button
+                    type="button"
+                    className="btnVoirRecetteCard"
+                    data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop"
+                    onClick={() => openModal(item)}
+                  >
+                    Découvrir
+                  </button>
                 </div>
-              ))}{" "}
-            </div>
+              </div>
+            ))}
           </div>
         </section>
-        {/* Modal premiere recette */}
+        {/* Modal  */}
         <div
           className="modal fade"
           id="staticBackdrop"
@@ -368,15 +285,40 @@ const PageRecette = () => {
                           ></i>
                         </span>
                         <input
-                          type={field.type}
+                          type={
+                            field.type === "password"
+                              ? showPassword
+                                ? "text"
+                                : "password"
+                              : field.type
+                          }
                           className="form-control"
                           placeholder={field.placeholder}
-                          aria-label={field.label}
                           name={field.name}
-                          aria-describedby="addon-wrapping"
                           onChange={handleChangeUser}
-                          style={{ border: "var(--marronRouge) 2px solid" }}
+                          style={{
+                            border: "var(--marronRouge) 2px solid",
+                            borderRight: "none",
+                          }}
                         />
+                        {field.type === "password" && (
+                          <button
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{
+                              border: "var(--marronRouge) 2px solid",
+                              borderLeft: "none",
+                            }}
+                          >
+                            <i
+                              className={
+                                showPassword ? "bi bi-eye-slash" : "bi bi-eye"
+                              }
+                              style={{ color: "var(--marronRouge)" }}
+                            ></i>
+                          </button>
+                        )}
                       </div>
                     ))}
                     <div className="d-grid">
@@ -425,49 +367,49 @@ const PageRecette = () => {
             </div>
           </div>
         </div>
-        {/* Modal 2e recette */}
 
-        {/* RESTE DU CONTENU */}
-        <div
-          style={{
-            display: "flex",
-            backgroundColor: "#e4e463ff",
-            border: "2px solid var(--marronRouge)",
-          }}
-        >
-          <img
-            src={cookiegemini}
-            alt="cookie"
-            height={350}
-            width={350}
-            style={{
-              backgroundColor: "#c6819bff",
-              borderRight: "2px solid var(--marronRouge)",
-            }}
-          />
-          <img
-            src={cookiebananepecan}
-            alt="cookie"
-            height={350}
-            width={350}
-            style={{ borderRight: "2px solid var(--marronRouge)" }}
-          />
-          <img
-            src={cookiechoco}
-            alt="cookie"
-            height={350}
-            width={350}
-            style={{ borderRight: "2px solid var(--marronRouge)" }}
-          />
+        <div className="row m-0">
+          <div className="col-md-8 d-flex flex-column justify-content-center p-5">
+            <h2 style={{ color: "var(--marronRouge)", marginBottom: "3rem" }}>
+              Le Stuffed Cookie
+            </h2>
+            <p>
+              Tout a commencé dans une petite cuisine artisanale, avec l'envie
+              folle de fusionner le croquant d'un biscuit traditionnel et la
+              générosité d'une pâtisserie fourrée. C’est ainsi qu’est né le{" "}
+              <strong>Stuffed Cookie</strong> : une création audacieuse venue
+              des États-Unis, réinterprétée ici avec passion pour transformer
+              chaque bouchée en une véritable explosion de textures.
+            </p>{" "}
+            <p>
+              Le secret de notre gourmandise ? Un cœur <strong>fondant</strong>{" "}
+              caché à l'intérieur d'un cookie croustillant. Nutella, caramel ou
+              beurre de cacahuète... lequel choisirez-vous ?
+            </p>
+            <button
+              className="btn"
+              style={{
+                backgroundColor: "var(--jaune)",
+                color: "var(--marronRouge)",
+                width: "fit-content",
+              }}
+              onClick={() => navigate("/cookies")}
+            >
+              Découvrir les articles
+            </button>
+          </div>
+
+          <div className="col-md-2 text-center p-5">
+            <img src={cookie} alt="Stuffed Cookie" />
+          </div>
         </div>
-
         {/* SECTION AVIS */}
         <div
           className="sectionAvis"
           style={{
             borderTop: "3px var(--marronRouge) solid",
             marginBottom: "3rem",
-            marginTop: "20rem",
+            marginTop: "10rem",
             padding: "3rem",
           }}
         >
@@ -475,14 +417,20 @@ const PageRecette = () => {
           {avis.map((item) => (
             <div key={item._id} className="vosAvisSection">
               <div className="vosAvisCommentaire">
-                <p> user :{item.user}</p>
+                <p> {item.user?.pseudo || "Utilisateur anonyme"}</p>{" "}
+                <p className="text-muted small">
+                  Posté le :{" "}
+                  {item.createdAt
+                    ? new Date(item.createdAt).toLocaleDateString("fr-FR")
+                    : "Date inconnue"}
+                </p>{" "}
                 <p> Nom de la recette : {item.recetteTest}</p>
                 <p>Commentaire: {item.commentaire}</p>
               </div>
             </div>
           ))}
           <img
-            src={cookiechoco}
+            src={cookie}
             alt="cookie"
             height={200}
             width={200}
@@ -490,8 +438,11 @@ const PageRecette = () => {
           />
         </div>
         {/* FORMULAIRE AVIS */}
+
+        <p className="ligne"></p>
+
         <div className="row justify-content-center">
-          <div className=" avisSection" style={{}}>
+          <div className="avisSection" style={{}}>
             <h2 className="avisTitre">Laisser un avis!</h2>
 
             {isAuthenticated ? (

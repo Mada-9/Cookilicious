@@ -30,23 +30,7 @@ const PagePanier = () => {
   return (
     <div className="row pagePanier">
 
-      <nav aria-label="breadcrumb col-sm-12">
-        <ol className="breadcrumb my-3 ">
-          <li className="breadcrumb-item  px-3">
-            <a href="/" style={{ width: "3rem" }}>
-              RETOUR
-            </a>
-          </li>
-
-          <li
-            className="breadcrumb-item
-            aria-current=page px-0"
-            style={{ width: "6rem" }}
-          >
-            Panier
-          </li>
-        </ol>
-      </nav>
+     
       <div className="px-5 ">
         <h1 className="panierTitle">Panier</h1>
         <div className="produitsPanier row ">
@@ -93,7 +77,7 @@ const PagePanier = () => {
                   </div>
                 </div>
               ))}
-              <p>
+              <p className="totalPanier">
                 Total du panier : {totalPrice} € ({totalProduit()} produits)
               </p>
             

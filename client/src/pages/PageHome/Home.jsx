@@ -4,32 +4,25 @@ import axiosinstance from "../../utils/axios/axiosinstance";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { toast } from "react-toastify";
 
-//animation
-import ScrollTrigger from "gsap/ScrollTrigger";
-import gsap from "gsap";
-gsap.registerPlugin(ScrollTrigger);
-
 // PAGES  ET URL
 import URL from "../../utils/constant/url";
 
 //CSS
-import "./Home.css"; // CSS spécifique
+import "./Home.css"; // CSS
 
 //IMAGE
-import Brookie from "../../assets/images/brookie.webp"
+import Brookie from "../../assets/images/brookie.webp";
 
 const PageHome = ({}) => {
   const navigate = useNavigate();
   const [cookie, setCookie] = useState([]);
   const [brookie, setBrookie] = useState([]);
-
-  const [recette, setRecette] = useState([]);
   const [formData, setFormData] = useState({ email: "", message: "" });
   const isValidEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const { scrollY } = useScroll();
 
   // plus on scroll, plus ça monte lentement
-  const ySlow = useTransform(scrollY, [0, 900], [0, -90]);
+  const ySlow = useTransform(scrollY, [0, 700], [0, -90]);
 
   useEffect(() => {
     getAllCookies();
@@ -44,11 +37,10 @@ const PageHome = ({}) => {
     }
   };
 
-
-   useEffect(() => {
+  useEffect(() => {
     getAllBrookies();
   }, []);
-    const getAllBrookies = async () => {
+  const getAllBrookies = async () => {
     try {
       const { data, status } = await axiosinstance.get(URL.GET_ALL_BROOKIES);
       if (status === 200) setBrookie(data);
@@ -57,19 +49,6 @@ const PageHome = ({}) => {
     }
   };
 
-
-  useEffect(() => {
-    getAllRecettes();
-  }, []);
-
-  const getAllRecettes = async () => {
-    try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_RECETTES);
-      if (status === 200) setRecette(data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
   // ENVOIE FORMULAIRE
 
   const handleChange = (e) => {
@@ -97,26 +76,6 @@ const PageHome = ({}) => {
     }
   };
 
-  // BACK TO TOP
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  // PARALLAX
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-
-      document.querySelectorAll(".sectionCategorie").forEach((el) => {
-        // parallax subtil
-        el.style.backgroundPosition = `center ${scrollY * 0.3}px`;
-      });
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <>
       <div className="home">
@@ -142,120 +101,107 @@ const PageHome = ({}) => {
         </motion.section>
         <div className="defilantContainer">
           <p className="phraseDefilante">
-            {/* Irrésistible 100% fait maison Texture fondante & cœur gourmand
-            Préparé chaque jour */}
             Des cookies & brookies uniques faits maison pour succomber à la
             tentation.
           </p>
         </div>
-        {/* 
-        <section className="homeSignaturePremium">
-          <div className="divHomeSignature">
-          <h1>Des Cookies & <br />Brookies  uniques  Irrésistibles   </h1> 
-            
-    
-          </div>
-        </section> */}
+
         <div className="homeCategorieProduit row ">
-          <h2 className="phraseCategorie  col-sm-10 col-md-6 col-lg-4 ">
-            Des Cookies & Brookies
-            <br />
-            uniques <br /> & <br /> irrésitibles
-          </h2>
+          <div className="phraseCategorie  col-sm-10 col-md-6 col-lg-4 ">
+            <h2>Des Stuffed Cookies </h2>
+            <h2>& Brookies</h2>
+            <p>
+              uniques <br /> & <br /> irrésitibles
+            </p>
+          </div>
+
           <section className="sectionCategorie categorieUne col-3">
+            <h2>NOS STUFFED COOKIES</h2>
             <Link to="/cookies">
-              {" "}
-              <h2>COOKIES</h2>
               <button className="btnCommander">Commander</button>
             </Link>
           </section>
 
           <section className="sectionCategorie categorieDeux col-3 ">
-            <h2>BROOKIES</h2>
+            <h2> NOS BROOKIES</h2>
             <Link to="/brookies">
               <button className="btnCommander">Commander</button>
             </Link>
           </section>
         </div>
-        <section className="sectionRecette row px-5">
-          <h1 className="recetteTitle col-12  mt-5 ">Découvrez nos recettes</h1>{" "}
-          <Link
-            to="/recette"
-            className="sectionRecetteContent col-sm-10 col-md-11  "
-          >
-            {/* <p>Explorez des recettes savoureuses, pensées pour sublimer chaque ingrédient et transformer vos moments en véritables instants de plaisir..</p> */}
+
+        {/* SECTION RECETTE */}
+        <div className="row m-0 recetteSection ">
+          <div className="col-md-8 p-5">
+            <motion.section style={{ y: ySlow }}>
+              <h2>
+                Découvrez nos <br /> recettes
+              </h2>
+            </motion.section>
             <p>
               Des recettes inspirantes et accessibles pour éveiller votre
               créativité en cuisine.
             </p>
-            {/* <p>
-              Des recettes soigneusement élaborées pour sublimer les saveurs et
-              transformer chaque moment en expérience gourmande.
-            </p> */}
             <p>
-              Des créations culinaires inspirées, conçues pour mettre en valeur
-              les ingrédients
+              Des créations soigneusement élaborées pour sublimer les saveurs et
+              transformer chaque moment en expérience gourmande.
             </p>
-          </Link>{" "}
-          <button
-            className="btnRecette col-5"
-            data-back="Je décrouvre"
-            data-front="Je décrouvre"
-            onClick={() => navigate("/recette")}
-          ></button>
-          <img
-            className="moitieeBrookie col-5"
-            src={Brookie}
-            alt="cookies pistache"
-          />
-        </section>
-        {/* <section className="sectionJaune row px-5">
-          <h1 className="col-12">
-            100% fait
-            <br /> maison.
-          </h1>
-          <p className="col-12 ">
-            Texture fondante & cœur gourmand Préparé chaque jour Lorem ipsum,
-            dolor sit amet consectetur adipisicing elit. Repellendus quo
-            voluptatibus quisquam explicabo neque error exercitationem.
-          </p>
-        </section> */}
-        <div
-          style={{
-            backgroundColor: "var(--jaune)",
-            padding: "4rem 0rem 4rem 0rem",
-            justifyItems: "center",
-          }}
-        >
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
-          <h3 style={{ marginBottom: "0.7rem", wordSpacing: "20px" }}>
-            Texture fondante, cœur ultra gourmand… un plaisir 100 %
-            Cookilicious.
-          </h3>
+
+            <button className="btnStyle" onClick={() => navigate("/recette")}>
+              Découvrir
+            </button>
+          </div>
+          <div className="col-md-1 text-center">
+            <img src={Brookie} alt="brookie" className="brookie" height={800} />
+          </div>
         </div>
+
+        <section className="phrasesContainer">
+          <div style={{ zIndex: 2, wordSpacing: "0.5rem" }}>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>{" "}
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>{" "}
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+            <h3 className="phraseSection">
+              Une texture fondante, un cœur ultra gourmand… et un plaisir 100%
+              Cookilicious.
+            </h3>
+          </div>
+
+          {/* IMAGE COOKIE FLOTTANTE */}
+          <div className="cookieImageWrapper">
+            <img
+              src="https://static.wixstatic.com/media/82955a_c48b31b6d3c143829ed3cb6ff83f7d69~mv2.png/v1/crop/x_69,y_0,w_2588,h_2629/fill/w_402,h_344,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PUFFY%20AVRIL%20(46).png"
+              alt="cookie cookilicious"
+              className="moitieCookie"
+            />
+          </div>
+        </section>
+
         {/* PRODUITS AFFICHES SUR HOME */}
         <div className="homeProduit px-5 ">
           <h1 className="homeProduitTitle text-left ">One more sweetness...</h1>
@@ -272,13 +218,12 @@ const PageHome = ({}) => {
                         className="img-fluid"
                         src={
                           item.photo ||
-                          "https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg"
+                          "https://cdn-icons-png.freepik.com/256/17797/17797810.png?semt=ais_white_label"
                         }
                         alt={item.titre}
                         width={200}
                         height={200}
                       />
-
                       <p>{item.prix} €</p>
                       <button
                         className="produitCardBtn"
@@ -319,9 +264,6 @@ const PageHome = ({}) => {
                   </div>
                 )
             )}
-           
-
-
           </div>
         </div>
         <section className="sectionFaq">
@@ -409,18 +351,18 @@ const PageHome = ({}) => {
         <section className="contactHome">
           <div className="contactWrapper">
             <div className="contactInfoSide">
-              <h2 className="contactTitle">Parlons de gourmandise.</h2>
-              <p className="contactText">
-                Une idée, une collaboration ou une envie particulière ?
-                <br />
-                Écris-nous. Le reste suivra.
-              </p>
+              <h2 className="contactTitle">
+                Une question? une idée <br />
+                une envie particulière ?
+              </h2>
+              <p className="contactText">Ecris nous! </p>
             </div>
 
             <form className="contactForm" onSubmit={handleSubmit}>
               <div className="contactField">
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
+                  id="email"
                   type="email"
                   name="email"
                   placeholder="tonemail@exemple.com"
@@ -432,8 +374,9 @@ const PageHome = ({}) => {
               </div>
 
               <div className="contactField">
-                <label>Message</label>
+                <label htmlFor="message">Message</label>
                 <textarea
+                  id="message"
                   name="message"
                   placeholder="Dites-nous tout..."
                   className="contactTextarea"
@@ -449,11 +392,6 @@ const PageHome = ({}) => {
             </form>
           </div>
         </section>
-
-        {/* fin de page  */}
-        <button className="btnBackToTop" onClick={scrollToTop}>
-          Retour en haut
-        </button>
       </div>
     </>
   );

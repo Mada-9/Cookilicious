@@ -158,133 +158,58 @@
 }
 /* SECTION RECETTE */
 
-.sectionRecette {
-  /* background-image: url(../../assets/images/copeauxbackground.png) ;
-  background-size: 70%; */
-  position: relative;
-  display: flex;
-  justify-content: center;
-  padding-top: 6rem;
-  padding-bottom: 2rem;
-  align-content: start;
-  gap: 3rem;
-}
-
-.sectionRecetteContent {
-  /* border: 1px solid black; */
-  /* margin-top: 5rem; */
-  justify-content: center;
-  margin-top: 7rem;
-  text-align: center;
-}
-
-.btnRecette {
-  background: transparent;
-  border: none;
-  color: var(--marronRouge);
-  padding: 12px 28px;
-  border-radius: 10px;
-  cursor: pointer;
-  justify-self: center;
-  height: 5rem;
-  font-size: 1.3rem;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 8rem;
-}
-
-.btnRecette::before,
-.btnRecette::after {
+.brookie {
+  right: -28rem;
+  margin-top: 5rem;
+  height: 800px;
+  z-index: 1;
   position: absolute;
-  inset: 0;
+}
+
+.recetteSection {
+  height: 66rem;
+  padding-top: 16rem;
+  z-index: 2;
+}
+
+.btnStyle {
+  background: var(--jaune);
+  border: none;
+  padding: 10px 25px;
+  border-radius: 50px;
+  color: var(--marronRouge);
+}
+
+/* plusieurs phrases */
+
+.phrasesContainer {
+  background-color: var(--jaune);
+  padding: 3rem 0rem;
+  position: relative;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  backface-visibility: hidden;
 }
 
-/* face avant */
-.btnRecette::before {
-  content: attr(data-front);
-  background: var(--creme);
-  color: var(--jaune);
-  transform: rotateX(0deg);
-  opacity: 1;
-  border: var(--marronRouge) 1px solid;
+.phraseSection {
+  font-weight: 800;
+  color: var(--marronRouge);
+  line-height: 1.5;
+  margin-bottom: 0;
+  z-index: 2;
+  word-spacing: 0.5rem;
 }
 
-/* face arrière */
-.btnRecette::after {
-  content: attr(data-back);
-  background: var(--marronRouge);
-  color: var(--creme);
-  transform: rotateX(-90deg);
-  opacity: 0;
-}
-
-/* hover flip */
-.btnRecette:hover::before {
-  transform: rotateX(90deg);
-  opacity: 0;
-}
-
-.btnRecette:hover::after {
-  transform: rotateX(0deg);
-  opacity: 1;
-}
-
-.moitieeBrookie {
+.moitieCookie {
   position: absolute;
-  left: -17rem;
-  padding-top: 14.3rem;
-  height: 880px;
-}
-
-/* section à definir 
-
-*/
-.sectionJaune {
-  color: var(--creme);
-  background-color: var(--jaune);
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-/* SECTION JAUNE */
-.sectionFaq {
-  height: 28rem;
-  background-color: var(--marronRouge);
-  align-content: center;
-}
-.faqContent {
-  background-color: var(--marronRouge);
-  align-content: center;
-}
-
-.faqP {
-  color: var(--creme);
-  font-size: 4rem;
-  padding-left: 3rem;
-  text-align: left;
-  line-height: 79px;
-}
-
-.accordion-button {
-  font-size: 1.5rem !important;
-  color: var(--creme) !important;
-  background-color: var(--marronRouge) !important;
-  transition: 1s;
-}
-
-.accordion-item {
-  padding-left: 2rem;
-  text-align: left;
-  color: var(--creme) !important;
-  background-color: var(--marronRouge) !important;
-  border: var(--bs-accordion-border-width) solid
-    var(--bs-accordion-border-color);
+  right: -20%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 400px;
+  height: auto;
+  opacity: 0.9;
+  z-index: 1;
 }
 
 /* SECTION PRODUIT */
@@ -311,14 +236,58 @@
   background: transparent;
   border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
   justify-self: center;
 }
 
-/* SECTION CONTACT  *//* SECTION CONTACT HOME */
+
+
+
+.sectionJaune {
+  color: var(--creme);
+  background-color: var(--jaune);
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* SECTION JAUNE */
+.sectionFaq {
+  height: 28rem;
+  background-color: var(--marron);
+  align-content: center;
+}
+.faqContent {
+  background-color: var(--marron);
+  align-content: center;
+}
+
+.faqP {
+  color: var(--creme);
+  font-size: 4rem;
+  padding-left: 3rem;
+  text-align: left;
+  line-height: 79px;
+}
+
+.accordion-button {
+  font-size: 1.5rem !important;
+  color: var(--creme) !important;
+  background-color: var(--marron) !important;
+  transition: 1s;
+}
+
+.accordion-item {
+  padding-left: 2rem;
+  text-align: left;
+  color: var(--creme) !important;
+  background-color: var(--marron) !important;
+  border: var(--bs-accordion-border-width) solid
+    var(--bs-accordion-border-color);
+}
+
+
+/* SECTION CONTACT  */ /* SECTION CONTACT HOME */
 .contactHome {
-  background-image: 
-                    url(../../assets/images/cookiedough.webp);
+  background-image: url(../../assets/images/cookiedough.webp);
   background-size: 600%;
   background-position: 45%;
   background-attachment: fixed;
@@ -423,7 +392,7 @@
     text-align: center;
     gap: 3rem;
   }
-  
+
   .contactTitle {
     font-size: 3.5rem;
   }
@@ -460,18 +429,6 @@
 }
 
 
-
-/* BAS DE PAGE */
-
-/* 
-@keyframes scroll-left-2 {
-  from {
-    transform: translateX(1%);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-} */
 
 @media (max-width: 425px) {
   .homeContactTitle {
@@ -523,7 +480,7 @@
   .contactHome {
     padding: 5rem 1.5rem;
   }
-  
+
   .contactForm {
     padding: 2rem 1.2rem;
   }
@@ -532,7 +489,6 @@
     font-size: 2.8rem;
   }
 }
-
 
 @media (min-width: 991px) and (max-width: 1211px) {
   .categorieUne {

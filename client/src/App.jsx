@@ -5,8 +5,6 @@ import AnimatedPage from "../src/components/Motion/AnimatePage";
 import "react-toastify/dist/ReactToastify.css";
 
 
-
-
 //PAGES CLIENT
 
 import Home from "./pages/PageHome/Home";
@@ -15,8 +13,6 @@ import Cookies from "./pages/PageProduit/Cookies";
 import Brookies from "./pages/PageProduit/Brookies";
 import DetailCookie from "./pages/PageProduit/DetailCookie";
 import DetailBrookie from "./pages/PageProduit/DetailBrookie";
-
-
 
 import PageRecette from "./pages/PageRecette/PageRecette";
 
@@ -42,11 +38,6 @@ import VerifyEmail from "./components/VerifyEmail";
 //PAGES ADMIN
 
 import Dashboard from "./admin/PageDashboard/PageDashboard";
-
-import PageProduitDashboard from "../src/admin/PageProduit/PageProduitDashboard";
-import PostProduit from "./admin/PageProduit/PostProduit";
-import UpdateProduit from "./admin/PageProduit/UpdateProduit";
-import ProduitDetail from "./admin/PageProduit/ProduitDetail";
 
 import PageCookiesDashboard from "../src/admin/PageCookies/PageCookiesDashboard";
 import PostCookie from "./admin/PageCookies/PostCookies";
@@ -95,11 +86,7 @@ function App() {
 
   return (
     <>
-      <ToastContainer position="top-right"
-autoClose={3000}
-
-
- />
+      <ToastContainer position="top-right"autoClose={3000}/>
       <AnimatePresence mode="wait" initial={false}>
         <Routes location={location} key={location.pathname}>
 
@@ -125,8 +112,10 @@ autoClose={3000}
             <Route path="cgv" element={<AnimatedPage><CGV /></AnimatedPage>} />
             <Route path="rgpd" element={<AnimatedPage><RGPD /></AnimatedPage>} />
 
-            {/* Routes publiques (non accessible si pas connecté) */}
-            <Route element={<PublicRoute />}>
+
+              {/* Routes réservées aux visiteurs : pas d'accès à ces pages si 
+              l'utilisateur est déjà connecté.*/}            
+              <Route element={<PublicRoute />}>
               <Route path="sign" element={<AnimatedPage><Sign /></AnimatedPage>} />
               <Route path="register" element={<AnimatedPage><Register /></AnimatedPage>} />
               <Route path="/verify/:token" element={<VerifyEmail />} /> 
@@ -147,12 +136,7 @@ autoClose={3000}
           <Route element={<PrivateRouteAdmin />}>
             <Route path="/admin" element={<TemplateAdmin />}>
               <Route index element={<Dashboard />} />
-              {/* produit */}
-              <Route path="produit" element={<PageProduitDashboard />} />
-              <Route path="postproduit" element={<PostProduit />} />
-              <Route path="updateproduit/:id" element={<UpdateProduit />} />
-              <Route path="produitdetail/:id" element={<ProduitDetail />} />
-
+            
               {/* cookies */}
               <Route path="cookies" element={<PageCookiesDashboard />} />
               <Route path="postcookie" element={<PostCookie/>} />

@@ -2,44 +2,25 @@ const mongoose = require("mongoose");
 
 const commandeSchema = new mongoose.Schema(
   {
-    // Qui a passé la commande
     user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-
-    // Produits commandés
     items: [
-  {
-    produit: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Produit",
-      required: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 1,
-    },
-    prixUnitaire: {
-      type: Number,
-      required: true,
-    },
-    nom: String,
-    description: String,
-    image: String,
-  }
-]
-,
-
-    // Prix total de la commande
+      {
+        produitId: { type: String, required: true },
+        titre: { type: String, required: true },
+        image: { type: String },
+        quantite: { type: Number, required: true },
+        prixUnitaire: { type: Number, required: true },
+        description: String,
+      },
+    ],
     prixTotal: {
       type: Number,
       required: true,
     },
-
-    // Statut de la commande
     statut: {
       type: String,
       enum: [
@@ -53,14 +34,12 @@ const commandeSchema = new mongoose.Schema(
       default: "commande_validée",
     },
 
-    // Moyen de paiement
     paiement: {
       type: String,
       enum: ["carte"],
       required: true,
     },
 
-    // Adresse de livraison
     adresse_livraison: {
       type: {
         nom: { type: String, required: true },

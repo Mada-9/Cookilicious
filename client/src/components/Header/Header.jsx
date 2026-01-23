@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
-import { ThemeContext } from "../../utils/context/ThemeContext";
 
 import { PanierContext } from "../../utils/context/PanierContext";
 import { AuthContext } from "../../utils/context/AuthContext";
@@ -12,22 +11,11 @@ const Header = () => {
   const { user, logout } = useContext(AuthContext);
   const isAuthenticated = user;
   const role = user?.role;
-  //  const [darkMode, setDarkMode] = useState(false);
 
-  //   // Appliquer le thème au body
-  //   useEffect(() => {
-  //     if (darkMode) {
-  //       document.body.style.backgroundColor = "var(--marronFonce)";
-  //       document.body.style.color = "var(--creme)";
-  //     } else {
-  //       document.body.style.backgroundColor = "var(--creme)";
-  //       document.body.style.color = "var(--marron)";
-  //     }
-  //   }, [darkMode]);
 
   const visibleLinks = HEADER_LINKS.filter((link) => {
     if (!link.auth) return true; // liens publics
-    if (!isAuthenticated) return false; // pas connecté → pas d'accès
+    if (!isAuthenticated) return false; // pas connecté = pas d'accès
     if (link.auth === role) return true; // rôle correspondant
     return false; // sinon, on cache
   });
@@ -84,12 +72,14 @@ const Header = () => {
                 <ul
                   className="dropdown-menu"
                   aria-labelledby="navbarDropdownMenuLink"
+                  style={{ color: "var(--marronRouge)", backgroundColor:"var(--creme)", border:"1px solid var(--jaune)", }}
+
                 >
                   <li>
                     <Link to="/cookies">
                       <p
                         className="dropdown-item"
-                        style={{ color: "#880a0cff" }}
+                        style={{ color: "var(--marronRouge)", backgroundColor:"var(--creme)" }}
                       >
                         Cookies
                       </p>
@@ -99,7 +89,7 @@ const Header = () => {
                     <Link to="/brookies">
                       <p
                         className="dropdown-item"
-                        style={{ color: "#880a0cff" }}
+                        style={{ color: "var(--marronRouge)", backgroundColor:"var(--creme)" }}
                       >
                         Brookies
                       </p>
@@ -164,9 +154,6 @@ const Header = () => {
           </ul>
         </div>
       </nav>
-      {/* <button onClick={() => setDarkMode(!darkMode)}>
-        {darkMode ? "☀️ Mode clair" : "🌙 Mode sombre"}
-      </button> */}
     </header>
   );
 };

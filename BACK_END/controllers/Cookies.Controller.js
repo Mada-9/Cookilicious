@@ -1,17 +1,7 @@
 const createError = require("../helpers/CreateError.js");
 const CookiesModel = require("../models/Cookies.Model.js");
 
-/**
- * Méthode pour créer un nouvel élément.
- * Utilise la méthode HTTP POST.
- *
- * Exemple de requête :
- *   ExempleModel.create(req.body)
- *
- * @param {object} req - Objet de requête (données à créer).
- * @param {object} res - Objet de réponse.
- * @returns {object} L'objet créé.
- */
+
 const post = async (req, res, next) => {
   try {
     const cookie = await CookiesModel.create(req.body)
@@ -21,17 +11,7 @@ const post = async (req, res, next) => {
   }
 };
 
-/**
- * Récupère la liste de tous les éléments.
- * Méthode HTTP GET.
- *
- * Exemple de requête :
- *  ExempleModel.find()
- *
- * @param {object} req - Objet de requête Express.
- * @param {object} res - Objet de réponse Express.
- * @returns {object[]} Liste des éléments.
- */
+
 const get = async (req, res, next) => {
   try {
     const cookie = await CookiesModel.find(req.body)
@@ -116,8 +96,6 @@ const updateById = async (req, res, next) => {
 
 
 
-
-// Export des méthodes pour les réutiliser dans le router
 module.exports = {
   post,
   get,

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Contact = mongoose.Schema(
-  { // objet formulaire
+  { 
     email: { 
       type: String, 
       required: true, 

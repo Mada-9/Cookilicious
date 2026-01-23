@@ -10,7 +10,6 @@ const errorMiddleware = require("./middlewares/ErrorMiddleware.js");
 
 // IMPORT ROUTES
 const authRouter = require("./router/Auth.Router.js");
-const produitRouter = require("./router/Produit.Router.js");
 const cookiesRouter =require("./router/Cookies.Router.js");
 const brookiesRouter =require("./router/Brookies.Router.js");
 const contactRouter = require("./router/Contact.Router.js");
@@ -49,10 +48,8 @@ app.use(
 
 // PREFIX
 app.use("/api/auth", authRouter);
-app.use("/api/produit", produitRouter);
 app.use("/api/cookie", cookiesRouter);
 app.use("/api/brookie", brookiesRouter);
-
 app.use("/api/contact", contactRouter);
 app.use("/api/recette", recetteRouter);
 app.use("/api/avis", avisRouter);
