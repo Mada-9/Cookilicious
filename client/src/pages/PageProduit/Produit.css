@@ -1,49 +1,6 @@
-/* @media (min-width: 768px) {
-  .titlePageProduit {
-    font-size: 8rem !important;
-  }
-}
 .titlePageProduit {
-  font-size: 7rem !important;
-}
-
-@media (min-width: 580px) and (max-width: 768px) {
-  .titlePageProduit {
-    font-size: 4rem !important;
-  }
-}
-
-@media (min-width: 390px) {
-  .titlePageProduit {
-    font-size: 4rem;
-    padding-bottom: 0.7rem;
-  }
-
-  .introPageProduit {
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 390px) {
-  .titlePageProduit {
-    font-size: 3.5rem !important;
-    padding-bottom: 0rem;
-  }
-  .introPageProduit {
-    font-size: 0.8rem !important;
-  }
-} */
-/* 
-.enteteProduit {
-  justify-self: center;
-  background-color: var(--marronRouge);
-  text-align: left;
-
-} */
-
- .titlePageProduit {
   font-size: 9.5rem !important;
-} 
+}
 
 @media (max-width: 448px) {
   .titlePageProduit {
@@ -52,7 +9,7 @@
 }
 
 @media (min-width: 448px) and (max-width: 825px) {
- .titlePageProduit {
+  .titlePageProduit {
     font-size: 6rem !important;
   }
 }
@@ -158,6 +115,40 @@
   opacity: 1;
 }
 
+.btnNavRecette {
+  border: 2px solid var(--marronRouge);
+  color: #fff;
+  border-radius: 30px;
+  height: 3rem;
+  width: 15rem !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  font-size: 1.3rem;
+}
+
+.btnNavRecette:hover {
+  background: var(--marronRouge);
+  color: var(--creme);
+}
+
 .btnNavCookies {
-  justify-content: left;
+  border: 2px solid var(--marronRouge);
+  color: #fff;
+  border-radius: 30px;
+  height: 3rem;
+  width: 15rem !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center !important;
+  font-size: 1.3rem;
+}
+
+.btnNavCookies:hover {
+  background: var(--marronRouge);
+  color: var(--creme);
 }

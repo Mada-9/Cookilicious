@@ -73,7 +73,7 @@ const login = async (req, res, next) => {
     if (!user.isVerified) {
       return res.status(403).json({
         message:
-          "Veuillez vérifier votre email pour accéder à cette fonctionnalité.",
+          "Veuillez vérifier votre email.",
       });
     }
 

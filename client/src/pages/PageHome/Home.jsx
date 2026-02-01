@@ -130,31 +130,42 @@ const PageHome = ({}) => {
           </section>
         </div>
 
-        {/* SECTION RECETTE */}
-        <div className="row m-0 recetteSection ">
-          <div className="col-md-8 p-5">
-            <motion.section style={{ y: ySlow }}>
-              <h2>
-                Découvrez nos <br /> recettes
-              </h2>
-            </motion.section>
-            <p>
-              Des recettes inspirantes et accessibles pour éveiller votre
-              créativité en cuisine.
-            </p>
-            <p>
-              Des créations soigneusement élaborées pour sublimer les saveurs et
-              transformer chaque moment en expérience gourmande.
-            </p>
+      {/* SECTION RECETTE */}
+<div className="row m-0 recetteSection">
+  
+  {/* BLOC TEXTE */}
+  {/* col-12 sur mobile (le texte prend toute la largeur) */}
+  {/* col-md-8 sur PC (on garde tes proportions d'origine) */}
+  <div className="col-12 col-md-8 p-4 p-md-5">
+      <h2>
+        Découvrez nos <br /> recettes
+      </h2>
+    <p>
+      Des recettes inspirantes et accessibles pour éveiller votre
+      créativité en cuisine.
+    </p>
+    <p>
+      Des créations soigneusement élaborées pour sublimer les saveurs et
+      transformer chaque moment en expérience gourmande.
+    </p>
 
-            <button className="btnStyle" onClick={() => navigate("/recette")}>
-              Découvrir
-            </button>
-          </div>
-          <div className="col-md-1 text-center">
-            <img src={Brookie} alt="brookie" className="brookie" height={800} />
-          </div>
-        </div>
+    <button className="btnStyle" onClick={() => navigate("/recette")}>
+      Découvrir
+    </button>
+  </div>
+
+  {/* BLOC IMAGE */}
+  {/* col-12 sur mobile pour que l'image ne soit pas coincée dans 1/12ème de l'écran */}
+  {/* col-md-4 sur PC (ajusté pour que l'image ait de la place pour sortir) */}
+  <div className="col-12 col-md-4 text-center position-relative">
+    <img 
+      src={Brookie} 
+      alt="brookie" 
+      className="brookie" 
+      /* On garde TA classe "brookie" pour conserver TON CSS (le débordement, la taille, etc.) */
+    />
+  </div>
+</div>
 
         <section className="phrasesContainer">
           <div style={{ zIndex: 2, wordSpacing: "0.5rem" }}>
@@ -256,7 +267,7 @@ const PageHome = ({}) => {
                       <p>{brookie.prix} €</p>
                       <button
                         className="produitCardBtn"
-                        onClick={() => navigate(`/brookie/${item._id}`)}
+                        onClick={() => navigate(`/brookie/${brookie._id}`)}
                       >
                         voir
                       </button>
@@ -369,7 +380,6 @@ const PageHome = ({}) => {
                   className="contactInput"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -382,7 +392,6 @@ const PageHome = ({}) => {
                   className="contactTextarea"
                   value={formData.message}
                   onChange={handleChange}
-                  required
                 />
               </div>
 

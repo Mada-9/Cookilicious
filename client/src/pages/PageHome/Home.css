@@ -1,10 +1,12 @@
+
+
 .titleHome {
-  margin: 4rem;
+  margin-top: 6rem;
+  margin-bottom: 4rem;
   justify-self: center;
   font-size: 9.5rem !important;
   font-family: "kaftus";
   position: relative;
-  height: 7rem;
 }
 
 @media (max-width: 448px) {
@@ -159,17 +161,18 @@
 /* SECTION RECETTE */
 
 .brookie {
-  right: -28rem;
-  margin-top: 5rem;
+  right: -32rem;
+  margin-top: 5.1rem;
   height: 800px;
   z-index: 1;
   position: absolute;
 }
 
 .recetteSection {
-  height: 66rem;
-  padding-top: 16rem;
+  height: 61rem;
+  padding-top: 10rem;
   z-index: 2;
+  position: relative;
 }
 
 .btnStyle {
@@ -184,7 +187,7 @@
 
 .phrasesContainer {
   background-color: var(--jaune);
-  padding: 3rem 0rem;
+  padding: 3rem 1rem;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -195,10 +198,11 @@
 .phraseSection {
   font-weight: 800;
   color: var(--marronRouge);
-  line-height: 1.5;
+  line-height: 1.8;
   margin-bottom: 0;
   z-index: 2;
   word-spacing: 0.5rem;
+  
 }
 
 .moitieCookie {
@@ -238,9 +242,6 @@
   cursor: pointer;
   justify-self: center;
 }
-
-
-
 
 .sectionJaune {
   color: var(--creme);
@@ -284,11 +285,10 @@
     var(--bs-accordion-border-color);
 }
 
-
 /* SECTION CONTACT  */ /* SECTION CONTACT HOME */
 .contactHome {
-  background-image: url(../../assets/images/cookiedough.webp);
-  background-size: 600%;
+  background-image: url(../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg);
+  background-size: cover;
   background-position: 45%;
   background-attachment: fixed;
   padding: 8rem 2rem;
@@ -415,21 +415,6 @@
   }
 }
 
-.btnBackToTop {
-  position: fixed;
-  bottom: 0rem;
-  font-size: 1rem;
-  width: 5rem;
-  display: flex;
-  justify-self: end;
-  margin: 2rem;
-  background-color: var(--marronRouge);
-  color: var(--creme);
-  border: 2px solid var(--marronFroid);
-}
-
-
-
 @media (max-width: 425px) {
   .homeContactTitle {
     font-size: 3rem;
@@ -465,17 +450,14 @@
     font-size: 2rem;
   }
 
-  .sectionRecette {
-    padding: 3rem !important;
-  }
-
-  .sectionRecetteContent {
-    flex-direction: column;
-  }
-  .moitieeBrookie {
-    height: 20rem !important;
-    left: -15rem !important;
-  }
+ 
+.brookie {
+  right: -50rem;
+  margin-top: 5.1rem;
+  height: 800px;
+  z-index: 1;
+  position: absolute;
+}
 
   .contactHome {
     padding: 5rem 1.5rem;

@@ -107,7 +107,6 @@ const Commandes = () => {
 
             <div className="card-body p-4">
               <div className="row">
-                {/* Colonne Adresse */}
                 <div className="col-md-6 border-end">
                   <h5
                     className="text-uppercase small fw-bold mb-3"
@@ -119,7 +118,6 @@ const Commandes = () => {
                   </h5>
                   <div className="small text-muted">
                     <h5 className="mb-2 text-muted fw-bold">
-                      {" "}
                       <span
                         style={{
                           color: "var(--marronRouge)",
@@ -127,11 +125,10 @@ const Commandes = () => {
                         }}
                       >
                         Prénom:
-                      </span>{" "}
+                      </span>
                       {item.adresse_livraison.prenom}
                     </h5>
                     <h5 className="mb-2">
-                      {" "}
                       <span
                         style={{
                           color: "var(--marronRouge)",
@@ -143,7 +140,6 @@ const Commandes = () => {
                       {item.adresse_livraison.nom}
                     </h5>
                     <h5 className="mb-2">
-                      {" "}
                       <span
                         style={{
                           color: "var(--marronRouge)",

@@ -6,10 +6,10 @@ const auth = require("../middlewares/AuthMiddleware.js");
 const router = express();
 
 router.post("/post", auth, AuthController.register); // La méthode register provient du controller Aut
-router.get("/get", MembreController.get);
-router.get("/get/:id", MembreController.getById);
+router.get("/get",auth,  MembreController.get);
+router.get("/get/:id",auth,  MembreController.getById);
 router.put("/update/:id", auth, MembreController.updateById);
-router.put("/updatepassword", MembreController.updatePassword);
+router.put("/updatepassword", auth, MembreController.updatePassword);
 router.delete("/delete/:id", auth, MembreController.deleteById);
 
 module.exports = router;

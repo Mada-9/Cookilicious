@@ -12,7 +12,7 @@ const PageContact = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
- const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -35,30 +35,35 @@ const PageContact = () => {
   };
 
   return (
-    <div className="container-fluid p-0" style={{ backgroundColor: "var(--creme)",  }}>
+    <div
+      className="container-fluid p-0"
+      style={{ backgroundColor: "var(--creme)" }}
+    >
       <div className="row g-0">
-        
-        <h1>ACCESIBILITe FORM</h1>
-        {/* CÔTÉ GAUCHE : Image avec Overlay */}
-        <div  style={{ backgroundColor:"var(--jaune)"  }} className="col-lg-6 d-flex flex-column justify-content-center align-items-center p-5 text-center" 
-            >
-          <h2 className="display-4 fw-bold mb-3">
-            Contactez nous!
-          </h2>
-          <p className="px-md-5">
-            Notre équipe vous répond avec le sourire
-          </p>
+        <div
+          style={{ backgroundColor: "var(--jaune)", height: "40rem" }}
+          className="col-lg-6 d-flex flex-column justify-content-center align-items-center p-5 text-center"
+        >
+          <h2 className="display-4 fw-bold mb-3">Contactez nous!</h2>
+          <p className="px-md-5">Notre équipe vous répond avec le sourire</p>
         </div>
 
         <div className="col-lg-6 d-flex justify-content-center align-items-center p-5">
-          <form onSubmit={handleSubmit} className="w-100" style={{ maxWidth: "450px" }}>
-            
+          <form
+            onSubmit={handleSubmit}
+            className="w-100"
+            style={{ maxWidth: "450px" }}
+          >
             <div className="mb-4">
-              <label className="form-label" htmlFor="email" style={{ color: "var(--marronRouge)" }}>
+              <label
+                className="form-label"
+                htmlFor="email"
+                style={{ color: "var(--marronRouge)" }}
+              >
                 Votre Email
               </label>
               <input
-              id="email"
+                id="email"
                 type="email"
                 name="email"
                 className="form-control"
@@ -71,17 +76,21 @@ const PageContact = () => {
                   borderRadius: "0",
                   padding: "12px 0",
                   boxShadow: "none",
-                  backgroundColor: "var(--creme)"
+                  backgroundColor: "var(--creme)",
                 }}
               />
             </div>
 
             <div className="mb-4">
-              <label className="form-label" htmlFor="message" style={{ color: "var(--marronRouge)", letterSpacing: "1px" }}>
+              <label
+                className="form-label"
+                htmlFor="message"
+                style={{ color: "var(--marronRouge)", letterSpacing: "1px" }}
+              >
                 Votre Message
               </label>
               <textarea
-              id="message"
+                id="message"
                 name="message"
                 className="form-control"
                 placeholder="Racontez-nous tout..."
@@ -91,30 +100,28 @@ const PageContact = () => {
                   border: "2px solid var(--marronRouge)",
                   borderRadius: "12px",
                   padding: "15px",
-                                    backgroundColor: "var(--creme)"
-
+                  backgroundColor: "var(--creme)",
                 }}
               ></textarea>
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn w-100 py-3 mt-2"
-              style={{ 
-                backgroundColor: "var(--jaune)", 
-                color: "var(--marronRouge)", 
+              style={{
+                backgroundColor: "var(--jaune)",
+                color: "var(--marronRouge)",
                 borderRadius: "50px",
                 border: "none",
-                transition: "transform 0.2s"
+                transition: "transform 0.2s",
               }}
-              onMouseOver={(e) => e.target.style.transform = "scale(1.02)"}
-              onMouseOut={(e) => e.target.style.transform = "scale(1)"}
+              onMouseOver={(e) => (e.target.style.transform = "scale(1.02)")}
+              onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
             >
               Envoyer la gourmandise 🍪
             </button>
           </form>
         </div>
-
       </div>
     </div>
   );

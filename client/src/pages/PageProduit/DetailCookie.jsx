@@ -9,13 +9,7 @@ import "./DetailProduit.css";
 
 const DetailCookie = () => {
   const {
-    panier,
     addPanier,
-    incremente,
-    decremente,
-    priceProduitByQuantity,
-    totalProduit,
-    totalPrice,
   } = useContext(PanierContext);
 
   const navigate = useNavigate();
@@ -63,8 +57,6 @@ const DetailCookie = () => {
       console.log(error.message);
     }
   };
-
-  //ajout au panier
 
   return (
     <>
@@ -134,7 +126,6 @@ const DetailCookie = () => {
                   panier
                 </Link>
               </div>
-
               <div
                 className="descBtn"
                 style={{
@@ -151,7 +142,6 @@ const DetailCookie = () => {
                   className="btnQuantite col-5 col-lg-5"
                   style={{ display: "flex", gap: "1rem" }}
                 >
-                  {" "}
                   <button
                     style={{
                       background: "transparent",
@@ -195,7 +185,7 @@ const DetailCookie = () => {
                 style={{
                   borderTop: "3px solid var(--marronRouge)",
                   paddingTop: "2rem",
-                  marginBottom: "10rem",
+                  marginBottom: "5rem",
                 }}
                 className="col-12"
               >
@@ -280,7 +270,7 @@ const DetailCookie = () => {
                 height={160}
                 style={{ marginTop: "3rem" }}
               />
-              <p>{cookie[2]?.titre}</p>
+             
               <p>{cookie[2]?.prix}€</p>
               <button
                 onClick={() => navigate(`/#/${cookie._id}`)}

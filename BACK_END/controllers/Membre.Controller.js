@@ -18,8 +18,8 @@ const jwt = require("jsonwebtoken");
  */
 const get = async (req, res, next) => {
   try {
-    const membres = await UserModel.find();
-    res.status(200).json(membres);
+    const user = await UserModel.find();
+    res.status(200).json(user);
   } catch (error) {
      next(createError(error.status || 500, error.message, error.details));
   }
@@ -38,9 +38,9 @@ const get = async (req, res, next) => {
  */
 const getById = async (req, res, next) => {
   try {
-    const membre = await UserModel.findById(req.params.id);
-    if(!membre) return next(createError(404, "User not found !")); 
-    res.status(200).json(membre);
+    const user = await UserModel.findById(req.params.id);
+    if(!user) return next(createError(404, "User not found !")); 
+    res.status(200).json(user);
   } catch (error) {
      next(createError(error.status || 500, error.message, error.details)); 
   }

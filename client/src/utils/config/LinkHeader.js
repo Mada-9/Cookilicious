@@ -1,10 +1,4 @@
 const HEADER_LINKS = [
-//   { label: "Produit", path: "/produit" },
-//   { label: "Cookies", path: "/cookies" },
-//   { label: "Brookies", path: "/brookies" },
-//   { label: "Recettes", path: "/recette",  },
-//   { label: "Apropos", path: "/apropos" },
-//   { label: "Contact", path: "/contact" },
   { label: "Mon compte", path: "/profil", auth: "user" },
   { label: "Dashboard", path: "/admin", auth: "admin" },
 ];

@@ -44,14 +44,7 @@ const VerifyEmail = () => {
 
   return (
     <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        backgroundColor: "#fdfaf5",
-        padding: "20px",
-      }}
+   
     >
       <div
         style={{
@@ -64,18 +57,7 @@ const VerifyEmail = () => {
           textAlign: "center",
         }}
       >
-        <h1
-          style={{
-            color: "#63332a",
-            fontSize: "32px",
-            marginBottom: "20px",
-            textTransform: "uppercase",
-            letterSpacing: "4px",
-          }}
-        >
-          COOKILICIOUS
-        </h1>
-
+       
         {isVerifying ? (
           <>
             <div style={{ margin: "30px auto" }}>
@@ -84,8 +66,6 @@ const VerifyEmail = () => {
                   fontSize: "60px",
                   animation: "spin 2s linear infinite",
                   display: "inline-block",
-                  
-               
                 }}
               >
                 🍪

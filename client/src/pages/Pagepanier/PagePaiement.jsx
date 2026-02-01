@@ -17,6 +17,7 @@ import {
 import "./PagePaiement.css";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 const CheckoutForm = ({ onPaymentSuccess }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -27,11 +28,11 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
     if (!stripe || !elements) return;
 
     setLoading(true);
-    // Simulation du traitement Stripe (à remplacer par stripe.confirmCardPayment plus tard)
+    // Simulation du traitement Stripe
     setTimeout(async () => {
       setLoading(false);
       toast.success("Paiement validé !");
-      await onPaymentSuccess(); // <--- C'est ici qu'on appelle handleFinalSuccess
+      await onPaymentSuccess(); // on appelle handleFinalSuccess
     }, 1500);
   };
 
@@ -60,36 +61,26 @@ const PagePaiement = () => {
 
   const navigate = useNavigate();
   const { user, login } = useContext(AuthContext);
-  // const [panier, setPanier] = useState([]);
   const [formData, setFormData] = useState({});
   const [livraison, setLivraison] = useState({});
   const {
-    incremente,
-    decremente,
-    addPanier,
-    removeProduit,
-    priceProduitByQuantity,
     totalProduit,
     panier,
     totalPrice,
   } = useContext(PanierContext);
 
-  // useEffect(() => {
-  //   setPanier(JSON.parse(localStorage.getItem("panier")) || []);
-  // }, []);
 
-  // mettre dans checkform
+
+
+
+
+
   const handleFinalSuccess = async () => {
     try {
-      // Calcul du total
-      const prixTotalCommande = panier.reduce(
-        (acc, i) => acc + i.prix * i.quantite,
-        0
-      );
-
+      // Calcul du total a expliqer
+    const prixTotalCommande = panier.reduce((total, article) => total + (article.prix * article.quantite), 0); 
       const commande = {
         user: user._id,
-        // On passe directement l'objet livraison tel quel
         adresse_livraison: {
           nom: livraison.nom,
           prenom: livraison.prenom,
@@ -102,19 +93,15 @@ const PagePaiement = () => {
         },
         items: panier.map((i) => ({
           produitId: i._id,
-          titre: i.titre, // On l'envoie pour qu'il soit sauvegardé dans la commande
-          image: i.photo, // On l'envoie aussi
+          titre: i.titre, // envoie pour qu'il soit sauvegardé dans la commande
+          image: i.photo, 
           prixUnitaire: i.prix,
           quantite: i.quantite,
         })),
         prixTotal: prixTotalCommande,
         paiement: "carte",
       };
-
-      console.log("Envoi de la commande :", commande); // Pour débugger
-
       const { status } = await axiosinstance.post(URL.POST_COMMANDE, commande);
-
       if (status === 201 || status === 200) {
         toast.success("Commande réussie !");
         localStorage.removeItem("panier");
@@ -150,7 +137,11 @@ const PagePaiement = () => {
 
   return (
     <div className="pagePaiement">
+      
+      
       <h2 className="text-center my-4">Finalisation paiement</h2>
+
+
 
       <div className="container py-5">
         <div className="row g-5">

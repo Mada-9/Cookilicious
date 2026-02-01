@@ -6,8 +6,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 import "./Produit.css"; // CSS spécifique
 
-const Produit = () => {
-   const navigate = useNavigate();
+const Cookies = () => {
+  const navigate = useNavigate();
   const [cookie, setCookie] = useState([]);
   const { scrollY } = useScroll();
 
@@ -22,7 +22,7 @@ const Produit = () => {
     try {
       const { data, status } = await axiosinstance.get(URL.GET_ALL_COOKIES);
       console.log(data);
-      
+
       if (status === 200) {
         const cookiesActifs = data.filter((item) => item.isActive === true);
         setCookie(cookiesActifs);
@@ -32,7 +32,6 @@ const Produit = () => {
     }
   };
 
- 
   return (
     <div className="produit">
       <nav aria-label="breadcrumb" style={{ marginTop: "2rem" }}>
@@ -63,12 +62,11 @@ const Produit = () => {
         </div>{" "}
         <img
           src="https://static.wixstatic.com/media/82955a_99098664b7034f9b876c2b43ac70d615~mv2.jpg/v1/crop/x_71,y_71,w_938,h_938/fill/w_938,h_938,al_c,q_85,enc_avif,quality_auto/Cooies_Puffy2.jpg"
-          alt=""
+          alt="stuffed cookie"
           height={300}
           width={300}
         />
       </div>
-
       <motion.section style={{ y: ySlow }}>
         <p className="introPageProduit">
           Découvrez nos cookies fraîchement sortis du four : moelleux, généreux
@@ -76,30 +74,27 @@ const Produit = () => {
         </p>
         <section className="sectionCookie">
           <div className="produitContainer2 ">
-            {cookie.map(
-              (item) =>
-               (
-                  <div key={item._id} className="produit2">
-                    <p className="titreProduit2">{item.titre}</p>
-                    <img
-                      style={{ padding: "1px" }}
-                      src={item.photo}
-                      alt="cookie"
-                      width={235}
-                      height={235}
-                    />
-                    <div className="prixBtn">
-                      <p>{item.prix}€</p>
-                      <button
-                        className="btnDetail"
-                        data-back="Je le veux"
-                        data-front="Je le veux"
-                        onClick={() => navigate(`/cookie/${item._id}`)}
-                      ></button>
-                    </div>
-                  </div>
-                )
-            )}
+            {cookie.map((item) => (
+              <div key={item._id} className="produit2">
+                <p className="titreProduit2">{item.titre}</p>
+                <img
+                  style={{ padding: "1px" }}
+                  src={item.photo}
+                  alt="cookie"
+                  width={235}
+                  height={235}
+                />
+                <div className="prixBtn">
+                  <p>{item.prix}€</p>
+                  <button
+                    className="btnDetail"
+                    data-back="Je le veux"
+                    data-front="Je le veux"
+                    onClick={() => navigate(`/cookie/${item._id}`)}
+                  ></button>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </motion.section>
@@ -115,9 +110,8 @@ const Produit = () => {
       >
         Voir nos recettes
       </Link>
-     
     </div>
   );
 };
 
-export default Produit;
+export default Cookies;

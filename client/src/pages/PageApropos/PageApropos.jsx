@@ -10,7 +10,7 @@ const PageApropos = () => {
           // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
-          fontSize:"3rem"
+          fontSize:"3rem", justifySelf:"center"
         }}
         className="titreApropos"
       >
@@ -39,7 +39,7 @@ const PageApropos = () => {
 
         {/* {/* ************************************************************************************** */}
 
-        <h2 style={{  margin: "6rem 0 2rem  0" }} >
+        <h2 style={{  margin: "6rem 0 2rem  0", justifySelf:"center" }} >
           Notre Mission
         </h2>
         <div style={{ display: "flex", gap: "5rem", marginBottom: "6rem", }}className="textApropos">

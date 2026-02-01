@@ -120,7 +120,6 @@ export const PanierProvider = ({ children }) => {
 
         }
       } else {
-        // sinon on ajout removeArticlee l article dans le panier
         nouveauPanier.push({ ...product });
       }
       // Enregistre le nouveau panier dans le storage grace a setItem

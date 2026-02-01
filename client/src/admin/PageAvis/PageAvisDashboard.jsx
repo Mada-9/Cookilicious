@@ -40,7 +40,8 @@ const PageAvisDashboard = () => {
     try {
       const { status } = await axiosinstance.put(
         `${URL.UPDATE_AVIS}/${id}`,
-        { isActive: !currentStatus }
+        { isActive: !currentStatus } 
+
       );
       if (status === 200) {
         toast.success(currentStatus ? "Avis masqué" : "Avis publié");

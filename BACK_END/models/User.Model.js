@@ -31,8 +31,8 @@ const User = mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "user"], // permet de mettre une contrainte pour specifier ce que l'on veut, choisir une option parmis celles-ci
-      default: "user", // par défaut: quand on une personne s'insrit sur le site c'est user par defaut
+      enum: ["admin", "user"], 
+      default: "user", 
     },
     isVerified: { type: Boolean, default: false },
   },

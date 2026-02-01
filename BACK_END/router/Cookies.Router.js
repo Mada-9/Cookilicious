@@ -8,7 +8,7 @@ const router = express();// express pour ...
 
 router.post("/post",auth, CookiesController.post); // router.post pour créer les routes et le controlleur pour récuperer  et ensuite specifier la methodes
 router.get("/get",auth, CookiesController.get);
-router.get("/get/:id",auth, CookiesController.getById); // :id = pour un url dynamique 
+router.get("/get/:id",auth, CookiesController.getById); 
 router.delete("/delete/:id",auth, CookiesController.deleteById)
 router.put ("/update/:id",auth, CookiesController.updateById) 
 

@@ -18,7 +18,7 @@ import "./Recette.css";
 
 //images
 import cookie from "../../assets/images/cookiebananepecan.webp";
-import cookiebananepecan from "../../assets/images/cookiebananepecan.webp";
+import copeaux from "../../assets/images/copeauxbackground.png"
 import cookiedough from "../../assets/images/cookiedough.webp";
 
 const PageRecette = () => {
@@ -77,7 +77,7 @@ const PageRecette = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (e) => {
     event.preventDefault();
     console.log("FormData envoyé :", formData);
 
@@ -186,6 +186,7 @@ const PageRecette = () => {
           </h2>
         </div>
       </div>
+ 
 
       <div>
         <div className="horizontalTitle">
@@ -199,14 +200,28 @@ const PageRecette = () => {
           doloribus laboriosam quas iste aut magni!
         </p>
         <section className="recipesContainerHorizontal">
-          <div className="horizontalScrollWrapper">
+          <div className="horizontalScrollWrapper" ref={scrollRef}>
             {recette.map((item) => (
               <div key={item._id} className="recetteCard">
                 <div className="recetteCardBadge">Recette</div>
                 <div className="recetteCardBody">
-                  <h3 className="titreRecetteCard">{item.titre}</h3>
+                  <h3
+                    className="titreRecetteCard"
+                    style={{
+                      textTransform: "capitalize",
+                      height: "5rem",
+                      alignSelf: "start",
+                    }}
+                  >
+                    {item.titre}
+                  </h3>
                   <p className="descRecetteCard">
-                    <img src={item.image} alt="" height={250} width={250} />
+                    <img
+                      src={item.image}
+                      alt="Image recette"
+                      height={250}
+                      width={250}
+                    />
                   </p>
                   <button
                     type="button"
@@ -221,6 +236,10 @@ const PageRecette = () => {
               </div>
             ))}
           </div>
+          <div className="d-flex justify-content-center gap-3 mt-3">
+     <button onClick={() => scroll("left")} className="btnVoirRecetteCard">←</button>
+     <button onClick={() => scroll("right")} className="btnVoirRecetteCard">→</button>
+  </div>
         </section>
         {/* Modal  */}
         <div
@@ -231,11 +250,11 @@ const PageRecette = () => {
         >
           <div
             className="modal-dialog modal-dialog-centered modal-dialog row"
-            style={{ maxWidth: "90%", height: "auto", padding: "3rem" }}
+            style={{ maxWidth: "100%", height: "auto", padding: "6rem" }}
           >
             <div
               className="modal-content"
-              style={{ color: "var(--marronRouge)" }}
+              style={{ color: "var(--marronRouge)", }}
             >
               {isAuthenticated ? (
                 selectedRecette && ( //  AFFICHE LES DONNÉES SI UNE RECETTE EST SÉLECTIONNÉE
@@ -255,9 +274,8 @@ const PageRecette = () => {
                       className="modal-body"
                       style={{ textAlign: "justify" }}
                     >
-                      <h2 className="titrePreparation">
-                        {selectedRecette.nbPersonne}
-                      </h2>
+                      <h2 className="titrePreparation">Nombre de personnes:</h2>
+                      <p style={{justifySelf:"center"}}> {selectedRecette.nbPersonne} personnes</p>
                       <h2 className="titrePreparation">Ingrédients:</h2>
                       <p>{selectedRecette.ingredients}</p>
                       <h2 className="titrePreparation">Préparation:</h2>
@@ -404,20 +422,22 @@ const PageRecette = () => {
           </div>
         </div>
         {/* SECTION AVIS */}
+        
         <div
           className="sectionAvis"
           style={{
-            borderTop: "3px var(--marronRouge) solid",
             marginBottom: "3rem",
             marginTop: "10rem",
             padding: "3rem",
           }}
         >
+                  <p className="ligne"></p>
+
           <h2 className="vosAvis">Vos Avis</h2>
           {avis.map((item) => (
             <div key={item._id} className="vosAvisSection">
               <div className="vosAvisCommentaire">
-                <p> {item.user?.pseudo || "Utilisateur anonyme"}</p>{" "}
+                <p> {item.user?.pseudo || "Utilisateur anonyme"}</p>
                 <p className="text-muted small">
                   Posté le :{" "}
                   {item.createdAt
@@ -426,16 +446,16 @@ const PageRecette = () => {
                 </p>{" "}
                 <p> Nom de la recette : {item.recetteTest}</p>
                 <p>Commentaire: {item.commentaire}</p>
-              </div>
+              </div>{" "}
+              <img
+                src={cookie}
+                alt="cookie"
+                height={200}
+                width={200}
+                className="vosAvisImg"
+              />
             </div>
           ))}
-          <img
-            src={cookie}
-            alt="cookie"
-            height={200}
-            width={200}
-            className="vosAvisImg"
-          />
         </div>
         {/* FORMULAIRE AVIS */}
 

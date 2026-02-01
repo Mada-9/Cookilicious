@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext} from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
@@ -124,16 +124,12 @@ const Header = () => {
                 </li>
               ) : (
                 <li className="nav-item">
-                  {" "}
                   <Link to="/sign" className="nav-link">
                     Connexion
                   </Link>
                 </li>
               )}
             </ul>
-
-            {/* PANIER */}
-
             <Link to="/panier" className="panier ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

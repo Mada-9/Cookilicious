@@ -196,7 +196,7 @@ const DetailBrookie = () => {
                 style={{
                   borderTop: "3px solid var(--marronRouge)",
                   paddingTop: "2rem",
-                  marginBottom: "20rem",
+                  marginBottom: "5rem",
                 }}
                 className="col-12"
               >

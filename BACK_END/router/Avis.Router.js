@@ -8,5 +8,7 @@ router.post("/post", auth, AvisController.post); // router.post pour créer les 
 router.get("/get", auth, AvisController.get);
 router.get("/get/:id", auth, AvisController.getById);
 router.delete("/delete/:id", auth, AvisController.deleteById)
+router.put("/update/:id", auth, AvisController.updateById)
+
 
 module.exports = router;

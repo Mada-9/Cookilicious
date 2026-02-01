@@ -1,10 +1,8 @@
-import { useContext, useState } from "react";
-import { AuthContext } from "../../utils/context/AuthContext";
-import HEADER_LINKS from "../../utils/config/LinkHeader";
+import { useContext } from "react";
+import { toast } from "react-toastify";
 
-import { SIGN_FIELDS } from "../../utils/config/FormFields";
 
-import "./panier.css"; // CSS spécifique
+import "./panier.css"; // CSS
 
 //CONTEXT
 import { PanierContext } from "../../utils/context/PanierContext";
@@ -15,22 +13,15 @@ const PagePanier = () => {
   const {
     incremente,
     decremente,
-    addPanier,
     removeProduit,
     priceProduitByQuantity,
     totalProduit,
     panier,
     totalPrice,
-  } = useContext(PanierContext); //pour gérer le panier grâce aux fonctions récupéré du paniercontext
-
-
-
-
+  } = useContext(PanierContext);
 
   return (
     <div className="row pagePanier">
-
-     
       <div className="px-5 ">
         <h1 className="panierTitle">Panier</h1>
         <div className="produitsPanier row ">
@@ -40,7 +31,11 @@ const PagePanier = () => {
                 <div key={index} className="mapProduit mx-auto px-5">
                   <div className="imgTitrePanier">
                     <p className="titrePanier">{produit.titre}</p>
-                    <img src={produit.photo} alt={produit.titre} className="imgPanier" />
+                    <img
+                      src={produit.photo}
+                      alt={produit.titre}
+                      className="imgPanier"
+                    />
                   </div>
                   {console.log("PRODUIT PANIER => ", produit)}
                   <div className="actionPanier">
@@ -80,22 +75,24 @@ const PagePanier = () => {
               <p className="totalPanier">
                 Total du panier : {totalPrice} € ({totalProduit()} produits)
               </p>
-            
-                  <button
-                    className="btnPasserCommande "
-                    type="button"
-                   
-                    data-back="Passer la commande"
-                    data-front="Passer la commande"
-                    onClick={() => navigate("/paiement")}
-                  >
-               
-                  </button>
-               
+             <button
+  className="btnPasserCommande"
+  type="button"
+  data-back="Passer la commande"
+  data-front="Passer la commande"
+  onClick={() => {
+    if (panier.length === 0) {
+      toast.error("Votre panier est vide ❌");
+      return;
+    }
+    navigate("/paiement");
+  }}
+>
+</button>
             </div>
           ) : (
             <p>panier vide </p>
-          )}{" "}
+          )}
         </div>
       </div>
     </div>
