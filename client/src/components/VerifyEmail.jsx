@@ -16,15 +16,14 @@ const VerifyEmail = () => {
 
   const verifyEmail = async () => {
     try {
-      // Appelle ton backend pour vérifier le token
+      // vérifie le token
       const { status } = await axiosinstance.get(
-        `${URL.AUTH_VERIFY_EMAIL}/${token}`
+        `${URL.AUTH_VERIFY_EMAIL}/${token}`,
       );
 
       if (status === 200) {
-        localStorage.removeItem("auth"); // On vide l'ancien état non-vérifié
-
-        setMessage("✅ Email vérifié avec succès ! Redirection...");
+        localStorage.removeItem("auth");
+        setMessage("Email vérifié avec succès ! Redirection...");
         setTimeout(() => {
           navigate("/");
         }, 4000);
@@ -43,9 +42,7 @@ const VerifyEmail = () => {
   };
 
   return (
-    <div
-   
-    >
+    <div>
       <div
         style={{
           maxWidth: "500px",
@@ -57,22 +54,9 @@ const VerifyEmail = () => {
           textAlign: "center",
         }}
       >
-       
         {isVerifying ? (
           <>
-            <div style={{ margin: "30px auto" }}>
-              <span
-                style={{
-                  fontSize: "60px",
-                  animation: "spin 2s linear infinite",
-                  display: "inline-block",
-                }}
-              >
-                🍪
-              </span>
-            </div>
-
-            <p style={{ color: "#555", fontSize: "18px" }}>
+            <p style={{ color: "var(--jaune)", fontSize: "18px" }}>
               Vérification de votre email en cours...
             </p>
           </>
@@ -81,29 +65,19 @@ const VerifyEmail = () => {
             <p
               style={{
                 fontSize: "20px",
-                color: message.includes("✅") ? "#28a745" : "#dc3545",
+
                 fontWeight: "bold",
                 margin: "20px 0",
               }}
             >
               {message}
             </p>
-            {message.includes("✅") && (
-              <p style={{ color: "#555", marginTop: "20px" }}>
-                Vous allez être redirigé vers la page de connexion...
-              </p>
-            )}
+
+            <p style={{ color: "var(--jaune)",  marginTop: "20px" }}>
+              Vous allez être redirigé vers la page de connexion...
+            </p>
           </>
         )}
-
-        <style>
-          {`
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-          `}
-        </style>
       </div>
     </div>
   );

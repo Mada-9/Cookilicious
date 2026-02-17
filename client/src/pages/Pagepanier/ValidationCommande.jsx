@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ValidationCommande = () => {
@@ -14,7 +14,6 @@ const ValidationCommande = () => {
           marginTop: "5rem",
         }}
       >
-        {/* Icône de succès */}
         <div className="mb-4">
           <i
             className="bi bi-check-circle-fill text-success"

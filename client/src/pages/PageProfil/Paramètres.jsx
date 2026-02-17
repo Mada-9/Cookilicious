@@ -41,7 +41,7 @@ const Parametres = () => {
     try {
       const { data, status } = await axiosinstance.put(
         `${URL.UPDATE_MEMBRE}/${user._id}`,
-        userData
+        userData,
       );
       if (status === 200) {
         localStorage.setItem("auth", JSON.stringify(data));
@@ -76,7 +76,10 @@ const Parametres = () => {
 
   return (
     <div className="container my-5" style={{ maxWidth: "600px" }}>
-      <h3 className="mb-4" style={{ color: "#5a1304", fontWeight: "bold", justifySelf:"center" }}>
+      <h3
+        className="mb-4"
+        style={{ color: "#5a1304", fontWeight: "bold", justifySelf: "center" }}
+      >
         <i className="bi bi-gear me-2"></i>Paramètres du compte
       </h3>
 
@@ -196,19 +199,19 @@ const Parametres = () => {
           </button>
         </form>
       </section>
-       <div className="text-center mt-5 mb-5">
-                    <button
-                      className="btn  btn-lg px-5 rounded-pill
+      <div className="text-center mt-5 mb-5">
+        <button
+          className="btn  btn-lg px-5 rounded-pill
                        fw-bold"
-                      style={{
-                        backgroundColor: "var(--creme)",
-                        color: "var(--marronRouge",
-                        border: "1px solid var(--marronRouge",
-                      }}
-                    >
-                      <Link to="/profil">Retour aux commandes</Link>
-                    </button>
-                  </div>
+          style={{
+            backgroundColor: "var(--creme)",
+            color: "var(--marronRouge",
+            border: "1px solid var(--marronRouge",
+          }}
+        >
+          <Link to="/profil">Retour aux profil</Link>
+        </button>
+      </div>
     </div>
   );
 };

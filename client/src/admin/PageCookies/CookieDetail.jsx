@@ -36,7 +36,7 @@ const CookieDetail = () => {
       ) : (
         <div>
           <div key={detailCookie._id}>
-            <h2 className="dashboardHeader">{detailCookie.titre}</h2>
+            <h2 className="dashboardHeader ps-lg-4">{detailCookie.titre}</h2>
             <div
               style={{
                 padding: "2rem",
@@ -54,11 +54,12 @@ const CookieDetail = () => {
                 width={300}
                 height={300}
               />
-              <div
+              <div className="col-8"
                 style={{
-                  padding: "2rem",
+                  marginTop:"5rem",
                   borderTop: "5px var(--marronRouge) solid ",
-                  margin: "5rem",
+                  justifySelf:"center",
+                  padding:"1rem"
                 }}
               >
                 <p>
@@ -83,7 +84,7 @@ const CookieDetail = () => {
       <div className="text-center mt-5 mb-5">
         <button
           className="btn btn-dark btn-lg px-5 rounded-pill
-           fw-bold"
+          "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

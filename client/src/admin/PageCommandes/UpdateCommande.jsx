@@ -60,12 +60,12 @@ const UpdateProduit = () => {
 
   return (
     <>
-      <h2 className="dashboardHeader">Update Commande</h2>
+      <h2 className="dashboardHeader ps-lg-4">Update Commande</h2>
 
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "4px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",
@@ -111,10 +111,10 @@ const UpdateProduit = () => {
             Update
           </button>
         </form>
-        <div className="text-center mt-5 mb-5">
+        <div className="text-center mt-5 mb-5 ">
         <button
           className="btn  btn-lg px-5 rounded-pill
-           fw-bold"
+         "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

@@ -62,7 +62,6 @@
 }
 
 .phraseDefilante {
-  /* fontSize: isMobile ? "1rem" : "1.7rem", */
   white-space: nowrap;
   display: inline-block;
 }
@@ -78,7 +77,6 @@
 
 /* SECTION CATEGORIE */
 
-/* Contenu */
 .homeCategorieProduit {
   justify-content: center;
   align-items: center;
@@ -102,10 +100,10 @@
 .sectionCategorie {
   display: flex;
   flex-direction: column;
-  justify-content: center; /* centre verticalement */
-  align-items: center; /* centre horizontalement */
-  text-align: center; /* texte centré */
-  height: 33rem; /* assez haut pour le parallax */
+  justify-content: center; 
+  align-items: center;
+  text-align: center; 
+  height: 33rem;
   border-radius: 5%;
   will-change: background-position;
   transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -116,7 +114,7 @@
 }
 @media (max-width: 768px) {
   .sectionCategorie {
-    height: 25rem; /* plus petit sur mobile */
+    height: 25rem; 
     width: 100% !important;
   }
   .homeCategorieProduit {
@@ -285,12 +283,9 @@
     var(--bs-accordion-border-color);
 }
 
-/* SECTION CONTACT  */ /* SECTION CONTACT HOME */
+/* SECTION CONTACT  */ 
 .contactHome {
-  background-image: url(../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg);
-  background-size: cover;
-  background-position: 45%;
-  background-attachment: fixed;
+ 
   padding: 8rem 2rem;
   display: flex;
   justify-content: center;
@@ -305,7 +300,6 @@
   align-items: center;
 }
 
-/* Côté Gauche : Texte */
 .contactTitle {
   font-size: 5rem;
   color: var(--jaune);
@@ -320,7 +314,6 @@
   opacity: 0.9;
 }
 
-/* Côté Droit : Formulaire */
 .contactForm {
   background: rgba(255, 255, 255, 0.95);
   padding: 3rem;
@@ -386,6 +379,7 @@
 }
 
 /* RESPONSIVE */
+
 @media (max-width: 991px) {
   .contactWrapper {
     grid-template-columns: 1fr;
@@ -397,11 +391,9 @@
     font-size: 3.5rem;
   }
 }
-
-/* RESPONSIVE */
 @media (max-width: 850px) {
   .contactAtelierWrapper {
-    grid-template-columns: 1fr; /* Une seule colonne sur tablette/mobile */
+    grid-template-columns: 1fr; 
     text-align: center;
     gap: 2rem;
   }
@@ -422,6 +414,9 @@
   .phraseCategorie {
     text-align: center;
     font-size: 3rem;
+  }
+  .moitieCookie{
+    right: -20rem;
   }
 }
 @media (max-width: 448px) {

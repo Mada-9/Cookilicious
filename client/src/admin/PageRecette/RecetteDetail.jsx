@@ -37,7 +37,7 @@ const RecetteDetail = () => {
       ) : (
         <div>
           <div key={detailRecette._id}>
-            <h2  className="dashboardHeader" style={{margin:"2rem"}}>{detailRecette.titre}</h2>
+            <h2  className="dashboardHeader ps-lg-4" style={{margin:"2rem"}}>{detailRecette.titre}</h2>
             <div
               style={{
                 padding: "2rem",

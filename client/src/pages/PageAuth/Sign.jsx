@@ -32,6 +32,7 @@ const Sign = () => {
                   <i className={field.icon}></i>
                 </span>
                 <input
+                id={field.label}
                   type={field.type === "password" ? (showPassword ? "text" : "password") : field.type}
                   className="form-control sign"
                   placeholder={field.placeholder}
@@ -55,7 +56,8 @@ const Sign = () => {
               <button className="btn  w-100"  style={{
                   color: "var(--creme)",
                   backgroundColor: "var(--marronRouge)",
-                }}>
+                }}
+                >
                 Connexion
               </button>
             </div>
@@ -67,7 +69,6 @@ const Sign = () => {
           </div>
         </div>
 
-        {/* d-none : caché sur mobile | d-md-block : affiché à partir de desktop */}
         <div 
           className="col-md-6 d-none d-md-block p-0" 
           style={{backgroundColor:"var(--marronRouge)"}}

@@ -37,7 +37,7 @@ const PostBrookie = () => {
 
   return (
     <div >
-      <h2 className="dashboardHeader">Post Brookie</h2>
+      <h2 className="dashboardHeader ps-lg-4 ">Post Brookie</h2>
       <div
         className="col-8"
         style={{
@@ -108,7 +108,7 @@ const PostBrookie = () => {
           />
        <button 
              className="btn my-4 btn-lg px-5 rounded-pill
-           fw-bold"
+          "
           style={{
             color: "var(--creme)",
             backgroundColor: "var(--marronRouge",
@@ -121,7 +121,7 @@ const PostBrookie = () => {
         <div className="text-center mt-5 mb-5">
         <button
           className="btn  btn-lg px-5 rounded-pill
-           fw-bold"
+           "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

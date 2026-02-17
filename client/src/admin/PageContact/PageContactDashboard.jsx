@@ -38,8 +38,8 @@ const PageContactDashboard = () => {
 
   return (
     <div className="container-fluid px-2 px-md-5 py-4">
-      <div className="dashboardHeader text-center mb-5">
-        <h2 className="fw-bold">Messages reçus</h2>
+      <div className="dashboardHeader text-center mb-5 ps-lg-4">
+        <h2 >Messages reçus</h2>
       </div>
 
       <div className="row justify-content-center">
@@ -60,7 +60,7 @@ const PageContactDashboard = () => {
                 {formData.map((item) => (
                   <tr key={item._id}>
                     <td className="px-4 tdTable">
-                      <span className="badge bg-light text-dark border small">
+                      <span className="badge  border small" style={{color:"var(--marronRouge)"}}>
                         {item._id.substring(0, 8)}...
                       </span>
                     </td>
@@ -94,9 +94,9 @@ const PageContactDashboard = () => {
           <div className="d-md-none">
             {formData.map((item) => (
               <div key={item._id} className="card mb-3 border-0 shadow-sm rounded-4 overflow-hidden">
-                <div className="card-body p-3">
-                  <div className="mb-2 d-flex justify-content-between align-items-start">
-                    <span className="badge bg-light text-dark border mb-2" style={{fontSize: "10px"}}>
+                <div className="card-body p-3" style={{color:"var(--marronRouge)"}}>
+                  <div className="mb-2 d-flex justify-content-between align-items-start" >
+                    <span className="badge  border mb-2" style={{fontSize: "10px",color:"var(--marronRouge)"}}>
                       ID: {item._id.substring(0, 8)}...
                     </span>
                     <button 
@@ -107,7 +107,7 @@ const PageContactDashboard = () => {
                     </button>
                   </div>
                   
-                  <h6 className="fw-bold text-dark mb-1">{item.email}</h6>
+                  <h6 className=" mb-1">{item.email}</h6>
                   <p className="text-muted small mb-0" style={{ lineHeight: "1.4" }}>
                     {item.message}
                   </p>

@@ -55,9 +55,9 @@ const PageCookiesDashboard = () => {
 
   return (
     <div className="container-fluid px-2 px-md-5 py-4">
-      <div className="dashboardHeader text-center mb-5">
-        <h2 className="fw-bold">Gestion du Catalogue Cookies</h2>
-      </div>
+     
+        <h2 className=" dashboardHeader text-center mb-5 ps-lg-4">Gestion du Catalogue Cookies</h2>
+      
 
       <div className="row justify-content-center">
         <div className="col-12 col-xl-11">
@@ -130,7 +130,7 @@ const PageCookiesDashboard = () => {
                           onClick={() =>
                             navigate(`/admin/cookiedetail/${item._id}`)
                           }
-                          className="btn btn-sm btn-outline-secondary"
+                          className="btn btn-sm btn-outline-secondary"style={{color:"var(--marronRouge)"}}
                         >
                           <i className="bi bi-eye"></i>
                         </button>
@@ -138,7 +138,7 @@ const PageCookiesDashboard = () => {
                           onClick={() =>
                             navigate(`/admin/updatecookie/${item._id}`)
                           }
-                          className="btn btn-sm btn-outline-secondary"
+                          className="btn btn-sm btn-outline-secondary"style={{color:"var(--marronRouge)"}}
                         >
                           <i className="bi bi-pencil"></i>
                         </button>
@@ -161,7 +161,7 @@ const PageCookiesDashboard = () => {
             {cookie.map((item) => (
               <div
                 key={item._id}
-                className="card mb-3 border-0 shadow-sm rounded-4 overflow-hidden"
+                className="card mb-3 border-0 shadow-sm rounded-4 overflow-hidden" style={{color:"var(--marronRouge)"}}
               >
                 <div className="card-body p-3">
                   <div className="d-flex align-items-center mb-3">
@@ -177,7 +177,7 @@ const PageCookiesDashboard = () => {
                     />
                     <div>
                       <h6 className="fw-bold mb-1">{item.titre}</h6>
-                      <p className="text-marron fw-bold mb-0">{item.prix} €</p>
+                      <p className="text-marron mb-0">{item.prix} €</p>
                       <span
                         className={`badge ${
                           item.isActive ? "bg-success" : "bg-danger"
@@ -192,7 +192,7 @@ const PageCookiesDashboard = () => {
                   <div className="d-flex justify-content-between border-top pt-3 mt-2">
                     <button
                       onClick={() => toggleStatus(item._id, item.isActive)}
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn  btn-sm flex-grow-1 me-2 border"style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-power me-1"></i> Statut
                     </button>
@@ -200,7 +200,7 @@ const PageCookiesDashboard = () => {
                       onClick={() =>
                         navigate(`/admin/cookiedetail/${item._id}`)
                       }
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn btn-sm flex-grow-1 me-2 border"style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-eye me-1"></i> voir
                     </button>
@@ -209,13 +209,13 @@ const PageCookiesDashboard = () => {
                       onClick={() =>
                         navigate(`/admin/updatecookie/${item._id}`)
                       }
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn btn-sm flex-grow-1 me-2 border" style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-pencil me-1"></i> Modif.
                     </button>
                     <button
                       onClick={() => deleteCookie(item._id)}
-                      className="btn btn-outline-danger btn-sm px-3"
+                      className="btn btn-outline-danger btn-sm px-3" style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-trash"></i>
                     </button>
@@ -229,7 +229,7 @@ const PageCookiesDashboard = () => {
 
       <div className="text-center mt-5 mb-5">
         <button
-          className="btn btn-lg px-5 rounded-pill border-0 fw-bold"
+          className="btn btn-lg px-5 rounded-pill border-0"
           style={{
             backgroundColor: "var(--marronRouge)",
             color: "var(--creme)",

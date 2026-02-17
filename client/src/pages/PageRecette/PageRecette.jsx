@@ -162,37 +162,21 @@ const PageRecette = () => {
   };
   return (
     <div className="pageRecette">
-      <div className="header-recette-background">
-        <nav aria-label="breadcrumb">
-          <ol className="breadcrumb pt-3">
-            {" "}
-            <li className="breadcrumb-item px-3">
-              <Link to="/" style={{ width: "3rem" }}>
-                Home
-              </Link>
-            </li>
-            <li className="breadcrumb-item" aria-current="page">
-              Recettes
-            </li>
-          </ol>
-        </nav>
+       
 
         <div className="titre">
-          <h1 className="titrePageRecette px-4">
-            Lancez-vous <br /> en cuisine
+          <h1 className="titrePageRecette ">
+            Lancez-vous <br /> en cuisine 
           </h1>
-          <h2 className="titrePageRecetteh2 px-4">
-            et testez nos meilleures recettes
+          <h2 className="titrePageRecetteh2 ">
+            & <br /> testez nos meilleures recettes
           </h2>
         </div>
-      </div>
  
 
       <div>
-        <div className="horizontalTitle">
-          <h2>Amusez-vous & pâtissez</h2>
-        </div>
-        <p className=" intro col-sm-6 col-md-8 col-lg-12 px-5 mt-5 pb-5">
+       
+        <p className=" intro col-sm-6 col-md-8 col-lg-8 px-5 mt-5 pb-5">
           Laissez-vous inspirer par nos variantes créatives, gourmandes et
           généreuses. Des idées simples et rapides à reproduire chez vous, avec
           le goût authentique de nos pâtisseries. <br />
@@ -418,7 +402,7 @@ const PageRecette = () => {
           </div>
 
           <div className="col-md-2 text-center p-5">
-            <img src={cookie} alt="Stuffed Cookie" />
+            <img src={cookie} alt="Stuffed Cookie" className="stuffedCookie" />
           </div>
         </div>
         {/* SECTION AVIS */}
@@ -447,13 +431,7 @@ const PageRecette = () => {
                 <p> Nom de la recette : {item.recetteTest}</p>
                 <p>Commentaire: {item.commentaire}</p>
               </div>{" "}
-              <img
-                src={cookie}
-                alt="cookie"
-                height={200}
-                width={200}
-                className="vosAvisImg"
-              />
+              
             </div>
           ))}
         </div>
@@ -535,7 +513,7 @@ const PageRecette = () => {
               </>
             ) : (
               <form onSubmit={handleSubmitUser}>
-                <h2>Connectez vous pour rédiger un avis!</h2>
+                <h3>Connectez vous pour rédiger un avis!</h3>
 
                 {SIGN_FIELDS.map((field, index) => (
                   <div className="input-group flex-nowrap mb-3" key={index}>
@@ -560,6 +538,7 @@ const PageRecette = () => {
                       style={{ border: "var(--marronRouge) 2px solid" }}
                     />
                   </div>
+
                 ))}
                 <div className="d-grid">
                   <button
@@ -570,6 +549,7 @@ const PageRecette = () => {
                       color: "var(--marronRouge)",
                       marginBottom: "2rem",
                     }}
+                    onClick={()=>navigate("/recette")}
                   >
                     Je me connecte{" "}
                   </button>

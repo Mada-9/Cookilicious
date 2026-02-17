@@ -106,7 +106,7 @@ export const PanierProvider = ({ children }) => {
         nouveauPanier = JSON.parse(panier);
         // Verifier si l 'article selectionné existe déjà dans le panier
         const produitFinded = nouveauPanier.find(
-          (item) => item._id == product._id
+          (item) => item._id == product._id,
         );
 
         // si l'article existe déjà, on augmente sa quantité de 1
@@ -117,10 +117,10 @@ export const PanierProvider = ({ children }) => {
           // sinon on ajoute l article dans le panier
           nouveauPanier.push({ ...product });
           toast.success("Votre produit a été ajouté au panier!");
-
         }
       } else {
         nouveauPanier.push({ ...product });
+        toast.success("Votre produit a été ajouté au panier!");
       }
       // Enregistre le nouveau panier dans le storage grace a setItem
       savePanierTotalLocalStorage(nouveauPanier);
@@ -129,6 +129,17 @@ export const PanierProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const clearPanier = () => {
+    localStorage.removeItem("panier")
+    setPanier([])
+  };
+
+
+
+
+
+
 
   return (
     <PanierContext.Provider
@@ -141,6 +152,7 @@ export const PanierProvider = ({ children }) => {
         totalProduit,
         panier,
         totalPrice,
+        clearPanier,
       }}
     >
       {children}

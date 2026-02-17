@@ -7,7 +7,6 @@ const PageApropos = () => {
     <>
       <h2
         style={{
-          // backgroundColor:"var(--marronRouge)",
           padding: "2rem",
           color: "var(--jaune)",
           fontSize:"3rem", justifySelf:"center"

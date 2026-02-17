@@ -7,12 +7,7 @@ import { SIGN_FIELDS } from "../../utils/config/FormFields";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { toast } from "react-toastify";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import { Elements, CardElement, useStripe } from "@stripe/react-stripe-js";
 
 import "./PagePaiement.css";
 
@@ -20,19 +15,15 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
 const CheckoutForm = ({ onPaymentSuccess }) => {
   const stripe = useStripe();
-  const elements = useElements();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) return;
-
     setLoading(true);
-    // Simulation du traitement Stripe
-    setTimeout(async () => {
-      setLoading(false);
+    setTimeout(() => {
       toast.success("Paiement validé !");
-      await onPaymentSuccess(); // on appelle handleFinalSuccess
+      onPaymentSuccess();
+      setLoading(false);
     }, 1500);
   };
 
@@ -57,28 +48,21 @@ const CheckoutForm = ({ onPaymentSuccess }) => {
 // *********************************************************************************************************************
 
 const PagePaiement = () => {
-    const [showPassword, setShowPassword] = useState(false);
-
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { user, login } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
   const [livraison, setLivraison] = useState({});
-  const {
-    totalProduit,
-    panier,
-    totalPrice,
-  } = useContext(PanierContext);
-
-
-
-
-
-
+  const { totalProduit, panier, totalPrice, clearPanier } =
+    useContext(PanierContext);
 
   const handleFinalSuccess = async () => {
     try {
-      // Calcul du total a expliqer
-    const prixTotalCommande = panier.reduce((total, article) => total + (article.prix * article.quantite), 0); 
+      // Calcule le montant total du panier en additionnant le (prix * quantité) de chaque article, reduce réduit le tableau
+      const prixTotalCommande = panier.reduce(
+        (total, article) => total + article.prix * article.quantite, // on récupère les infos de article
+        0, // 0 valeur de départ
+      );
       const commande = {
         user: user._id,
         adresse_livraison: {
@@ -86,29 +70,30 @@ const PagePaiement = () => {
           prenom: livraison.prenom,
           email: livraison.email,
           adresse: livraison.adresse,
-          complementAdresse: livraison.complementAddresse || "",
+          complementAdresse: livraison.complementAdresse,
           ville: livraison.ville,
           pays: livraison.pays,
-          codePostal: livraison.CodePostal,
+          codePostal: livraison.codePostal,
         },
         items: panier.map((i) => ({
           produitId: i._id,
-          titre: i.titre, // envoie pour qu'il soit sauvegardé dans la commande
-          image: i.photo, 
+          titre: i.titre,
+          image: i.photo,
           prixUnitaire: i.prix,
           quantite: i.quantite,
         })),
         prixTotal: prixTotalCommande,
         paiement: "carte",
       };
+
       const { status } = await axiosinstance.post(URL.POST_COMMANDE, commande);
       if (status === 201 || status === 200) {
         toast.success("Commande réussie !");
-        localStorage.removeItem("panier");
+        clearPanier();
         navigate("/paiement/redirect");
       }
     } catch (error) {
-      console.error("Détails erreur :", error.response?.data || error.message);
+      console.error(error.message);
       toast.error("Erreur lors de l'enregistrement");
     }
   };
@@ -137,11 +122,7 @@ const PagePaiement = () => {
 
   return (
     <div className="pagePaiement">
-      
-      
       <h2 className="text-center my-4">Finalisation paiement</h2>
-
-
 
       <div className="container py-5">
         <div className="row g-5">
@@ -256,13 +237,13 @@ const PagePaiement = () => {
                       </select>
                     </div>
                     <div className="col-md-3">
-                      <label htmlFor="CodePostal" className="form-label">
+                      <label htmlFor="codePostal" className="form-label">
                         CP
                       </label>
                       <input
                         type="number"
-                        name="CodePostal"
-                        id="CodePostal"
+                        name="codePostal"
+                        id="codePostal"
                         className="form-control mb-3"
                         placeholder="75014"
                         onChange={handleChangeForm}
@@ -282,31 +263,64 @@ const PagePaiement = () => {
                 </form>
               </div>
             ) : (
-              /* Ton bloc connexion reste ici */
-              <div className="col-md-9 mx-auto  p-5  text-center" style={{border:"1px solid var(--marronRouge)", borderRadius:"5%"}}>
+              <div
+                className="col-md-9 mx-auto  p-5  text-center"
+                style={{
+                  border: "1px solid var(--marronRouge)",
+                  borderRadius: "5%",
+                }}
+              >
                 <h4>Veuillez vous connecter</h4>
                 <form onSubmit={handleSubmitUser}>
                   {SIGN_FIELDS.map((field, index) => (
-                   <div className="input-group flex-nowrap mb-3 " key={index} style={{marginRight:"5rem"}}>
-                      <span className="input-group-text" id="addon-wrapping" style={{ border: "var(--marronRouge) 2px solid" }}>
-                        <i className={field.icon} style={{ color: "var(--marronRouge)" }} ></i>
+                    <div
+                      className="input-group flex-nowrap mb-3 "
+                      key={index}
+                      style={{ marginRight: "5rem" }}
+                    >
+                      <span
+                        className="input-group-text"
+                        id="addon-wrapping"
+                        style={{ border: "var(--marronRouge) 2px solid" }}
+                      >
+                        <i
+                          className={field.icon}
+                          style={{ color: "var(--marronRouge)" }}
+                        ></i>
                       </span>
                       <input
-                        type={field.type === "password" ? (showPassword ? "text" : "password") : field.type}
+                        type={
+                          field.type === "password"
+                            ? showPassword
+                              ? "text"
+                              : "password"
+                            : field.type
+                        }
                         className="form-control"
                         placeholder={field.placeholder}
                         name={field.name}
                         onChange={handleChangeUser}
-                        style={{ border: "var(--marronRouge) 2px solid", borderRight: "none" }}
+                        style={{
+                          border: "var(--marronRouge) 2px solid",
+                          borderRight: "none",
+                        }}
                       />
                       {field.type === "password" && (
-                        <button 
-                          className="btn btn-outline-secondary" 
-                          type="button" 
+                        <button
+                          className="btn btn-outline-secondary"
+                          type="button"
                           onClick={() => setShowPassword(!showPassword)}
-                          style={{ border: "var(--marronRouge) 2px solid", borderLeft: "none" }}
+                          style={{
+                            border: "var(--marronRouge) 2px solid",
+                            borderLeft: "none",
+                          }}
                         >
-                          <i className={showPassword ? "bi bi-eye-slash" : "bi bi-eye"} style={{ color: "var(--marronRouge)" }}></i>
+                          <i
+                            className={
+                              showPassword ? "bi bi-eye-slash" : "bi bi-eye"
+                            }
+                            style={{ color: "var(--marronRouge)" }}
+                          ></i>
                         </button>
                       )}
                     </div>

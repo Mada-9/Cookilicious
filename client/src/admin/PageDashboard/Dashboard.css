@@ -1,37 +1,34 @@
 .table {
-  border:  8px  solid var(--marronRouge) !important;
+  border: 8px solid var(--marronRouge) !important;
   background-color: var(--creme) !important;
-  
 }
 
 .thTable {
   color: var(--marronRouge) !important;
   background-color: var(--creme) !important;
- 
 }
 .tdTable {
-    background-color: var(--creme) !important;
-    color: var(--marronRouge) !important;
-
+  background-color: var(--creme) !important;
+  color: var(--marronRouge) !important;
 }
 .tdActions {
-
-    background-color: var(--creme) !important;
-
+  background-color: var(--creme) !important;
 }
 
-
-.dashboardHeader{
+.dashboardHeader {
   display: flex;
-   border-left: 4px var(--jaune) solid !important;
-   margin-left:3rem;
-   margin-top: 2rem;
-   padding-left: 1rem;
-   
+  border-left: 4px var(--jaune) solid !important;
+  margin-left: 3rem;
 }
 
-
-.detailProduitImg{
+.detailProduitImg {
   justify-self: center !important;
   display: flex;
+}
+
+@media (max-width: 768px) {
+  .dashboardHeader {
+    padding: 0rem !important;
+    flex-wrap: wrap;
+justify-items: left;  }
 }

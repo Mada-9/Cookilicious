@@ -64,7 +64,7 @@ const UpdateMembre = () => {
 
   return (
     <>
-      <h2 className="dashboardHeader">Update Membre</h2>
+      <h2 className="dashboardHeader ps-lg-4">Update Membre</h2>
 
       <div
         className="col-8"

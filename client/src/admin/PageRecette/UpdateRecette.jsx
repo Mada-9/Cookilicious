@@ -68,7 +68,7 @@ const UpdateRecette = () => {
 
   return (
     <>
-      <h2  className="dashboardHeader">Update Recette</h2>
+      <h2  className="dashboardHeader ps-lg-4">Update Recette</h2>
 
       <div
         className="col-8"

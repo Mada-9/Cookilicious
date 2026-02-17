@@ -36,13 +36,32 @@ const PageMembresDashboard = () => {
     }
   };
 
+
+
+  
+  const toggleStatus = async (id, currentStatus) => {
+    try {
+      const { status } = await axiosinstance.put(
+        `${URL.UPDATE_MEMBRE}/${id}`,
+        { isActive: !currentStatus }
+      );
+      if (status === 200) {
+        toast.success(currentStatus ? "Membre désactivée" : "Membre activée");
+        getAllMembres();
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Erreur de mise à jour");
+    }
+  };
+
+
   return (
     <div className="container-fluid px-2 px-md-5 py-4" style={{ color: "var(--marronRouge)" }}>
       
       <div className="row mb-5 mt-4">
-        <div className="col-12 border-start border-4 ps-4" style={{ borderColor: "var(--jaune) !important" }}>
-          <h2 className="display-6 fw-bold mb-0">Gestion des Membres</h2>
-        </div>
+          <h2 className="dashboardHeader display-6  mb-0 ps-lg-4">Gestion des Membres</h2>
+     
       </div>
 
       <div className="row justify-content-center">
@@ -85,8 +104,19 @@ const PageMembresDashboard = () => {
                         {item.role?.toUpperCase()}
                       </span>
                     </td>
+                   
                     <td className="tdTable">
-                      <div className="d-flex justify-content-center gap-2">
+
+                      <div className="d-flex justify-content-center gap-2" >
+                         <button
+                          onClick={() => toggleStatus(item._id, item.isActive)}
+                          className="btn btn-sm btn-outline-secondary"
+                          title="Changer statut"
+                        >
+                          <i
+                            className={`bi ${item.isActive ? "bi-toggle-on text-success" : "bi-toggle-off"}`}
+                          ></i>
+                        </button>
                       
                         <button onClick={() => navigate(`/admin/membredetail/${item._id}`)} className="btn btn-sm btn-outline-secondary">
                           <i className="bi bi-eye"></i>
@@ -109,14 +139,17 @@ const PageMembresDashboard = () => {
           <div className="d-md-none">
             {membres.map((item) => (
               <div key={item._id} className="card mb-3 border-0 shadow-sm p-3">
-                <div className="d-flex justify-content-between align-items-start mb-2">
-                  <h6 className="fw-bold mb-0">{item.prenom} {item.nom}</h6>
-                  <span className="badge bg-light text-dark border small">{item.role}</span>
+                <div className="d-flex justify-content-between align-items-start mb-2" style={{color:"var(--marronRouge)"}}>
+                  <h6 className=" mb-0">{item.prenom} {item.nom}</h6>
+                  <span className="badge  border small" style={{color:"var(--marronRouge)"}}>{item.role}</span>
                 </div>
                 <p className="small text-muted mb-3">{item.email}</p>
+                  <button onClick={() => toggleStatus(item._id, item.isActive)} className="btn btn-light btn-sm flex-grow-1 me-2 border" style={{color:"var(--marronRouge)"}}>
+                      <i className="bi bi-power me-1"></i> Statut
+                    </button>
                 <div className="d-flex gap-2">
-                  <button onClick={() => navigate(`/admin/membredetail/${item._id}`)} className="btn btn-sm flex-grow-1 border">Voir</button>
-                  <button onClick={() => navigate(`/admin/updatemembre/${item._id}`)} className="btn btn-sm flex-grow-1 border">Modif</button>
+                  <button onClick={() => navigate(`/admin/membredetail/${item._id}`)} className="btn btn-sm flex-grow-1 border" style={{color:"var(--marronRouge)"}}>Voir</button>
+                  <button onClick={() => navigate(`/admin/updatemembre/${item._id}`)} className="btn btn-sm flex-grow-1 border" style={{color:"var(--marronRouge)"}}>Modif</button>
                   <button onClick={() => deleteMembre(item._id)} className="btn btn-sm btn-outline-danger px-3"><i className="bi bi-trash"></i></button>
                 </div>
               </div>

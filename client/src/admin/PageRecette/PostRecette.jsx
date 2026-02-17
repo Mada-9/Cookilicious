@@ -38,11 +38,11 @@ const PostRecette = () => {
 
   return (
     <div style={{}}>
-      <h2 className="dashboardHeader">Post Recette</h2>
+      <h2 className="dashboardHeader ps-lg-4">Post Recette</h2>
       <div
         className="col-8"
         style={{
-          border: "4px black solid",
+          border: "4px var(--marronRouge) solid",
           justifySelf: "center",
           alignSelf: "center",
           margin: "2rem",

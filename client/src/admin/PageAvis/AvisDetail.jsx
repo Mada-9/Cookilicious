@@ -32,7 +32,7 @@ const AvisDetail = () => {
         <p className="text-center">Chargement...</p>
       ) : (
         <div className="text-center">
-          <h2 className="dashboardHeader mb-4">Détail de l'avis</h2>
+          <h2 className="dashboardHeader mb-4 ps-lg-4">Détail de l'avis</h2>
           
           <div
             style={{
@@ -44,7 +44,7 @@ const AvisDetail = () => {
               borderBottom: "1px solid #eee"
             }}
           >
-            <p className="fw-bold fs-4 mb-0">Pseudo: {detailAvis.user?.pseudo}</p>
+            <p className=" fs-4 mb-0">Pseudo: {detailAvis.user?.pseudo}</p>
             
             <p className=" small">
               Posté le : {detailAvis.createdAt ? new Date(detailAvis.createdAt).toLocaleDateString('fr-FR') : "Date"}
@@ -69,7 +69,7 @@ const AvisDetail = () => {
       <div className="text-center mt-5 mb-5">
         <button
           className="btn  btn-lg px-5 rounded-pill
-           fw-bold"
+          "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

@@ -1,72 +1,48 @@
 .pageRecette {
-  margin-top: 0 !important;
   padding-bottom: 10rem;
-}
-
-.header-recette-background {
-  background-image: url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
-  background-size: cover;
-  background-position: center;
-  margin-top: -100px; /* Doit correspondre à la hauteur de ton header */
-  padding-top: 100px; /* On pousse le contenu vers le bas pour ne pas qu'il soit SOUS le texte du header */
-
-  border-bottom: 3px solid var(--jaune); /* Optionnel : une petite ligne de séparation */
-}
-
-.bg-recette-global header {
-  background: transparent !important;
-  background-color: transparent !important;
-  border: none !important;
-  position: relative;
-  z-index: 1000;
+  margin-top: 2rem;
 }
 
 .titrePageRecette {
-  text-align: left;
-  padding-left: 1rem;
+    padding-top: 5rem;
+  text-align: center;
+  background-color: var(--marronRouge);
+  color: var(--creme);
+  margin: 0rem;
 }
+
 .titrePageRecetteh2 {
   margin-bottom: 6rem;
-}
-.phraseIntro {
-  text-align: justify;
-  color: var(--creme);
+  padding-bottom: 5rem;
+  text-align: center;
   background-color: var(--marronRouge);
-  padding-bottom: 14px;
-  height: auto;
+  color: var(--creme);
 }
+
+
 
 .intro {
-  text-align: center;
-}
-
-.horizontalTitle h2 {
+  color: var(--marronRouge);
   text-align: center;
   justify-self: center;
-  font-size: 5rem !important;
-  margin-top: 9rem;
 }
 
-/* Conteneur principal */
 .recipesContainerHorizontal {
   padding: 4rem 2rem;
-  background-color: var(--creme); /* ou la couleur de ton choix */
+  background-color: var(--creme); 
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin-top: 2rem;
 }
 
-/* Le wrapper qui permet le scroll */
 .horizontalScrollWrapper {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
   padding: 1rem 0.5rem 2rem 0.5rem;
   scroll-behavior: smooth;
-  /* Masquer la scrollbar sur IE/Edge */
   -ms-overflow-style: none;
-  /* Masquer la scrollbar sur Firefox */
   scrollbar-width: thin;
   scrollbar-color: var(--jaune);
 }
@@ -74,7 +50,7 @@
 /* Style des cartes */
 .recetteCard {
   width: 50rem !important;
-  height: auto;
+  height: 32rem !important;
   border-radius: 20px;
   padding: 2rem;
   display: flex;
@@ -115,19 +91,12 @@
 
 .btnVoirRecetteCard {
   background: transparent;
-
   border: 2px solid var(--marronRouge);
-
   color: var(--marronRouge);
-
   padding: 10px;
-
   border-radius: 50px;
-
   font-weight: bold;
-
   transition: all 0.3s ease;
-
   padding: 1rem 0.5rem 2rem 0.5rem;
 }
 
@@ -246,12 +215,10 @@
   max-width: 400px;
 }
 
-/* Le wrapper qui permet le scroll */
 .horizontalScrollWrapper {
   display: flex;
   gap: 2rem;
   overflow-x: auto;
-  /* Centrage si peu de cartes, scroll si beaucoup */
   justify-content: flex-start;
   padding: 2rem;
   scroll-behavior: smooth;
@@ -262,25 +229,21 @@
   display: none;
 }
 
-/* Style des cartes */
 .recetteCard {
-  /* On utilise flex-basis pour la largeur responsive */
   flex: 0 0 350px;
   height: auto;
   border-radius: 20px;
   padding: 2rem;
-
-  /* Centrage interne du contenu de la carte */
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centre horizontalement les éléments internes (titre, image) */
+  align-items: center;
   justify-content: space-between;
 
   background-color: #fff;
   box-shadow: 0 10px 20px rgba(161, 107, 14, 0.2);
   border: 1px solid #eee;
   transition: transform 0.3s ease;
-  scroll-snap-align: center; /* La carte s'aimante AU CENTRE de l'écran au scroll */
+  scroll-snap-align: center;
 }
 
 .recetteCardBadge {
@@ -292,47 +255,47 @@
   font-size: 0.8rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  align-self: center; /* Centre le badge jaune */
+  align-self: center;
 }
 
 .titreRecetteCard {
   color: var(--marronRouge);
   font-size: 1.5rem;
   margin-bottom: 1rem;
-  text-align: center; /* Centre le texte du titre */
+  text-align: center;
   height: auto !important;
 }
 
 .descRecetteCard {
   width: 100%;
   display: flex;
-  justify-content: center; /* Centre l'image dans son conteneur */
+  justify-content: center;
   margin-bottom: 1.5rem;
 }
 
 .descRecetteCard img {
-  width: 250px; /* Taille fixe demandée dans ton JSX */
+  width: 250px;
   height: 250px;
   object-fit: cover;
   border-radius: 15px;
 }
 
 .btnVoirRecetteCard {
-  padding: 10px 30px; /* Un peu plus de largeur pour le bouton */
+  padding: 10px 30px;
   border-radius: 50px;
   font-weight: bold;
   transition: all 0.3s ease;
   cursor: pointer;
-  width: fit-content; /* Le bouton ne prend que la place nécessaire et reste centré */
+  width: fit-content;
 }
 
-/* Ajustement Mobile pour le centrage */
+/* RESPONSIVE*/
 @media (max-width: 480px) {
   .recetteCard {
-    flex: 0 0 85%; /* Largeur de la carte sur mobile */
+    flex: 0 0 85%;
   }
   .horizontalScrollWrapper {
-    padding: 1rem 7.5%; /* Aide à voir le début de la carte suivante */
+    padding: 1rem 7.5%;
   }
 }
 
@@ -355,225 +318,226 @@
     position: static;
     justify-self: center;
     margin-bottom: 0rem;
-  }/* --- STRUCTURE GLOBALE --- */
-.pageRecette {
-  margin-top: 0 !important;
-  padding-bottom: 5rem;
-}
+  }
 
-.header-recette-background {
-  background-image: url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
-  background-size: cover;
-  background-position: center;
-  margin-top: -100px;
-  padding-top: 100px;
-  border-bottom: 3px solid var(--jaune);
-}
+  /* STRUCTURE GLOBALE  */
+  .pageRecette {
+    margin-top: 0 !important;
+    padding-bottom: 5rem;
+  }
 
-.titrePageRecette {
-  text-align: left;
-  padding: 0 1rem;
-  font-size: clamp(2.5rem, 5vw, 5rem);
-}
+  .header-recette-background {
+    background-image: url("../../assets/images/texture-de-creme-glacee-a-la-vanille.jpg");
+    background-size: cover;
+    background-position: center;
+    margin-top: -100px;
+    padding-top: 100px;
+    border-bottom: 3px solid var(--jaune);
+  }
 
-.titrePageRecetteh2 {
-  margin-bottom: 6rem;
-  padding: 0 1rem;
-}
+  .titrePageRecette {
+    padding: 0 1rem;
+    font-size: clamp(2.5rem, 5vw, 5rem);
+  }
 
-.phraseIntro {
-  text-align: justify;
-  color: var(--creme);
-  background-color: var(--marronRouge);
-  padding: 2rem;
-  height: auto;
-}
+  .titrePageRecetteh2 {
+    margin-bottom: 6rem;
+    padding: 0 1rem;
+  }
 
-/* --- SECTION CARTES HORIZONTALES --- */
-.horizontalTitle h2 {
-  text-align: center;
-  font-size: clamp(2rem, 4vw, 5rem) !important;
-  margin-top: 5rem;
-  color: var(--marronRouge);
-}
+  .phraseIntro {
+    text-align: justify;
+    color: var(--creme);
+    background-color: var(--marronRouge);
+    padding: 2rem;
+    height: auto;
+  }
 
-.recipesContainerHorizontal {
-  padding: 2rem 0;
-  background-color: var(--creme);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
+  /* --- SECTION CARTES HORIZONTALES --- */
+  .horizontalTitle h2 {
+    text-align: center;
+    font-size: clamp(2rem, 4vw, 5rem) !important;
+    margin-top: 5rem;
+    color: var(--marronRouge);
+  }
 
-/* Le wrapper qui gère le scroll et le centrage */
-.horizontalScrollWrapper {
-  display: flex;
-  gap: 2rem;
-  overflow-x: auto;
-  justify-content: flex-start; /* Important pour le scroll */
-  align-items: center;
-  padding: 2rem;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  
-  /* Scrollbar visible sur Firefox */
-  scrollbar-width: thin;
-  scrollbar-color: var(--marronRouge) transparent;
-}
-
-/* Scrollbar pour Chrome/Safari */
-.horizontalScrollWrapper::-webkit-scrollbar {
-  height: 8px;
-  display: block;
-}
-.horizontalScrollWrapper::-webkit-scrollbar-thumb {
-  background: var(--marronRouge);
-  border-radius: 10px;
-}
-
-/* Style de la Carte */
-.recetteCard {
-  flex: 0 0 350px; /* Largeur fixe */
-  height: auto;
-  min-height: 480px;
-  border-radius: 20px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #fff;
-  box-shadow: 0 10px 20px rgba(161, 107, 14, 0.2);
-  border: 1px solid #eee;
-  transition: all 0.3s ease;
-  scroll-snap-align: center;
-}
-
-.recetteCard:hover {
-  transform: translateY(-10px);
-  border-color: var(--jaune);
-}
-
-.recetteCardBadge {
-  background: var(--jaune);
-  color: var(--marronRouge);
-  padding: 4px 15px;
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.titreRecetteCard {
-  color: var(--marronRouge);
-  font-size: 1.5rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  text-transform: capitalize;
-}
-
-.descRecetteCard img {
-  width: 250px;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 1rem;
-}
-
-.btnVoirRecetteCard {
-  background: transparent;
-  border: 2px solid var(--marronRouge);
-  color: var(--marronRouge);
-  padding: 10px 30px;
-  border-radius: 50px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btnVoirRecetteCard:hover {
-  background: var(--marronRouge);
-  color: white;
-}
-
-/* --- MODAL --- */
-.modal-content {
-  color: var(--marronRouge);
-  border-radius: 20px;
-}
-
-.titrePreparation {
-  color: var(--jaune);
-  margin: 1.5rem 0;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* --- SECTION AVIS --- */
-.vosAvis {
-  font-size: clamp(2rem, 5vw, 5rem);
-  text-align: center;
-  margin-bottom: 3rem;
-  color: var(--marronRouge);
-}
-
-.vosAvisSection {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-}
-
-.vosAvisImg {
-  border-radius: 15px;
-  object-fit: cover;
-}
-
-.ligne {
-  border-top: 3px solid var(--marronRouge);
-  width: 70%;
-  margin: 4rem auto;
-}
-
-.btnPublier {
-  background: var(--jaune);
-  color: var(--marronRouge);
-  padding: 12px 28px;
-  border-radius: 50px;
-  border: none;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* --- RESPONSIVITÉ --- */
-@media (max-width: 768px) {
-  .vosAvisSection {
+  .recipesContainerHorizontal {
+    padding: 2rem 0;
+    background-color: var(--creme);
+    display: flex;
     flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Le wrapper qui gère le scroll et le centrage */
+  .horizontalScrollWrapper {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    justify-content: flex-start; /* Important pour le scroll */
+    align-items: center;
+    padding: 2rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+
+    /* Scrollbar visible sur Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--marronRouge) transparent;
+  }
+
+  /* Scrollbar pour Chrome/Safari */
+  .horizontalScrollWrapper::-webkit-scrollbar {
+    height: 8px;
+    display: block;
+  }
+  .horizontalScrollWrapper::-webkit-scrollbar-thumb {
+    background: var(--marronRouge);
+    border-radius: 10px;
+  }
+
+  /* Style de la Carte */
+  .recetteCard {
+    flex: 0 0 350px; /* Largeur fixe */
+    height: auto;
+    min-height: 480px;
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(161, 107, 14, 0.2);
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+    scroll-snap-align: center;
+  }
+
+  .recetteCard:hover {
+    transform: translateY(-10px);
+    border-color: var(--jaune);
+  }
+
+  .recetteCardBadge {
+    background: var(--jaune);
+    color: var(--marronRouge);
+    padding: 4px 15px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .titreRecetteCard {
+    color: var(--marronRouge);
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+  }
+
+  .descRecetteCard img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+  }
+
+  .btnVoirRecetteCard {
+    background: transparent;
+    border: 2px solid var(--marronRouge);
+    color: var(--marronRouge);
+    padding: 10px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .btnVoirRecetteCard:hover {
+    background: var(--marronRouge);
+    color: white;
+  }
+
+  /* --- MODAL --- */
+  .modal-content {
+    color: var(--marronRouge);
+    border-radius: 20px;
+  }
+
+  .titrePreparation {
+    color: var(--jaune);
+    margin: 1.5rem 0;
+    font-weight: bold;
     text-align: center;
   }
-  
-  .recetteCard {
-    flex: 0 0 280px;
-  }
-}
 
-@media (max-width: 480px) {
-  .recetteCard {
-    flex: 0 0 85%;
+  /* --- SECTION AVIS --- */
+  .vosAvis {
+    font-size: clamp(2rem, 5vw, 5rem);
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--marronRouge);
   }
-  .horizontalScrollWrapper {
-    padding: 1rem 7.5%;
+
+  .vosAvisSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
   }
-  .titrePageRecette {
-    font-size: 2rem !important;
+
+  .vosAvisImg {
+    border-radius: 15px;
+    object-fit: cover;
   }
-}
+
+  .ligne {
+    border-top: 3px solid var(--marronRouge);
+    width: 70%;
+    margin: 4rem auto;
+  }
+
+  .btnPublier {
+    background: var(--jaune);
+    color: var(--marronRouge);
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  /* --- RESPONSIVITÉ --- */
+  @media (max-width: 768px) {
+    .vosAvisSection {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .recetteCard {
+      flex: 0 0 280px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .recetteCard {
+      flex: 0 0 85%;
+    }
+    .horizontalScrollWrapper {
+      padding: 1rem 7.5%;
+    }
+    .titrePageRecette {
+      font-size: 2rem !important;
+    }
+  }
 
   .titreAnimRecette {
-    position: static; /* le titre redevient normal */
+    position: static;
     transform: none;
     margin-bottom: 2rem;
     max-width: 100%;
@@ -582,7 +546,7 @@
   }
 
   .animRecette {
-    padding-left: 0 !important; /* plus d’espace réservé */
+    padding-left: 0 !important;
     padding-top: 2rem;
   }
 
@@ -600,7 +564,7 @@
     margin: 0rem;
   }
   .btnVoirRecette {
-    width: 100% !important; /* boutons mobile-friendly */
+    width: 100% !important;
     max-width: 100%;
     margin-bottom: 3rem;
     z-index: 10 !important;
@@ -626,7 +590,7 @@
 
 @media (min-width: 480px) and (max-width: 768px) {
   .recetteCard {
-    flex: 0 0 260px; /* Plus petit sur tablette/mobile */
+    flex: 0 0 260px;
   }
 
   .titrePageRecette {
@@ -636,9 +600,15 @@
 
 @media (max-width: 480px) {
   .recetteCard {
-    flex: 0 0 85%; /* Presque toute la largeur sur petit mobile */
+    flex: 0 0 85%;
   }
- 
+  .stuffedCookie {
+    margin-left: 40rem !important;
+    height: 1px;
+  }
+  .sectionAvis {
+    margin-top: 5rem !important;
+  }
 }
 
 .vosAvis {
@@ -665,7 +635,6 @@
 .avisSection {
   justify-items: center;
   font-size: 1rem;
-  /* border-top: 3px var(--marronRouge) solid; */
   align-items: center;
   padding-top: 5rem;
 }

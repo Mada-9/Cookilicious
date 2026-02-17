@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
 
-
 import "./panier.css"; // CSS
 
 //CONTEXT
@@ -75,20 +74,19 @@ const PagePanier = () => {
               <p className="totalPanier">
                 Total du panier : {totalPrice} € ({totalProduit()} produits)
               </p>
-             <button
-  className="btnPasserCommande"
-  type="button"
-  data-back="Passer la commande"
-  data-front="Passer la commande"
-  onClick={() => {
-    if (panier.length === 0) {
-      toast.error("Votre panier est vide ❌");
-      return;
-    }
-    navigate("/paiement");
-  }}
->
-</button>
+              <button
+                className="btnPasserCommande"
+                type="button"
+                data-back="Passer la commande"
+                data-front="Passer la commande"
+                onClick={() => {
+                  if (panier.length === 0) {
+                    toast.error("Votre panier est vide");
+                    return;
+                  }
+                  navigate("/paiement");
+                }}
+              ></button>
             </div>
           ) : (
             <p>panier vide </p>

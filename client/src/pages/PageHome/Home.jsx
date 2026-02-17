@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import URL from "../../utils/constant/url";
 
 //CSS
-import "./Home.css"; // CSS
+import "./Home.css";
 
 //IMAGE
 import Brookie from "../../assets/images/brookie.webp";
@@ -63,13 +63,13 @@ const PageHome = ({}) => {
       const { status } = await axiosinstance.post(URL.POST_CONTACT, formData);
       console.log(formData);
       if (
-        formData.message.length >= 5 &&
         status === 201 &&
+        formData.message.length >= 5 &&
         formData.email.match(isValidEmail)
       ) {
         toast.success("message envoyé !");
       } else {
-        toast.error("veuillez ecrire un message valide");
+        toast.error("veuillez écrire un message valide");
       }
     } catch (error) {
       console.error("erreur lors de l'envoie du message:", error.message);
@@ -80,6 +80,7 @@ const PageHome = ({}) => {
     <>
       <div className="home">
         <h1 className="titleHome ">COOKILICIOUS</h1>
+        {console.log(cookie)}
         <motion.section style={{ y: ySlow }}>
           <div className="imageHome" onClick={() => navigate("/cookies")}>
             <img
@@ -130,42 +131,30 @@ const PageHome = ({}) => {
           </section>
         </div>
 
-      {/* SECTION RECETTE */}
-<div className="row m-0 recetteSection">
-  
-  {/* BLOC TEXTE */}
-  {/* col-12 sur mobile (le texte prend toute la largeur) */}
-  {/* col-md-8 sur PC (on garde tes proportions d'origine) */}
-  <div className="col-12 col-md-8 p-4 p-md-5">
-      <h2>
-        Découvrez nos <br /> recettes
-      </h2>
-    <p>
-      Des recettes inspirantes et accessibles pour éveiller votre
-      créativité en cuisine.
-    </p>
-    <p>
-      Des créations soigneusement élaborées pour sublimer les saveurs et
-      transformer chaque moment en expérience gourmande.
-    </p>
+        {/* SECTION RECETTE */}
+        <div className="row m-0 recetteSection">
+          <div className="col-12 col-md-8 p-4 p-md-5">
+            <h2>
+              Découvrez nos <br /> recettes
+            </h2>
+            <p>
+              Des recettes inspirantes et accessibles pour éveiller votre
+              créativité en cuisine.
+            </p>
+            <p>
+              Des créations soigneusement élaborées pour sublimer les saveurs et
+              transformer chaque moment en expérience gourmande.
+            </p>
 
-    <button className="btnStyle" onClick={() => navigate("/recette")}>
-      Découvrir
-    </button>
-  </div>
+            <button className="btnStyle" onClick={() => navigate("/recette")}>
+              Découvrir
+            </button>
+          </div>
 
-  {/* BLOC IMAGE */}
-  {/* col-12 sur mobile pour que l'image ne soit pas coincée dans 1/12ème de l'écran */}
-  {/* col-md-4 sur PC (ajusté pour que l'image ait de la place pour sortir) */}
-  <div className="col-12 col-md-4 text-center position-relative">
-    <img 
-      src={Brookie} 
-      alt="brookie" 
-      className="brookie" 
-      /* On garde TA classe "brookie" pour conserver TON CSS (le débordement, la taille, etc.) */
-    />
-  </div>
-</div>
+          <div className="col-12 col-md-4 text-center position-relative">
+            <img src={Brookie} alt="brookie" className="brookie" />
+          </div>
+        </div>
 
         <section className="phrasesContainer">
           <div style={{ zIndex: 2, wordSpacing: "0.5rem" }}>
@@ -203,7 +192,6 @@ const PageHome = ({}) => {
             </h3>
           </div>
 
-          {/* IMAGE COOKIE FLOTTANTE */}
           <div className="cookieImageWrapper">
             <img
               src="https://static.wixstatic.com/media/82955a_c48b31b6d3c143829ed3cb6ff83f7d69~mv2.png/v1/crop/x_69,y_0,w_2588,h_2629/fill/w_402,h_344,fp_0.50_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/PUFFY%20AVRIL%20(46).png"
@@ -213,7 +201,7 @@ const PageHome = ({}) => {
           </div>
         </section>
 
-        {/* PRODUITS AFFICHES SUR HOME */}
+        {/* PRODUITS  */}
         <div className="homeProduit px-5 ">
           <h1 className="homeProduitTitle text-left ">One more sweetness...</h1>
 
@@ -244,7 +232,7 @@ const PageHome = ({}) => {
                       </button>
                     </div>
                   </div>
-                )
+                ),
             )}
             {brookie.map(
               (brookie, index) =>
@@ -273,7 +261,7 @@ const PageHome = ({}) => {
                       </button>
                     </div>
                   </div>
-                )
+                ),
             )}
           </div>
         </div>

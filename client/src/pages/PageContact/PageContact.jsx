@@ -2,7 +2,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import URL from "../../utils/constant/url";
-import cookie from "../../assets/images/cookievelvetpistache.jpg";
 
 const PageContact = () => {
   const [formData, setFormData] = useState({ email: "", message: "" });

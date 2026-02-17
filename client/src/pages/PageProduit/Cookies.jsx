@@ -11,7 +11,6 @@ const Cookies = () => {
   const [cookie, setCookie] = useState([]);
   const { scrollY } = useScroll();
 
-  // plus on scroll, plus ça monte lentement
   const ySlow = useTransform(scrollY, [0, 700], [0, -120]);
 
   useEffect(() => {

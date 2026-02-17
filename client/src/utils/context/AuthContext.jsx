@@ -50,13 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   // Fonction pour gérer l'inscription
  const register = async (dataForm) => {
-  // 1. Définition de la Regex de sécurité
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
-  // 2. Vérification locale AVANT l'appel API (évite des requêtes inutiles)
-  if (!passwordRegex.test(dataForm.password)) {
-    return toast.error("Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un symbole.");
-  }
 
   try {
     // 3. Appel au backend

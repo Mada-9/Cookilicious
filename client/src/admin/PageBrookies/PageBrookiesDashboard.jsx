@@ -58,10 +58,10 @@ const PageBrookiesDashboard = () => {
   return (
     <div className="container-fluid px-2 px-md-5 py-4">
       <div
-        className="dashboardHeader text-center mb-5 col-12 border-start border-4 ps-4"
+        className="dashboardHeader text-center mb-5 col-12  border-4 ps-lg-4"
         style={{ borderColor: "var(--jaune) !important" }}
       >
-        <h2 className="fw-bold">Gestion du Catalogue Brookies</h2>
+        <h2 >Gestion du Catalogue Brookies</h2>
       </div>
 
       <div className="row justify-content-center">
@@ -93,11 +93,11 @@ const PageBrookiesDashboard = () => {
                             objectFit: "cover",
                           }}
                         />
-                        <span className="fw-bold text-dark">{item.titre}</span>
+                        <span >{item.titre}</span>
                       </div>
                     </td>
                     <td className="tdTable">
-                      <span className="badge bg-light text-dark border">
+                      <span className="badge border" style={{color:"var(--marronRouge)"}}>
                         {item.prix} €
                       </span>
                     </td>
@@ -163,14 +163,14 @@ const PageBrookiesDashboard = () => {
           </div>
 
           {/* ---  VERSION MOBILE = CARTES --- */}
-          <div className="d-md-none">
+          <div className="d-md-none" style={{color:"var(--marronRouge)"}}>
             {brookie.map((item) => (
               <div
                 key={item._id}
                 className="card mb-3 border-0 shadow-sm rounded-4 overflow-hidden"
               >
-                <div className="card-body p-3">
-                  <div className="d-flex align-items-center mb-3">
+                <div className="card-body p-3" style={{color:"var(--marronRouge)"}}>
+                  <div className="d-flex align-items-center mb-3" >
                     <img
                       src={item.photo}
                       alt={item.titre}
@@ -182,8 +182,8 @@ const PageBrookiesDashboard = () => {
                       }}
                     />
                     <div>
-                      <h6 className="fw-bold mb-1">{item.titre}</h6>
-                      <p className="text-marron fw-bold mb-0">{item.prix} €</p>
+                      <h6 className=" mb-1">{item.titre}</h6>
+                      <p className="text-marron mb-0">{item.prix} €</p>
                       <span
                         className={`badge ${
                           item.isActive ? "bg-success" : "bg-danger"
@@ -195,10 +195,10 @@ const PageBrookiesDashboard = () => {
                     </div>
                   </div>
 
-                  <div className="d-flex justify-content-between border-top pt-3 mt-2">
+                  <div className="d-flex justify-content-between border-top pt-3 mt-2" >
                     <button
                       onClick={() => toggleStatus(item._id, item.isActive)}
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn btn-sm flex-grow-1 me-2 border"style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-power me-1"></i> Statut
                     </button>{" "}
@@ -206,7 +206,7 @@ const PageBrookiesDashboard = () => {
                       onClick={() =>
                         navigate(`/admin/brookiedetail/${item._id}`)
                       }
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn  btn-sm flex-grow-1 me-2 border" style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-eye me-1"></i> voir
                     </button>
@@ -214,13 +214,13 @@ const PageBrookiesDashboard = () => {
                       onClick={() =>
                         navigate(`/admin/updatebrookie/${item._id}`)
                       }
-                      className="btn btn-light btn-sm flex-grow-1 me-2 border"
+                      className="btn btn-sm flex-grow-1 me-2 border"style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-pencil me-1"></i> Modif.
                     </button>
                     <button
                       onClick={() => deleteBrookie(item._id)}
-                      className="btn btn-outline-danger btn-sm px-3"
+                      className="btn btn-outline-danger btn-sm px-3"style={{color:"var(--marronRouge)"}}
                     >
                       <i className="bi bi-trash"></i>
                     </button>
@@ -234,7 +234,7 @@ const PageBrookiesDashboard = () => {
 
       <div className="text-center mt-5 mb-5">
         <button
-          className="btn btn-lg px-5 rounded-pill  fw-bold"
+          className="btn btn-lg px-5 rounded-pill"
           style={{
             backgroundColor: "var(--marronRouge)",
             color: "var(--creme)",

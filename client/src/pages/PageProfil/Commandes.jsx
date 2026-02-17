@@ -16,7 +16,7 @@ const Commandes = () => {
   const getCommandes = async () => {
     try {
       const { data } = await axiosInstance.get(
-        URL.GET_USER_COMMANDES + user._id
+        URL.GET_USER_COMMANDES + user._id,
       );
       console.log(data);
 
@@ -50,13 +50,12 @@ const Commandes = () => {
     color: "#888",
     textTransform: "uppercase",
     marginBottom: "10px",
-    fontWeight: "bold",
   };
 
   return (
     <div className="container py-5">
       <h2
-        className="mb-5 fw-bold text-center"
+        className="mb-5 text-center"
         style={{ color: "var(--marronRouge)" }}
       >
         <i className="bi bi-box-seam me-3"></i>Mes commandes
@@ -94,12 +93,12 @@ const Commandes = () => {
             >
               <div className="mb-3 mb-md-0 text-center text-md-start w-100 w-md-auto">
                 <p className="small opacity-75 mb-1">Commande n°</p>
-                <h5 className="mb-0 fw-bold">{item._id}</h5>
+                <h5 className="mb-0">{item._id}</h5>
               </div>
 
               <div className="text-center text-md-end w-100 w-md-auto">
                 <span className="small opacity-75">Passée le</span>
-                <p className="mb-0 fw-bold">
+                <p className="mb-0 ">
                   {new Date(item.createdAt).toLocaleDateString("fr-FR")}
                 </p>
               </div>
@@ -109,7 +108,7 @@ const Commandes = () => {
               <div className="row">
                 <div className="col-md-6 border-end">
                   <h5
-                    className="text-uppercase small fw-bold mb-3"
+                    className="text-uppercase small mb-3"
                     style={{
                       color: "var(--marronRouge)",
                     }}
@@ -117,7 +116,7 @@ const Commandes = () => {
                     Adresse de livraison
                   </h5>
                   <div className="small text-muted">
-                    <h5 className="mb-2 text-muted fw-bold">
+                    <h5 className="mb-2 text-muted">
                       <span
                         style={{
                           color: "var(--marronRouge)",
@@ -126,7 +125,7 @@ const Commandes = () => {
                       >
                         Prénom:
                       </span>
-                      {item.adresse_livraison.prenom}
+                      {item.adresse_livraison?.prenom}
                     </h5>
                     <h5 className="mb-2">
                       <span
@@ -137,7 +136,7 @@ const Commandes = () => {
                       >
                         Nom:
                       </span>
-                      {item.adresse_livraison.nom}
+                      {item.adresse_livraison?.nom}
                     </h5>
                     <h5 className="mb-2">
                       <span
@@ -148,11 +147,10 @@ const Commandes = () => {
                       >
                         Addresse:
                       </span>
-                      {item.adresse_livraison.adresse}
+                      {item.adresse_livraison?.adresse}
                     </h5>
 
                     <h5 className="mb-2 ">
-                      {" "}
                       <span
                         style={{
                           color: "var(--marronRouge)",
@@ -161,11 +159,9 @@ const Commandes = () => {
                       >
                         Complément d'adresse:
                       </span>
-                      {item.adresse_livraison.complementAdresse}
+                      {item.adresse_livraison?.complementAdresse}
                     </h5>
-
                     <h5 className="mb-2">
-                      {" "}
                       <span
                         style={{
                           color: "var(--marronRouge)",
@@ -174,7 +170,7 @@ const Commandes = () => {
                       >
                         Code Postal:
                       </span>
-                      {item.adresse_livraison.codePostal}{" "}
+                      {item.adresse_livraison?.codePostal}{" "}
                     </h5>
                     <h5 className="mb-2">
                       <span
@@ -185,7 +181,7 @@ const Commandes = () => {
                       >
                         Ville:
                       </span>
-                      {item.adresse_livraison.ville}
+                      {item.adresse_livraison?.ville}
                     </h5>
                     <h5 className="mb-2">
                       {" "}
@@ -197,7 +193,7 @@ const Commandes = () => {
                       >
                         Pays:
                       </span>
-                      {item.adresse_livraison.pays}
+                      {item.adresse_livraison?.pays}
                     </h5>
                   </div>
                 </div>
@@ -205,7 +201,7 @@ const Commandes = () => {
                 {/* Colonne Articles */}
                 <div className="col-md-6 ps-md-4 mt-4 mt-md-0">
                   <h6
-                    className="text-uppercase small fw-bold mb-3"
+                    className="text-uppercase small  mb-3"
                     style={{
                       color: "var(--marronRouge)",
                       letterSpacing: "1px",
@@ -233,17 +229,16 @@ const Commandes = () => {
                               }}
                             />
                           )}
-                          <span className="small text-muted">
+                          <span className="small ">
                             <span
-                              className="fw-bold"
                               style={{ color: "var(--marronRouge)" }}
                             >
-                              {article.quantity}x
+                              {article.quantite} x     {article.titre}
                             </span>
-                            {article.titre}
+                         
                           </span>
                         </div>
-                        <span className="small fw-bold">
+                        <span className="small">
                           {article.prixUnitaire}€
                         </span>
                       </div>
@@ -253,9 +248,9 @@ const Commandes = () => {
                   <hr className="my-3" />
 
                   <div className="d-flex justify-content-between align-items-center">
-                    <span className="fw-bold text-muted">Total réglé</span>
+                    <span className=" text-muted">Total réglé</span>
                     <span
-                      className="h5 mb-0 fw-bold"
+                      className="h5 mb-0 "
                       style={{ color: "var(--marronRouge)" }}
                     >
                       {item.prixTotal} €
@@ -278,14 +273,14 @@ const Commandes = () => {
       <div className="text-center mt-5 mb-5">
         <button
           className="btn  btn-lg px-5 rounded-pill
-                 fw-bold"
+                 "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",
             border: "1px solid var(--marronRouge",
           }}
         >
-          <Link to="/profil">Retour aux commandes</Link>
+          <Link to="/profil">Retour au profil</Link>
         </button>
       </div>
     </div>

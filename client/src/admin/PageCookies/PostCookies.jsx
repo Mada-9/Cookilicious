@@ -1,10 +1,8 @@
 import { useState } from "react";
 import axiosinstance from "../../utils/axios/axiosinstance";
 import { toast } from "react-toastify";
-
 import URL from "../../utils/constant/url";
 import { Link, useNavigate } from "react-router-dom";
-import { color } from "framer-motion";
 
 const PostCookie = () => {
   const [cookie, setCookie] = useState({
@@ -39,7 +37,7 @@ const PostCookie = () => {
 
   return (
     <div >
-      <h2 className="dashboardHeader">Post Cookie</h2>
+      <h2 className="dashboardHeader ps-lg-4">Post Cookie</h2>
       <div
         className="col-8"
         style={{

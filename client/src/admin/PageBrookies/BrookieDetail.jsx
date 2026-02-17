@@ -37,7 +37,7 @@ const BrookieDetail = () => {
       ) : (
         <div>
           <div key={detailBrookie._id}>
-            <h2 className="dashboardHeader">{detailBrookie.titre}</h2>
+            <h2 className="dashboardHeader ps-lg-4">{detailBrookie.titre}</h2>
             <div
               style={{
                 padding: "2rem",
@@ -64,7 +64,7 @@ const BrookieDetail = () => {
       <div className="text-center mt-5 mb-5">
         <button
           className="btn btn-dark btn-lg px-5 rounded-pill
-           fw-bold"
+        "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

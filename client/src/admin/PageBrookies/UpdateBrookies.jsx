@@ -64,7 +64,7 @@ const UpdateBrookie = () => {
 
   return (
     <>
-      <h2  className="dashboardHeader">Update Brookie</h2>
+      <h2  className="dashboardHeader ps-lg-4">Update Brookie</h2>
 
       <div
         className="col-8"
@@ -141,7 +141,7 @@ const UpdateBrookie = () => {
           />
            <button 
              className="btn my-5 btn-lg px-5 rounded-pill
-           fw-bold"
+           "
           style={{
             color: "var(--creme)",
             backgroundColor: "var(--marronRouge",
@@ -154,7 +154,7 @@ const UpdateBrookie = () => {
         <div className="text-center mt-5 mb-5">
         <button
           className="btn  btn-lg px-5 rounded-pill
-           fw-bold"
+           "
           style={{
             backgroundColor: "var(--creme)",
             color: "var(--marronRouge",

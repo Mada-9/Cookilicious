@@ -42,7 +42,7 @@ const Footer = () => {
 
       <div className="row">
         <div className="col text-center" style={styles.bottom}>
-          © {new Date().getFullYear()} COOKILICIOUS -
+          ©  COOKILICIOUS - {new Date().getFullYear()}
         </div>
       </div>
 
@@ -60,7 +60,7 @@ const styles = {
   section: {
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",     // ⭐ centre chaque section
+    alignItems: "center",    
     gap: "0.45rem",
   },
 
