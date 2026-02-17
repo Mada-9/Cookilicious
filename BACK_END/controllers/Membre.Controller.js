@@ -16,6 +16,7 @@ const jwt = require("jsonwebtoken");
  * @param {object} res - Objet de réponse Express.
  * @returns {object[]} Liste des éléments.
  */
+
 const get = async (req, res, next) => {
   try {
     const user = await UserModel.find();

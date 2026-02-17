@@ -2,7 +2,6 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-// EN CAS DE BESOIN VOUS POUVEZ AJOUTER DES VARIABLES DANS CETTE OBJET
 const ENV = {
   PORT: process.env.PORT,
   MONGO_URI: process.env.MONGO_URI,

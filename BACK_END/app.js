@@ -23,6 +23,10 @@ connectDB(ENV.MONGO_URI, ENV.DB_NAME);
 
 // APP EXPRESS
 const app = express();
+app.get("/ping", (req, res) => {
+  res.json({ message: "pong" });
+});
+
 
 // MIDDLEWARES
 /**
@@ -55,6 +59,11 @@ app.use("/api/recette", recetteRouter);
 app.use("/api/avis", avisRouter);
 app.use("/api/commande", commandeRouter)
 app.use("/api/membre", membreRouter)
+
+
+
+console.log("APP FILE LOADED");
+
 
 // Middleware d'erreurs (toujours en dernier 🚨)
 app.use(errorMiddleware);

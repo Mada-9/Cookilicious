@@ -15,7 +15,8 @@ const post = async (req, res, next) => {
 const get = async (req, res, next) => {
   try {
     const commandes = await CommandeModel.find();
-
+    // .populate("user")
+    // .populate("items");
 
     res.status(200).json(commandes);
   } catch (error) {
@@ -27,8 +28,9 @@ const get = async (req, res, next) => {
 const getById = async (req, res, next) => {
   try {
     const commande = await CommandeModel.findById(req.params.id)
-      .populate("user");
 
+    // .populate("user")
+    // .populate("produit");
     res.status(200).json(commande);
   } catch (error) {
     next(createError(error.status || 500, error.message, error.details));

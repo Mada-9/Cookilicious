@@ -50,9 +50,9 @@ const sendEmail = async (user, verifieToken) => {
       `,
     });
 
-    console.log("📧 Email envoyé à :", user.email);
+    console.log(" Email envoyé à :", user.email);
   } catch (error) {
-    console.error("❌ Erreur d'envoi d'email:", error);
+    console.error("Erreur d'envoi d'email:", error);
     throw error;
   }
 };

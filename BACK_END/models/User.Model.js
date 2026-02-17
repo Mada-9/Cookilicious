@@ -34,6 +34,10 @@ const User = mongoose.Schema(
       enum: ["admin", "user"], 
       default: "user", 
     },
+     isActive: {
+    type: Boolean,
+    default: true
+  },
     isVerified: { type: Boolean, default: false },
   },
   { timestamps: true } // crée createdAt et updatedAt automatiquement
