@@ -50,6 +50,10 @@ app.use(
   })
 );
 
+app.get("/ping", (req, res) => {
+  res.json({ message: "pong" });
+});
+
 // PREFIX
 app.use("/api/auth", authRouter);
 app.use("/api/cookie", cookiesRouter);
