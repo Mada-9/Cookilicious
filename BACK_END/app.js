@@ -45,14 +45,10 @@ app.use(cookieParser());
  */
 app.use(
   cors({
-    origin: [ENV.WEB_APP_URL, ENV.DOMAINE_URL, 'https://cookilicious-51jq.vercel.app','https://cookilicious-d5op.vercel.app'],
+    origin: [ENV.WEB_APP_URL, ENV.DOMAINE_URL, 'https://cookilicious-51jq.vercel.app'],
     credentials: true,
   })
 );
-
-app.get("/ping", (req, res) => {
-  res.json({ message: "pong" });
-});
 
 // PREFIX
 app.use("/api/auth", authRouter);
