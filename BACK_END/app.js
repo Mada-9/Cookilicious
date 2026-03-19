@@ -10,8 +10,8 @@ const errorMiddleware = require("./middlewares/ErrorMiddleware.js");
 
 // IMPORT ROUTES
 const authRouter = require("./router/Auth.Router.js");
-const cookiesRouter =require("./router/Cookies.Router.js");
-const brookiesRouter =require("./router/Brookies.Router.js");
+const cookiesRouter = require("./router/Cookies.Router.js");
+const brookiesRouter = require("./router/Brookies.Router.js");
 const contactRouter = require("./router/Contact.Router.js");
 const recetteRouter = require("./router/Recette.Router.js");
 const avisRouter = require("./router/Avis.Router.js");
@@ -26,7 +26,6 @@ const app = express();
 app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
 });
-
 
 // MIDDLEWARES
 /**
@@ -46,11 +45,12 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "https://cookilicious-51jq.vercel.app", 
-      "http://localhost:5173"
+      "https://cookilicious-51jq.vercel.app",
+      "https://cookilicious.vercel.app/",
+      "http://localhost:5173",
     ],
     credentials: true,
-  })
+  }),
 );
 
 // PREFIX
@@ -60,13 +60,10 @@ app.use("/api/brookie", brookiesRouter);
 app.use("/api/contact", contactRouter);
 app.use("/api/recette", recetteRouter);
 app.use("/api/avis", avisRouter);
-app.use("/api/commande", commandeRouter)
-app.use("/api/membre", membreRouter)
-
-
+app.use("/api/commande", commandeRouter);
+app.use("/api/membre", membreRouter);
 
 console.log("APP FILE LOADED");
-
 
 // Middleware d'erreurs (toujours en dernier )
 app.use(errorMiddleware);
