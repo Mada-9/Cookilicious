@@ -65,7 +65,7 @@ app.use("/api/membre", membreRouter)
 console.log("APP FILE LOADED");
 
 
-// Middleware d'erreurs (toujours en dernier 🚨)
+// Middleware d'erreurs (toujours en dernier )
 app.use(errorMiddleware);
 
 module.exports = app;
