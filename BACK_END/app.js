@@ -45,7 +45,10 @@ app.use(cookieParser());
  */
 app.use(
   cors({
-    origin: [ENV.WEB_APP_URL, ENV.DOMAINE_URL, 'https://cookilicious-51jq.vercel.app'],
+    origin: [
+      "https://cookilicious-51jq.vercel.app", 
+      "http://localhost:5173"
+    ],
     credentials: true,
   })
 );
