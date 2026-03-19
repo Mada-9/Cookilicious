@@ -4,7 +4,7 @@ import { ToastContainer } from "react-toastify";
 import { AnimatePresence } from "framer-motion";
 
 // IMPORT AXIOS INSTANCE
-import axiosInstance from './api/axiosInstance'; 
+import axiosInstance from '../src/utils/axios/axiosinstance'; 
 
 // STYLES
 import "react-toastify/dist/ReactToastify.css";
