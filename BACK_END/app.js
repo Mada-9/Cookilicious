@@ -1,9 +1,8 @@
-// IMPORT PACKAGES
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-// IMPORT FILES
+// IMPORT FILES & CONFIG
 const ENV = require("./config/Env.js");
 const connectDB = require("./config/Mongo.js");
 const errorMiddleware = require("./middlewares/ErrorMiddleware.js");
@@ -21,39 +20,29 @@ const membreRouter = require("./router/Membre.Router.js");
 // CONNEXION MONGO
 connectDB(ENV.MONGO_URI, ENV.DB_NAME);
 
-// APP EXPRESS
 const app = express();
+
+// --- 1. CONFIGURATION CORS (Indispensable pour Vercel) ---
+app.use(
+  cors({
+    origin: [
+      "https://cookilicious-51jq.vercel.app", // Ton URL Front actuelle
+      "http://localhost:5173",                // Pour tes tests locaux
+    ],
+    credentials: true, // Autorise l'envoi des cookies/sessions
+  })
+);
+
+// --- 2. PARSING MIDDLEWARES ---
+app.use(express.json());
+app.use(cookieParser());
+
+// --- 3. ROUTES DE TEST ---
 app.get("/ping", (req, res) => {
   res.json({ message: "pong" });
 });
 
-// MIDDLEWARES
-/**
- * app.use(express.json());
- * → permet à Express de comprendre et parser automatiquement le body JSON des requêtes (sinon req.body serait undefined).
- */
-app.use(express.json());
-/**
- * app.use(cookieParser());
- * → lit les cookies envoyés par le client et les rend accessibles dans req.cookies.
- */
-app.use(cookieParser());
-/**
- * app.use(cors({...}));
- * → active le CORS (Cross-Origin Resource Sharing) pour autoriser des requêtes venant de du front.
- */
-app.use(
-  cors({
-    origin: [
-      "https://cookilicious-51jq.vercel.app",
-      "https://cookilicious.vercel.app/",
-      "http://localhost:5173",
-    ],
-    credentials: true,
-  }),
-);
-
-// PREFIX
+// --- 4. PREFIXES API ---
 app.use("/api/auth", authRouter);
 app.use("/api/cookie", cookiesRouter);
 app.use("/api/brookie", brookiesRouter);
@@ -63,9 +52,7 @@ app.use("/api/avis", avisRouter);
 app.use("/api/commande", commandeRouter);
 app.use("/api/membre", membreRouter);
 
-console.log("APP FILE LOADED");
-
-// Middleware d'erreurs (toujours en dernier )
+// --- 5. GESTION DES ERREURS ---
 app.use(errorMiddleware);
 
 module.exports = app;
