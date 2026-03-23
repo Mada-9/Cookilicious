@@ -17,19 +17,20 @@ const Cookies = () => {
     getAllCookies();
   }, []);
 
-  const getAllCookies = async () => {
-    try {
-      const { data, status } = await axiosinstance.get(URL.GET_ALL_COOKIES);
-      console.log(data);
+ const getAllCookies = async () => {
+  try {
+    const { data } = await axiosinstance.get(URL.GET_ALL_COOKIES);
+    console.log("Données reçues :", data);
 
-      if (status === 200) {
-        const cookiesActifs = data.filter((item) => item.isActive === true);
-        setCookie(cookiesActifs);
-      }
-    } catch (error) {
-      console.log(error.message);
+    // On vérifie juste que data est bien un tableau
+    if (Array.isArray(data)) {
+      const cookiesActifs = data.filter((item) => item.isActive === true);
+      setCookie(cookiesActifs);
     }
-  };
+  } catch (error) {
+    console.log("Erreur Axios :", error.message);
+  }
+};
 
   return (
     <div className="produit">
