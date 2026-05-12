@@ -32,6 +32,11 @@ app.use(
   })
 );
 
+// Dans app.js, juste après les imports
+console.log("Vérification MONGO_URI :", process.env.MONGO_URI ? "Reçue" : "ABSENTE");
+console.log("Vérification DB_NAME :", process.env.DB_NAME ? "Reçue" : "ABSENTE");
+
+connectDB(process.env.MONGO_URI, process.env.DB_NAME);
 
 
 // --- 2. PARSING MIDDLEWARES ---
