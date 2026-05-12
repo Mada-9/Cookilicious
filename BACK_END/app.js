@@ -33,14 +33,19 @@ app.use(
   })
 );
 
+
+
 // --- 2. PARSING MIDDLEWARES ---
 app.use(express.json());
 app.use(cookieParser());
 
-// --- 3. ROUTES DE TEST ---
-app.get("/ping", (req, res) => {
-  res.json({ message: "pong" });
+
+// Route de test pour vérifier que le backend est en ligne
+app.get("/", (req, res) => {
+  res.json({ message: "Le backend Cookilicious est en ligne !" });
 });
+
+
 
 // --- 4. PREFIXES API ---
 app.use("/api/auth", authRouter);
