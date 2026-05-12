@@ -15,7 +15,6 @@
 const mongoose = require('mongoose');
 
 const connectDB = async (mongo_uri, bdd_name) => {
-  // Petite sécurité : si déjà connecté, on ne fait rien
   if (mongoose.connection.readyState >= 1) return;
 
   try {
@@ -23,7 +22,6 @@ const connectDB = async (mongo_uri, bdd_name) => {
     console.log('Connexion à mongoDB réussie !');
   } catch (error) {
     console.error(' Erreur de connexion à mongoDB : ', error.message);
-    // On ne crash pas, mais on log l'erreur pour la voir dans Vercel
   }
 }
 

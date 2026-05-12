@@ -22,7 +22,6 @@ connectDB(ENV.MONGO_URI, ENV.DB_NAME);
 
 const app = express();
 
-// --- 1. CONFIGURATION CORS (Indispensable pour Vercel) ---
 app.use(
   cors({
     origin: [
