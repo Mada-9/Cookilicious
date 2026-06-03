@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-// Avec Vite, on utilise "import.meta.env.DEV" pour savoir si on est en local
+// "import.meta.env.DEV" est vrai sur ton PC, et faux sur Vercel
 const API_URL = import.meta.env.DEV
   ? "http://localhost:8000"
-  : "https://cookiliciousbackend.vercel.app"; // 1. Ajout du https:// obligatoire !
+  : "https://cookiliciousbackend.vercel.app";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
