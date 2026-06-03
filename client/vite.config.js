@@ -1,9 +1,9 @@
 import axios from 'axios'
 
 // Version recommandée pour Vite
-const API_URL = import.meta.env.MODE === "development"
+const API_URL = import.meta.env.NODE === "development"
   ? "http://localhost:8000"
-  : "https://cookiliciousbackend.vercel.app/"  // <-- Remplace par ton vrai lien backend
+  : "https://cookilicious-backend.vercel.app"  // <-- Remplace par ton vrai lien backend
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
