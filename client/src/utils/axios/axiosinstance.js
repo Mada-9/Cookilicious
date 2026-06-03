@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
 
-
-const API_URL = process.env.NODE_ENV === "development"  //environnement de dev ou de production
+// Avec Vite, on utilise "import.meta.env.DEV" pour savoir si on est en local
+const API_URL = import.meta.env.DEV
   ? "http://localhost:8000"
-  : "cookiliciousbackend.vercel.app"
+  : "https://cookiliciousbackend.vercel.app"; // 1. Ajout du https:// obligatoire !
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
@@ -11,7 +11,6 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json"
   }
-})
-
+});
 
 export default axiosInstance;
