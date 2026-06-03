@@ -1,16 +1,15 @@
-import axios from 'axios'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
-// Version recommandée pour Vite
-const API_URL = import.meta.env.NODE === "development"
-  ? "http://localhost:8000"
-  : "https://cookilicious-backend.vercel.app"  // <-- Remplace par ton vrai lien backend
-
-const axiosInstance = axios.create({
-  baseURL: API_URL,
-  withCredentials: true,
-  headers: {
-    "Content-Type": "application/json"
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 8000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true
+      }
+    }
   }
-})
-
-export default axiosInstance;
+});
